@@ -12,9 +12,18 @@ TSLBP tslpb;
 UserDataStruct_t missionData;
 
 //for analog sensors --> uint16_t varName
+uint16_t tslSolar;
+uint16_t tslTempInt;
+uint16_t tslTempExt;
 
 //for digital sensors --> uint16_t varName (for raw) and double varName
+uint16_t tslAccX;
+uint16_t tslAccY;
+uint16_t tslAccZ;
 
+uint16_t tslGyrX;
+uint16_t tslGyrY;
+uint16_t tslGyrZ;
 
 void begin(){
   tslbp.begin();
@@ -35,10 +44,21 @@ void loop(){
 void readData(){
   //varName = tslpb.readAnalogSensor(Value) or readDigitalSensor(Value) or readDigitalSensorRaw(Value)
   //varName was defined in define statements at the top
+  tslSolar = tslbp.readAnalogSensor(Solar);
+  tslTempInt = tslbp.readAnalogSensor(TempInt);
+  tslTempExt = tslbp.readAnalogSensor(TempExt);
+//   tslAccX, tslAccY, tslAccZ = tslbp.readDigitalSensorRaw(Accelerometer_x, Accelerometer_y, Accelerometer_z);
+//   tslGyrX, tslGyrY, tslGyrZ = tslbp.readDigitalSensorRaw(Gyroscope_x, Gyroscope_y, Gyroscope_z);
+
+//we also need it to read time! and occasionally send back time data
+
 }
 
 void storeData(){
   //missionData.payloadData.byteName = varName
+  missionData.payloadData.solar = tslSolar;
+  missionData.payloadData.tempint = tslTempInt;
+  missionData.payloadData.tempext = tslTempExt;
 }
 
 void sendData(){
