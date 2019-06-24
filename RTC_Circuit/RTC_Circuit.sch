@@ -1,5 +1,6 @@
 EESchema Schematic File Version 4
-EELAYER 26 0
+LIBS:RTC_Circuit-cache
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -16,51 +17,496 @@ $EndDescr
 $Comp
 L Timer_RTC:DS3231M U1
 U 1 1 5D03BBFA
-P 1400 1500
-F 0 "U1" H 1400 1014 50  0000 C CNN
-F 1 "DS3231M" H 1150 2150 50  0000 C CNN
-F 2 "Package_SO:SOIC-16W_7.5x10.3mm_P1.27mm" H 1400 900 50  0001 C CNN
-F 3 "http://datasheets.maximintegrated.com/en/ds/DS3231.pdf" H 1670 1550 50  0001 C CNN
-	1    1400 1500
+P 1950 1650
+F 0 "U1" H 1150 2600 50  0000 C CNN
+F 1 "DS3231M" H 900 2600 50  0000 C CNN
+F 2 "Package_SO:SOIC-16W_7.5x10.3mm_P1.27mm" H 1950 1050 50  0001 C CNN
+F 3 "http://datasheets.maximintegrated.com/en/ds/DS3231.pdf" H 2220 1700 50  0001 C CNN
+	1    1950 1650
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0101
 U 1 1 5D03BD04
-P 1400 1900
-F 0 "#PWR0101" H 1400 1650 50  0001 C CNN
-F 1 "GND" H 1405 1727 50  0000 C CNN
-F 2 "" H 1400 1900 50  0001 C CNN
-F 3 "" H 1400 1900 50  0001 C CNN
-	1    1400 1900
+P 1950 2050
+F 0 "#PWR0101" H 1950 1800 50  0001 C CNN
+F 1 "GND" H 1955 1877 50  0000 C CNN
+F 2 "" H 1950 2050 50  0001 C CNN
+F 3 "" H 1950 2050 50  0001 C CNN
+	1    1950 2050
 	1    0    0    -1  
 $EndComp
 $Comp
-L formula:R_10K R?
+L RTC_Circuit-rescue:R_10K-formula R?
 U 1 1 5D03BEF7
-P 700 1150
-F 0 "R?" H 770 1196 50  0000 L CNN
-F 1 "R_10K" H 770 1105 50  0000 L CNN
-F 2 "footprints:R_0805_OEM" H 630 1150 50  0001 C CNN
-F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 780 1150 50  0001 C CNN
-F 4 "DK" H 700 1150 60  0001 C CNN "MFN"
-F 5 "CRS0805-FX-1002ELFCT-ND" H 700 1150 60  0001 C CNN "MPN"
-F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 1180 1550 60  0001 C CNN "PurchasingLink"
-	1    700  1150
+P 1150 1400
+F 0 "R?" H 1220 1446 50  0000 L CNN
+F 1 "R_10K" H 1220 1355 50  0000 L CNN
+F 2 "footprints:R_0805_OEM" H 1080 1400 50  0001 C CNN
+F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 1230 1400 50  0001 C CNN
+F 4 "DK" H 1150 1400 60  0001 C CNN "MFN"
+F 5 "CRS0805-FX-1002ELFCT-ND" H 1150 1400 60  0001 C CNN "MPN"
+F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 1630 1800 60  0001 C CNN "PurchasingLink"
+	1    1150 1400
 	1    0    0    -1  
 $EndComp
 $Comp
-L formula:R_10K R?
+L RTC_Circuit-rescue:R_10K-formula R?
 U 1 1 5D03BF79
-P 550 1150
-F 0 "R?" H 620 1196 50  0000 L CNN
-F 1 "R_10K" H 620 1105 50  0000 L CNN
-F 2 "footprints:R_0805_OEM" H 480 1150 50  0001 C CNN
-F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 630 1150 50  0001 C CNN
-F 4 "DK" H 550 1150 60  0001 C CNN "MFN"
-F 5 "CRS0805-FX-1002ELFCT-ND" H 550 1150 60  0001 C CNN "MPN"
-F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 1030 1550 60  0001 C CNN "PurchasingLink"
-	1    550  1150
+P 1000 1300
+F 0 "R?" H 800 1375 50  0000 L CNN
+F 1 "R_10K" H 675 1275 50  0000 L CNN
+F 2 "footprints:R_0805_OEM" H 930 1300 50  0001 C CNN
+F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 1080 1300 50  0001 C CNN
+F 4 "DK" H 1000 1300 60  0001 C CNN "MFN"
+F 5 "CRS0805-FX-1002ELFCT-ND" H 1000 1300 60  0001 C CNN "MPN"
+F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 1480 1700 60  0001 C CNN "PurchasingLink"
+	1    1000 1300
 	1    0    0    -1  
 $EndComp
+Text Notes 725  645  0    50   ~ 0
+Real Time Clock
+Connection ~ 1000 1450
+Wire Wire Line
+	1000 1450 725  1450
+Wire Wire Line
+	1000 1450 1450 1450
+Wire Wire Line
+	1450 1550 1150 1550
+Connection ~ 1150 1550
+Wire Wire Line
+	1150 1550 725  1550
+Wire Wire Line
+	1150 1250 1150 1150
+Wire Wire Line
+	1000 1150 1150 1150
+Wire Wire Line
+	1450 1850 725  1850
+$Comp
+L RTC_Circuit-rescue:R_10K-formula R?
+U 1 1 5D11A655
+P 2750 1450
+F 0 "R?" H 2575 1525 50  0000 L CNN
+F 1 "R_10K" H 2450 1400 50  0000 L CNN
+F 2 "footprints:R_0805_OEM" H 2680 1450 50  0001 C CNN
+F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 2830 1450 50  0001 C CNN
+F 4 "DK" H 2750 1450 60  0001 C CNN "MFN"
+F 5 "CRS0805-FX-1002ELFCT-ND" H 2750 1450 60  0001 C CNN "MPN"
+F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 3230 1850 60  0001 C CNN "PurchasingLink"
+	1    2750 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L RTC_Circuit-rescue:R_10K-formula R?
+U 1 1 5D11A65E
+P 2975 1300
+F 0 "R?" H 3075 1375 50  0000 L CNN
+F 1 "R_10K" H 3075 1275 50  0000 L CNN
+F 2 "footprints:R_0805_OEM" H 2905 1300 50  0001 C CNN
+F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 3055 1300 50  0001 C CNN
+F 4 "DK" H 2975 1300 60  0001 C CNN "MFN"
+F 5 "CRS0805-FX-1002ELFCT-ND" H 2975 1300 60  0001 C CNN "MPN"
+F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 3455 1700 60  0001 C CNN "PurchasingLink"
+	1    2975 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2450 1750 2750 1750
+Connection ~ 2975 1450
+Wire Wire Line
+	2975 1450 3250 1450
+Wire Wire Line
+	2450 1450 2975 1450
+Wire Wire Line
+	2750 1600 2750 1750
+Connection ~ 2750 1750
+Wire Wire Line
+	2750 1750 3250 1750
+Wire Wire Line
+	2750 775  2975 775 
+Connection ~ 2975 775 
+Wire Wire Line
+	2975 775  3500 775 
+$Comp
+L Device:C_Small C?
+U 1 1 5D1396E0
+P 3500 875
+F 0 "C?" H 3575 1000 50  0000 L CNN
+F 1 "C_Small" H 3575 925 50  0000 L CNN
+F 2 "" H 3500 875 50  0001 C CNN
+F 3 "~" H 3500 875 50  0001 C CNN
+	1    3500 875 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D13A055
+P 3500 975
+F 0 "#PWR?" H 3500 725 50  0001 C CNN
+F 1 "GND" H 3650 900 50  0000 C CNN
+F 2 "" H 3500 975 50  0001 C CNN
+F 3 "" H 3500 975 50  0001 C CNN
+	1    3500 975 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP_Small C?
+U 1 1 5D13B90E
+P 2175 1000
+F 0 "C?" H 2250 1100 50  0000 L CNN
+F 1 "CP_Small" H 2250 1025 50  0000 L CNN
+F 2 "" H 2175 1000 50  0001 C CNN
+F 3 "~" H 2175 1000 50  0001 C CNN
+	1    2175 1000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2750 775  2750 1300
+Wire Wire Line
+	2975 775  2975 1150
+Wire Wire Line
+	1950 1250 1950 900 
+Wire Wire Line
+	1950 900  2175 900 
+$Comp
+L power:GND #PWR?
+U 1 1 5D1479DA
+P 2175 1100
+F 0 "#PWR?" H 2175 850 50  0001 C CNN
+F 1 "GND" H 2325 1025 50  0000 C CNN
+F 2 "" H 2175 1100 50  0001 C CNN
+F 3 "" H 2175 1100 50  0001 C CNN
+	1    2175 1100
+	1    0    0    -1  
+$EndComp
+Text Notes 7775 600  0    50   ~ 0
+Microcontroller
+$Comp
+L Custom:DF12-20DS U?
+U 1 1 5D1584F8
+P 1775 3550
+F 0 "U?" H 1275 4275 50  0000 C CNN
+F 1 "DF12-20DS" H 950 4275 50  0000 C CNN
+F 2 "" H 1775 4100 50  0001 C CNN
+F 3 "" H 1775 4100 50  0001 C CNN
+	1    1775 3550
+	1    0    0    -1  
+$EndComp
+Text Notes 725  2750 0    50   ~ 0
+NSL Connector
+Text Label 1175 3200 2    50   ~ 0
+3.3V
+Text Label 2375 3200 0    50   ~ 0
+5V
+Wire Wire Line
+	2375 3100 2900 3100
+Wire Wire Line
+	2900 3100 2900 3350
+$Comp
+L power:GND #PWR?
+U 1 1 5D1611BB
+P 2900 3350
+F 0 "#PWR?" H 2900 3100 50  0001 C CNN
+F 1 "GND" H 2905 3177 50  0000 C CNN
+F 2 "" H 2900 3350 50  0001 C CNN
+F 3 "" H 2900 3350 50  0001 C CNN
+	1    2900 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	650  3100 650  3350
+$Comp
+L power:GND #PWR?
+U 1 1 5D1639D7
+P 650 3350
+F 0 "#PWR?" H 650 3100 50  0001 C CNN
+F 1 "GND" H 655 3177 50  0000 C CNN
+F 2 "" H 650 3350 50  0001 C CNN
+F 3 "" H 650 3350 50  0001 C CNN
+	1    650  3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	650  3100 1175 3100
+Text Label 1850 750  2    50   ~ 0
+3.3V
+Wire Wire Line
+	1850 750  1850 775 
+Text Label 1150 1150 0    50   ~ 0
+3.3V
+Wire Wire Line
+	2750 775  1850 775 
+Connection ~ 2750 775 
+Connection ~ 1850 775 
+Wire Wire Line
+	1850 775  1850 1250
+$Comp
+L MCU_Microchip_ATmega:ATmega32U4-MU U?
+U 1 1 5D1491C0
+P 8350 3050
+F 0 "U?" H 8500 5425 50  0000 C CNN
+F 1 "ATmega32U4-MU" H 8100 5425 50  0000 C CNN
+F 2 "Package_DFN_QFN:QFN-44-1EP_7x7mm_P0.5mm_EP5.2x5.2mm" H 8350 3050 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf" H 8350 3050 50  0001 C CNN
+	1    8350 3050
+	1    0    0    -1  
+$EndComp
+Text Label 8350 1175 1    50   ~ 0
+3.3V
+Wire Wire Line
+	8450 1250 8350 1250
+Wire Wire Line
+	8350 1250 8350 1175
+Connection ~ 8350 1250
+Text Label 1175 3500 2    50   ~ 0
+TX
+Text Label 2375 3500 0    50   ~ 0
+RX
+$Comp
+L Custom:S1336-44BQ U?
+U 1 1 5D1A5F61
+P 5300 1300
+F 0 "U?" H 5307 1578 50  0000 C CNN
+F 1 "S1336-44BQ" H 5307 1487 50  0000 C CNN
+F 2 "" H 5300 1520 50  0001 C CNN
+F 3 "" H 5300 1520 50  0001 C CNN
+	1    5300 1300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom:S14739-20 U?
+U 1 1 5D1AD708
+P 5425 3375
+F 0 "U?" H 5425 4190 50  0000 C CNN
+F 1 "S14739-20" H 5425 4099 50  0000 C CNN
+F 2 "" H 5425 4155 50  0001 C CNN
+F 3 "" H 5425 4155 50  0001 C CNN
+	1    5425 3375
+	1    0    0    -1  
+$EndComp
+Text Notes 5075 825  0    50   ~ 0
+Photodiode
+Text Notes 4925 2375 0    50   ~ 0
+Spectrometer
+NoConn ~ 4675 3325
+NoConn ~ 4675 3425
+NoConn ~ 4675 3525
+NoConn ~ 6175 3425
+NoConn ~ 6175 3625
+Wire Wire Line
+	4675 3025 4250 3025
+Wire Wire Line
+	4250 2500 4400 2500
+Wire Wire Line
+	4250 2500 4250 2375
+$Comp
+L Device:C_Small C?
+U 1 1 5D1C3247
+P 4400 2600
+F 0 "C?" V 4400 2750 50  0000 L CNN
+F 1 "C_Small" V 4450 2750 50  0001 L CNN
+F 2 "" H 4400 2600 50  0001 C CNN
+F 3 "~" H 4400 2600 50  0001 C CNN
+	1    4400 2600
+	1    0    0    -1  
+$EndComp
+Connection ~ 4400 2500
+Wire Wire Line
+	4400 2500 4600 2500
+$Comp
+L Device:CP1_Small C?
+U 1 1 5D1C43CF
+P 4600 2600
+F 0 "C?" H 4691 2600 50  0000 L CNN
+F 1 "CP1_Small" H 4691 2555 50  0001 L CNN
+F 2 "" H 4600 2600 50  0001 C CNN
+F 3 "~" H 4600 2600 50  0001 C CNN
+	1    4600 2600
+	1    0    0    -1  
+$EndComp
+Text Label 4250 2375 2    50   ~ 0
+5V
+Wire Wire Line
+	4250 3025 4250 2500
+Connection ~ 4250 2500
+$Comp
+L power:GNDA #PWR?
+U 1 1 5D1CA641
+P 4400 2700
+F 0 "#PWR?" H 4400 2450 50  0001 C CNN
+F 1 "GNDA" H 4405 2527 50  0000 C CNN
+F 2 "" H 4400 2700 50  0001 C CNN
+F 3 "" H 4400 2700 50  0001 C CNN
+	1    4400 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDA #PWR?
+U 1 1 5D1CE27B
+P 4600 2700
+F 0 "#PWR?" H 4600 2450 50  0001 C CNN
+F 1 "GNDA" H 4605 2527 50  0000 C CNN
+F 2 "" H 4600 2700 50  0001 C CNN
+F 3 "" H 4600 2700 50  0001 C CNN
+	1    4600 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDA #PWR?
+U 1 1 5D1CFD2B
+P 4500 3275
+F 0 "#PWR?" H 4500 3025 50  0001 C CNN
+F 1 "GNDA" H 4505 3102 50  0000 C CNN
+F 2 "" H 4500 3275 50  0001 C CNN
+F 3 "" H 4500 3275 50  0001 C CNN
+	1    4500 3275
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4675 3225 4500 3225
+Wire Wire Line
+	4500 3225 4500 3275
+NoConn ~ 4675 3125
+$Comp
+L power:GNDA #PWR?
+U 1 1 5D1D16F3
+P 4500 3625
+F 0 "#PWR?" H 4500 3375 50  0001 C CNN
+F 1 "GNDA" H 4505 3452 50  0000 C CNN
+F 2 "" H 4500 3625 50  0001 C CNN
+F 3 "" H 4500 3625 50  0001 C CNN
+	1    4500 3625
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4675 3625 4500 3625
+Wire Wire Line
+	4675 3725 4675 4025
+Wire Wire Line
+	4675 4025 4250 4025
+$Comp
+L Device:C_Small C?
+U 1 1 5D1DF31F
+P 4250 4125
+F 0 "C?" H 4375 4125 50  0000 L CNN
+F 1 "C_Small" V 4300 4275 50  0001 L CNN
+F 2 "" H 4250 4125 50  0001 C CNN
+F 3 "~" H 4250 4125 50  0001 C CNN
+	1    4250 4125
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP1_Small C?
+U 1 1 5D1DF325
+P 3975 4125
+F 0 "C?" H 4066 4125 50  0000 L CNN
+F 1 "CP1_Small" H 4066 4080 50  0001 L CNN
+F 2 "" H 3975 4125 50  0001 C CNN
+F 3 "~" H 3975 4125 50  0001 C CNN
+	1    3975 4125
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4250 4025 3975 4025
+Connection ~ 4250 4025
+Wire Wire Line
+	4250 4025 4250 3875
+Text Label 4250 3875 2    50   ~ 0
+5V
+$Comp
+L power:GNDA #PWR?
+U 1 1 5D1E4C88
+P 4250 4225
+F 0 "#PWR?" H 4250 3975 50  0001 C CNN
+F 1 "GNDA" H 4255 4052 50  0000 C CNN
+F 2 "" H 4250 4225 50  0001 C CNN
+F 3 "" H 4250 4225 50  0001 C CNN
+	1    4250 4225
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDA #PWR?
+U 1 1 5D1E53D6
+P 3975 4225
+F 0 "#PWR?" H 3975 3975 50  0001 C CNN
+F 1 "GNDA" H 3980 4052 50  0000 C CNN
+F 2 "" H 3975 4225 50  0001 C CNN
+F 3 "" H 3975 4225 50  0001 C CNN
+	1    3975 4225
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 5D1EA37A
+P 6375 3425
+F 0 "C?" H 6475 3425 50  0000 L CNN
+F 1 "C_Small" V 6425 3575 50  0001 L CNN
+F 2 "" H 6375 3425 50  0001 C CNN
+F 3 "~" H 6375 3425 50  0001 C CNN
+	1    6375 3425
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDA #PWR?
+U 1 1 5D1EA380
+P 6375 3525
+F 0 "#PWR?" H 6375 3275 50  0001 C CNN
+F 1 "GNDA" H 6380 3352 50  0000 C CNN
+F 2 "" H 6375 3525 50  0001 C CNN
+F 3 "" H 6375 3525 50  0001 C CNN
+	1    6375 3525
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6175 3325 6375 3325
+Wire Wire Line
+	6175 3725 6175 4025
+Wire Wire Line
+	6175 4025 6300 4025
+$Comp
+L Device:R R?
+U 1 1 5D1EC57B
+P 6450 4025
+F 0 "R?" V 6350 4075 50  0000 C CNN
+F 1 "R" V 6275 4100 50  0000 C CNN
+F 2 "" V 6380 4025 50  0001 C CNN
+F 3 "~" H 6450 4025 50  0001 C CNN
+	1    6450 4025
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Custom:LT1818 U?
+U 1 1 5D1F178A
+P 6900 4125
+F 0 "U?" H 6925 3925 50  0000 L CNN
+F 1 "LT1818" H 6925 4000 50  0000 L CNN
+F 2 "" H 6900 4125 50  0001 C CNN
+F 3 "" H 6950 4325 50  0001 C CNN
+	1    6900 4125
+	1    0    0    -1  
+$EndComp
+Text Label 6800 3825 0    50   ~ 0
+5V
+$Comp
+L power:GNDA #PWR?
+U 1 1 5D1F2D73
+P 6800 4425
+F 0 "#PWR?" H 6800 4175 50  0001 C CNN
+F 1 "GNDA" H 6805 4252 50  0000 C CNN
+F 2 "" H 6800 4425 50  0001 C CNN
+F 3 "" H 6800 4425 50  0001 C CNN
+	1    6800 4425
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6600 4225 6600 4700
+Wire Wire Line
+	6600 4700 7300 4700
+Wire Wire Line
+	7300 4700 7300 4125
+Wire Wire Line
+	7200 4125 7300 4125
+Connection ~ 7300 4125
+Wire Wire Line
+	7300 4125 7400 4125
 $EndSCHEMATC
