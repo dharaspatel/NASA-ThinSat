@@ -5,6 +5,7 @@
 
 #include <DS3231.h>
 #include <Wire.h>
+#include <Main.h>
 
 DS3231 Clock;
 

@@ -5,11 +5,12 @@
 
 #include <DS3231.h>
 #include <Wire.h>
+#include <Main.h>
 
 DS3231 Clock;
 int l = 0; //the number of times launch has been called
 int p = 0; //the number of times pyrolysis has been called
-float pos; //pos of
+float pos; //pos of satellite
 bool oriented = false;
 
 #define LAUNCH 1;
@@ -26,32 +27,11 @@ void loop(){
   switch (state) {
     case LAUNCH:
       if (!oriented){
-        orient();
+        orient(angle);
       }
       launch();
 
     case PYROLYSIS:
       pyrolysis();
   }
-}
-
-//begins I2C interface and RTC clock
-void begin(){
-  Wire.begin();
-  Clock.setClockMode(false);
-}
-
-//syncs time to altitude estimate based on sunrise/set data to get location and alt
-float sync(){
-//returns accurate position
-}
-
-//orient burt properly
-void orient(){
-
-}
-
-//calculates the state of the sat based on the position
-int calc_state(){
-
 }

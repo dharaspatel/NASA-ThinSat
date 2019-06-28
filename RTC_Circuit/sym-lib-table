@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name RTC_Circuit-rescue)(type Legacy)(uri ${KIPRJMOD}/RTC_Circuit-rescue.lib)(options "")(descr ""))
-)

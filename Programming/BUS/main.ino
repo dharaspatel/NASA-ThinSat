@@ -12,18 +12,15 @@ TSLBP tslpb;
 UserDataStruct_t missionData;
 
 //for analog sensors --> uint16_t varName
-uint16_t tslSolar;
-uint16_t tslTempInt;
-uint16_t tslTempExt;
-
 //for digital sensors --> uint16_t varName (for raw) and double varName
-uint16_t tslAccX;
-uint16_t tslAccY;
-uint16_t tslAccZ;
+uint16_t        photodiodeFt; //data from photodiode on front face of joe
+uint16_t        photodiodeBk; //data from photodiode on back face of joe
+uint16_t        photodiodeTp; //data from photodiode on top face of joe
+unit16_t        photodiodeBt; //data from photodiode on bottom face of joe
 
-uint16_t tslGyrX;
-uint16_t tslGyrY;
-uint16_t tslGyrZ;
+uint16_t        temp; //data from temperature sensor for pyrolysis located on burt
+
+uint16_t        spectrometer; //data from spectrometer located on burt
 
 void begin(){
   tslbp.begin();
