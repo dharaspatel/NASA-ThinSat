@@ -13,14 +13,14 @@ UserDataStruct_t missionData;
 
 //for analog sensors --> uint16_t varName
 //for digital sensors --> uint16_t varName (for raw) and double varName
-uint16_t        photodiodeFt; //data from photodiode on front face of joe
-uint16_t        photodiodeBk; //data from photodiode on back face of joe
-uint16_t        photodiodeTp; //data from photodiode on top face of joe
-unit16_t        photodiodeBt; //data from photodiode on bottom face of joe
+uint16_t        pho1; //data from photodiode on front face of joe
+uint16_t        pho2; //data from photodiode on back face of joe
+uint16_t        pho3; //data from photodiode on top face of joe
+unit16_t        pho4; //data from photodiode on bottom face of joe
 
 uint16_t        temp; //data from temperature sensor for pyrolysis located on burt
 
-uint16_t        spectrometer; //data from spectrometer located on burt
+uint16_t        spec; //data from spectrometer located on burt
 
 void begin(){
   tslbp.begin();

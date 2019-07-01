@@ -6,6 +6,7 @@
 #include <DS3231.h>
 #include <Wire.h>
 #include <Main.h>
+#include "arduino.h"
 
 DS3231 Clock;
 int l = 0; //the number of times launch has been called

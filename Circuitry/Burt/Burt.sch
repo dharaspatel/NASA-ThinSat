@@ -202,27 +202,13 @@ $EndComp
 Wire Wire Line
 	10650 3450 10875 3450
 Text Label 10875 3450 0    50   ~ 0
-TEMPV
+TEMP
 Text Label 1550 5400 3    50   ~ 0
 TEMPV
 Wire Wire Line
 	1550 5175 1550 5400
 Wire Wire Line
 	2000 1550 1750 1550
-$Comp
-L RTC_Circuit-rescue:R_10K-formula R?
-U 1 1 5D34875D
-P 1125 1075
-F 0 "R?" V 1225 1075 50  0000 L CNN
-F 1 "R_10K" V 1300 1075 50  0000 L CNN
-F 2 "footprints:R_0805_OEM" H 1055 1075 50  0001 C CNN
-F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 1205 1075 50  0001 C CNN
-F 4 "DK" H 1125 1075 60  0001 C CNN "MFN"
-F 5 "CRS0805-FX-1002ELFCT-ND" H 1125 1075 60  0001 C CNN "MPN"
-F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 1605 1475 60  0001 C CNN "PurchasingLink"
-	1    1125 1075
-	0    -1   -1   0   
-$EndComp
 $Comp
 L pspice:OPAMP U?
 U 1 1 5D34C6F6
@@ -286,9 +272,9 @@ Wire Wire Line
 Wire Wire Line
 	1750 1750 1750 1950
 Text Label 825  1650 2    50   ~ 0
-PHOV1
+PHO1
 Text Label 10850 1950 0    50   ~ 0
-PHOV
+PHO1
 Wire Wire Line
 	10650 1950 10850 1950
 $Comp
@@ -412,20 +398,6 @@ $EndComp
 Wire Wire Line
 	2000 2875 1750 2875
 $Comp
-L RTC_Circuit-rescue:R_10K-formula R?
-U 1 1 5D2A23E0
-P 1125 2400
-F 0 "R?" V 1225 2400 50  0000 L CNN
-F 1 "R_10K" V 1300 2400 50  0000 L CNN
-F 2 "footprints:R_0805_OEM" H 1055 2400 50  0001 C CNN
-F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 1205 2400 50  0001 C CNN
-F 4 "DK" H 1125 2400 60  0001 C CNN "MFN"
-F 5 "CRS0805-FX-1002ELFCT-ND" H 1125 2400 60  0001 C CNN "MPN"
-F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 1605 2800 60  0001 C CNN "PurchasingLink"
-	1    1125 2400
-	0    -1   -1   0   
-$EndComp
-$Comp
 L pspice:OPAMP U?
 U 1 1 5D2A23E6
 P 1300 2975
@@ -488,7 +460,7 @@ Wire Wire Line
 Wire Wire Line
 	1750 3075 1750 3275
 Text Label 825  2975 2    50   ~ 0
-PHOV2
+PHO2
 $Comp
 L Custom:S1336-44BQ U?
 U 1 1 5D2AB61D
@@ -502,20 +474,6 @@ F 3 "" H 4425 1670 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4175 1450 3925 1450
-$Comp
-L RTC_Circuit-rescue:R_10K-formula R?
-U 1 1 5D2AB627
-P 3300 975
-F 0 "R?" V 3400 975 50  0000 L CNN
-F 1 "R_10K" V 3475 975 50  0000 L CNN
-F 2 "footprints:R_0805_OEM" H 3230 975 50  0001 C CNN
-F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 3380 975 50  0001 C CNN
-F 4 "DK" H 3300 975 60  0001 C CNN "MFN"
-F 5 "CRS0805-FX-1002ELFCT-ND" H 3300 975 60  0001 C CNN "MPN"
-F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 3780 1375 60  0001 C CNN "PurchasingLink"
-	1    3300 975 
-	0    -1   -1   0   
-$EndComp
 $Comp
 L pspice:OPAMP U?
 U 1 1 5D2AB62D
@@ -579,7 +537,7 @@ Wire Wire Line
 Wire Wire Line
 	3925 1650 3925 1850
 Text Label 3000 1550 2    50   ~ 0
-PHOV2
+PHO2
 $Comp
 L Custom:S1336-44BQ U?
 U 1 1 5D16F46D
@@ -593,20 +551,6 @@ F 3 "" H 4425 3020 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4175 2800 3925 2800
-$Comp
-L RTC_Circuit-rescue:R_10K-formula R?
-U 1 1 5D16F477
-P 3300 2325
-F 0 "R?" V 3400 2325 50  0000 L CNN
-F 1 "R_10K" V 3475 2325 50  0000 L CNN
-F 2 "footprints:R_0805_OEM" H 3230 2325 50  0001 C CNN
-F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 3380 2325 50  0001 C CNN
-F 4 "DK" H 3300 2325 60  0001 C CNN "MFN"
-F 5 "CRS0805-FX-1002ELFCT-ND" H 3300 2325 60  0001 C CNN "MPN"
-F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 3780 2725 60  0001 C CNN "PurchasingLink"
-	1    3300 2325
-	0    -1   -1   0   
-$EndComp
 $Comp
 L pspice:OPAMP U?
 U 1 1 5D16F47D
@@ -670,7 +614,7 @@ Wire Wire Line
 Wire Wire Line
 	3925 3000 3925 3200
 Text Label 3000 2900 2    50   ~ 0
-PHOV2
+PHO2
 Wire Notes Line
 	525  525  4800 525 
 Wire Notes Line
@@ -962,4 +906,50 @@ Wire Notes Line
 	6825 5900 4875 5900
 Wire Notes Line
 	4875 5900 4875 3675
+Text Label 8425 2900 0    50   ~ 0
+VID
+$Comp
+L Device:R R?
+U 1 1 5D302F96
+P 1125 1075
+F 0 "R?" V 918 1075 50  0000 C CNN
+F 1 "R" V 1009 1075 50  0000 C CNN
+F 2 "" V 1055 1075 50  0001 C CNN
+F 3 "~" H 1125 1075 50  0001 C CNN
+	1    1125 1075
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5D305A66
+P 3300 975
+F 0 "R?" V 3093 975 50  0000 C CNN
+F 1 "R" V 3184 975 50  0000 C CNN
+F 2 "" V 3230 975 50  0001 C CNN
+F 3 "~" H 3300 975 50  0001 C CNN
+	1    3300 975 
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5D30B8FB
+P 3300 2325
+F 0 "R?" V 3093 2325 50  0000 C CNN
+F 1 "R" V 3184 2325 50  0000 C CNN
+F 2 "" V 3230 2325 50  0001 C CNN
+F 3 "~" H 3300 2325 50  0001 C CNN
+	1    3300 2325
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5D30ED97
+P 1125 2400
+F 0 "R?" V 918 2400 50  0000 C CNN
+F 1 "R" V 1009 2400 50  0000 C CNN
+F 2 "" V 1055 2400 50  0001 C CNN
+F 3 "~" H 1125 2400 50  0001 C CNN
+	1    1125 2400
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
