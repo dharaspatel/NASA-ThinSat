@@ -121,7 +121,7 @@ Text Label 10875 2850 0    50   ~ 0
 SDA
 Text Label 9250 1750 2    50   ~ 0
 CRYSTAL
-Text Label 10875 3750 0    50   ~ 0
+Text Label 10850 2250 0    50   ~ 0
 SQW
 Wire Wire Line
 	10650 1650 10850 1650
@@ -201,10 +201,10 @@ F 3 "" H 1100 4775 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	10650 3450 10875 3450
-Text Label 10875 3450 0    50   ~ 0
+Text Label 10850 2150 0    50   ~ 0
 TEMP
 Text Label 1550 5400 3    50   ~ 0
-TEMPV
+TEMP
 Wire Wire Line
 	1550 5175 1550 5400
 Wire Wire Line
@@ -460,7 +460,7 @@ Wire Wire Line
 Wire Wire Line
 	1750 3075 1750 3275
 Text Label 825  2975 2    50   ~ 0
-PHO2
+PHO3
 $Comp
 L Custom:S1336-44BQ U?
 U 1 1 5D2AB61D
@@ -614,7 +614,7 @@ Wire Wire Line
 Wire Wire Line
 	3925 3000 3925 3200
 Text Label 3000 2900 2    50   ~ 0
-PHO2
+PHO4
 Wire Notes Line
 	525  525  4800 525 
 Wire Notes Line
@@ -634,8 +634,6 @@ Wire Notes Line
 Wire Notes Line
 	8700 525  8700 3575
 Wire Notes Line
-	8700 3575 4875 3575
-Wire Notes Line
 	4875 3575 4875 525 
 Wire Wire Line
 	7200 1900 7400 1900
@@ -652,56 +650,41 @@ Wire Wire Line
 Wire Wire Line
 	7200 2100 7700 2100
 NoConn ~ 7200 2000
-Wire Wire Line
-	8325 2900 8425 2900
-Connection ~ 8325 2900
-Wire Wire Line
-	8225 2900 8325 2900
-Wire Wire Line
-	8325 3475 8325 2900
-Wire Wire Line
-	7625 3475 8325 3475
-Wire Wire Line
-	7625 3000 7625 3475
 $Comp
 L power:GNDA #PWR?
 U 1 1 5D1F2D73
-P 7825 3200
-F 0 "#PWR?" H 7825 2950 50  0001 C CNN
-F 1 "GNDA" H 7830 3027 50  0000 C CNN
-F 2 "" H 7825 3200 50  0001 C CNN
-F 3 "" H 7825 3200 50  0001 C CNN
-	1    7825 3200
+P 6450 3450
+F 0 "#PWR?" H 6450 3200 50  0001 C CNN
+F 1 "GNDA" H 6275 3375 50  0000 C CNN
+F 2 "" H 6450 3450 50  0001 C CNN
+F 3 "" H 6450 3450 50  0001 C CNN
+	1    6450 3450
 	1    0    0    -1  
 $EndComp
-Text Label 7825 2600 0    50   ~ 0
+Text Label 7500 2650 0    50   ~ 0
 5V
 $Comp
 L Custom:LT1818 U?
 U 1 1 5D1F178A
-P 7925 2900
-F 0 "U?" H 7950 2700 50  0000 L CNN
-F 1 "LT1818" H 7950 2775 50  0000 L CNN
-F 2 "" H 7925 2900 50  0001 C CNN
-F 3 "" H 7975 3100 50  0001 C CNN
-	1    7925 2900
+P 7600 2950
+F 0 "U?" H 7625 2750 50  0000 L CNN
+F 1 "LT1818" H 7625 2825 50  0000 L CNN
+F 2 "" H 7600 2950 50  0001 C CNN
+F 3 "" H 7650 3150 50  0001 C CNN
+	1    7600 2950
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5D1EC57B
-P 7475 2800
-F 0 "R?" V 7375 2850 50  0000 C CNN
-F 1 "R" V 7300 2875 50  0000 C CNN
-F 2 "" V 7405 2800 50  0001 C CNN
-F 3 "~" H 7475 2800 50  0001 C CNN
-	1    7475 2800
-	0    -1   -1   0   
+P 7200 2700
+F 0 "R?" H 7300 2775 50  0000 C CNN
+F 1 "R" H 7275 2700 50  0000 C CNN
+F 2 "" V 7130 2700 50  0001 C CNN
+F 3 "~" H 7200 2700 50  0001 C CNN
+	1    7200 2700
+	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7200 2800 7325 2800
-Wire Wire Line
-	7200 2500 7200 2800
 $Comp
 L power:GNDA #PWR?
 U 1 1 5D1EA380
@@ -906,7 +889,7 @@ Wire Notes Line
 	6825 5900 4875 5900
 Wire Notes Line
 	4875 5900 4875 3675
-Text Label 8425 2900 0    50   ~ 0
+Text Label 8550 2950 0    50   ~ 0
 VID
 $Comp
 L Device:R R?
@@ -952,4 +935,154 @@ F 3 "~" H 1125 2400 50  0001 C CNN
 	1    1125 2400
 	0    1    1    0   
 $EndComp
+Text Label 10875 3450 0    50   ~ 0
+PHO2
+Wire Wire Line
+	10650 2150 10850 2150
+Wire Wire Line
+	10650 3350 10875 3350
+Wire Wire Line
+	10650 3150 10875 3150
+Text Label 10875 3350 0    50   ~ 0
+PHO3
+Text Label 10875 3150 0    50   ~ 0
+PHO4
+Wire Wire Line
+	7200 2500 7200 2550
+Wire Wire Line
+	7200 2850 7300 2850
+Wire Wire Line
+	7500 3250 7125 3250
+Wire Wire Line
+	7900 2950 8100 2950
+Wire Wire Line
+	7300 3050 7300 3350
+Wire Wire Line
+	7300 3350 7900 3350
+Wire Wire Line
+	7900 3350 7900 2950
+Connection ~ 7900 2950
+$Comp
+L Device:R R?
+U 1 1 5D369A7B
+P 8250 2950
+F 0 "R?" V 8043 2950 50  0000 C CNN
+F 1 "R" V 8134 2950 50  0000 C CNN
+F 2 "" V 8180 2950 50  0001 C CNN
+F 3 "~" H 8250 2950 50  0001 C CNN
+	1    8250 2950
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5D36AE0A
+P 8475 3100
+F 0 "C?" H 8250 3075 50  0000 L CNN
+F 1 "C" H 8250 3000 50  0000 L CNN
+F 2 "" H 8513 2950 50  0001 C CNN
+F 3 "~" H 8475 3100 50  0001 C CNN
+	1    8475 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8400 2950 8475 2950
+Connection ~ 8475 2950
+Wire Wire Line
+	8475 2950 8550 2950
+$Comp
+L Device:CP C?
+U 1 1 5D36F522
+P 6450 3300
+F 0 "C?" H 6650 3275 50  0000 R CNN
+F 1 "CP" H 6650 3350 50  0000 R CNN
+F 2 "" H 6488 3150 50  0001 C CNN
+F 3 "~" H 6450 3300 50  0001 C CNN
+	1    6450 3300
+	-1   0    0    1   
+$EndComp
+Wire Notes Line
+	8700 3575 4875 3575
+$Comp
+L power:GNDA #PWR?
+U 1 1 5D37C278
+P 6800 3450
+F 0 "#PWR?" H 6800 3200 50  0001 C CNN
+F 1 "GNDA" H 6625 3375 50  0000 C CNN
+F 2 "" H 6800 3450 50  0001 C CNN
+F 3 "" H 6800 3450 50  0001 C CNN
+	1    6800 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5D3836C3
+P 6800 3300
+F 0 "C?" H 6600 3325 50  0000 L CNN
+F 1 "C" H 6600 3250 50  0000 L CNN
+F 2 "" H 6838 3150 50  0001 C CNN
+F 3 "~" H 6800 3300 50  0001 C CNN
+	1    6800 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:-5V #PWR?
+U 1 1 5D3A19D2
+P 7125 3250
+F 0 "#PWR?" H 7125 3350 50  0001 C CNN
+F 1 "-5V" H 7140 3423 50  0000 C CNN
+F 2 "" H 7125 3250 50  0001 C CNN
+F 3 "" H 7125 3250 50  0001 C CNN
+	1    7125 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7125 3250 7025 3250
+Wire Wire Line
+	7025 3250 7025 3150
+Wire Wire Line
+	7025 3150 6800 3150
+Connection ~ 7125 3250
+Connection ~ 6800 3150
+Wire Wire Line
+	6800 3150 6450 3150
+Text Label 4200 4550 0    50   ~ 0
+TRIG
+Text Label 10875 3650 0    50   ~ 0
+B1
+Text Label 10875 3950 0    50   ~ 0
+B2
+Wire Wire Line
+	10650 3950 10875 3950
+Wire Wire Line
+	10650 4050 10875 4050
+Wire Wire Line
+	10650 4150 10875 4150
+Wire Wire Line
+	10650 4250 10875 4250
+Wire Wire Line
+	10650 4350 10875 4350
+Wire Wire Line
+	10650 4450 10875 4450
+Text Label 10875 4050 0    50   ~ 0
+B3
+Text Label 10875 4150 0    50   ~ 0
+B4
+Text Label 10875 4250 0    50   ~ 0
+B5
+Text Label 10875 4350 0    50   ~ 0
+B6
+Text Label 10875 4450 0    50   ~ 0
+B7
+Text Label 10875 3750 0    50   ~ 0
+B8
+Wire Wire Line
+	10650 3650 10875 3650
+Text Label 10875 2550 0    50   ~ 0
+B9
+Text Label 10875 2450 0    50   ~ 0
+B10
+Wire Wire Line
+	10650 2450 10875 2450
+Wire Wire Line
+	10650 2550 10875 2550
 $EndSCHEMATC

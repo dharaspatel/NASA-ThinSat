@@ -8,15 +8,34 @@
 #include <DS3231.h>
 #include <Wire.h>
 
-/*___DEFINES___*/
+#include "TSLPB.h"
+#include "myDataPacketStructure.h"
+
+/*___ADDRESSES___*/
 #define PHO1_ADDR PINB5 //input from photodiode 1
 #define PHO2_ADDR PINB4 //input from photodiode 2
 #define PHO3_ADDR PIND7 //input from photodiode 3
 #define PHO4_ADDR PIND6 //input from photodiode 4
 
-#define TEMP_ADDR PINB6 //input from temp sensor
+#define TEMP1_ADDR PINB6 //input from internal temp sensor
+#define TEMP2_ADDR PINB6 //input from extermal temp sensor
 
-#define SPEC_ADDR PIN?
+#define SPEC_ADDR PIN ...
+
+#define BURN1_ADDR PORTE2 //output for burn wire 1
+#define BURN1_ADDR PORTF0 //output for burn wire 2
+#define BURN1_ADDR PORTF1 //output for burn wire 3
+#define BURN1_ADDR PORTF4 //output for burn wire 4
+#define BURN1_ADDR PORTF5 //output for burn wire 5
+#define BURN1_ADDR PORTF6 //output for burn wire 6
+#define BURN1_ADDR PORTF7 //output for burn wire 7
+#define BURN1_ADDR PORTE6 //output for burn wire 8
+#define BURN1_ADDR PORTC7 //output for burn wire 9
+#define BURN1_ADDR PORTC6 //output for burn wire 10
+
+/*___DECLARATIONS___*/
+
+
 
 /*_________FUNCTIONS USED IN BOTH BILL AND BURT__________*/
 
@@ -46,6 +65,15 @@ void orient(float rotation[]){
   */
 }
 
+void set_mode(){
+  /*
+    FUNCTION: Sets the mode of every pin
+    PARAMETERS:
+    RETURN: None
+  */
+  pinMode();
+}
+
 /*_________FUNCTIONS USED IN BURT__________*/
 int calc_state(float pos){
   /*
@@ -67,6 +95,9 @@ void launch(){
     PARAMETERS: None
     RETURN: None
   */
+  digitalWrite(13, HIGH); //voltage to 3.7V
+  delay(10000);
+  digitalWrite(13, LOW);
 }
 
 void pyrolysis(){
