@@ -239,7 +239,7 @@ P 3925 4525
 F 0 "U?" H 4075 3575 50  0000 L CNN
 F 1 "MCP9701A" H 4250 3575 50  0000 L CNN
 F 2 "" H 3650 4675 50  0001 C CNN
-F 3 "" H 3650 4675 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001942G.pdf" H 3650 4675 50  0001 C CNN
 	1    3925 4525
 	-1   0    0    1   
 $EndComp
@@ -322,7 +322,7 @@ P 2125 1775
 F 0 "U?" H 2100 2290 50  0000 C CNN
 F 1 "74HC541" H 2100 2199 50  0000 C CNN
 F 2 "" H 1775 2525 50  0001 C CNN
-F 3 "" H 1775 2525 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT541.pdf" H 1775 2525 50  0001 C CNN
 	1    2125 1775
 	1    0    0    -1  
 $EndComp
@@ -852,6 +852,17 @@ F 1 "S14739-20" H 5500 2199 50  0000 C CNN
 F 2 "" H 5500 2255 50  0001 C CNN
 F 3 "https://www.hamamatsu.com/resources/pdf/ssd/s14739-20_kmpd1196e.pdf" H 5500 2255 50  0001 C CNN
 	1    5500 1475
+	1    0    0    -1  
+$EndComp
+$Comp
+L Battery_Management:MCP73831-5-OT U?
+U 1 1 5D257976
+P 2100 6400
+F 0 "U?" H 2100 6881 50  0000 C CNN
+F 1 "MCP73831-5-OT" H 2100 6790 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-5" H 2150 6150 50  0001 L CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001984g.pdf" H 1950 6350 50  0001 C CNN
+	1    2100 6400
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

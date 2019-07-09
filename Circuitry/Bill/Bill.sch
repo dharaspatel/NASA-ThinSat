@@ -35,34 +35,6 @@ F 3 "" H 1950 2050 50  0001 C CNN
 	1    1950 2050
 	1    0    0    -1  
 $EndComp
-$Comp
-L RTC_Circuit-rescue:R_10K-formula R?
-U 1 1 5D03BEF7
-P 1150 1400
-F 0 "R?" H 1220 1446 50  0000 L CNN
-F 1 "R_10K" H 1220 1355 50  0000 L CNN
-F 2 "footprints:R_0805_OEM" H 1080 1400 50  0001 C CNN
-F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 1230 1400 50  0001 C CNN
-F 4 "DK" H 1150 1400 60  0001 C CNN "MFN"
-F 5 "CRS0805-FX-1002ELFCT-ND" H 1150 1400 60  0001 C CNN "MPN"
-F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 1630 1800 60  0001 C CNN "PurchasingLink"
-	1    1150 1400
-	1    0    0    -1  
-$EndComp
-$Comp
-L RTC_Circuit-rescue:R_10K-formula R?
-U 1 1 5D03BF79
-P 1000 1300
-F 0 "R?" H 800 1375 50  0000 L CNN
-F 1 "R_10K" H 675 1275 50  0000 L CNN
-F 2 "footprints:R_0805_OEM" H 930 1300 50  0001 C CNN
-F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 1080 1300 50  0001 C CNN
-F 4 "DK" H 1000 1300 60  0001 C CNN "MFN"
-F 5 "CRS0805-FX-1002ELFCT-ND" H 1000 1300 60  0001 C CNN "MPN"
-F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 1480 1700 60  0001 C CNN "PurchasingLink"
-	1    1000 1300
-	1    0    0    -1  
-$EndComp
 Text Notes 725  645  0    50   ~ 0
 Real Time Clock
 Wire Wire Line
@@ -71,34 +43,6 @@ Wire Wire Line
 	1000 1150 1150 1150
 Wire Wire Line
 	1450 1850 725  1850
-$Comp
-L RTC_Circuit-rescue:R_10K-formula R?
-U 1 1 5D11A655
-P 2750 1450
-F 0 "R?" H 2575 1525 50  0000 L CNN
-F 1 "R_10K" H 2450 1400 50  0000 L CNN
-F 2 "footprints:R_0805_OEM" H 2680 1450 50  0001 C CNN
-F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 2830 1450 50  0001 C CNN
-F 4 "DK" H 2750 1450 60  0001 C CNN "MFN"
-F 5 "CRS0805-FX-1002ELFCT-ND" H 2750 1450 60  0001 C CNN "MPN"
-F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 3230 1850 60  0001 C CNN "PurchasingLink"
-	1    2750 1450
-	1    0    0    -1  
-$EndComp
-$Comp
-L RTC_Circuit-rescue:R_10K-formula R?
-U 1 1 5D11A65E
-P 2975 1300
-F 0 "R?" H 3075 1375 50  0000 L CNN
-F 1 "R_10K" H 3075 1275 50  0000 L CNN
-F 2 "footprints:R_0805_OEM" H 2905 1300 50  0001 C CNN
-F 3 "http://www.bourns.com/data/global/pdfs/CRS.pdf" H 3055 1300 50  0001 C CNN
-F 4 "DK" H 2975 1300 60  0001 C CNN "MFN"
-F 5 "CRS0805-FX-1002ELFCT-ND" H 2975 1300 60  0001 C CNN "MPN"
-F 6 "https://www.digikey.com/products/en?keywords=CRS0805-FX-1002ELFCT-ND" H 3455 1700 60  0001 C CNN "PurchasingLink"
-	1    2975 1300
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2450 1750 2750 1750
 Wire Wire Line
@@ -525,9 +469,62 @@ Wire Notes Line
 Wire Notes Line
 	8775 5525 11175 5525
 Wire Wire Line
-	725  1450 1450 1450
+	725  1450 1000 1450
 Wire Wire Line
-	725  1550 1450 1550
+	725  1550 1150 1550
 Wire Wire Line
-	2450 1450 3250 1450
+	2450 1450 2975 1450
+$Comp
+L Device:R R?
+U 1 1 5D1912DB
+P 1000 1300
+F 0 "R?" H 825 1375 50  0000 L CNN
+F 1 "R" H 825 1300 50  0000 L CNN
+F 2 "" V 930 1300 50  0001 C CNN
+F 3 "~" H 1000 1300 50  0001 C CNN
+	1    1000 1300
+	1    0    0    -1  
+$EndComp
+Connection ~ 1000 1450
+Wire Wire Line
+	1000 1450 1450 1450
+$Comp
+L Device:R R?
+U 1 1 5D19223D
+P 1150 1400
+F 0 "R?" H 1220 1446 50  0000 L CNN
+F 1 "R" H 1220 1355 50  0000 L CNN
+F 2 "" V 1080 1400 50  0001 C CNN
+F 3 "~" H 1150 1400 50  0001 C CNN
+	1    1150 1400
+	1    0    0    -1  
+$EndComp
+Connection ~ 1150 1550
+Wire Wire Line
+	1150 1550 1450 1550
+$Comp
+L Device:R R?
+U 1 1 5D194B82
+P 2750 1450
+F 0 "R?" H 2820 1496 50  0000 L CNN
+F 1 "R" H 2820 1405 50  0000 L CNN
+F 2 "" V 2680 1450 50  0001 C CNN
+F 3 "~" H 2750 1450 50  0001 C CNN
+	1    2750 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5D195CC5
+P 2975 1300
+F 0 "R?" H 3045 1346 50  0000 L CNN
+F 1 "R" H 3045 1255 50  0000 L CNN
+F 2 "" V 2905 1300 50  0001 C CNN
+F 3 "~" H 2975 1300 50  0001 C CNN
+	1    2975 1300
+	1    0    0    -1  
+$EndComp
+Connection ~ 2975 1450
+Wire Wire Line
+	2975 1450 3250 1450
 $EndSCHEMATC
