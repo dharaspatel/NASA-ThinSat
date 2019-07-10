@@ -23,7 +23,7 @@ F 1 "+5V" H 1490 3123 50  0000 C CNN
 F 2 "" H 1475 2950 50  0001 C CNN
 F 3 "" H 1475 2950 50  0001 C CNN
 	1    1475 2950
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:LED D?
@@ -34,7 +34,7 @@ F 1 "LED" H 2768 3075 50  0000 C CNN
 F 2 "" H 2775 2950 50  0001 C CNN
 F 3 "~" H 2775 2950 50  0001 C CNN
 	1    2775 2950
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -45,7 +45,7 @@ F 1 "R" V 2359 2950 50  0000 C CNN
 F 2 "" V 2405 2950 50  0001 C CNN
 F 3 "~" H 2475 2950 50  0001 C CNN
 	1    2475 2950
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L Device:LED D?
@@ -56,7 +56,7 @@ F 1 "LED" H 2768 3400 50  0000 C CNN
 F 2 "" H 2775 3275 50  0001 C CNN
 F 3 "~" H 2775 3275 50  0001 C CNN
 	1    2775 3275
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -67,7 +67,7 @@ F 1 "R" V 2359 3275 50  0000 C CNN
 F 2 "" V 2405 3275 50  0001 C CNN
 F 3 "~" H 2475 3275 50  0001 C CNN
 	1    2475 3275
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L Device:LED D?
@@ -78,7 +78,7 @@ F 1 "LED" H 2768 3725 50  0000 C CNN
 F 2 "" H 2775 3600 50  0001 C CNN
 F 3 "~" H 2775 3600 50  0001 C CNN
 	1    2775 3600
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -89,7 +89,7 @@ F 1 "R" V 2359 3600 50  0000 C CNN
 F 2 "" V 2405 3600 50  0001 C CNN
 F 3 "~" H 2475 3600 50  0001 C CNN
 	1    2475 3600
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L power:GND #PWR?
@@ -100,7 +100,7 @@ F 1 "GND" H 2130 2777 50  0000 C CNN
 F 2 "" H 2125 2950 50  0001 C CNN
 F 3 "" H 2125 2950 50  0001 C CNN
 	1    2125 2950
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	2125 2950 2325 2950
@@ -113,7 +113,7 @@ F 1 "GND" H 2130 3102 50  0000 C CNN
 F 2 "" H 2125 3275 50  0001 C CNN
 F 3 "" H 2125 3275 50  0001 C CNN
 	1    2125 3275
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	2125 3275 2325 3275
@@ -126,14 +126,14 @@ F 1 "GND" H 2130 3427 50  0000 C CNN
 F 2 "" H 2125 3600 50  0001 C CNN
 F 3 "" H 2125 3600 50  0001 C CNN
 	1    2125 3600
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	2125 3600 2325 3600
 Text Notes 2025 2600 0    50   ~ 0
 Programming LEDs
 Text Notes 7000 6750 0    118  ~ 24
-BURT 
+BURT
 Text Label 4150 1200 2    50   ~ 0
 TEMP
 Text Label 4150 1300 2    50   ~ 0
@@ -151,7 +151,7 @@ F 1 "470R" H 2659 1780 50  0000 L CNN
 F 2 "" H 2600 1825 50  0001 C CNN
 F 3 "~" H 2600 1825 50  0001 C CNN
 	1    2600 1825
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R_Small R?
@@ -162,7 +162,7 @@ F 1 "20k" H 2716 1320 50  0000 R CNN
 F 2 "" H 2775 1275 50  0001 C CNN
 F 3 "~" H 2775 1275 50  0001 C CNN
 	1    2775 1275
-	-1   0    0    1   
+	-1   0    0    1
 $EndComp
 Wire Wire Line
 	2600 1050 2775 1050
@@ -181,7 +181,7 @@ F 1 "GND" H 2780 1277 50  0000 C CNN
 F 2 "" H 2775 1450 50  0001 C CNN
 F 3 "" H 2775 1450 50  0001 C CNN
 	1    2775 1450
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 2775 1450
 $Comp
@@ -193,7 +193,7 @@ F 1 "4.7uF" H 800 1075 50  0000 L CNN
 F 2 "" H 1125 1150 50  0001 C CNN
 F 3 "~" H 1125 1150 50  0001 C CNN
 	1    1125 1150
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:D D?
@@ -204,7 +204,7 @@ F 1 "D" V 1305 1121 50  0000 R CNN
 F 2 "" H 1350 1200 50  0001 C CNN
 F 3 "~" H 1350 1200 50  0001 C CNN
 	1    1350 1200
-	0    -1   -1   0   
+	0    -1   -1   0
 $EndComp
 Wire Wire Line
 	1000 1050 1125 1050
@@ -238,7 +238,7 @@ F 1 "GND" H 1130 1077 50  0000 C CNN
 F 2 "" H 1125 1250 50  0001 C CNN
 F 3 "" H 1125 1250 50  0001 C CNN
 	1    1125 1250
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Label 4150 1600 2    50   ~ 0
 BP1
@@ -253,7 +253,7 @@ F 1 "Q_NMOS_DGS" V 10825 950 50  0000 L CNN
 F 2 "" H 10225 1125 50  0001 C CNN
 F 3 "~" H 10025 1025 50  0001 C CNN
 	1    10025 1025
-	-1   0    0    1   
+	-1   0    0    1
 $EndComp
 $Comp
 L Device:R R?
@@ -264,7 +264,7 @@ F 1 "BURNWIRE" V 10259 1025 50  0000 C CNN
 F 2 "" V 10305 1025 50  0001 C CNN
 F 3 "~" H 10375 1025 50  0001 C CNN
 	1    10375 1025
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L power:+BATT #PWR?
@@ -274,13 +274,13 @@ F 0 "#PWR?" H 9450 675 50  0001 C CNN
 F 1 "+BATT" H 9465 998 50  0000 C CNN
 F 2 "" H 9450 825 50  0001 C CNN
 F 3 "" H 9450 825 50  0001 C CNN
-	1    9450 825 
-	1    0    0    -1  
+	1    9450 825
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	10525 1025 10800 1025
 Wire Wire Line
-	10800 1025 10800 975 
+	10800 1025 10800 975
 $Comp
 L power:GND #PWR?
 U 1 1 5D4126EC
@@ -290,7 +290,7 @@ F 1 "GND" H 9930 1102 50  0000 C CNN
 F 2 "" H 9925 1275 50  0001 C CNN
 F 3 "" H 9925 1275 50  0001 C CNN
 	1    9925 1275
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -300,14 +300,14 @@ F 0 "R?" H 9670 1021 50  0000 L CNN
 F 1 "10k" H 9670 930 50  0000 L CNN
 F 2 "" V 9530 975 50  0001 C CNN
 F 3 "~" H 9600 975 50  0001 C CNN
-	1    9600 975 
-	1    0    0    -1  
+	1    9600 975
+	1    0    0    -1
 $EndComp
 Wire Wire Line
-	9600 825  9925 825 
+	9600 825  9925 825
 Wire Wire Line
-	9600 825  9450 825 
-Connection ~ 9600 825 
+	9600 825  9450 825
+Connection ~ 9600 825
 Wire Wire Line
 	9600 1250 9925 1250
 Wire Wire Line
@@ -328,7 +328,7 @@ F 1 "Q_NMOS_DGS" V 10825 1750 50  0000 L CNN
 F 2 "" H 10225 1925 50  0001 C CNN
 F 3 "~" H 10025 1825 50  0001 C CNN
 	1    10025 1825
-	-1   0    0    1   
+	-1   0    0    1
 $EndComp
 $Comp
 L Device:R R?
@@ -339,7 +339,7 @@ F 1 "BURNWIRE" V 10259 1825 50  0000 C CNN
 F 2 "" V 10305 1825 50  0001 C CNN
 F 3 "~" H 10375 1825 50  0001 C CNN
 	1    10375 1825
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L power:+BATT #PWR?
@@ -350,7 +350,7 @@ F 1 "+BATT" H 9465 1798 50  0000 C CNN
 F 2 "" H 9450 1625 50  0001 C CNN
 F 3 "" H 9450 1625 50  0001 C CNN
 	1    9450 1625
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	10525 1825 10800 1825
@@ -365,7 +365,7 @@ F 1 "GND" H 9930 1902 50  0000 C CNN
 F 2 "" H 9925 2075 50  0001 C CNN
 F 3 "" H 9925 2075 50  0001 C CNN
 	1    9925 2075
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -376,7 +376,7 @@ F 1 "10k" H 9670 1730 50  0000 L CNN
 F 2 "" V 9530 1775 50  0001 C CNN
 F 3 "~" H 9600 1775 50  0001 C CNN
 	1    9600 1775
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	9600 1625 9925 1625
@@ -403,7 +403,7 @@ F 1 "Q_NMOS_DGS" V 10850 2600 50  0000 L CNN
 F 2 "" H 10250 2775 50  0001 C CNN
 F 3 "~" H 10050 2675 50  0001 C CNN
 	1    10050 2675
-	-1   0    0    1   
+	-1   0    0    1
 $EndComp
 $Comp
 L Device:R R?
@@ -414,7 +414,7 @@ F 1 "BURNWIRE" V 10284 2675 50  0000 C CNN
 F 2 "" V 10330 2675 50  0001 C CNN
 F 3 "~" H 10400 2675 50  0001 C CNN
 	1    10400 2675
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L power:+BATT #PWR?
@@ -425,7 +425,7 @@ F 1 "+BATT" H 9490 2648 50  0000 C CNN
 F 2 "" H 9475 2475 50  0001 C CNN
 F 3 "" H 9475 2475 50  0001 C CNN
 	1    9475 2475
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	10550 2675 10825 2675
@@ -440,7 +440,7 @@ F 1 "GND" H 9955 2752 50  0000 C CNN
 F 2 "" H 9950 2925 50  0001 C CNN
 F 3 "" H 9950 2925 50  0001 C CNN
 	1    9950 2925
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -451,7 +451,7 @@ F 1 "10k" H 9695 2580 50  0000 L CNN
 F 2 "" V 9555 2625 50  0001 C CNN
 F 3 "~" H 9625 2625 50  0001 C CNN
 	1    9625 2625
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	9625 2475 9950 2475
@@ -478,7 +478,7 @@ F 1 "Q_NMOS_DGS" V 10900 3450 50  0000 L CNN
 F 2 "" H 10300 3625 50  0001 C CNN
 F 3 "~" H 10100 3525 50  0001 C CNN
 	1    10100 3525
-	-1   0    0    1   
+	-1   0    0    1
 $EndComp
 $Comp
 L Device:R R?
@@ -489,7 +489,7 @@ F 1 "BURNWIRE" V 10334 3525 50  0000 C CNN
 F 2 "" V 10380 3525 50  0001 C CNN
 F 3 "~" H 10450 3525 50  0001 C CNN
 	1    10450 3525
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L power:+BATT #PWR?
@@ -500,7 +500,7 @@ F 1 "+BATT" H 9540 3498 50  0000 C CNN
 F 2 "" H 9525 3325 50  0001 C CNN
 F 3 "" H 9525 3325 50  0001 C CNN
 	1    9525 3325
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	10600 3525 10875 3525
@@ -515,7 +515,7 @@ F 1 "GND" H 10005 3602 50  0000 C CNN
 F 2 "" H 10000 3775 50  0001 C CNN
 F 3 "" H 10000 3775 50  0001 C CNN
 	1    10000 3775
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -526,7 +526,7 @@ F 1 "10k" H 9745 3430 50  0000 L CNN
 F 2 "" V 9605 3475 50  0001 C CNN
 F 3 "~" H 9675 3475 50  0001 C CNN
 	1    9675 3475
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	9675 3325 10000 3325
@@ -553,7 +553,7 @@ F 1 "Q_NMOS_DGS" V 8675 950 50  0000 L CNN
 F 2 "" H 8075 1125 50  0001 C CNN
 F 3 "~" H 7875 1025 50  0001 C CNN
 	1    7875 1025
-	-1   0    0    1   
+	-1   0    0    1
 $EndComp
 $Comp
 L Device:R R?
@@ -564,7 +564,7 @@ F 1 "BURNWIRE" V 8109 1025 50  0000 C CNN
 F 2 "" V 8155 1025 50  0001 C CNN
 F 3 "~" H 8225 1025 50  0001 C CNN
 	1    8225 1025
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L power:+BATT #PWR?
@@ -574,13 +574,13 @@ F 0 "#PWR?" H 7300 675 50  0001 C CNN
 F 1 "+BATT" H 7315 998 50  0000 C CNN
 F 2 "" H 7300 825 50  0001 C CNN
 F 3 "" H 7300 825 50  0001 C CNN
-	1    7300 825 
-	1    0    0    -1  
+	1    7300 825
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	8375 1025 8650 1025
 Wire Wire Line
-	8650 1025 8650 975 
+	8650 1025 8650 975
 $Comp
 L power:GND #PWR?
 U 1 1 5D455BD4
@@ -590,7 +590,7 @@ F 1 "GND" H 7780 1102 50  0000 C CNN
 F 2 "" H 7775 1275 50  0001 C CNN
 F 3 "" H 7775 1275 50  0001 C CNN
 	1    7775 1275
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -600,14 +600,14 @@ F 0 "R?" H 7520 1021 50  0000 L CNN
 F 1 "10k" H 7520 930 50  0000 L CNN
 F 2 "" V 7380 975 50  0001 C CNN
 F 3 "~" H 7450 975 50  0001 C CNN
-	1    7450 975 
-	1    0    0    -1  
+	1    7450 975
+	1    0    0    -1
 $EndComp
 Wire Wire Line
-	7450 825  7775 825 
+	7450 825  7775 825
 Wire Wire Line
-	7450 825  7300 825 
-Connection ~ 7450 825 
+	7450 825  7300 825
+Connection ~ 7450 825
 Wire Wire Line
 	7450 1250 7775 1250
 Wire Wire Line
@@ -628,7 +628,7 @@ F 1 "+BATT" H 1515 1723 50  0000 C CNN
 F 2 "" H 1500 1550 50  0001 C CNN
 F 3 "" H 1500 1550 50  0001 C CNN
 	1    1500 1550
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	1800 1450 1800 1550
@@ -646,7 +646,7 @@ F 1 "A3908" H 1975 5249 50  0000 C CNN
 F 2 "" H 1525 4775 50  0001 C CNN
 F 3 "" H 1525 4775 50  0001 C CNN
 	1    1975 4925
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R_Small R?
@@ -657,7 +657,7 @@ F 1 "18k" H 2609 5030 50  0000 L CNN
 F 2 "" H 2550 5075 50  0001 C CNN
 F 3 "~" H 2550 5075 50  0001 C CNN
 	1    2550 5075
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R_Small R?
@@ -668,7 +668,7 @@ F 1 "10k" H 2350 5275 50  0000 L CNN
 F 2 "" H 2550 5375 50  0001 C CNN
 F 3 "~" H 2550 5375 50  0001 C CNN
 	1    2550 5375
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:+BATT #PWR?
@@ -679,7 +679,7 @@ F 1 "+BATT" H 1240 4948 50  0000 C CNN
 F 2 "" H 1225 4775 50  0001 C CNN
 F 3 "" H 1225 4775 50  0001 C CNN
 	1    1225 4775
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	1225 4775 1625 4775
@@ -694,26 +694,10 @@ Wire Wire Line
 Connection ~ 2550 5225
 Wire Wire Line
 	2550 5225 2550 5275
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D559B0F
-P 2000 5575
-F 0 "#PWR?" H 2000 5325 50  0001 C CNN
-F 1 "GNDA" H 2005 5402 50  0000 C CNN
-F 2 "" H 2000 5575 50  0001 C CNN
-F 3 "" H 2000 5575 50  0001 C CNN
-	1    2000 5575
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2550 5475 2550 5575
 Wire Wire Line
-	2550 5575 2000 5575
-Wire Wire Line
 	1625 5075 1625 5575
-Wire Wire Line
-	1625 5575 2000 5575
-Connection ~ 2000 5575
 $Comp
 L Motor:Motor_DC M?
 U 1 1 5D49D045
@@ -723,7 +707,7 @@ F 1 "Motor_DC" V 975 4950 50  0000 L CNN
 F 2 "" H 1200 5085 50  0001 C CNN
 F 3 "~" H 1200 5085 50  0001 C CNN
 	1    1200 5175
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Label 2550 4775 0    50   ~ 0
 IN1
@@ -752,7 +736,7 @@ F 1 "Q_NMOS_DGS" V 8700 1750 50  0000 L CNN
 F 2 "" H 8100 1925 50  0001 C CNN
 F 3 "~" H 7900 1825 50  0001 C CNN
 	1    7900 1825
-	-1   0    0    1   
+	-1   0    0    1
 $EndComp
 $Comp
 L Device:R R?
@@ -763,7 +747,7 @@ F 1 "BURNWIRE" V 8134 1825 50  0000 C CNN
 F 2 "" V 8180 1825 50  0001 C CNN
 F 3 "~" H 8250 1825 50  0001 C CNN
 	1    8250 1825
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L power:+BATT #PWR?
@@ -774,7 +758,7 @@ F 1 "+BATT" H 7340 1798 50  0000 C CNN
 F 2 "" H 7325 1625 50  0001 C CNN
 F 3 "" H 7325 1625 50  0001 C CNN
 	1    7325 1625
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	8400 1825 8675 1825
@@ -789,7 +773,7 @@ F 1 "GND" H 7805 1902 50  0000 C CNN
 F 2 "" H 7800 2075 50  0001 C CNN
 F 3 "" H 7800 2075 50  0001 C CNN
 	1    7800 2075
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -800,7 +784,7 @@ F 1 "10k" H 7545 1730 50  0000 L CNN
 F 2 "" V 7405 1775 50  0001 C CNN
 F 3 "~" H 7475 1775 50  0001 C CNN
 	1    7475 1775
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	7475 1625 7800 1625
@@ -827,7 +811,7 @@ F 1 "Q_NMOS_DGS" V 8750 2600 50  0000 L CNN
 F 2 "" H 8150 2775 50  0001 C CNN
 F 3 "~" H 7950 2675 50  0001 C CNN
 	1    7950 2675
-	-1   0    0    1   
+	-1   0    0    1
 $EndComp
 $Comp
 L Device:R R?
@@ -838,7 +822,7 @@ F 1 "BURNWIRE" V 8184 2675 50  0000 C CNN
 F 2 "" V 8230 2675 50  0001 C CNN
 F 3 "~" H 8300 2675 50  0001 C CNN
 	1    8300 2675
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L power:+BATT #PWR?
@@ -849,7 +833,7 @@ F 1 "+BATT" H 7390 2648 50  0000 C CNN
 F 2 "" H 7375 2475 50  0001 C CNN
 F 3 "" H 7375 2475 50  0001 C CNN
 	1    7375 2475
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	8450 2675 8725 2675
@@ -864,7 +848,7 @@ F 1 "GND" H 7855 2752 50  0000 C CNN
 F 2 "" H 7850 2925 50  0001 C CNN
 F 3 "" H 7850 2925 50  0001 C CNN
 	1    7850 2925
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -875,7 +859,7 @@ F 1 "10k" H 7595 2580 50  0000 L CNN
 F 2 "" V 7455 2625 50  0001 C CNN
 F 3 "~" H 7525 2625 50  0001 C CNN
 	1    7525 2625
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	7525 2475 7850 2475
@@ -902,7 +886,7 @@ F 1 "Q_NMOS_DGS" V 8775 3425 50  0000 L CNN
 F 2 "" H 8175 3600 50  0001 C CNN
 F 3 "~" H 7975 3500 50  0001 C CNN
 	1    7975 3500
-	-1   0    0    1   
+	-1   0    0    1
 $EndComp
 $Comp
 L Device:R R?
@@ -913,7 +897,7 @@ F 1 "BURNWIRE" V 8209 3500 50  0000 C CNN
 F 2 "" V 8255 3500 50  0001 C CNN
 F 3 "~" H 8325 3500 50  0001 C CNN
 	1    8325 3500
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L power:+BATT #PWR?
@@ -924,7 +908,7 @@ F 1 "+BATT" H 7415 3473 50  0000 C CNN
 F 2 "" H 7400 3300 50  0001 C CNN
 F 3 "" H 7400 3300 50  0001 C CNN
 	1    7400 3300
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	8475 3500 8750 3500
@@ -939,7 +923,7 @@ F 1 "GND" H 7880 3577 50  0000 C CNN
 F 2 "" H 7875 3750 50  0001 C CNN
 F 3 "" H 7875 3750 50  0001 C CNN
 	1    7875 3750
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -950,7 +934,7 @@ F 1 "10k" H 7620 3405 50  0000 L CNN
 F 2 "" V 7480 3450 50  0001 C CNN
 F 3 "~" H 7550 3450 50  0001 C CNN
 	1    7550 3450
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	7550 3300 7875 3300
@@ -973,9 +957,9 @@ Wire Notes Line
 Wire Notes Line
 	11150 4075 6825 4075
 Wire Notes Line
-	6825 4075 6825 550 
+	6825 4075 6825 550
 Wire Notes Line
-	6825 550  11150 550 
+	6825 550  11150 550
 $Comp
 L Device:Q_NMOS_DGS Q?
 U 1 1 5D81B0DC
@@ -985,7 +969,7 @@ F 1 "Q_NMOS_DGS" V 10875 4800 50  0000 L CNN
 F 2 "" H 10275 4975 50  0001 C CNN
 F 3 "~" H 10075 4875 50  0001 C CNN
 	1    10075 4875
-	-1   0    0    1   
+	-1   0    0    1
 $EndComp
 $Comp
 L Device:R R?
@@ -996,7 +980,7 @@ F 1 "BURNWIRE" V 10309 4875 50  0000 C CNN
 F 2 "" V 10355 4875 50  0001 C CNN
 F 3 "~" H 10425 4875 50  0001 C CNN
 	1    10425 4875
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L power:+BATT #PWR?
@@ -1007,7 +991,7 @@ F 1 "+BATT" H 9515 4848 50  0000 C CNN
 F 2 "" H 9500 4675 50  0001 C CNN
 F 3 "" H 9500 4675 50  0001 C CNN
 	1    9500 4675
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	10575 4875 10850 4875
@@ -1022,7 +1006,7 @@ F 1 "GND" H 9980 4952 50  0000 C CNN
 F 2 "" H 9975 5125 50  0001 C CNN
 F 3 "" H 9975 5125 50  0001 C CNN
 	1    9975 5125
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -1033,7 +1017,7 @@ F 1 "10k" H 9720 4780 50  0000 L CNN
 F 2 "" V 9580 4825 50  0001 C CNN
 F 3 "~" H 9650 4825 50  0001 C CNN
 	1    9650 4825
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	9650 4675 9975 4675
@@ -1060,7 +1044,7 @@ F 1 "Q_NMOS_DGS" V 8750 4775 50  0000 L CNN
 F 2 "" H 8150 4950 50  0001 C CNN
 F 3 "~" H 7950 4850 50  0001 C CNN
 	1    7950 4850
-	-1   0    0    1   
+	-1   0    0    1
 $EndComp
 $Comp
 L Device:R R?
@@ -1071,7 +1055,7 @@ F 1 "BURNWIRE" V 8184 4850 50  0000 C CNN
 F 2 "" V 8230 4850 50  0001 C CNN
 F 3 "~" H 8300 4850 50  0001 C CNN
 	1    8300 4850
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L power:+BATT #PWR?
@@ -1082,7 +1066,7 @@ F 1 "+BATT" H 7390 4823 50  0000 C CNN
 F 2 "" H 7375 4650 50  0001 C CNN
 F 3 "" H 7375 4650 50  0001 C CNN
 	1    7375 4650
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	8450 4850 8725 4850
@@ -1097,7 +1081,7 @@ F 1 "GND" H 7855 4927 50  0000 C CNN
 F 2 "" H 7850 5100 50  0001 C CNN
 F 3 "" H 7850 5100 50  0001 C CNN
 	1    7850 5100
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -1108,7 +1092,7 @@ F 1 "10k" H 7595 4755 50  0000 L CNN
 F 2 "" V 7455 4800 50  0001 C CNN
 F 3 "~" H 7525 4800 50  0001 C CNN
 	1    7525 4800
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	7525 4650 7850 4650
@@ -1143,7 +1127,7 @@ F 1 "+5V" H 1015 1223 50  0000 C CNN
 F 2 "" H 1000 1050 50  0001 C CNN
 F 3 "" H 1000 1050 50  0001 C CNN
 	1    1000 1050
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Burt-rescue:MCP73831-DFN-Custom U?
@@ -1154,7 +1138,7 @@ F 1 "MCP73831-DFN" H 2200 1874 50  0000 C CNN
 F 2 "" H 2200 1350 50  0001 C CNN
 F 3 "" H 2200 1350 50  0001 C CNN
 	1    2200 1350
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Burt-rescue:MCP9701A-Custom U?
@@ -1165,7 +1149,7 @@ F 1 "MCP9701A" H 1400 2675 50  0000 L CNN
 F 2 "" H 1000 3400 50  0001 C CNN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001942G.pdf" H 1000 3400 50  0001 C CNN
 	1    1275 3250
-	-1   0    0    1   
+	-1   0    0    1
 $EndComp
 Text Label 1075 2950 2    50   ~ 0
 TEMP
@@ -1178,7 +1162,7 @@ F 1 "GND" H 1280 3427 50  0000 C CNN
 F 2 "" H 1275 3600 50  0001 C CNN
 F 3 "" H 1275 3600 50  0001 C CNN
 	1    1275 3600
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Notes 750  2600 0    50   ~ 0
 Temperature Sensor
@@ -1207,7 +1191,7 @@ F 1 "4.7uF" H 1350 1575 50  0000 L CNN
 F 2 "" H 1675 1650 50  0001 C CNN
 F 3 "~" H 1675 1650 50  0001 C CNN
 	1    1675 1650
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 1675 1550
 Wire Wire Line
@@ -1221,7 +1205,7 @@ F 1 "GND" H 1680 1577 50  0000 C CNN
 F 2 "" H 1675 1750 50  0001 C CNN
 F 3 "" H 1675 1750 50  0001 C CNN
 	1    1675 1750
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Notes 2975 1275 0    50   ~ 0
 SET TO 50 mA
@@ -1234,7 +1218,7 @@ F 1 "Battery_Cell" H 893 1755 50  0000 L CNN
 F 2 "" V 775 1810 50  0001 C CNN
 F 3 "~" V 775 1810 50  0001 C CNN
 	1    775  1750
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:+BATT #PWR?
@@ -1245,7 +1229,7 @@ F 1 "+BATT" H 790 1723 50  0000 C CNN
 F 2 "" H 775 1550 50  0001 C CNN
 F 3 "" H 775 1550 50  0001 C CNN
 	1    775  1550
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:GND #PWR?
@@ -1256,16 +1240,16 @@ F 1 "GND" H 780 1677 50  0000 C CNN
 F 2 "" H 775 1850 50  0001 C CNN
 F 3 "" H 775 1850 50  0001 C CNN
 	1    775  1850
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Notes Line
-	675  625  3525 625 
+	675  625  3525 625
 Wire Notes Line
 	3525 625  3525 2225
 Wire Notes Line
 	3525 2225 675  2225
 Wire Notes Line
-	675  2225 675  625 
+	675  2225 675  625
 Text Notes 675  725  0    50   ~ 0
 Charging and Battery
 Text Notes 4025 750  0    50   ~ 0
@@ -1281,7 +1265,7 @@ F 1 "Conn_01x05_Female" H 4203 2985 50  0000 L CNN
 F 2 "" H 4175 3050 50  0001 C CNN
 F 3 "~" H 4175 3050 50  0001 C CNN
 	1    4175 3050
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:+5V #PWR?
@@ -1292,7 +1276,7 @@ F 1 "+5V" H 3615 3123 50  0000 C CNN
 F 2 "" H 3600 2950 50  0001 C CNN
 F 3 "" H 3600 2950 50  0001 C CNN
 	1    3600 2950
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:GND #PWR?
@@ -1303,7 +1287,7 @@ F 1 "GND" H 3905 3077 50  0000 C CNN
 F 2 "" H 3900 3250 50  0001 C CNN
 F 3 "" H 3900 3250 50  0001 C CNN
 	1    3900 3250
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	3600 2950 3975 2950
@@ -1326,7 +1310,7 @@ F 1 "74HC595" H 4950 5540 50  0000 C CNN
 F 2 "" H 4950 4850 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 4950 4850 50  0001 C CNN
 	1    4950 4850
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Label 4150 1800 2    50   ~ 0
 BWL

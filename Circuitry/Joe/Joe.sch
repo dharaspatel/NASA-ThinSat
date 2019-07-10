@@ -30,9 +30,9 @@ Wire Wire Line
 Wire Wire Line
 	2750 775  2750 1300
 Wire Wire Line
-	1950 1250 1950 900 
+	1950 1250 1950 900
 Wire Wire Line
-	1950 900  2175 900 
+	1950 900  2175 900
 Text Notes 9475 625  0    50   ~ 0
 Microcontroller
 Text Notes 4125 650  0    50   ~ 0
@@ -46,7 +46,7 @@ F 1 "GND" H 5955 1002 50  0000 C CNN
 F 2 "" H 5950 1175 50  0001 C CNN
 F 3 "" H 5950 1175 50  0001 C CNN
 	1    5950 1175
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:GND #PWR?
@@ -57,13 +57,13 @@ F 1 "GND" H 4180 1002 50  0000 C CNN
 F 2 "" H 4175 1175 50  0001 C CNN
 F 3 "" H 4175 1175 50  0001 C CNN
 	1    4175 1175
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
-	1850 750  1850 775 
+	1850 750  1850 775
 Wire Wire Line
-	2750 775  1850 775 
-Connection ~ 1850 775 
+	2750 775  1850 775
+Connection ~ 1850 775
 Wire Wire Line
 	1850 775  1850 1250
 $Comp
@@ -75,7 +75,7 @@ F 1 "ATmega32U4-MU" H 9800 5425 50  0000 C CNN
 F 2 "Package_DFN_QFN:QFN-44-1EP_7x7mm_P0.5mm_EP5.2x5.2mm" H 10050 3050 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf" H 10050 3050 50  0001 C CNN
 	1    10050 3050
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	10150 1250 10050 1250
@@ -93,7 +93,7 @@ F 1 "Conn_02x03_Counter_Clockwise" H 3350 3825 50  0000 C CNN
 F 2 "" H 3350 3250 50  0001 C CNN
 F 3 "~" H 3350 3250 50  0001 C CNN
 	1    3350 3250
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Label 10850 1750 0    50   ~ 0
 MOSI
@@ -110,7 +110,7 @@ F 1 "GND" H 10055 4927 50  0000 C CNN
 F 2 "" H 10050 5100 50  0001 C CNN
 F 3 "" H 10050 5100 50  0001 C CNN
 	1    10050 5100
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:+5V #PWR?
@@ -121,7 +121,7 @@ F 1 "+5V" H 10065 1198 50  0000 C CNN
 F 2 "" H 10050 1025 50  0001 C CNN
 F 3 "" H 10050 1025 50  0001 C CNN
 	1    10050 1025
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Label 2950 3150 2    50   ~ 0
 MISO
@@ -138,7 +138,7 @@ F 1 "+5V" H 3865 3248 50  0000 C CNN
 F 2 "" H 3850 3075 50  0001 C CNN
 F 3 "" H 3850 3075 50  0001 C CNN
 	1    3850 3075
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	3850 3150 3850 3075
@@ -153,7 +153,7 @@ F 1 "GND" H 3855 3277 50  0000 C CNN
 F 2 "" H 3850 3450 50  0001 C CNN
 F 3 "" H 3850 3450 50  0001 C CNN
 	1    3850 3450
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Notes 2750 2625 0    50   ~ 0
 Programming Header
@@ -222,7 +222,7 @@ F 1 "LED" H 3593 4450 50  0000 C CNN
 F 2 "" H 3600 4325 50  0001 C CNN
 F 3 "~" H 3600 4325 50  0001 C CNN
 	1    3600 4325
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -233,7 +233,7 @@ F 1 "R" V 3184 4325 50  0000 C CNN
 F 2 "" V 3230 4325 50  0001 C CNN
 F 3 "~" H 3300 4325 50  0001 C CNN
 	1    3300 4325
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L Device:LED D?
@@ -244,7 +244,7 @@ F 1 "LED" H 3593 4775 50  0000 C CNN
 F 2 "" H 3600 4650 50  0001 C CNN
 F 3 "~" H 3600 4650 50  0001 C CNN
 	1    3600 4650
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -255,7 +255,7 @@ F 1 "R" V 3184 4650 50  0000 C CNN
 F 2 "" V 3230 4650 50  0001 C CNN
 F 3 "~" H 3300 4650 50  0001 C CNN
 	1    3300 4650
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L Device:LED D?
@@ -266,7 +266,7 @@ F 1 "LED" H 3593 5100 50  0000 C CNN
 F 2 "" H 3600 4975 50  0001 C CNN
 F 3 "~" H 3600 4975 50  0001 C CNN
 	1    3600 4975
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -277,7 +277,7 @@ F 1 "R" V 3184 4975 50  0000 C CNN
 F 2 "" V 3230 4975 50  0001 C CNN
 F 3 "~" H 3300 4975 50  0001 C CNN
 	1    3300 4975
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L power:GND #PWR?
@@ -288,7 +288,7 @@ F 1 "GND" H 2955 4152 50  0000 C CNN
 F 2 "" H 2950 4325 50  0001 C CNN
 F 3 "" H 2950 4325 50  0001 C CNN
 	1    2950 4325
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	2950 4325 3150 4325
@@ -301,7 +301,7 @@ F 1 "GND" H 2955 4477 50  0000 C CNN
 F 2 "" H 2950 4650 50  0001 C CNN
 F 3 "" H 2950 4650 50  0001 C CNN
 	1    2950 4650
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	2950 4650 3150 4650
@@ -314,7 +314,7 @@ F 1 "GND" H 2955 4802 50  0000 C CNN
 F 2 "" H 2950 4975 50  0001 C CNN
 F 3 "" H 2950 4975 50  0001 C CNN
 	1    2950 4975
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	2950 4975 3150 4975
@@ -327,11 +327,11 @@ Wire Notes Line
 Wire Notes Line
 	525  2425 4000 2425
 Wire Notes Line
-	4000 2425 4000 500 
+	4000 2425 4000 500
 Wire Notes Line
-	4050 2425 4050 500 
+	4050 2425 4050 500
 Wire Notes Line
-	11175 500  8775 500 
+	11175 500  8775 500
 Wire Notes Line
 	8775 500  8775 5525
 Wire Notes Line
@@ -351,7 +351,7 @@ F 1 "DS3231M" H 900 2575 50  0000 C CNN
 F 2 "Package_SO:SOIC-16W_7.5x10.3mm_P1.27mm" H 1950 1050 50  0001 C CNN
 F 3 "http://datasheets.maximintegrated.com/en/ds/DS3231.pdf" H 2220 1700 50  0001 C CNN
 	1    1950 1650
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -362,7 +362,7 @@ F 1 "10k" H 1220 1355 50  0000 L CNN
 F 2 "" V 1080 1400 50  0001 C CNN
 F 3 "~" H 1150 1400 50  0001 C CNN
 	1    1150 1400
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 1150 1550
 Wire Wire Line
@@ -376,7 +376,7 @@ F 1 "10k" H 825 1300 50  0000 L CNN
 F 2 "" V 930 1300 50  0001 C CNN
 F 3 "~" H 1000 1300 50  0001 C CNN
 	1    1000 1300
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 1000 1450
 Wire Wire Line
@@ -390,7 +390,7 @@ F 1 "0.1uF" H 2263 955 50  0000 L CNN
 F 2 "" H 2175 1000 50  0001 C CNN
 F 3 "~" H 2175 1000 50  0001 C CNN
 	1    2175 1000
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:GND #PWR?
@@ -401,7 +401,7 @@ F 1 "GND" H 2180 927 50  0000 C CNN
 F 2 "" H 2175 1100 50  0001 C CNN
 F 3 "" H 2175 1100 50  0001 C CNN
 	1    2175 1100
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -412,7 +412,7 @@ F 1 "10k" H 2820 1405 50  0000 L CNN
 F 2 "" V 2680 1450 50  0001 C CNN
 F 3 "~" H 2750 1450 50  0001 C CNN
 	1    2750 1450
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -423,7 +423,7 @@ F 1 "10k" H 3045 1255 50  0000 L CNN
 F 2 "" V 2905 1300 50  0001 C CNN
 F 3 "~" H 2975 1300 50  0001 C CNN
 	1    2975 1300
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 2975 1450
 Wire Wire Line
@@ -436,8 +436,8 @@ F 0 "C?" H 3592 921 50  0000 L CNN
 F 1 "0.1uF" H 3592 830 50  0000 L CNN
 F 2 "" H 3500 875 50  0001 C CNN
 F 3 "~" H 3500 875 50  0001 C CNN
-	1    3500 875 
-	1    0    0    -1  
+	1    3500 875
+	1    0    0    -1
 $EndComp
 $Comp
 L power:GND #PWR?
@@ -447,8 +447,8 @@ F 0 "#PWR?" H 3500 725 50  0001 C CNN
 F 1 "GND" H 3505 802 50  0000 C CNN
 F 2 "" H 3500 975 50  0001 C CNN
 F 3 "" H 3500 975 50  0001 C CNN
-	1    3500 975 
-	1    0    0    -1  
+	1    3500 975
+	1    0    0    -1
 $EndComp
 $Comp
 L power:GND #PWR?
@@ -459,7 +459,7 @@ F 1 "GND" H 1955 1877 50  0000 C CNN
 F 2 "" H 1950 2050 50  0001 C CNN
 F 3 "" H 1950 2050 50  0001 C CNN
 	1    1950 2050
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Joe-rescue:GL5528-Custom U?
@@ -470,7 +470,7 @@ F 1 "GL5528" H 1025 4000 50  0000 C CNN
 F 2 "" H 1900 3525 50  0001 C CNN
 F 3 "https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/SEN-09088.pdf" H 1900 3525 50  0001 C CNN
 	1    1700 3525
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Notes 550  2625 0    50   ~ 0
 Photocells
@@ -483,7 +483,7 @@ F 1 "R" H 1045 3630 50  0000 L CNN
 F 2 "" V 905 3675 50  0001 C CNN
 F 3 "~" H 975 3675 50  0001 C CNN
 	1    975  3675
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Label 1175 3300 2    50   ~ 0
 PHO1
@@ -500,7 +500,7 @@ F 1 "GND" H 980 3652 50  0000 C CNN
 F 2 "" H 975 3825 50  0001 C CNN
 F 3 "" H 975 3825 50  0001 C CNN
 	1    975  3825
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 1175 3525
 Wire Wire Line
@@ -516,7 +516,7 @@ F 1 "+5V" H 2165 3473 50  0000 C CNN
 F 2 "" H 2150 3300 50  0001 C CNN
 F 3 "" H 2150 3300 50  0001 C CNN
 	1    2150 3300
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	2150 3525 2150 3300
@@ -529,7 +529,7 @@ F 1 "GL5528" H 1050 5125 50  0000 C CNN
 F 2 "" H 1925 4650 50  0001 C CNN
 F 3 "" H 1925 4650 50  0001 C CNN
 	1    1725 4650
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -540,7 +540,7 @@ F 1 "R" H 1070 4755 50  0000 L CNN
 F 2 "" V 930 4800 50  0001 C CNN
 F 3 "~" H 1000 4800 50  0001 C CNN
 	1    1000 4800
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Label 1200 4425 2    50   ~ 0
 PHO2
@@ -557,7 +557,7 @@ F 1 "GND" H 1005 4777 50  0000 C CNN
 F 2 "" H 1000 4950 50  0001 C CNN
 F 3 "" H 1000 4950 50  0001 C CNN
 	1    1000 4950
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 1200 4650
 Wire Wire Line
@@ -573,7 +573,7 @@ F 1 "+5V" H 2190 4598 50  0000 C CNN
 F 2 "" H 2175 4425 50  0001 C CNN
 F 3 "" H 2175 4425 50  0001 C CNN
 	1    2175 4425
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	2175 4650 2175 4425
@@ -586,7 +586,7 @@ F 1 "GL5528" H 1075 6275 50  0000 C CNN
 F 2 "" H 1950 5800 50  0001 C CNN
 F 3 "" H 1950 5800 50  0001 C CNN
 	1    1750 5800
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -597,7 +597,7 @@ F 1 "R" H 1095 5905 50  0000 L CNN
 F 2 "" V 955 5950 50  0001 C CNN
 F 3 "~" H 1025 5950 50  0001 C CNN
 	1    1025 5950
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Label 1225 5575 2    50   ~ 0
 PHO3
@@ -614,7 +614,7 @@ F 1 "GND" H 1030 5927 50  0000 C CNN
 F 2 "" H 1025 6100 50  0001 C CNN
 F 3 "" H 1025 6100 50  0001 C CNN
 	1    1025 6100
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 1225 5800
 Wire Wire Line
@@ -630,7 +630,7 @@ F 1 "+5V" H 2215 5748 50  0000 C CNN
 F 2 "" H 2200 5575 50  0001 C CNN
 F 3 "" H 2200 5575 50  0001 C CNN
 	1    2200 5575
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	2200 5800 2200 5575
@@ -643,7 +643,7 @@ F 1 "GL5528" H 1100 7425 50  0000 C CNN
 F 2 "" H 1975 6950 50  0001 C CNN
 F 3 "" H 1975 6950 50  0001 C CNN
 	1    1775 6950
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:R R?
@@ -654,7 +654,7 @@ F 1 "R" H 1120 7055 50  0000 L CNN
 F 2 "" V 980 7100 50  0001 C CNN
 F 3 "~" H 1050 7100 50  0001 C CNN
 	1    1050 7100
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Label 1250 6725 2    50   ~ 0
 PHO4
@@ -671,7 +671,7 @@ F 1 "GND" H 1055 7077 50  0000 C CNN
 F 2 "" H 1050 7250 50  0001 C CNN
 F 3 "" H 1050 7250 50  0001 C CNN
 	1    1050 7250
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 1250 6950
 Wire Wire Line
@@ -687,7 +687,7 @@ F 1 "+5V" H 2240 6898 50  0000 C CNN
 F 2 "" H 2225 6725 50  0001 C CNN
 F 3 "" H 2225 6725 50  0001 C CNN
 	1    2225 6725
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	2225 6950 2225 6725
@@ -699,16 +699,16 @@ Wire Notes Line
 	2600 7750 500  7750
 Wire Notes Line
 	500  7750 500  2475
-Connection ~ 2750 775 
+Connection ~ 2750 775
 Wire Wire Line
-	2975 775  3500 775 
+	2975 775  3500 775
 Wire Notes Line
-	3975 500  500  500 
+	3975 500  500  500
 Wire Wire Line
 	2975 775  2975 1150
-Connection ~ 2975 775 
+Connection ~ 2975 775
 Wire Wire Line
-	2750 775  2975 775 
+	2750 775  2975 775
 Text Notes 7025 6775 0    118  ~ 24
 JOE LOFTUS
 Wire Wire Line
@@ -733,8 +733,8 @@ F 0 "#PWR?" H 1850 600 50  0001 C CNN
 F 1 "+3V3" H 1865 923 50  0000 C CNN
 F 2 "" H 1850 750 50  0001 C CNN
 F 3 "" H 1850 750 50  0001 C CNN
-	1    1850 750 
-	1    0    0    -1  
+	1    1850 750
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	9450 1550 9250 1550
@@ -759,7 +759,7 @@ Wire Wire Line
 Text Label 4450 1375 2    50   ~ 0
 1HZ
 Wire Wire Line
-	1150 1150 1150 975 
+	1150 1150 1150 975
 $Comp
 L power:+3V3 #PWR?
 U 1 1 5D2D733F
@@ -768,8 +768,8 @@ F 0 "#PWR?" H 1150 825 50  0001 C CNN
 F 1 "+3V3" H 1165 1148 50  0000 C CNN
 F 2 "" H 1150 975 50  0001 C CNN
 F 3 "" H 1150 975 50  0001 C CNN
-	1    1150 975 
-	1    0    0    -1  
+	1    1150 975
+	1    0    0    -1
 $EndComp
 $Comp
 L Device:C C?
@@ -780,7 +780,7 @@ F 1 "1uF" H 9090 2255 50  0000 L CNN
 F 2 "" H 9013 2150 50  0001 C CNN
 F 3 "~" H 8975 2300 50  0001 C CNN
 	1    8975 2300
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:GND #PWR?
@@ -791,7 +791,7 @@ F 1 "GND" H 8980 2277 50  0000 C CNN
 F 2 "" H 8975 2450 50  0001 C CNN
 F 3 "" H 8975 2450 50  0001 C CNN
 	1    8975 2450
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	8975 2150 9450 2150
@@ -804,7 +804,7 @@ F 1 "1uF" H 9090 2955 50  0000 L CNN
 F 2 "" H 9013 2850 50  0001 C CNN
 F 3 "~" H 8975 3000 50  0001 C CNN
 	1    8975 3000
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:GND #PWR?
@@ -815,7 +815,7 @@ F 1 "GND" H 8980 2977 50  0000 C CNN
 F 2 "" H 8975 3150 50  0001 C CNN
 F 3 "" H 8975 3150 50  0001 C CNN
 	1    8975 3150
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	8975 2850 9450 2850
@@ -862,7 +862,7 @@ F 1 "UFDFPN8-MC" H 4950 7174 50  0000 C CNN
 F 2 "" H 4925 6900 50  0001 C CNN
 F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/8c/54/f2/63/4c/4a/CD00001012.pdf/files/CD00001012.pdf/jcr:content/translations/en.CD00001012.pdf" H 4925 6900 50  0001 C CNN
 	1    4925 6900
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Label 4625 6800 2    50   ~ 0
 E0
@@ -885,7 +885,7 @@ F 1 "+5V" H 5490 6973 50  0000 C CNN
 F 2 "" H 5475 6800 50  0001 C CNN
 F 3 "" H 5475 6800 50  0001 C CNN
 	1    5475 6800
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	5275 6800 5475 6800
@@ -904,7 +904,7 @@ F 1 "GND" H 4455 6927 50  0000 C CNN
 F 2 "" H 4450 7100 50  0001 C CNN
 F 3 "" H 4450 7100 50  0001 C CNN
 	1    4450 7100
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	4625 7100 4450 7100
@@ -920,7 +920,7 @@ Wire Notes Line
 	2650 3825 2650 2475
 Text Notes 4325 6350 0    50   ~ 0
 EEPROM\n
-Text Label 4425 1675 2    50   ~ 0
+Text Label 4450 1675 2    50   ~ 0
 DATA
 $Comp
 L 74xx:74HC595 U?
@@ -931,7 +931,7 @@ F 1 "74HC595" H 2875 7450 50  0000 C CNN
 F 2 "" H 3525 6575 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 3525 6575 50  0001 C CNN
 	1    3525 6575
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Notes 6775 4425 0    50   ~ 0
 Joe <--> Burt\n
@@ -944,7 +944,7 @@ F 1 "GND" H 3530 7102 50  0000 C CNN
 F 2 "" H 3525 7275 50  0001 C CNN
 F 3 "" H 3525 7275 50  0001 C CNN
 	1    3525 7275
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Label 10875 4350 0    50   ~ 0
 BWL
@@ -985,7 +985,7 @@ F 1 "+5V" H 3540 6148 50  0000 C CNN
 F 2 "" H 3525 5975 50  0001 C CNN
 F 3 "" H 3525 5975 50  0001 C CNN
 	1    3525 5975
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Text Label 5650 1675 0    50   ~ 0
 CRYSTAL2
@@ -1040,7 +1040,7 @@ F 1 "+5V" H 5515 5523 50  0000 C CNN
 F 2 "" H 5500 5350 50  0001 C CNN
 F 3 "" H 5500 5350 50  0001 C CNN
 	1    5500 5350
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:+3V3 #PWR?
@@ -1051,7 +1051,7 @@ F 1 "+3V3" H 4865 5523 50  0000 C CNN
 F 2 "" H 4850 5350 50  0001 C CNN
 F 3 "" H 4850 5350 50  0001 C CNN
 	1    4850 5350
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 4850 5475
 Wire Wire Line
@@ -1072,7 +1072,7 @@ F 1 "10k" H 5325 5625 50  0000 L CNN
 F 2 "" V 5430 5625 50  0001 C CNN
 F 3 "~" H 5500 5625 50  0001 C CNN
 	1    5500 5625
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	4850 5775 4525 5775
@@ -1088,7 +1088,7 @@ F 1 "10k" H 4675 5625 50  0000 L CNN
 F 2 "" V 4780 5625 50  0001 C CNN
 F 3 "~" H 4850 5625 50  0001 C CNN
 	1    4850 5625
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Transistor_FET:2N7000 Q?
@@ -1099,7 +1099,7 @@ F 1 "2N7000" V 4650 4925 50  0000 L CNN
 F 2 "Package_TO_SOT_THT:TO-92_Inline" H 5350 5600 50  0001 L CIN
 F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 5150 5675 50  0001 L CNN
 	1    5150 5675
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 Wire Wire Line
 	5500 4525 5500 4650
@@ -1112,7 +1112,7 @@ F 1 "+5V" H 5515 4698 50  0000 C CNN
 F 2 "" H 5500 4525 50  0001 C CNN
 F 3 "" H 5500 4525 50  0001 C CNN
 	1    5500 4525
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:+3V3 #PWR?
@@ -1123,7 +1123,7 @@ F 1 "+3V3" H 4865 4698 50  0000 C CNN
 F 2 "" H 4850 4525 50  0001 C CNN
 F 3 "" H 4850 4525 50  0001 C CNN
 	1    4850 4525
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 4850 4650
 Wire Wire Line
@@ -1144,7 +1144,7 @@ F 1 "10k" H 5325 4800 50  0000 L CNN
 F 2 "" V 5430 4800 50  0001 C CNN
 F 3 "~" H 5500 4800 50  0001 C CNN
 	1    5500 4800
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	4850 4950 4525 4950
@@ -1160,7 +1160,7 @@ F 1 "10k" H 4675 4800 50  0000 L CNN
 F 2 "" V 4780 4800 50  0001 C CNN
 F 3 "~" H 4850 4800 50  0001 C CNN
 	1    4850 4800
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Transistor_FET:2N7000 Q?
@@ -1171,7 +1171,7 @@ F 1 "2N7000" V 4650 4100 50  0000 L CNN
 F 2 "Package_TO_SOT_THT:TO-92_Inline" H 5350 4775 50  0001 L CIN
 F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 5150 4850 50  0001 L CNN
 	1    5150 4850
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 Text Label 4500 4150 2    50   ~ 0
 SDA
@@ -1186,7 +1186,7 @@ F 1 "+5V" H 5490 3898 50  0000 C CNN
 F 2 "" H 5475 3725 50  0001 C CNN
 F 3 "" H 5475 3725 50  0001 C CNN
 	1    5475 3725
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:+3V3 #PWR?
@@ -1197,7 +1197,7 @@ F 1 "+3V3" H 4840 3898 50  0000 C CNN
 F 2 "" H 4825 3725 50  0001 C CNN
 F 3 "" H 4825 3725 50  0001 C CNN
 	1    4825 3725
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 4825 3850
 Wire Wire Line
@@ -1218,7 +1218,7 @@ F 1 "10k" H 5300 4000 50  0000 L CNN
 F 2 "" V 5405 4000 50  0001 C CNN
 F 3 "~" H 5475 4000 50  0001 C CNN
 	1    5475 4000
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	4825 4150 4500 4150
@@ -1234,7 +1234,7 @@ F 1 "10k" H 4650 4000 50  0000 L CNN
 F 2 "" V 4755 4000 50  0001 C CNN
 F 3 "~" H 4825 4000 50  0001 C CNN
 	1    4825 4000
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Transistor_FET:2N7000 Q?
@@ -1245,7 +1245,7 @@ F 1 "2N7000" V 4625 3325 50  0000 L CNN
 F 2 "Package_TO_SOT_THT:TO-92_Inline" H 5325 3975 50  0001 L CIN
 F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 5125 4050 50  0001 L CNN
 	1    5125 4050
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 Text Label 4500 3400 2    50   ~ 0
 SCL
@@ -1260,7 +1260,7 @@ F 1 "+5V" H 5490 3148 50  0000 C CNN
 F 2 "" H 5475 2975 50  0001 C CNN
 F 3 "" H 5475 2975 50  0001 C CNN
 	1    5475 2975
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:+3V3 #PWR?
@@ -1271,7 +1271,7 @@ F 1 "+3V3" H 4840 3148 50  0000 C CNN
 F 2 "" H 4825 2975 50  0001 C CNN
 F 3 "" H 4825 2975 50  0001 C CNN
 	1    4825 2975
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Connection ~ 4825 3100
 Wire Wire Line
@@ -1292,7 +1292,7 @@ F 1 "10k" H 5300 3250 50  0000 L CNN
 F 2 "" V 5405 3250 50  0001 C CNN
 F 3 "~" H 5475 3250 50  0001 C CNN
 	1    5475 3250
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	4825 3400 4500 3400
@@ -1308,7 +1308,7 @@ F 1 "10k" H 4650 3250 50  0000 L CNN
 F 2 "" V 4755 3250 50  0001 C CNN
 F 3 "~" H 4825 3250 50  0001 C CNN
 	1    4825 3250
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L Transistor_FET:2N7000 Q?
@@ -1319,7 +1319,7 @@ F 1 "2N7000" V 4625 2525 50  0000 L CNN
 F 2 "Package_TO_SOT_THT:TO-92_Inline" H 5325 3225 50  0001 L CIN
 F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 5125 3300 50  0001 L CNN
 	1    5125 3300
-	0    1    1    0   
+	0    1    1    0
 $EndComp
 $Comp
 L Joe-rescue:DF12-20DS-Custom U?
@@ -1330,7 +1330,7 @@ F 1 "DF12-20DS" H 5050 2109 50  0000 C CNN
 F 2 "" H 5050 2125 50  0001 C CNN
 F 3 "" H 5050 2125 50  0001 C CNN
 	1    5050 1525
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Wire Line
 	5650 1175 5950 1175
@@ -1353,7 +1353,7 @@ F 1 "+5V" H 5965 1198 50  0000 C CNN
 F 2 "" H 5950 1025 50  0001 C CNN
 F 3 "" H 5950 1025 50  0001 C CNN
 	1    5950 1025
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:+3V3 #PWR?
@@ -1364,14 +1364,14 @@ F 1 "+3V3" H 4190 1173 50  0000 C CNN
 F 2 "" H 4175 1000 50  0001 C CNN
 F 3 "" H 4175 1000 50  0001 C CNN
 	1    4175 1000
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 Wire Notes Line
 	4050 2425 6200 2425
 Wire Notes Line
-	6200 2425 6200 500 
+	6200 2425 6200 500
 Wire Notes Line
-	6200 500  4050 500 
+	6200 500  4050 500
 Wire Notes Line
 	4200 2475 4200 5900
 Wire Notes Line
@@ -1384,8 +1384,64 @@ Text Label 6850 5000 2    50   ~ 0
 BP1
 Text Label 6850 5100 2    50   ~ 0
 BP2
-Text Label 6850 5325 2    50   ~ 0
-IN1
-Text Label 6850 5450 2    50   ~ 0
-IN2
+$Comp
+L Connector:Micro_SD_Card J?
+U 1 1 5D33A763
+P 7700 1500
+F 0 "J?" H 7650 2217 50  0000 C CNN
+F 1 "Micro_SD_Card" H 7650 2126 50  0000 C CNN
+F 2 "" H 8850 1800 50  0001 C CNN
+F 3 "http://katalog.we-online.de/em/datasheet/693072010801.pdf" H 7700 1500 50  0001 C CNN
+	1    7700 1500
+	1    0    0    -1
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D33B7A8
+P 8500 2100
+F 0 "#PWR?" H 8500 1850 50  0001 C CNN
+F 1 "GND" H 8505 1927 50  0000 C CNN
+F 2 "" H 8500 2100 50  0001 C CNN
+F 3 "" H 8500 2100 50  0001 C CNN
+	1    8500 2100
+	1    0    0    -1
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D33BC9C
+P 6800 1500
+F 0 "#PWR?" H 6800 1350 50  0001 C CNN
+F 1 "+3V3" V 6815 1628 50  0000 L CNN
+F 2 "" H 6800 1500 50  0001 C CNN
+F 3 "" H 6800 1500 50  0001 C CNN
+	1    6800 1500
+	0    -1   -1   0
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D33D19A
+P 6600 1700
+F 0 "#PWR?" H 6600 1450 50  0001 C CNN
+F 1 "GND" H 6605 1527 50  0000 C CNN
+F 2 "" H 6600 1700 50  0001 C CNN
+F 3 "" H 6600 1700 50  0001 C CNN
+	1    6600 1700
+	0    1    1    0
+$EndComp
+Text Label 6800 1400 2    50   ~ 0
+MOSI
+Text Label 6800 1300 2    50   ~ 0
+~CS
+Text Label 6800 1600 2    50   ~ 0
+SCK
+Text Label 6800 1800 2    50   ~ 0
+MOSO
+Wire Wire Line
+	6600 1700 6800 1700
+NoConn ~ 6800 1900
+NoConn ~ 6800 1200
+Text Label 10875 2550 0    50   ~ 0
+~CS
+Wire Wire Line
+	10650 2550 10875 2550
 $EndSCHEMATC

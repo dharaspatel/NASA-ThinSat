@@ -1422,4 +1422,67 @@ Text Label 6950 5275 2    50   ~ 0
 BP1
 Text Label 6950 5375 2    50   ~ 0
 BP2
+<<<<<<< HEAD
+=======
+$Comp
+L Connector:Micro_SD_Card J?
+U 1 1 5D33A763
+P 7700 1500
+F 0 "J?" H 7650 2217 50  0000 C CNN
+F 1 "Micro_SD_Card" H 7650 2126 50  0000 C CNN
+F 2 "" H 8850 1800 50  0001 C CNN
+F 3 "http://katalog.we-online.de/em/datasheet/693072010801.pdf" H 7700 1500 50  0001 C CNN
+	1    7700 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D33B7A8
+P 8500 2100
+F 0 "#PWR?" H 8500 1850 50  0001 C CNN
+F 1 "GND" H 8505 1927 50  0000 C CNN
+F 2 "" H 8500 2100 50  0001 C CNN
+F 3 "" H 8500 2100 50  0001 C CNN
+	1    8500 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D33BC9C
+P 6800 1500
+F 0 "#PWR?" H 6800 1350 50  0001 C CNN
+F 1 "+3V3" V 6815 1628 50  0000 L CNN
+F 2 "" H 6800 1500 50  0001 C CNN
+F 3 "" H 6800 1500 50  0001 C CNN
+	1    6800 1500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D33D19A
+P 6600 1700
+F 0 "#PWR?" H 6600 1450 50  0001 C CNN
+F 1 "GND" H 6605 1527 50  0000 C CNN
+F 2 "" H 6600 1700 50  0001 C CNN
+F 3 "" H 6600 1700 50  0001 C CNN
+	1    6600 1700
+	0    1    1    0   
+$EndComp
+Text Label 6800 1400 2    50   ~ 0
+MOSI
+Text Label 6800 1300 2    50   ~ 0
+~CS
+Text Label 6800 1600 2    50   ~ 0
+SCK
+Text Label 6800 1800 2    50   ~ 0
+MOSO
+Wire Wire Line
+	6600 1700 6800 1700
+NoConn ~ 6800 1900
+NoConn ~ 6800 1200
+Text Label 10875 2550 0    50   ~ 0
+~CS
+Wire Wire Line
+	10650 2550 10875 2550
+>>>>>>> 9a6bc109a80989b25df11e2bb2cfa8d9be064367
 $EndSCHEMATC
