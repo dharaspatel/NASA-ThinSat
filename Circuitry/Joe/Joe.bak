@@ -35,49 +35,30 @@ Wire Wire Line
 	1950 900  2175 900 
 Text Notes 9475 625  0    50   ~ 0
 Microcontroller
-$Comp
-L Joe-rescue:DF12-20DS-Custom U?
-U 1 1 5D1584F8
-P 6000 1450
-F 0 "U?" H 5500 2175 50  0000 C CNN
-F 1 "DF12-20DS" H 5175 2175 50  0000 C CNN
-F 2 "" H 6000 2000 50  0001 C CNN
-F 3 "file:///home/dpatel1/Downloads/Interface%20Control%20Document%20(1).pdf" H 6000 2000 50  0001 C CNN
-	1    6000 1450
-	1    0    0    -1  
-$EndComp
-Text Notes 4950 650  0    50   ~ 0
+Text Notes 4125 650  0    50   ~ 0
 NSL Connector
-Wire Wire Line
-	6600 1000 7125 1000
-Wire Wire Line
-	7125 1000 7125 1250
 $Comp
 L power:GND #PWR?
 U 1 1 5D1611BB
-P 7125 1250
-F 0 "#PWR?" H 7125 1000 50  0001 C CNN
-F 1 "GND" H 7130 1077 50  0000 C CNN
-F 2 "" H 7125 1250 50  0001 C CNN
-F 3 "" H 7125 1250 50  0001 C CNN
-	1    7125 1250
+P 5950 1175
+F 0 "#PWR?" H 5950 925 50  0001 C CNN
+F 1 "GND" H 5955 1002 50  0000 C CNN
+F 2 "" H 5950 1175 50  0001 C CNN
+F 3 "" H 5950 1175 50  0001 C CNN
+	1    5950 1175
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4875 1000 4875 1250
 $Comp
 L power:GND #PWR?
 U 1 1 5D1639D7
-P 4875 1250
-F 0 "#PWR?" H 4875 1000 50  0001 C CNN
-F 1 "GND" H 4880 1077 50  0000 C CNN
-F 2 "" H 4875 1250 50  0001 C CNN
-F 3 "" H 4875 1250 50  0001 C CNN
-	1    4875 1250
+P 4175 1175
+F 0 "#PWR?" H 4175 925 50  0001 C CNN
+F 1 "GND" H 4180 1002 50  0000 C CNN
+F 2 "" H 4175 1175 50  0001 C CNN
+F 3 "" H 4175 1175 50  0001 C CNN
+	1    4175 1175
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4875 1000 5400 1000
 Wire Wire Line
 	1850 750  1850 775 
 Wire Wire Line
@@ -99,9 +80,9 @@ $EndComp
 Wire Wire Line
 	10150 1250 10050 1250
 Connection ~ 10050 1250
-Text Label 5225 1400 2    50   ~ 0
+Text Label 4450 1475 2    50   ~ 0
 TX
-Text Label 6800 1400 0    50   ~ 0
+Text Label 5650 1475 0    50   ~ 0
 RX
 $Comp
 L Connector_Generic:Conn_02x03_Counter_Clockwise J?
@@ -212,14 +193,6 @@ Wire Notes Line
 Text Label 900  1850 2    50   ~ 0
 TMR_RST
 Wire Wire Line
-	5225 1100 5400 1100
-Wire Wire Line
-	5400 1400 5225 1400
-Wire Wire Line
-	6600 1100 6800 1100
-Wire Wire Line
-	6600 1400 6800 1400
-Wire Wire Line
 	3650 3150 3850 3150
 Wire Wire Line
 	3650 3250 3850 3250
@@ -243,113 +216,111 @@ Wire Wire Line
 $Comp
 L Device:LED D?
 U 1 1 5D18A19A
-P 5150 2925
-F 0 "D?" H 5143 3141 50  0000 C CNN
-F 1 "LED" H 5143 3050 50  0000 C CNN
-F 2 "" H 5150 2925 50  0001 C CNN
-F 3 "~" H 5150 2925 50  0001 C CNN
-	1    5150 2925
+P 3600 4325
+F 0 "D?" H 3593 4541 50  0000 C CNN
+F 1 "LED" H 3593 4450 50  0000 C CNN
+F 2 "" H 3600 4325 50  0001 C CNN
+F 3 "~" H 3600 4325 50  0001 C CNN
+	1    3600 4325
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5D18F2FE
-P 4850 2925
-F 0 "R?" V 4643 2925 50  0000 C CNN
-F 1 "R" V 4734 2925 50  0000 C CNN
-F 2 "" V 4780 2925 50  0001 C CNN
-F 3 "~" H 4850 2925 50  0001 C CNN
-	1    4850 2925
+P 3300 4325
+F 0 "R?" V 3093 4325 50  0000 C CNN
+F 1 "R" V 3184 4325 50  0000 C CNN
+F 2 "" V 3230 4325 50  0001 C CNN
+F 3 "~" H 3300 4325 50  0001 C CNN
+	1    3300 4325
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:LED D?
 U 1 1 5D19383C
-P 5150 3250
-F 0 "D?" H 5143 3466 50  0000 C CNN
-F 1 "LED" H 5143 3375 50  0000 C CNN
-F 2 "" H 5150 3250 50  0001 C CNN
-F 3 "~" H 5150 3250 50  0001 C CNN
-	1    5150 3250
+P 3600 4650
+F 0 "D?" H 3593 4866 50  0000 C CNN
+F 1 "LED" H 3593 4775 50  0000 C CNN
+F 2 "" H 3600 4650 50  0001 C CNN
+F 3 "~" H 3600 4650 50  0001 C CNN
+	1    3600 4650
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5D193842
-P 4850 3250
-F 0 "R?" V 4643 3250 50  0000 C CNN
-F 1 "R" V 4734 3250 50  0000 C CNN
-F 2 "" V 4780 3250 50  0001 C CNN
-F 3 "~" H 4850 3250 50  0001 C CNN
-	1    4850 3250
+P 3300 4650
+F 0 "R?" V 3093 4650 50  0000 C CNN
+F 1 "R" V 3184 4650 50  0000 C CNN
+F 2 "" V 3230 4650 50  0001 C CNN
+F 3 "~" H 3300 4650 50  0001 C CNN
+	1    3300 4650
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:LED D?
 U 1 1 5D195D15
-P 5150 3575
-F 0 "D?" H 5143 3791 50  0000 C CNN
-F 1 "LED" H 5143 3700 50  0000 C CNN
-F 2 "" H 5150 3575 50  0001 C CNN
-F 3 "~" H 5150 3575 50  0001 C CNN
-	1    5150 3575
+P 3600 4975
+F 0 "D?" H 3593 5191 50  0000 C CNN
+F 1 "LED" H 3593 5100 50  0000 C CNN
+F 2 "" H 3600 4975 50  0001 C CNN
+F 3 "~" H 3600 4975 50  0001 C CNN
+	1    3600 4975
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5D195D1B
-P 4850 3575
-F 0 "R?" V 4643 3575 50  0000 C CNN
-F 1 "R" V 4734 3575 50  0000 C CNN
-F 2 "" V 4780 3575 50  0001 C CNN
-F 3 "~" H 4850 3575 50  0001 C CNN
-	1    4850 3575
+P 3300 4975
+F 0 "R?" V 3093 4975 50  0000 C CNN
+F 1 "R" V 3184 4975 50  0000 C CNN
+F 2 "" V 3230 4975 50  0001 C CNN
+F 3 "~" H 3300 4975 50  0001 C CNN
+	1    3300 4975
 	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5D19812D
-P 4500 2925
-F 0 "#PWR?" H 4500 2675 50  0001 C CNN
-F 1 "GND" H 4505 2752 50  0000 C CNN
-F 2 "" H 4500 2925 50  0001 C CNN
-F 3 "" H 4500 2925 50  0001 C CNN
-	1    4500 2925
+P 2950 4325
+F 0 "#PWR?" H 2950 4075 50  0001 C CNN
+F 1 "GND" H 2955 4152 50  0000 C CNN
+F 2 "" H 2950 4325 50  0001 C CNN
+F 3 "" H 2950 4325 50  0001 C CNN
+	1    2950 4325
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4500 2925 4700 2925
+	2950 4325 3150 4325
 $Comp
 L power:GND #PWR?
 U 1 1 5D19BB8C
-P 4500 3250
-F 0 "#PWR?" H 4500 3000 50  0001 C CNN
-F 1 "GND" H 4505 3077 50  0000 C CNN
-F 2 "" H 4500 3250 50  0001 C CNN
-F 3 "" H 4500 3250 50  0001 C CNN
-	1    4500 3250
+P 2950 4650
+F 0 "#PWR?" H 2950 4400 50  0001 C CNN
+F 1 "GND" H 2955 4477 50  0000 C CNN
+F 2 "" H 2950 4650 50  0001 C CNN
+F 3 "" H 2950 4650 50  0001 C CNN
+	1    2950 4650
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4500 3250 4700 3250
+	2950 4650 3150 4650
 $Comp
 L power:GND #PWR?
 U 1 1 5D19E020
-P 4500 3575
-F 0 "#PWR?" H 4500 3325 50  0001 C CNN
-F 1 "GND" H 4505 3402 50  0000 C CNN
-F 2 "" H 4500 3575 50  0001 C CNN
-F 3 "" H 4500 3575 50  0001 C CNN
-	1    4500 3575
+P 2950 4975
+F 0 "#PWR?" H 2950 4725 50  0001 C CNN
+F 1 "GND" H 2955 4802 50  0000 C CNN
+F 2 "" H 2950 4975 50  0001 C CNN
+F 3 "" H 2950 4975 50  0001 C CNN
+	1    2950 4975
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4500 3575 4700 3575
-Text Label 6800 1300 0    50   ~ 0
+	2950 4975 3150 4975
+Text Label 5650 1375 0    50   ~ 0
 BUSY
-Wire Wire Line
-	6600 1300 6800 1300
-Text Notes 4325 2625 0    50   ~ 0
+Text Notes 2775 4025 0    50   ~ 0
 Programming LEDs
 Wire Notes Line
 	500  500  500  2425
@@ -357,12 +328,6 @@ Wire Notes Line
 	525  2425 4000 2425
 Wire Notes Line
 	4000 2425 4000 500 
-Wire Notes Line
-	4050 500  8000 500 
-Wire Notes Line
-	8000 500  8000 2425
-Wire Notes Line
-	8000 2425 4050 2425
 Wire Notes Line
 	4050 2425 4050 500 
 Wire Notes Line
@@ -744,7 +709,7 @@ Wire Wire Line
 Connection ~ 2975 775 
 Wire Wire Line
 	2750 775  2975 775 
-Text Notes 7025 6750 0    118  ~ 24
+Text Notes 7025 6775 0    118  ~ 24
 JOE LOFTUS
 Wire Wire Line
 	10650 3350 10875 3350
@@ -756,9 +721,9 @@ Text Label 10875 3350 0    50   ~ 0
 PHO3
 Text Label 10875 3150 0    50   ~ 0
 PHO4
-Text Label 5200 5675 2    50   ~ 0
+Text Label 7625 9250 2    50   ~ 0
 TEMP
-Text Label 5200 5875 2    50   ~ 0
+Text Label 7625 9450 2    50   ~ 0
 CRYSTAL
 $Comp
 L power:+3V3 #PWR?
@@ -788,35 +753,11 @@ Wire Wire Line
 Wire Wire Line
 	9950 4850 10050 4850
 Connection ~ 10050 4850
-NoConn ~ 5400 1200
+NoConn ~ 4450 1275
 Wire Wire Line
 	900  1850 1450 1850
-$Comp
-L power:+5V #PWR?
-U 1 1 5D2C4979
-P 6800 1100
-F 0 "#PWR?" H 6800 950 50  0001 C CNN
-F 1 "+5V" H 6815 1273 50  0000 C CNN
-F 2 "" H 6800 1100 50  0001 C CNN
-F 3 "" H 6800 1100 50  0001 C CNN
-	1    6800 1100
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3V3 #PWR?
-U 1 1 5D2CB58A
-P 5225 1100
-F 0 "#PWR?" H 5225 950 50  0001 C CNN
-F 1 "+3V3" H 5240 1273 50  0000 C CNN
-F 2 "" H 5225 1100 50  0001 C CNN
-F 3 "" H 5225 1100 50  0001 C CNN
-	1    5225 1100
-	1    0    0    -1  
-$EndComp
-Text Label 5225 1300 2    50   ~ 0
+Text Label 4450 1375 2    50   ~ 0
 1HZ
-Wire Wire Line
-	5400 1300 5225 1300
 Wire Wire Line
 	1150 1150 1150 975 
 $Comp
@@ -830,310 +771,6 @@ F 3 "" H 1150 975 50  0001 C CNN
 	1    1150 975 
 	1    0    0    -1  
 $EndComp
-$Comp
-L Transistor_FET:2N7000 Q?
-U 1 1 5D2D89F3
-P 3575 4725
-F 0 "Q?" V 3150 3950 50  0000 L CNN
-F 1 "2N7000" V 3075 3950 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline" H 3775 4650 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 3575 4725 50  0001 L CNN
-	1    3575 4725
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R?
-U 1 1 5D2F2FDC
-P 3275 4675
-F 0 "R?" H 3100 4750 50  0000 L CNN
-F 1 "10k" H 3100 4675 50  0000 L CNN
-F 2 "" V 3205 4675 50  0001 C CNN
-F 3 "~" H 3275 4675 50  0001 C CNN
-	1    3275 4675
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3375 4825 3275 4825
-Connection ~ 3275 4825
-Wire Wire Line
-	3275 4825 2950 4825
-$Comp
-L Device:R R?
-U 1 1 5D2FFCF2
-P 3925 4675
-F 0 "R?" H 3750 4750 50  0000 L CNN
-F 1 "10k" H 3750 4675 50  0000 L CNN
-F 2 "" V 3855 4675 50  0001 C CNN
-F 3 "~" H 3925 4675 50  0001 C CNN
-	1    3925 4675
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3775 4825 3925 4825
-Connection ~ 3925 4825
-Wire Wire Line
-	3925 4825 4200 4825
-Wire Wire Line
-	3575 4525 3275 4525
-Wire Wire Line
-	3275 4525 3275 4400
-Connection ~ 3275 4525
-$Comp
-L power:+3V3 #PWR?
-U 1 1 5D309004
-P 3275 4400
-F 0 "#PWR?" H 3275 4250 50  0001 C CNN
-F 1 "+3V3" H 3290 4573 50  0000 C CNN
-F 2 "" H 3275 4400 50  0001 C CNN
-F 3 "" H 3275 4400 50  0001 C CNN
-	1    3275 4400
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR?
-U 1 1 5D309F80
-P 3925 4400
-F 0 "#PWR?" H 3925 4250 50  0001 C CNN
-F 1 "+5V" H 3940 4573 50  0000 C CNN
-F 2 "" H 3925 4400 50  0001 C CNN
-F 3 "" H 3925 4400 50  0001 C CNN
-	1    3925 4400
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3925 4400 3925 4525
-Text Label 2950 4825 2    50   ~ 0
-SCL
-$Comp
-L Transistor_FET:2N7000 Q?
-U 1 1 5D31988D
-P 3575 5475
-F 0 "Q?" V 3150 4750 50  0000 L CNN
-F 1 "2N7000" V 3075 4750 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline" H 3775 5400 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 3575 5475 50  0001 L CNN
-	1    3575 5475
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R?
-U 1 1 5D319893
-P 3275 5425
-F 0 "R?" H 3100 5500 50  0000 L CNN
-F 1 "10k" H 3100 5425 50  0000 L CNN
-F 2 "" V 3205 5425 50  0001 C CNN
-F 3 "~" H 3275 5425 50  0001 C CNN
-	1    3275 5425
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3375 5575 3275 5575
-Connection ~ 3275 5575
-Wire Wire Line
-	3275 5575 2950 5575
-$Comp
-L Device:R R?
-U 1 1 5D31989C
-P 3925 5425
-F 0 "R?" H 3750 5500 50  0000 L CNN
-F 1 "10k" H 3750 5425 50  0000 L CNN
-F 2 "" V 3855 5425 50  0001 C CNN
-F 3 "~" H 3925 5425 50  0001 C CNN
-	1    3925 5425
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3775 5575 3925 5575
-Connection ~ 3925 5575
-Wire Wire Line
-	3925 5575 4200 5575
-Wire Wire Line
-	3575 5275 3275 5275
-Wire Wire Line
-	3275 5275 3275 5150
-Connection ~ 3275 5275
-$Comp
-L power:+3V3 #PWR?
-U 1 1 5D3198A8
-P 3275 5150
-F 0 "#PWR?" H 3275 5000 50  0001 C CNN
-F 1 "+3V3" H 3290 5323 50  0000 C CNN
-F 2 "" H 3275 5150 50  0001 C CNN
-F 3 "" H 3275 5150 50  0001 C CNN
-	1    3275 5150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR?
-U 1 1 5D3198AE
-P 3925 5150
-F 0 "#PWR?" H 3925 5000 50  0001 C CNN
-F 1 "+5V" H 3940 5323 50  0000 C CNN
-F 2 "" H 3925 5150 50  0001 C CNN
-F 3 "" H 3925 5150 50  0001 C CNN
-	1    3925 5150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3925 5150 3925 5275
-Text Label 2950 5575 2    50   ~ 0
-SDA
-$Comp
-L Transistor_FET:2N7000 Q?
-U 1 1 5D32421E
-P 3600 6275
-F 0 "Q?" V 3175 5525 50  0000 L CNN
-F 1 "2N7000" V 3100 5525 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline" H 3800 6200 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 3600 6275 50  0001 L CNN
-	1    3600 6275
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R?
-U 1 1 5D324224
-P 3300 6225
-F 0 "R?" H 3125 6300 50  0000 L CNN
-F 1 "10k" H 3125 6225 50  0000 L CNN
-F 2 "" V 3230 6225 50  0001 C CNN
-F 3 "~" H 3300 6225 50  0001 C CNN
-	1    3300 6225
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3400 6375 3300 6375
-Connection ~ 3300 6375
-Wire Wire Line
-	3300 6375 2975 6375
-$Comp
-L Device:R R?
-U 1 1 5D32422D
-P 3950 6225
-F 0 "R?" H 3775 6300 50  0000 L CNN
-F 1 "10k" H 3775 6225 50  0000 L CNN
-F 2 "" V 3880 6225 50  0001 C CNN
-F 3 "~" H 3950 6225 50  0001 C CNN
-	1    3950 6225
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3800 6375 3950 6375
-Connection ~ 3950 6375
-Wire Wire Line
-	3950 6375 4225 6375
-Wire Wire Line
-	3600 6075 3300 6075
-Wire Wire Line
-	3300 6075 3300 5950
-Connection ~ 3300 6075
-$Comp
-L power:+3V3 #PWR?
-U 1 1 5D324239
-P 3300 5950
-F 0 "#PWR?" H 3300 5800 50  0001 C CNN
-F 1 "+3V3" H 3315 6123 50  0000 C CNN
-F 2 "" H 3300 5950 50  0001 C CNN
-F 3 "" H 3300 5950 50  0001 C CNN
-	1    3300 5950
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR?
-U 1 1 5D32423F
-P 3950 5950
-F 0 "#PWR?" H 3950 5800 50  0001 C CNN
-F 1 "+5V" H 3965 6123 50  0000 C CNN
-F 2 "" H 3950 5950 50  0001 C CNN
-F 3 "" H 3950 5950 50  0001 C CNN
-	1    3950 5950
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3950 5950 3950 6075
-$Comp
-L Transistor_FET:2N7000 Q?
-U 1 1 5D324247
-P 3600 7100
-F 0 "Q?" V 3175 6350 50  0000 L CNN
-F 1 "2N7000" V 3100 6350 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline" H 3800 7025 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 3600 7100 50  0001 L CNN
-	1    3600 7100
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R?
-U 1 1 5D32424D
-P 3300 7050
-F 0 "R?" H 3125 7125 50  0000 L CNN
-F 1 "10k" H 3125 7050 50  0000 L CNN
-F 2 "" V 3230 7050 50  0001 C CNN
-F 3 "~" H 3300 7050 50  0001 C CNN
-	1    3300 7050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3400 7200 3300 7200
-Connection ~ 3300 7200
-Wire Wire Line
-	3300 7200 2975 7200
-$Comp
-L Device:R R?
-U 1 1 5D324256
-P 3950 7050
-F 0 "R?" H 3775 7125 50  0000 L CNN
-F 1 "10k" H 3775 7050 50  0000 L CNN
-F 2 "" V 3880 7050 50  0001 C CNN
-F 3 "~" H 3950 7050 50  0001 C CNN
-	1    3950 7050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3800 7200 3950 7200
-Connection ~ 3950 7200
-Wire Wire Line
-	3950 7200 4225 7200
-Wire Wire Line
-	3600 6900 3300 6900
-Wire Wire Line
-	3300 6900 3300 6775
-Connection ~ 3300 6900
-$Comp
-L power:+3V3 #PWR?
-U 1 1 5D324262
-P 3300 6775
-F 0 "#PWR?" H 3300 6625 50  0001 C CNN
-F 1 "+3V3" H 3315 6948 50  0000 C CNN
-F 2 "" H 3300 6775 50  0001 C CNN
-F 3 "" H 3300 6775 50  0001 C CNN
-	1    3300 6775
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR?
-U 1 1 5D324268
-P 3950 6775
-F 0 "#PWR?" H 3950 6625 50  0001 C CNN
-F 1 "+5V" H 3965 6948 50  0000 C CNN
-F 2 "" H 3950 6775 50  0001 C CNN
-F 3 "" H 3950 6775 50  0001 C CNN
-	1    3950 6775
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3950 6775 3950 6900
-Text Label 2975 6375 2    50   ~ 0
-CRY
-Text Label 2975 7200 2    50   ~ 0
-SQW
-Text Label 4200 4825 0    50   ~ 0
-SCL2
-Text Label 4200 5575 0    50   ~ 0
-SDA2
-Text Label 4225 6375 0    50   ~ 0
-CRYSTAL2
-Text Label 4225 7200 0    50   ~ 0
-SQW2
 $Comp
 L Device:C C?
 U 1 1 5D33F6A0
@@ -1191,22 +828,6 @@ Wire Wire Line
 Wire Wire Line
 	10650 3050 10875 3050
 Wire Wire Line
-	6600 1600 6800 1600
-Wire Wire Line
-	6600 1700 6800 1700
-Wire Wire Line
-	6600 1800 6800 1800
-Wire Wire Line
-	6600 1900 6800 1900
-Wire Wire Line
-	5400 1900 5200 1900
-Wire Wire Line
-	5400 1800 5200 1800
-Wire Wire Line
-	5400 1700 5200 1700
-Wire Wire Line
-	5400 1600 5200 1600
-Wire Wire Line
 	10650 3950 10875 3950
 Wire Wire Line
 	10650 4050 10875 4050
@@ -1222,9 +843,7 @@ Wire Wire Line
 	10650 2050 10850 2050
 Wire Wire Line
 	10650 2150 10850 2150
-Wire Wire Line
-	6600 1200 6800 1200
-Text Label 6800 1200 0    50   ~ 0
+Text Label 5650 1275 0    50   ~ 0
 STBY
 Text Label 10850 2450 0    50   ~ 0
 STBY
@@ -1233,34 +852,34 @@ Wire Wire Line
 $Comp
 L Connector:Screw_Terminal_01x09 J?
 U 1 1 5D265C96
-P 5400 6075
-F 0 "J?" H 5480 6117 50  0000 L CNN
-F 1 "Screw_Terminal_01x09" H 5480 6026 50  0000 L CNN
-F 2 "" H 5400 6075 50  0001 C CNN
-F 3 "~" H 5400 6075 50  0001 C CNN
-	1    5400 6075
+P 7825 9650
+F 0 "J?" H 7905 9692 50  0000 L CNN
+F 1 "Screw_Terminal_01x09" H 7905 9601 50  0000 L CNN
+F 2 "" H 7825 9650 50  0001 C CNN
+F 3 "~" H 7825 9650 50  0001 C CNN
+	1    7825 9650
 	1    0    0    -1  
 $EndComp
-Text Label 5200 5775 2    50   ~ 0
+Text Label 7625 9350 2    50   ~ 0
 VID
-Text Label 5200 5975 2    50   ~ 0
+Text Label 7625 9550 2    50   ~ 0
 ST
 $Comp
 L Joe-rescue:UFDFPN8-MC-Custom U?
 U 1 1 5D2D63AB
-P 5450 4600
-F 0 "U?" H 5475 4965 50  0000 C CNN
-F 1 "UFDFPN8-MC" H 5475 4874 50  0000 C CNN
-F 2 "" H 5450 4600 50  0001 C CNN
-F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/8c/54/f2/63/4c/4a/CD00001012.pdf/files/CD00001012.pdf/jcr:content/translations/en.CD00001012.pdf" H 5450 4600 50  0001 C CNN
-	1    5450 4600
+P 6350 9500
+F 0 "U?" H 6375 9865 50  0000 C CNN
+F 1 "UFDFPN8-MC" H 6375 9774 50  0000 C CNN
+F 2 "" H 6350 9500 50  0001 C CNN
+F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/8c/54/f2/63/4c/4a/CD00001012.pdf/files/CD00001012.pdf/jcr:content/translations/en.CD00001012.pdf" H 6350 9500 50  0001 C CNN
+	1    6350 9500
 	1    0    0    -1  
 $EndComp
-Text Label 5150 4500 2    50   ~ 0
+Text Label 6050 9400 2    50   ~ 0
 E0
-Text Label 5150 4600 2    50   ~ 0
+Text Label 6050 9500 2    50   ~ 0
 E1
-Text Label 5150 4700 2    50   ~ 0
+Text Label 6050 9600 2    50   ~ 0
 E2
 Text Label 10875 4150 0    50   ~ 0
 E0
@@ -1271,35 +890,35 @@ E2
 $Comp
 L power:+5V #PWR?
 U 1 1 5D2B1691
-P 6000 4500
-F 0 "#PWR?" H 6000 4350 50  0001 C CNN
-F 1 "+5V" H 6015 4673 50  0000 C CNN
-F 2 "" H 6000 4500 50  0001 C CNN
-F 3 "" H 6000 4500 50  0001 C CNN
-	1    6000 4500
+P 6900 9400
+F 0 "#PWR?" H 6900 9250 50  0001 C CNN
+F 1 "+5V" H 6915 9573 50  0000 C CNN
+F 2 "" H 6900 9400 50  0001 C CNN
+F 3 "" H 6900 9400 50  0001 C CNN
+	1    6900 9400
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5800 4500 6000 4500
-Text Label 5800 4600 0    50   ~ 0
+	6700 9400 6900 9400
+Text Label 6700 9500 0    50   ~ 0
 WC
-Text Label 5800 4700 0    50   ~ 0
+Text Label 6700 9600 0    50   ~ 0
 SCL2
-Text Label 5800 4800 0    50   ~ 0
+Text Label 6700 9700 0    50   ~ 0
 DATA
 $Comp
 L power:GND #PWR?
 U 1 1 5D2C2E70
-P 4975 4800
-F 0 "#PWR?" H 4975 4550 50  0001 C CNN
-F 1 "GND" H 4980 4627 50  0000 C CNN
-F 2 "" H 4975 4800 50  0001 C CNN
-F 3 "" H 4975 4800 50  0001 C CNN
-	1    4975 4800
+P 5875 9700
+F 0 "#PWR?" H 5875 9450 50  0001 C CNN
+F 1 "GND" H 5880 9527 50  0000 C CNN
+F 2 "" H 5875 9700 50  0001 C CNN
+F 3 "" H 5875 9700 50  0001 C CNN
+	1    5875 9700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5150 4800 4975 4800
+	6050 9700 5875 9700
 Text Label 10875 4250 0    50   ~ 0
 WC
 Wire Notes Line
@@ -1310,83 +929,55 @@ Wire Notes Line
 	4150 3825 2650 3825
 Wire Notes Line
 	2650 3825 2650 2475
-Wire Notes Line
-	4200 2475 4200 3825
-Wire Notes Line
-	4200 3825 5825 3825
-Wire Notes Line
-	5825 3825 5825 2475
-Wire Notes Line
-	5825 2475 4200 2475
-Text Notes 2800 4100 0    50   ~ 0
-Level Shifters
-Wire Notes Line
-	2650 7750 4650 7750
-Wire Notes Line
-	4650 7750 4650 3900
-Wire Notes Line
-	4650 3900 2650 3900
-Wire Notes Line
-	2650 3900 2650 7750
-Text Notes 4850 4050 0    50   ~ 0
+Text Notes 5750 8950 0    50   ~ 0
 EEPROM\n
-Wire Notes Line
-	4700 3900 6250 3900
-Wire Notes Line
-	6250 3900 6250 5225
-Wire Notes Line
-	6250 5225 4700 5225
-Wire Notes Line
-	4700 5225 4700 3900
-Text Label 5200 1600 2    50   ~ 0
+Text Label 4425 1675 2    50   ~ 0
 DATA
 $Comp
 L 74xx:74HC595 U?
 U 1 1 5D4B08F4
-P 7425 3550
-F 0 "U?" H 6975 4525 50  0000 C CNN
-F 1 "74HC595" H 7075 4425 50  0000 C CNN
-F 2 "" H 7425 3550 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 7425 3550 50  0001 C CNN
-	1    7425 3550
+P 3525 6575
+F 0 "U?" H 2750 7550 50  0000 C CNN
+F 1 "74HC595" H 2875 7450 50  0000 C CNN
+F 2 "" H 3525 6575 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 3525 6575 50  0001 C CNN
+	1    3525 6575
 	1    0    0    -1  
 $EndComp
-Text Notes 4750 5450 0    50   ~ 0
+Text Notes 7175 9025 0    50   ~ 0
 Joe <--> Burt\n
 $Comp
 L power:GND #PWR?
 U 1 1 5D4CD56F
-P 7425 4250
-F 0 "#PWR?" H 7425 4000 50  0001 C CNN
-F 1 "GND" H 7430 4077 50  0000 C CNN
-F 2 "" H 7425 4250 50  0001 C CNN
-F 3 "" H 7425 4250 50  0001 C CNN
-	1    7425 4250
+P 3525 7275
+F 0 "#PWR?" H 3525 7025 50  0001 C CNN
+F 1 "GND" H 3530 7102 50  0000 C CNN
+F 2 "" H 3525 7275 50  0001 C CNN
+F 3 "" H 3525 7275 50  0001 C CNN
+	1    3525 7275
 	1    0    0    -1  
 $EndComp
 Text Label 10875 4350 0    50   ~ 0
 BWL
-Text Label 7025 3150 2    50   ~ 0
+Text Label 3125 6175 2    50   ~ 0
 BWL
-Text Label 7825 3150 0    50   ~ 0
+Text Label 3925 6175 0    50   ~ 0
 BL1
-Text Label 7825 3250 0    50   ~ 0
+Text Label 3925 6275 0    50   ~ 0
 BL2
-Text Label 7825 3350 0    50   ~ 0
+Text Label 3925 6375 0    50   ~ 0
 BL3
-Text Label 7825 3450 0    50   ~ 0
+Text Label 3925 6475 0    50   ~ 0
 BL4
-Text Label 7825 3550 0    50   ~ 0
+Text Label 3925 6575 0    50   ~ 0
 BL5
-Text Label 7825 3650 0    50   ~ 0
+Text Label 3925 6675 0    50   ~ 0
 BL6
-Text Label 7825 3750 0    50   ~ 0
+Text Label 3925 6775 0    50   ~ 0
 BL7
-Text Label 7825 3850 0    50   ~ 0
+Text Label 3925 6875 0    50   ~ 0
 BL8
-Text Label 6825 3450 2    50   ~ 0
-SCK
-Text Label 7025 3750 2    50   ~ 0
+Text Label 3125 6775 2    50   ~ 0
 OE
 Text Label 10875 4450 0    50   ~ 0
 OE
@@ -1394,26 +985,410 @@ Text Label 10850 2050 0    50   ~ 0
 BP1
 Text Label 10850 2150 0    50   ~ 0
 BP2
-Wire Wire Line
-	6675 3650 6675 3350
-Wire Wire Line
-	6625 3350 6675 3350
-Connection ~ 6675 3350
-Text Label 7025 3450 2    50   ~ 0
-SER_CLR
-Wire Wire Line
-	6675 3650 7025 3650
-Wire Wire Line
-	6675 3350 7025 3350
+Text Label 3125 6475 2    50   ~ 0
+S_CLR
 $Comp
 L power:+5V #PWR?
 U 1 1 5D556746
-P 7425 2950
-F 0 "#PWR?" H 7425 2800 50  0001 C CNN
-F 1 "+5V" H 7440 3123 50  0000 C CNN
-F 2 "" H 7425 2950 50  0001 C CNN
-F 3 "" H 7425 2950 50  0001 C CNN
-	1    7425 2950
+P 3525 5975
+F 0 "#PWR?" H 3525 5825 50  0001 C CNN
+F 1 "+5V" H 3540 6148 50  0000 C CNN
+F 2 "" H 3525 5975 50  0001 C CNN
+F 3 "" H 3525 5975 50  0001 C CNN
+	1    3525 5975
 	1    0    0    -1  
 $EndComp
+Text Label 5650 1675 0    50   ~ 0
+CRYSTAL2
+Wire Notes Line
+	2650 3875 4150 3875
+Wire Notes Line
+	4150 3875 4150 5375
+Wire Notes Line
+	4150 5375 2650 5375
+Wire Notes Line
+	2650 3875 2650 5375
+Text Label 2875 6375 2    50   ~ 0
+SCK
+Wire Wire Line
+	3125 6375 2875 6375
+Wire Wire Line
+	2875 6375 2875 6675
+Wire Wire Line
+	2875 6675 3125 6675
+Wire Notes Line
+	2650 5425 4150 5425
+Wire Notes Line
+	4150 5425 4150 7750
+Wire Notes Line
+	4150 7750 2650 7750
+Wire Notes Line
+	2650 7750 2650 5425
+Text Notes 2700 5550 0    50   ~ 0
+Shift Register (for launcher bw)
+Wire Notes Line
+	6200 2475 4200 2475
+Text Notes 4350 2675 0    50   ~ 0
+Level Shifters
+Text Label 5775 5775 0    50   ~ 0
+SQW2
+Text Label 5775 4950 0    50   ~ 0
+CRYSTAL2
+Text Label 5750 4150 0    50   ~ 0
+SDA2
+Text Label 5750 3400 0    50   ~ 0
+SCL2
+Text Label 4525 5775 2    50   ~ 0
+SQW
+Text Label 4525 4950 2    50   ~ 0
+CRY
+Wire Wire Line
+	5500 5350 5500 5475
+$Comp
+L power:+5V #PWR?
+U 1 1 5D324268
+P 5500 5350
+F 0 "#PWR?" H 5500 5200 50  0001 C CNN
+F 1 "+5V" H 5515 5523 50  0000 C CNN
+F 2 "" H 5500 5350 50  0001 C CNN
+F 3 "" H 5500 5350 50  0001 C CNN
+	1    5500 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D324262
+P 4850 5350
+F 0 "#PWR?" H 4850 5200 50  0001 C CNN
+F 1 "+3V3" H 4865 5523 50  0000 C CNN
+F 2 "" H 4850 5350 50  0001 C CNN
+F 3 "" H 4850 5350 50  0001 C CNN
+	1    4850 5350
+	1    0    0    -1  
+$EndComp
+Connection ~ 4850 5475
+Wire Wire Line
+	4850 5475 4850 5350
+Wire Wire Line
+	5150 5475 4850 5475
+Wire Wire Line
+	5500 5775 5775 5775
+Connection ~ 5500 5775
+Wire Wire Line
+	5350 5775 5500 5775
+$Comp
+L Device:R R?
+U 1 1 5D324256
+P 5500 5625
+F 0 "R?" H 5325 5700 50  0000 L CNN
+F 1 "10k" H 5325 5625 50  0000 L CNN
+F 2 "" V 5430 5625 50  0001 C CNN
+F 3 "~" H 5500 5625 50  0001 C CNN
+	1    5500 5625
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4850 5775 4525 5775
+Connection ~ 4850 5775
+Wire Wire Line
+	4950 5775 4850 5775
+$Comp
+L Device:R R?
+U 1 1 5D32424D
+P 4850 5625
+F 0 "R?" H 4675 5700 50  0000 L CNN
+F 1 "10k" H 4675 5625 50  0000 L CNN
+F 2 "" V 4780 5625 50  0001 C CNN
+F 3 "~" H 4850 5625 50  0001 C CNN
+	1    4850 5625
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:2N7000 Q?
+U 1 1 5D324247
+P 5150 5675
+F 0 "Q?" V 4725 4925 50  0000 L CNN
+F 1 "2N7000" V 4650 4925 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline" H 5350 5600 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 5150 5675 50  0001 L CNN
+	1    5150 5675
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5500 4525 5500 4650
+$Comp
+L power:+5V #PWR?
+U 1 1 5D32423F
+P 5500 4525
+F 0 "#PWR?" H 5500 4375 50  0001 C CNN
+F 1 "+5V" H 5515 4698 50  0000 C CNN
+F 2 "" H 5500 4525 50  0001 C CNN
+F 3 "" H 5500 4525 50  0001 C CNN
+	1    5500 4525
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D324239
+P 4850 4525
+F 0 "#PWR?" H 4850 4375 50  0001 C CNN
+F 1 "+3V3" H 4865 4698 50  0000 C CNN
+F 2 "" H 4850 4525 50  0001 C CNN
+F 3 "" H 4850 4525 50  0001 C CNN
+	1    4850 4525
+	1    0    0    -1  
+$EndComp
+Connection ~ 4850 4650
+Wire Wire Line
+	4850 4650 4850 4525
+Wire Wire Line
+	5150 4650 4850 4650
+Wire Wire Line
+	5500 4950 5775 4950
+Connection ~ 5500 4950
+Wire Wire Line
+	5350 4950 5500 4950
+$Comp
+L Device:R R?
+U 1 1 5D32422D
+P 5500 4800
+F 0 "R?" H 5325 4875 50  0000 L CNN
+F 1 "10k" H 5325 4800 50  0000 L CNN
+F 2 "" V 5430 4800 50  0001 C CNN
+F 3 "~" H 5500 4800 50  0001 C CNN
+	1    5500 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4850 4950 4525 4950
+Connection ~ 4850 4950
+Wire Wire Line
+	4950 4950 4850 4950
+$Comp
+L Device:R R?
+U 1 1 5D324224
+P 4850 4800
+F 0 "R?" H 4675 4875 50  0000 L CNN
+F 1 "10k" H 4675 4800 50  0000 L CNN
+F 2 "" V 4780 4800 50  0001 C CNN
+F 3 "~" H 4850 4800 50  0001 C CNN
+	1    4850 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:2N7000 Q?
+U 1 1 5D32421E
+P 5150 4850
+F 0 "Q?" V 4725 4100 50  0000 L CNN
+F 1 "2N7000" V 4650 4100 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline" H 5350 4775 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 5150 4850 50  0001 L CNN
+	1    5150 4850
+	0    1    1    0   
+$EndComp
+Text Label 4500 4150 2    50   ~ 0
+SDA
+Wire Wire Line
+	5475 3725 5475 3850
+$Comp
+L power:+5V #PWR?
+U 1 1 5D3198AE
+P 5475 3725
+F 0 "#PWR?" H 5475 3575 50  0001 C CNN
+F 1 "+5V" H 5490 3898 50  0000 C CNN
+F 2 "" H 5475 3725 50  0001 C CNN
+F 3 "" H 5475 3725 50  0001 C CNN
+	1    5475 3725
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D3198A8
+P 4825 3725
+F 0 "#PWR?" H 4825 3575 50  0001 C CNN
+F 1 "+3V3" H 4840 3898 50  0000 C CNN
+F 2 "" H 4825 3725 50  0001 C CNN
+F 3 "" H 4825 3725 50  0001 C CNN
+	1    4825 3725
+	1    0    0    -1  
+$EndComp
+Connection ~ 4825 3850
+Wire Wire Line
+	4825 3850 4825 3725
+Wire Wire Line
+	5125 3850 4825 3850
+Wire Wire Line
+	5475 4150 5750 4150
+Connection ~ 5475 4150
+Wire Wire Line
+	5325 4150 5475 4150
+$Comp
+L Device:R R?
+U 1 1 5D31989C
+P 5475 4000
+F 0 "R?" H 5300 4075 50  0000 L CNN
+F 1 "10k" H 5300 4000 50  0000 L CNN
+F 2 "" V 5405 4000 50  0001 C CNN
+F 3 "~" H 5475 4000 50  0001 C CNN
+	1    5475 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4825 4150 4500 4150
+Connection ~ 4825 4150
+Wire Wire Line
+	4925 4150 4825 4150
+$Comp
+L Device:R R?
+U 1 1 5D319893
+P 4825 4000
+F 0 "R?" H 4650 4075 50  0000 L CNN
+F 1 "10k" H 4650 4000 50  0000 L CNN
+F 2 "" V 4755 4000 50  0001 C CNN
+F 3 "~" H 4825 4000 50  0001 C CNN
+	1    4825 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:2N7000 Q?
+U 1 1 5D31988D
+P 5125 4050
+F 0 "Q?" V 4700 3325 50  0000 L CNN
+F 1 "2N7000" V 4625 3325 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline" H 5325 3975 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 5125 4050 50  0001 L CNN
+	1    5125 4050
+	0    1    1    0   
+$EndComp
+Text Label 4500 3400 2    50   ~ 0
+SCL
+Wire Wire Line
+	5475 2975 5475 3100
+$Comp
+L power:+5V #PWR?
+U 1 1 5D309F80
+P 5475 2975
+F 0 "#PWR?" H 5475 2825 50  0001 C CNN
+F 1 "+5V" H 5490 3148 50  0000 C CNN
+F 2 "" H 5475 2975 50  0001 C CNN
+F 3 "" H 5475 2975 50  0001 C CNN
+	1    5475 2975
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D309004
+P 4825 2975
+F 0 "#PWR?" H 4825 2825 50  0001 C CNN
+F 1 "+3V3" H 4840 3148 50  0000 C CNN
+F 2 "" H 4825 2975 50  0001 C CNN
+F 3 "" H 4825 2975 50  0001 C CNN
+	1    4825 2975
+	1    0    0    -1  
+$EndComp
+Connection ~ 4825 3100
+Wire Wire Line
+	4825 3100 4825 2975
+Wire Wire Line
+	5125 3100 4825 3100
+Wire Wire Line
+	5475 3400 5750 3400
+Connection ~ 5475 3400
+Wire Wire Line
+	5325 3400 5475 3400
+$Comp
+L Device:R R?
+U 1 1 5D2FFCF2
+P 5475 3250
+F 0 "R?" H 5300 3325 50  0000 L CNN
+F 1 "10k" H 5300 3250 50  0000 L CNN
+F 2 "" V 5405 3250 50  0001 C CNN
+F 3 "~" H 5475 3250 50  0001 C CNN
+	1    5475 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4825 3400 4500 3400
+Connection ~ 4825 3400
+Wire Wire Line
+	4925 3400 4825 3400
+$Comp
+L Device:R R?
+U 1 1 5D2F2FDC
+P 4825 3250
+F 0 "R?" H 4650 3325 50  0000 L CNN
+F 1 "10k" H 4650 3250 50  0000 L CNN
+F 2 "" V 4755 3250 50  0001 C CNN
+F 3 "~" H 4825 3250 50  0001 C CNN
+	1    4825 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:2N7000 Q?
+U 1 1 5D2D89F3
+P 5125 3300
+F 0 "Q?" V 4700 2525 50  0000 L CNN
+F 1 "2N7000" V 4625 2525 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline" H 5325 3225 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 5125 3300 50  0001 L CNN
+	1    5125 3300
+	0    1    1    0   
+$EndComp
+$Comp
+L Custom:DF12-20DS U?
+U 1 1 5D782D20
+P 5050 1525
+F 0 "U?" H 5050 2200 50  0000 C CNN
+F 1 "DF12-20DS" H 5050 2109 50  0000 C CNN
+F 2 "" H 5050 2125 50  0001 C CNN
+F 3 "" H 5050 2125 50  0001 C CNN
+	1    5050 1525
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5650 1175 5950 1175
+Wire Wire Line
+	4450 1175 4175 1175
+Wire Wire Line
+	4450 1075 4175 1075
+Wire Wire Line
+	4175 1075 4175 1000
+Wire Wire Line
+	5650 1075 5950 1075
+Wire Wire Line
+	5950 1075 5950 1025
+$Comp
+L power:+5V #PWR?
+U 1 1 5D7BEF66
+P 5950 1025
+F 0 "#PWR?" H 5950 875 50  0001 C CNN
+F 1 "+5V" H 5965 1198 50  0000 C CNN
+F 2 "" H 5950 1025 50  0001 C CNN
+F 3 "" H 5950 1025 50  0001 C CNN
+	1    5950 1025
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D7BFD46
+P 4175 1000
+F 0 "#PWR?" H 4175 850 50  0001 C CNN
+F 1 "+3V3" H 4190 1173 50  0000 C CNN
+F 2 "" H 4175 1000 50  0001 C CNN
+F 3 "" H 4175 1000 50  0001 C CNN
+	1    4175 1000
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	4050 2425 6200 2425
+Wire Notes Line
+	6200 2425 6200 500 
+Wire Notes Line
+	6200 500  4050 500 
+Wire Notes Line
+	4200 2475 4200 5900
+Wire Notes Line
+	4200 5900 6200 5900
+Wire Notes Line
+	6200 5900 6200 2475
 $EndSCHEMATC

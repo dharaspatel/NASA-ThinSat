@@ -721,9 +721,9 @@ Text Label 10875 3350 0    50   ~ 0
 PHO3
 Text Label 10875 3150 0    50   ~ 0
 PHO4
-Text Label 7625 9250 2    50   ~ 0
+Text Label 6950 4875 2    50   ~ 0
 TEMP
-Text Label 7625 9450 2    50   ~ 0
+Text Label 6950 5075 2    50   ~ 0
 CRYSTAL
 $Comp
 L power:+3V3 #PWR?
@@ -849,37 +849,26 @@ Text Label 10850 2450 0    50   ~ 0
 STBY
 Wire Wire Line
 	10650 2450 10850 2450
-$Comp
-L Connector:Screw_Terminal_01x09 J?
-U 1 1 5D265C96
-P 7825 9650
-F 0 "J?" H 7905 9692 50  0000 L CNN
-F 1 "Screw_Terminal_01x09" H 7905 9601 50  0000 L CNN
-F 2 "" H 7825 9650 50  0001 C CNN
-F 3 "~" H 7825 9650 50  0001 C CNN
-	1    7825 9650
-	1    0    0    -1  
-$EndComp
-Text Label 7625 9350 2    50   ~ 0
+Text Label 6950 4975 2    50   ~ 0
 VID
-Text Label 7625 9550 2    50   ~ 0
+Text Label 6950 5175 2    50   ~ 0
 ST
 $Comp
 L Joe-rescue:UFDFPN8-MC-Custom U?
 U 1 1 5D2D63AB
-P 6350 9500
-F 0 "U?" H 6375 9865 50  0000 C CNN
-F 1 "UFDFPN8-MC" H 6375 9774 50  0000 C CNN
-F 2 "" H 6350 9500 50  0001 C CNN
-F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/8c/54/f2/63/4c/4a/CD00001012.pdf/files/CD00001012.pdf/jcr:content/translations/en.CD00001012.pdf" H 6350 9500 50  0001 C CNN
-	1    6350 9500
+P 4925 6900
+F 0 "U?" H 4950 7265 50  0000 C CNN
+F 1 "UFDFPN8-MC" H 4950 7174 50  0000 C CNN
+F 2 "" H 4925 6900 50  0001 C CNN
+F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/8c/54/f2/63/4c/4a/CD00001012.pdf/files/CD00001012.pdf/jcr:content/translations/en.CD00001012.pdf" H 4925 6900 50  0001 C CNN
+	1    4925 6900
 	1    0    0    -1  
 $EndComp
-Text Label 6050 9400 2    50   ~ 0
+Text Label 4625 6800 2    50   ~ 0
 E0
-Text Label 6050 9500 2    50   ~ 0
+Text Label 4625 6900 2    50   ~ 0
 E1
-Text Label 6050 9600 2    50   ~ 0
+Text Label 4625 7000 2    50   ~ 0
 E2
 Text Label 10875 4150 0    50   ~ 0
 E0
@@ -890,35 +879,35 @@ E2
 $Comp
 L power:+5V #PWR?
 U 1 1 5D2B1691
-P 6900 9400
-F 0 "#PWR?" H 6900 9250 50  0001 C CNN
-F 1 "+5V" H 6915 9573 50  0000 C CNN
-F 2 "" H 6900 9400 50  0001 C CNN
-F 3 "" H 6900 9400 50  0001 C CNN
-	1    6900 9400
+P 5475 6800
+F 0 "#PWR?" H 5475 6650 50  0001 C CNN
+F 1 "+5V" H 5490 6973 50  0000 C CNN
+F 2 "" H 5475 6800 50  0001 C CNN
+F 3 "" H 5475 6800 50  0001 C CNN
+	1    5475 6800
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6700 9400 6900 9400
-Text Label 6700 9500 0    50   ~ 0
+	5275 6800 5475 6800
+Text Label 5275 6900 0    50   ~ 0
 WC
-Text Label 6700 9600 0    50   ~ 0
+Text Label 5275 7000 0    50   ~ 0
 SCL2
-Text Label 6700 9700 0    50   ~ 0
+Text Label 5275 7100 0    50   ~ 0
 DATA
 $Comp
 L power:GND #PWR?
 U 1 1 5D2C2E70
-P 5875 9700
-F 0 "#PWR?" H 5875 9450 50  0001 C CNN
-F 1 "GND" H 5880 9527 50  0000 C CNN
-F 2 "" H 5875 9700 50  0001 C CNN
-F 3 "" H 5875 9700 50  0001 C CNN
-	1    5875 9700
+P 4450 7100
+F 0 "#PWR?" H 4450 6850 50  0001 C CNN
+F 1 "GND" H 4455 6927 50  0000 C CNN
+F 2 "" H 4450 7100 50  0001 C CNN
+F 3 "" H 4450 7100 50  0001 C CNN
+	1    4450 7100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6050 9700 5875 9700
+	4625 7100 4450 7100
 Text Label 10875 4250 0    50   ~ 0
 WC
 Wire Notes Line
@@ -929,7 +918,7 @@ Wire Notes Line
 	4150 3825 2650 3825
 Wire Notes Line
 	2650 3825 2650 2475
-Text Notes 5750 8950 0    50   ~ 0
+Text Notes 4325 6350 0    50   ~ 0
 EEPROM\n
 Text Label 4425 1675 2    50   ~ 0
 DATA
@@ -944,7 +933,7 @@ F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 3525 6575 50  0001 C CNN
 	1    3525 6575
 	1    0    0    -1  
 $EndComp
-Text Notes 7175 9025 0    50   ~ 0
+Text Notes 6775 4425 0    50   ~ 0
 Joe <--> Burt\n
 $Comp
 L power:GND #PWR?
@@ -1335,7 +1324,7 @@ F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 5125 3300 50  000
 	0    1    1    0   
 $EndComp
 $Comp
-L Custom:DF12-20DS U?
+L Joe-rescue:DF12-20DS-Custom U?
 U 1 1 5D782D20
 P 5050 1525
 F 0 "U?" H 5050 2200 50  0000 C CNN
@@ -1391,4 +1380,46 @@ Wire Notes Line
 	4200 5900 6200 5900
 Wire Notes Line
 	6200 5900 6200 2475
+$Comp
+L Connector:Screw_Terminal_01x10 J?
+U 1 1 5D29FE3C
+P 7950 4900
+F 0 "J?" V 8175 4350 50  0000 L CNN
+F 1 "Screw_Terminal_01x10" V 8075 4350 50  0000 L CNN
+F 2 "" H 7950 4900 50  0001 C CNN
+F 3 "~" H 7950 4900 50  0001 C CNN
+	1    7950 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x06 J?
+U 1 1 5D2A1839
+P 7150 5075
+F 0 "J?" V 7375 4725 50  0000 L CNN
+F 1 "Screw_Terminal_01x06" V 7275 4725 50  0000 L CNN
+F 2 "" H 7150 5075 50  0001 C CNN
+F 3 "~" H 7150 5075 50  0001 C CNN
+	1    7150 5075
+	1    0    0    -1  
+$EndComp
+Text Label 7750 4500 2    50   ~ 0
+BL1
+Text Label 7750 4600 2    50   ~ 0
+BL2
+Text Label 7750 4700 2    50   ~ 0
+BL3
+Text Label 7750 4800 2    50   ~ 0
+BL4
+Text Label 7750 4900 2    50   ~ 0
+BL5
+Text Label 7750 5000 2    50   ~ 0
+BL6
+Text Label 7750 5100 2    50   ~ 0
+BL7
+Text Label 7750 5200 2    50   ~ 0
+BL8
+Text Label 6950 5275 2    50   ~ 0
+BP1
+Text Label 6950 5375 2    50   ~ 0
+BP2
 $EndSCHEMATC
