@@ -42,7 +42,7 @@ P 6000 1450
 F 0 "U?" H 5500 2175 50  0000 C CNN
 F 1 "DF12-20DS" H 5175 2175 50  0000 C CNN
 F 2 "" H 6000 2000 50  0001 C CNN
-F 3 "" H 6000 2000 50  0001 C CNN
+F 3 "file:///home/dpatel1/Downloads/Interface%20Control%20Document%20(1).pdf" H 6000 2000 50  0001 C CNN
 	1    6000 1450
 	1    0    0    -1  
 $EndComp
@@ -503,7 +503,7 @@ P 1700 3525
 F 0 "U?" H 1300 4000 50  0000 C CNN
 F 1 "GL5528" H 1025 4000 50  0000 C CNN
 F 2 "" H 1900 3525 50  0001 C CNN
-F 3 "" H 1900 3525 50  0001 C CNN
+F 3 "https://cdn.sparkfun.com/datasheets/Sensors/LightImaging/SEN-09088.pdf" H 1900 3525 50  0001 C CNN
 	1    1700 3525
 	1    0    0    -1  
 $EndComp
@@ -762,17 +762,6 @@ Wire Wire Line
 	2750 775  2975 775 
 Text Notes 7025 6750 0    118  ~ 24
 JOE LOFTUS
-$Comp
-L Connector:Screw_Terminal_01x03 J?
-U 1 1 5D246592
-P 6600 3200
-F 0 "J?" H 6025 2775 50  0000 L CNN
-F 1 "Screw_Terminal_01x03" H 6200 2775 50  0000 L CNN
-F 2 "" H 6600 3200 50  0001 C CNN
-F 3 "~" H 6600 3200 50  0001 C CNN
-	1    6600 3200
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	10650 3350 10875 3350
 Wire Wire Line
@@ -783,11 +772,9 @@ Text Label 10875 3350 0    50   ~ 0
 PHO3
 Text Label 10875 3150 0    50   ~ 0
 PHO4
-Text Label 6800 3100 0    50   ~ 0
+Text Label 6700 2925 2    50   ~ 0
 TEMP
-Text Label 6800 3200 0    50   ~ 0
-VID_S
-Text Label 6800 3300 0    50   ~ 0
+Text Label 6700 3125 2    50   ~ 0
 CRYSTAL
 $Comp
 L power:+3V3 #PWR?
@@ -1291,4 +1278,30 @@ Text Label 10850 2450 0    50   ~ 0
 STBY
 Wire Wire Line
 	10650 2450 10850 2450
+$Comp
+L Connector:Screw_Terminal_01x09 J?
+U 1 1 5D265C96
+P 6900 3325
+F 0 "J?" H 6980 3367 50  0000 L CNN
+F 1 "Screw_Terminal_01x09" H 6980 3276 50  0000 L CNN
+F 2 "" H 6900 3325 50  0001 C CNN
+F 3 "~" H 6900 3325 50  0001 C CNN
+	1    6900 3325
+	1    0    0    -1  
+$EndComp
+Text Label 6700 3025 2    50   ~ 0
+VID
+Text Label 6700 3225 2    50   ~ 0
+ST
+$Comp
+L Custom:UFDFPN8-MC U?
+U 1 1 5D2D63AB
+P 7450 4400
+F 0 "U?" H 7475 4765 50  0000 C CNN
+F 1 "UFDFPN8-MC" H 7475 4674 50  0000 C CNN
+F 2 "" H 7450 4400 50  0001 C CNN
+F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/8c/54/f2/63/4c/4a/CD00001012.pdf/files/CD00001012.pdf/jcr:content/translations/en.CD00001012.pdf" H 7450 4400 50  0001 C CNN
+	1    7450 4400
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

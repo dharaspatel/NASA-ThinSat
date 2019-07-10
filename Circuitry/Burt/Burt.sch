@@ -165,7 +165,7 @@ F 3 "~" H 5025 2275 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Custom:LT1818 U?
+L Burt-rescue:LT1818-Custom U?
 U 1 1 5D25B2EA
 P 5425 2375
 F 0 "U?" H 5475 2100 50  0000 L CNN
@@ -193,7 +193,7 @@ $EndComp
 Wire Wire Line
 	4875 1375 4950 1375
 $Comp
-L Custom:74HC541 U?
+L Burt-rescue:74HC541-Custom U?
 U 1 1 5D287D5C
 P 2025 2025
 F 0 "U?" H 2000 2540 50  0000 C CNN
@@ -718,7 +718,7 @@ $EndComp
 Text Label 5925 6850 2    50   ~ 0
 START_VID
 $Comp
-L Custom:S14739-20 U?
+L Burt-rescue:S14739-20-Custom U?
 U 1 1 5D25536A
 P 4425 1525
 F 0 "U?" H 4425 2340 50  0000 C CNN
@@ -1234,7 +1234,7 @@ Wire Wire Line
 	1600 6900 1600 6800
 Connection ~ 1600 6800
 $Comp
-L Custom:A3908 U?
+L Burt-rescue:A3908-Custom U?
 U 1 1 5D5325EF
 P 4450 6650
 F 0 "U?" H 4450 7065 50  0000 C CNN
@@ -1748,7 +1748,7 @@ F 3 "" H 800 6300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Custom:MCP73831-DFN U?
+L Burt-rescue:MCP73831-DFN-Custom U?
 U 1 1 5D264C9F
 P 2000 6600
 F 0 "U?" H 2000 7215 50  0000 C CNN
@@ -1759,7 +1759,7 @@ F 3 "" H 2000 6600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Custom:MCP9701A U?
+L Burt-rescue:MCP9701A-Custom U?
 U 1 1 5D425D1D
 P 4775 4175
 F 0 "U?" H 4750 3600 50  0000 L CNN

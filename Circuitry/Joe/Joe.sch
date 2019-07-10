@@ -36,7 +36,7 @@ Wire Wire Line
 Text Notes 9475 625  0    50   ~ 0
 Microcontroller
 $Comp
-L Custom:DF12-20DS U?
+L Joe-rescue:DF12-20DS-Custom U?
 U 1 1 5D1584F8
 P 6000 1450
 F 0 "U?" H 5500 2175 50  0000 C CNN
@@ -497,7 +497,7 @@ F 3 "" H 1950 2050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Custom:GL5528 U?
+L Joe-rescue:GL5528-Custom U?
 U 1 1 5D1D3A1F
 P 1700 3525
 F 0 "U?" H 1300 4000 50  0000 C CNN
@@ -556,7 +556,7 @@ $EndComp
 Wire Wire Line
 	2150 3525 2150 3300
 $Comp
-L Custom:GL5528 U?
+L Joe-rescue:GL5528-Custom U?
 U 1 1 5D22238E
 P 1725 4650
 F 0 "U?" H 1325 5125 50  0000 C CNN
@@ -613,7 +613,7 @@ $EndComp
 Wire Wire Line
 	2175 4650 2175 4425
 $Comp
-L Custom:GL5528 U?
+L Joe-rescue:GL5528-Custom U?
 U 1 1 5D224EEE
 P 1750 5800
 F 0 "U?" H 1350 6275 50  0000 C CNN
@@ -670,7 +670,7 @@ $EndComp
 Wire Wire Line
 	2200 5800 2200 5575
 $Comp
-L Custom:GL5528 U?
+L Joe-rescue:GL5528-Custom U?
 U 1 1 5D229453
 P 1775 6950
 F 0 "U?" H 1375 7425 50  0000 C CNN
@@ -1294,7 +1294,7 @@ VID
 Text Label 6700 3225 2    50   ~ 0
 ST
 $Comp
-L Custom:UFDFPN8-MC U?
+L Joe-rescue:UFDFPN8-MC-Custom U?
 U 1 1 5D2D63AB
 P 7450 4400
 F 0 "U?" H 7475 4765 50  0000 C CNN
