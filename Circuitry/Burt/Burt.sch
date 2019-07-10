@@ -1439,4 +1439,26 @@ F 3 "" H -1975 5175 50  0001 C CNN
 	1    -1525 5325
 	1    0    0    -1  
 $EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 5D538E55
+P -950 5475
+F 0 "R?" H -891 5521 50  0000 L CNN
+F 1 "18k" H -891 5430 50  0000 L CNN
+F 2 "" H -950 5475 50  0001 C CNN
+F 3 "~" H -950 5475 50  0001 C CNN
+	1    -950 5475
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 5D543F60
+P -950 5775
+F 0 "R?" H -1100 5750 50  0000 L CNN
+F 1 "10k" H -1150 5675 50  0000 L CNN
+F 2 "" H -950 5775 50  0001 C CNN
+F 3 "~" H -950 5775 50  0001 C CNN
+	1    -950 5775
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
