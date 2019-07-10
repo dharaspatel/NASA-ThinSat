@@ -1904,4 +1904,49 @@ Text Label 4150 1900 2    50   ~ 0
 BL9
 Text Label 4150 2000 2    50   ~ 0
 BL10
+$Comp
+L Connector:Conn_01x05_Female J?
+U 1 1 5D3ECE95
+P 4175 3050
+F 0 "J?" H 4203 3076 50  0000 L CNN
+F 1 "Conn_01x05_Female" H 4203 2985 50  0000 L CNN
+F 2 "" H 4175 3050 50  0001 C CNN
+F 3 "~" H 4175 3050 50  0001 C CNN
+	1    4175 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR?
+U 1 1 5D3F0BE6
+P 3600 2950
+F 0 "#PWR?" H 3600 2800 50  0001 C CNN
+F 1 "+5V" H 3615 3123 50  0000 C CNN
+F 2 "" H 3600 2950 50  0001 C CNN
+F 3 "" H 3600 2950 50  0001 C CNN
+	1    3600 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D3EFCA4
+P 3900 3250
+F 0 "#PWR?" H 3900 3000 50  0001 C CNN
+F 1 "GND" H 3905 3077 50  0000 C CNN
+F 2 "" H 3900 3250 50  0001 C CNN
+F 3 "" H 3900 3250 50  0001 C CNN
+	1    3900 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3600 2950 3975 2950
+Wire Wire Line
+	3900 3250 3975 3250
+Text Label 3975 3150 2    50   ~ 0
+RX
+Text Label 3975 3050 2    50   ~ 0
+TX
+Text Label 3975 2850 2    50   ~ 0
+CVBS
+Text Notes 3550 2625 0    50   ~ 0
+Image Sensor Connector\n
 $EndSCHEMATC

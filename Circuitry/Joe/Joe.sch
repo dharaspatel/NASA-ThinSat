@@ -721,10 +721,10 @@ Text Label 10875 3350 0    50   ~ 0
 PHO3
 Text Label 10875 3150 0    50   ~ 0
 PHO4
-Text Label 6950 4875 2    50   ~ 0
+Text Label 6850 4600 2    50   ~ 0
 TEMP
-Text Label 6950 5075 2    50   ~ 0
-CRYSTAL
+Text Label 6850 4800 2    50   ~ 0
+RX
 $Comp
 L power:+3V3 #PWR?
 U 1 1 5D253182
@@ -849,10 +849,10 @@ Text Label 10850 2450 0    50   ~ 0
 STBY
 Wire Wire Line
 	10650 2450 10850 2450
-Text Label 6950 4975 2    50   ~ 0
-VID
-Text Label 6950 5175 2    50   ~ 0
-ST
+Text Label 6850 4700 2    50   ~ 0
+CVBS
+Text Label 6850 4900 2    50   ~ 0
+TX
 $Comp
 L Joe-rescue:UFDFPN8-MC-Custom U?
 U 1 1 5D2D63AB
@@ -997,8 +997,6 @@ Wire Notes Line
 	4150 5375 2650 5375
 Wire Notes Line
 	2650 3875 2650 5375
-Text Label 2875 6375 2    50   ~ 0
-SCK
 Wire Wire Line
 	3125 6375 2875 6375
 Wire Wire Line
@@ -1380,46 +1378,14 @@ Wire Notes Line
 	4200 5900 6200 5900
 Wire Notes Line
 	6200 5900 6200 2475
-$Comp
-L Connector:Screw_Terminal_01x10 J?
-U 1 1 5D29FE3C
-P 7950 4900
-F 0 "J?" V 8175 4350 50  0000 L CNN
-F 1 "Screw_Terminal_01x10" V 8075 4350 50  0000 L CNN
-F 2 "" H 7950 4900 50  0001 C CNN
-F 3 "~" H 7950 4900 50  0001 C CNN
-	1    7950 4900
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector:Screw_Terminal_01x06 J?
-U 1 1 5D2A1839
-P 7150 5075
-F 0 "J?" V 7375 4725 50  0000 L CNN
-F 1 "Screw_Terminal_01x06" V 7275 4725 50  0000 L CNN
-F 2 "" H 7150 5075 50  0001 C CNN
-F 3 "~" H 7150 5075 50  0001 C CNN
-	1    7150 5075
-	1    0    0    -1  
-$EndComp
-Text Label 7750 4500 2    50   ~ 0
-BL1
-Text Label 7750 4600 2    50   ~ 0
-BL2
-Text Label 7750 4700 2    50   ~ 0
-BL3
-Text Label 7750 4800 2    50   ~ 0
-BL4
-Text Label 7750 4900 2    50   ~ 0
-BL5
-Text Label 7750 5000 2    50   ~ 0
-BL6
-Text Label 7750 5100 2    50   ~ 0
-BL7
-Text Label 7750 5200 2    50   ~ 0
-BL8
-Text Label 6950 5275 2    50   ~ 0
+Text Label 6850 5200 2    50   ~ 0
+BWL
+Text Label 6850 5000 2    50   ~ 0
 BP1
-Text Label 6950 5375 2    50   ~ 0
+Text Label 6850 5100 2    50   ~ 0
 BP2
+Text Label 6850 5325 2    50   ~ 0
+IN1
+Text Label 6850 5450 2    50   ~ 0
+IN2
 $EndSCHEMATC
