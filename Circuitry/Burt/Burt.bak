@@ -239,7 +239,7 @@ P 3925 4525
 F 0 "U?" H 4075 3575 50  0000 L CNN
 F 1 "MCP9701A" H 4250 3575 50  0000 L CNN
 F 2 "" H 3650 4675 50  0001 C CNN
-F 3 "" H 3650 4675 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001942G.pdf" H 3650 4675 50  0001 C CNN
 	1    3925 4525
 	-1   0    0    1   
 $EndComp
@@ -322,7 +322,7 @@ P 2125 1775
 F 0 "U?" H 2100 2290 50  0000 C CNN
 F 1 "74HC541" H 2100 2199 50  0000 C CNN
 F 2 "" H 1775 2525 50  0001 C CNN
-F 3 "" H 1775 2525 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT541.pdf" H 1775 2525 50  0001 C CNN
 	1    2125 1775
 	1    0    0    -1  
 $EndComp
