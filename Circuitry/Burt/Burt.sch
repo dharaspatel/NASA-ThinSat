@@ -1273,26 +1273,10 @@ Wire Wire Line
 Connection ~ 2550 5225
 Wire Wire Line
 	2550 5225 2550 5275
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D559B0F
-P 2000 5575
-F 0 "#PWR?" H 2000 5325 50  0001 C CNN
-F 1 "GNDA" H 2005 5402 50  0000 C CNN
-F 2 "" H 2000 5575 50  0001 C CNN
-F 3 "" H 2000 5575 50  0001 C CNN
-	1    2000 5575
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2550 5475 2550 5575
 Wire Wire Line
-	2550 5575 2000 5575
-Wire Wire Line
 	1625 5075 1625 5575
-Wire Wire Line
-	1625 5575 2000 5575
-Connection ~ 2000 5575
 $Comp
 L Motor:Motor_DC M?
 U 1 1 5D49D045
@@ -1947,4 +1931,20 @@ Text Label 4200 2800 2    50   ~ 0
 TX
 Text Label 4200 2600 2    50   ~ 0
 CVBS
+Wire Wire Line
+	1625 5575 2025 5575
+$Comp
+L power:GND #PWR?
+U 1 1 5D30B49A
+P 2025 5575
+F 0 "#PWR?" H 2025 5325 50  0001 C CNN
+F 1 "GND" H 2030 5402 50  0000 C CNN
+F 2 "" H 2025 5575 50  0001 C CNN
+F 3 "" H 2025 5575 50  0001 C CNN
+	1    2025 5575
+	1    0    0    -1  
+$EndComp
+Connection ~ 2025 5575
+Wire Wire Line
+	2025 5575 2550 5575
 $EndSCHEMATC
