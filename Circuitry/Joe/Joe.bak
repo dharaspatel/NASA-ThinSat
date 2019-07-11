@@ -581,7 +581,7 @@ Connection ~ 2975 775
 Wire Wire Line
 	2750 775  2975 775 
 Text Notes 7025 6775 0    118  ~ 24
-JOE LOFTUS
+Cosmic DC
 Wire Wire Line
 	10625 4450 10850 4450
 Wire Wire Line
