@@ -132,593 +132,16 @@ Wire Wire Line
 	2125 3600 2325 3600
 Text Notes 2025 2600 0    50   ~ 0
 Programming LEDs
-Text Notes 5100 -3350 0    50   ~ 0
-CMOS Image Sensor\nMode: global shutter\nInput: 5V Vdd\nOutput: Digital VIDEO_S
 Text Notes 7000 6750 0    118  ~ 24
 BURT
-Text Label 5025 1500 2    50   ~ 0
+Text Label 4150 1200 2    50   ~ 0
 TEMP
-Text Label 5025 1600 2    50   ~ 0
-VID
-Text Label 5025 1700 2    50   ~ 0
-CRYSTAL
-$Comp
-L Device:R_Small R?
-U 1 1 5D25A247
-P 1350 -2350
-F 0 "R?" V 1546 -2350 50  0001 C CNN
-F 1 "82" V 1425 -2350 50  0000 C CNN
-F 2 "" H 1350 -2350 50  0001 C CNN
-F 3 "~" H 1350 -2350 50  0001 C CNN
-	1    1350 -2350
-	0    -1   -1   0
-$EndComp
-$Comp
-L Device:R_Small R?
-U 1 1 5D25AB70
-P 4800 -2100
-F 0 "R?" V 4996 -2100 50  0001 C CNN
-F 1 "100" V 4904 -2100 50  0000 C CNN
-F 2 "" H 4800 -2100 50  0001 C CNN
-F 3 "~" H 4800 -2100 50  0001 C CNN
-	1    4800 -2100
-	0    -1   -1   0
-$EndComp
-$Comp
-L Burt-rescue:LT1818-Custom U?
-U 1 1 5D25B2EA
-P 5200 -2000
-F 0 "U?" H 5250 -2275 50  0000 L CNN
-F 1 "LT1818" H 5250 -2175 50  0000 L CNN
-F 2 "" H 5200 -2000 50  0001 C CNN
-F 3 "" H 5250 -1800 50  0001 C CNN
-	1    5200 -2000
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	4650 -2500 4650 -2100
-Wire Wire Line
-	4650 -2100 4700 -2100
-$Comp
-L power:-5V #PWR?
-U 1 1 5D2701C2
-P 5100 -1575
-F 0 "#PWR?" H 5100 -1475 50  0001 C CNN
-F 1 "-5V" H 5115 -1402 50  0000 C CNN
-F 2 "" H 5100 -1575 50  0001 C CNN
-F 3 "" H 5100 -1575 50  0001 C CNN
-	1    5100 -1575
-	-1   0    0    1
-$EndComp
-Wire Wire Line
-	4650 -3000 4725 -3000
-$Comp
-L Burt-rescue:74HC541-Custom U?
-U 1 1 5D287D5C
-P 1800 -2350
-F 0 "U?" H 1775 -1835 50  0000 C CNN
-F 1 "74HC541" H 1775 -1926 50  0000 C CNN
-F 2 "" H 1450 -1600 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT541.pdf" H 1450 -1600 50  0001 C CNN
-	1    1800 -2350
-	1    0    0    -1
-$EndComp
-NoConn ~ 2100 -1950
-NoConn ~ 2100 -1850
-NoConn ~ 2100 -1750
-NoConn ~ 2100 -1650
-NoConn ~ 1450 -1750
-NoConn ~ 1450 -1850
-NoConn ~ 1450 -1950
-NoConn ~ 1450 -2050
-$Comp
-L Device:R_Small R?
-U 1 1 5D298138
-P 1125 -2450
-F 0 "R?" V 1321 -2450 50  0001 C CNN
-F 1 "82" V 1200 -2450 50  0000 C CNN
-F 2 "" H 1125 -2450 50  0001 C CNN
-F 3 "~" H 1125 -2450 50  0001 C CNN
-	1    1125 -2450
-	0    -1   -1   0
-$EndComp
-Wire Wire Line
-	925  -2450 1025 -2450
-Wire Wire Line
-	925  -2350 1250 -2350
-Wire Wire Line
-	1225 -2450 1450 -2450
-Text Label 4725 -3200 0    50   ~ 0
-ST
-Text Label 4725 -3000 0    50   ~ 0
-CLK
-Wire Wire Line
-	4650 -3200 4725 -3200
-Text Label 2225 -2250 0    50   ~ 0
-ST
-Text Label 2225 -2350 0    50   ~ 0
-CLK
-Wire Wire Line
-	2100 -2350 2225 -2350
-Wire Wire Line
-	2100 -2250 2225 -2250
-Wire Wire Line
-	1450 -2250 1275 -2250
-Wire Wire Line
-	1450 -2150 1275 -2150
-Text Label 1275 -2250 2    50   ~ 0
-trig
-Text Label 1275 -2150 2    50   ~ 0
-eos
-Text Label 2225 -2150 0    50   ~ 0
-TRIG
-Text Label 2225 -2050 0    50   ~ 0
-EOS
-Wire Wire Line
-	2100 -2150 2225 -2150
-Wire Wire Line
-	2100 -2050 2225 -2050
-Text Label 4725 -3100 0    50   ~ 0
-trig
-Text Label 4750 -2700 0    50   ~ 0
-eos
-Wire Wire Line
-	4650 -3100 4725 -3100
-Wire Wire Line
-	4650 -2700 4750 -2700
-$Comp
-L Device:C_Small C?
-U 1 1 5D2B8788
-P 5350 -2400
-F 0 "C?" H 5425 -2550 50  0000 R CNN
-F 1 "0.1uF" H 5425 -2650 50  0000 R CNN
-F 2 "" H 5350 -2400 50  0001 C CNN
-F 3 "~" H 5350 -2400 50  0001 C CNN
-	1    5350 -2400
-	-1   0    0    1
-$EndComp
-Wire Wire Line
-	5100 -2300 5100 -2500
-$Comp
-L power:+5V #PWR?
-U 1 1 5D2BA5C3
-P 5100 -2500
-F 0 "#PWR?" H 5100 -2650 50  0001 C CNN
-F 1 "+5V" H 5115 -2327 50  0000 C CNN
-F 2 "" H 5100 -2500 50  0001 C CNN
-F 3 "" H 5100 -2500 50  0001 C CNN
-	1    5100 -2500
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	5100 -2500 5350 -2500
-Connection ~ 5100 -2500
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D2BBF07
-P 5350 -2300
-F 0 "#PWR?" H 5350 -2550 50  0001 C CNN
-F 1 "GNDA" H 5355 -2473 50  0000 C CNN
-F 2 "" H 5350 -2300 50  0001 C CNN
-F 3 "" H 5350 -2300 50  0001 C CNN
-	1    5350 -2300
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	4900 -1900 4900 -1475
-Wire Wire Line
-	4900 -1475 5575 -1475
-Wire Wire Line
-	5575 -1475 5575 -2000
-Wire Wire Line
-	5500 -2000 5575 -2000
-Connection ~ 5575 -2000
-Wire Wire Line
-	5575 -2000 5650 -2000
-$Comp
-L Device:R_Small R?
-U 1 1 5D2C090C
-P 5750 -2000
-F 0 "R?" V 5575 -1875 50  0000 C CNN
-F 1 "51R" V 5650 -1875 50  0000 C CNN
-F 2 "" H 5750 -2000 50  0001 C CNN
-F 3 "~" H 5750 -2000 50  0001 C CNN
-	1    5750 -2000
-	0    1    1    0
-$EndComp
-$Comp
-L Device:C_Small C?
-U 1 1 5D2C14C6
-P 5950 -1900
-F 0 "C?" H 6042 -1854 50  0000 L CNN
-F 1 "22pF" H 6042 -1945 50  0000 L CNN
-F 2 "" H 5950 -1900 50  0001 C CNN
-F 3 "~" H 5950 -1900 50  0001 C CNN
-	1    5950 -1900
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	5850 -2000 5950 -2000
-Connection ~ 5950 -2000
-Wire Wire Line
-	5950 -2000 6275 -2000
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D2C4872
-P 5950 -1800
-F 0 "#PWR?" H 5950 -2050 50  0001 C CNN
-F 1 "GNDA" H 5955 -1973 50  0000 C CNN
-F 2 "" H 5950 -1800 50  0001 C CNN
-F 3 "" H 5950 -1800 50  0001 C CNN
-	1    5950 -1800
-	1    0    0    -1
-$EndComp
-$Comp
-L power:+5V #PWR?
-U 1 1 5D2C5995
-P 3700 -3425
-F 0 "#PWR?" H 3700 -3575 50  0001 C CNN
-F 1 "+5V" H 3715 -3252 50  0000 C CNN
-F 2 "" H 3700 -3425 50  0001 C CNN
-F 3 "" H 3700 -3425 50  0001 C CNN
-	1    3700 -3425
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	3700 -3425 3700 -3200
-Wire Wire Line
-	3700 -3200 3750 -3200
-Wire Wire Line
-	3700 -3425 3425 -3425
-Connection ~ 3700 -3425
-$Comp
-L Device:CP_Small C?
-U 1 1 5D2CC923
-P 3250 -3325
-F 0 "C?" H 2975 -3450 50  0000 L CNN
-F 1 "22uF" H 2975 -3350 50  0000 L CNN
-F 2 "" H 3250 -3325 50  0001 C CNN
-F 3 "~" H 3250 -3325 50  0001 C CNN
-	1    3250 -3325
-	1    0    0    -1
-$EndComp
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D2CE15C
-P 3250 -3225
-F 0 "#PWR?" H 3250 -3475 50  0001 C CNN
-F 1 "GNDA" H 3225 -3400 50  0000 C CNN
-F 2 "" H 3250 -3225 50  0001 C CNN
-F 3 "" H 3250 -3225 50  0001 C CNN
-	1    3250 -3225
-	1    0    0    -1
-$EndComp
-$Comp
-L Device:C_Small C?
-U 1 1 5D2CE6F1
-P 3425 -3325
-F 0 "C?" H 3250 -3025 50  0000 L CNN
-F 1 "0.1uF" H 3250 -3125 50  0000 L CNN
-F 2 "" H 3425 -3325 50  0001 C CNN
-F 3 "~" H 3425 -3325 50  0001 C CNN
-	1    3425 -3325
-	1    0    0    -1
-$EndComp
-Connection ~ 3425 -3425
-Wire Wire Line
-	3425 -3425 3250 -3425
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D2CF851
-P 3425 -3225
-F 0 "#PWR?" H 3425 -3475 50  0001 C CNN
-F 1 "GNDA" H 3430 -3398 50  0000 C CNN
-F 2 "" H 3425 -3225 50  0001 C CNN
-F 3 "" H 3425 -3225 50  0001 C CNN
-	1    3425 -3225
-	1    0    0    -1
-$EndComp
-$Comp
-L power:+5V #PWR?
-U 1 1 5D2D6313
-P 2700 -3425
-F 0 "#PWR?" H 2700 -3575 50  0001 C CNN
-F 1 "+5V" H 2715 -3252 50  0000 C CNN
-F 2 "" H 2700 -3425 50  0001 C CNN
-F 3 "" H 2700 -3425 50  0001 C CNN
-	1    2700 -3425
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	2700 -3425 2425 -3425
-$Comp
-L Device:CP_Small C?
-U 1 1 5D2D631D
-P 2250 -3325
-F 0 "C?" H 2125 -3025 50  0000 L CNN
-F 1 "22uF" H 2125 -3125 50  0000 L CNN
-F 2 "" H 2250 -3325 50  0001 C CNN
-F 3 "~" H 2250 -3325 50  0001 C CNN
-	1    2250 -3325
-	1    0    0    -1
-$EndComp
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D2D6323
-P 2250 -3225
-F 0 "#PWR?" H 2250 -3475 50  0001 C CNN
-F 1 "GNDA" H 2225 -3400 50  0000 C CNN
-F 2 "" H 2250 -3225 50  0001 C CNN
-F 3 "" H 2250 -3225 50  0001 C CNN
-	1    2250 -3225
-	1    0    0    -1
-$EndComp
-$Comp
-L Device:C_Small C?
-U 1 1 5D2D6329
-P 2425 -3325
-F 0 "C?" H 2375 -3025 50  0000 L CNN
-F 1 "0.1uF" H 2375 -3125 50  0000 L CNN
-F 2 "" H 2425 -3325 50  0001 C CNN
-F 3 "~" H 2425 -3325 50  0001 C CNN
-	1    2425 -3325
-	1    0    0    -1
-$EndComp
-Connection ~ 2425 -3425
-Wire Wire Line
-	2425 -3425 2250 -3425
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D2D6331
-P 2425 -3225
-F 0 "#PWR?" H 2425 -3475 50  0001 C CNN
-F 1 "GNDA" H 2430 -3398 50  0000 C CNN
-F 2 "" H 2425 -3225 50  0001 C CNN
-F 3 "" H 2425 -3225 50  0001 C CNN
-	1    2425 -3225
-	1    0    0    -1
-$EndComp
-$Comp
-L Device:CP_Small C?
-U 1 1 5D2DA6C8
-P 5575 -2400
-F 0 "C?" H 5675 -2400 50  0000 L CNN
-F 1 "22uF" H 5675 -2325 50  0000 L CNN
-F 2 "" H 5575 -2400 50  0001 C CNN
-F 3 "~" H 5575 -2400 50  0001 C CNN
-	1    5575 -2400
-	1    0    0    -1
-$EndComp
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D2E0360
-P 5575 -2300
-F 0 "#PWR?" H 5575 -2550 50  0001 C CNN
-F 1 "GNDA" H 5580 -2473 50  0000 C CNN
-F 2 "" H 5575 -2300 50  0001 C CNN
-F 3 "" H 5575 -2300 50  0001 C CNN
-	1    5575 -2300
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	5350 -2500 5575 -2500
-Connection ~ 5350 -2500
-Wire Wire Line
-	5100 -1700 5100 -1650
-Connection ~ 5100 -1650
-Wire Wire Line
-	5100 -1650 5100 -1575
-$Comp
-L Device:CP_Small C?
-U 1 1 5D2EF06B
-P 4475 -1550
-F 0 "C?" H 4175 -1600 50  0000 L CNN
-F 1 "22uF" H 4175 -1525 50  0000 L CNN
-F 2 "" H 4475 -1550 50  0001 C CNN
-F 3 "~" H 4475 -1550 50  0001 C CNN
-	1    4475 -1550
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	4475 -1650 4650 -1650
-$Comp
-L Device:C_Small C?
-U 1 1 5D2F2A7D
-P 4650 -1550
-F 0 "C?" H 4725 -1700 50  0000 R CNN
-F 1 "0.1uF" H 4725 -1800 50  0000 R CNN
-F 2 "" H 4650 -1550 50  0001 C CNN
-F 3 "~" H 4650 -1550 50  0001 C CNN
-	1    4650 -1550
-	-1   0    0    1
-$EndComp
-Connection ~ 4650 -1650
-Wire Wire Line
-	4650 -1650 5100 -1650
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D2F36CA
-P 4475 -1450
-F 0 "#PWR?" H 4475 -1700 50  0001 C CNN
-F 1 "GNDA" H 4450 -1625 50  0000 C CNN
-F 2 "" H 4475 -1450 50  0001 C CNN
-F 3 "" H 4475 -1450 50  0001 C CNN
-	1    4475 -1450
-	1    0    0    -1
-$EndComp
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D2F3AFF
-P 4650 -1450
-F 0 "#PWR?" H 4650 -1700 50  0001 C CNN
-F 1 "GNDA" H 4655 -1623 50  0000 C CNN
-F 2 "" H 4650 -1450 50  0001 C CNN
-F 3 "" H 4650 -1450 50  0001 C CNN
-	1    4650 -1450
-	1    0    0    -1
-$EndComp
-Text Label 6275 -2000 0    50   ~ 0
-VID
-$Comp
-L Device:C_Small C?
-U 1 1 5D2FA214
-P 4950 -2800
-F 0 "C?" H 5025 -2625 50  0000 L CNN
-F 1 "1uF" H 5025 -2700 50  0000 L CNN
-F 2 "" H 4950 -2800 50  0001 C CNN
-F 3 "~" H 4950 -2800 50  0001 C CNN
-	1    4950 -2800
-	1    0    0    -1
-$EndComp
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D2FA21A
-P 4950 -2700
-F 0 "#PWR?" H 4950 -2950 50  0001 C CNN
-F 1 "GNDA" H 4955 -2873 50  0000 C CNN
-F 2 "" H 4950 -2700 50  0001 C CNN
-F 3 "" H 4950 -2700 50  0001 C CNN
-	1    4950 -2700
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	4650 -2900 4950 -2900
-$Comp
-L Device:C_Small C?
-U 1 1 5D3098AB
-P 3450 -2900
-F 0 "C?" H 3225 -2875 50  0000 L CNN
-F 1 "1uF" H 3175 -2950 50  0000 L CNN
-F 2 "" H 3450 -2900 50  0001 C CNN
-F 3 "~" H 3450 -2900 50  0001 C CNN
-	1    3450 -2900
-	1    0    0    -1
-$EndComp
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D3098B1
-P 3450 -2800
-F 0 "#PWR?" H 3450 -3050 50  0001 C CNN
-F 1 "GNDA" H 3455 -2973 50  0000 C CNN
-F 2 "" H 3450 -2800 50  0001 C CNN
-F 3 "" H 3450 -2800 50  0001 C CNN
-	1    3450 -2800
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	3750 -3000 3450 -3000
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D320EE7
-P 3600 -2600
-F 0 "#PWR?" H 3600 -2850 50  0001 C CNN
-F 1 "GNDA" H 3605 -2773 50  0000 C CNN
-F 2 "" H 3600 -2600 50  0001 C CNN
-F 3 "" H 3600 -2600 50  0001 C CNN
-	1    3600 -2600
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	3600 -2600 3750 -2600
-$Comp
-L Device:CP_Small C?
-U 1 1 5D32E5FF
-P 3025 -1875
-F 0 "C?" H 2725 -1925 50  0000 L CNN
-F 1 "22uF" H 2725 -1850 50  0000 L CNN
-F 2 "" H 3025 -1875 50  0001 C CNN
-F 3 "~" H 3025 -1875 50  0001 C CNN
-	1    3025 -1875
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	3025 -1975 3200 -1975
-$Comp
-L Device:C_Small C?
-U 1 1 5D32E606
-P 3200 -1875
-F 0 "C?" H 3275 -2025 50  0000 R CNN
-F 1 "0.1uF" H 3275 -2125 50  0000 R CNN
-F 2 "" H 3200 -1875 50  0001 C CNN
-F 3 "~" H 3200 -1875 50  0001 C CNN
-	1    3200 -1875
-	-1   0    0    1
-$EndComp
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D32E60E
-P 3025 -1775
-F 0 "#PWR?" H 3025 -2025 50  0001 C CNN
-F 1 "GNDA" H 3000 -1950 50  0000 C CNN
-F 2 "" H 3025 -1775 50  0001 C CNN
-F 3 "" H 3025 -1775 50  0001 C CNN
-	1    3025 -1775
-	1    0    0    -1
-$EndComp
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D32E614
-P 3200 -1775
-F 0 "#PWR?" H 3200 -2025 50  0001 C CNN
-F 1 "GNDA" H 3205 -1948 50  0000 C CNN
-F 2 "" H 3200 -1775 50  0001 C CNN
-F 3 "" H 3200 -1775 50  0001 C CNN
-	1    3200 -1775
-	1    0    0    -1
-$EndComp
-Connection ~ 3200 -1975
-Wire Wire Line
-	3200 -1975 3425 -1975
-$Comp
-L power:+5V #PWR?
-U 1 1 5D358444
-P 3425 -2100
-F 0 "#PWR?" H 3425 -2250 50  0001 C CNN
-F 1 "+5V" H 3440 -1927 50  0000 C CNN
-F 2 "" H 3425 -2100 50  0001 C CNN
-F 3 "" H 3425 -2100 50  0001 C CNN
-	1    3425 -2100
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	3425 -2100 3425 -1975
-Wire Wire Line
-	3425 -1975 3750 -1975
-Wire Wire Line
-	3750 -2500 3750 -1975
-Connection ~ 3425 -1975
-$Comp
-L power:GNDA #PWR?
-U 1 1 5D3B6E48
-P 1375 -1525
-F 0 "#PWR?" H 1375 -1775 50  0001 C CNN
-F 1 "GNDA" H 1380 -1698 50  0000 C CNN
-F 2 "" H 1375 -1525 50  0001 C CNN
-F 3 "" H 1375 -1525 50  0001 C CNN
-	1    1375 -1525
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	1450 -1650 1375 -1650
-Wire Wire Line
-	1375 -1650 1375 -1525
-Text Label 925  -2450 2    50   ~ 0
-CRYSTAL
-Text Label 5025 1800 2    50   ~ 0
-START_VID
-$Comp
-L Burt-rescue:S14739-20-Custom U?
-U 1 1 5D25536A
-P 4200 -2850
-F 0 "U?" H 4200 -2035 50  0000 C CNN
-F 1 "S14739-20" H 4200 -2126 50  0000 C CNN
-F 2 "" H 4200 -2070 50  0001 C CNN
-F 3 "https://www.hamamatsu.com/resources/pdf/ssd/s14739-20_kmpd1196e.pdf" H 4200 -2070 50  0001 C CNN
-	1    4200 -2850
-	1    0    0    -1
-$EndComp
-Text Label 925  -2350 2    50   ~ 0
-START_VID
+Text Label 4150 1300 2    50   ~ 0
+CVBS
+Text Label 4150 1400 2    50   ~ 0
+RX
+Text Label 4150 1500 2    50   ~ 0
+TX
 $Comp
 L Device:R_Small R?
 U 1 1 5D28D225
@@ -817,11 +240,9 @@ F 3 "" H 1125 1250 50  0001 C CNN
 	1    1125 1250
 	1    0    0    -1
 $EndComp
-Wire Notes Line
-	400  -1125 6525 -1125
-Text Label 5025 1900 2    50   ~ 0
+Text Label 4150 1600 2    50   ~ 0
 BP1
-Text Label 5025 2000 2    50   ~ 0
+Text Label 4150 1700 2    50   ~ 0
 BP2
 $Comp
 L Device:Q_NMOS_DGS Q?
@@ -1306,12 +727,6 @@ Wire Wire Line
 	1425 4975 1425 5475
 Wire Wire Line
 	1425 5475 1200 5475
-Wire Notes Line
-	400  -1125 400  -3825
-Wire Notes Line
-	400  -3825 6525 -3825
-Wire Notes Line
-	6525 -3825 6525 -1125
 $Comp
 L Device:Q_NMOS_DGS Q?
 U 1 1 5D78BB8F
@@ -1763,11 +1178,6 @@ Wire Notes Line
 	675  3900 1900 3900
 Wire Notes Line
 	1900 3900 1900 2400
-Wire Wire Line
-	2100 -2550 2100 -3425
-Wire Wire Line
-	2100 -3425 2250 -3425
-Connection ~ 2250 -3425
 Wire Notes Line
 	3250 2400 3250 3900
 Wire Notes Line
@@ -1847,48 +1257,6 @@ Burt <--> Joe
 Text Notes 700  4250 0    50   ~ 0
 Motor Driver \n(launchers)\n
 $Comp
-L Connector:Screw_Terminal_01x06 J?
-U 1 1 5D384A75
-P 5225 1700
-F 0 "J?" V 5450 1350 50  0000 L CNN
-F 1 "Screw_Terminal_01x06" V 5350 1350 50  0000 L CNN
-F 2 "" H 5225 1700 50  0001 C CNN
-F 3 "~" H 5225 1700 50  0001 C CNN
-	1    5225 1700
-	1    0    0    -1
-$EndComp
-$Comp
-L Connector:Screw_Terminal_01x10 J?
-U 1 1 5D3A0773
-P 4350 1500
-F 0 "J?" V 4575 950 50  0000 L CNN
-F 1 "Screw_Terminal_01x10" V 4475 950 50  0000 L CNN
-F 2 "" H 4350 1500 50  0001 C CNN
-F 3 "~" H 4350 1500 50  0001 C CNN
-	1    4350 1500
-	1    0    0    -1
-$EndComp
-Text Label 4150 1100 2    50   ~ 0
-BL1
-Text Label 4150 1200 2    50   ~ 0
-BL2
-Text Label 4150 1300 2    50   ~ 0
-BL3
-Text Label 4150 1400 2    50   ~ 0
-BL4
-Text Label 4150 1500 2    50   ~ 0
-BL5
-Text Label 4150 1600 2    50   ~ 0
-BL6
-Text Label 4150 1700 2    50   ~ 0
-BL7
-Text Label 4150 1800 2    50   ~ 0
-BL8
-Text Label 4150 1900 2    50   ~ 0
-BL9
-Text Label 4150 2000 2    50   ~ 0
-BL10
-$Comp
 L Connector:Conn_01x05_Female J?
 U 1 1 5D3ECE95
 P 4175 3050
@@ -1897,7 +1265,7 @@ F 1 "Conn_01x05_Female" H 4203 2985 50  0000 L CNN
 F 2 "" H 4175 3050 50  0001 C CNN
 F 3 "~" H 4175 3050 50  0001 C CNN
 	1    4175 3050
-	1    0    0    -1  
+	1    0    0    -1
 $EndComp
 $Comp
 L power:+5V #PWR?
@@ -1913,96 +1281,43 @@ $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5D3EFCA4
-P 4125 3000
-F 0 "#PWR?" H 4125 2750 50  0001 C CNN
-F 1 "GND" H 4130 2827 50  0000 C CNN
-F 2 "" H 4125 3000 50  0001 C CNN
-F 3 "" H 4125 3000 50  0001 C CNN
-	1    4125 3000
+P 3900 3250
+F 0 "#PWR?" H 3900 3000 50  0001 C CNN
+F 1 "GND" H 3905 3077 50  0000 C CNN
+F 2 "" H 3900 3250 50  0001 C CNN
+F 3 "" H 3900 3250 50  0001 C CNN
+	1    3900 3250
 	1    0    0    -1
 $EndComp
 Wire Wire Line
-	3825 2700 4200 2700
+	3600 2950 3975 2950
 Wire Wire Line
-	4125 3000 4200 3000
-Text Label 4200 2900 2    50   ~ 0
+	3900 3250 3975 3250
+Text Label 3975 3150 2    50   ~ 0
 RX
-Text Label 4200 2800 2    50   ~ 0
+Text Label 3975 3050 2    50   ~ 0
 TX
-Text Label 4200 2600 2    50   ~ 0
+Text Label 3975 2850 2    50   ~ 0
 CVBS
+Text Notes 3550 2625 0    50   ~ 0
+Image Sensor Connector\n
 $Comp
-L Connector:Micro_SD_Card J?
-U 1 1 5D2F55FD
-P 5025 5125
-F 0 "J?" H 4975 5842 50  0000 C CNN
-F 1 "Micro_SD_Card" H 4975 5751 50  0000 C CNN
-F 2 "" H 6175 5425 50  0001 C CNN
-F 3 "http://katalog.we-online.de/em/datasheet/693072010801.pdf" H 5025 5125 50  0001 C CNN
-	1    5025 5125
+L 74xx:74HC595 U?
+U 1 1 5D2A0648
+P 4950 4850
+F 0 "U?" H 4950 5631 50  0000 C CNN
+F 1 "74HC595" H 4950 5540 50  0000 C CNN
+F 2 "" H 4950 4850 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 4950 4850 50  0001 C CNN
+	1    4950 4850
 	1    0    0    -1
 $EndComp
-$Comp
-L power:+3V3 #PWR?
-U 1 1 5D2F66D6
-P 4000 5125
-F 0 "#PWR?" H 4000 4975 50  0001 C CNN
-F 1 "+3V3" V 4015 5253 50  0000 L CNN
-F 2 "" H 4000 5125 50  0001 C CNN
-F 3 "" H 4000 5125 50  0001 C CNN
-	1    4000 5125
-	0    -1   -1   0
-$EndComp
-Wire Wire Line
-	4000 5125 4125 5125
-$Comp
-L power:GND #PWR?
-U 1 1 5D30ACB6
-P 5825 5725
-F 0 "#PWR?" H 5825 5475 50  0001 C CNN
-F 1 "GND" H 5830 5552 50  0000 C CNN
-F 2 "" H 5825 5725 50  0001 C CNN
-F 3 "" H 5825 5725 50  0001 C CNN
-	1    5825 5725
-	1    0    0    -1
-$EndComp
-Wire Wire Line
-	1625 5575 2025 5575
-$Comp
-L power:GND #PWR?
-U 1 1 5D30B49A
-P 2025 5575
-F 0 "#PWR?" H 2025 5325 50  0001 C CNN
-F 1 "GND" H 2030 5402 50  0000 C CNN
-F 2 "" H 2025 5575 50  0001 C CNN
-F 3 "" H 2025 5575 50  0001 C CNN
-	1    2025 5575
-	1    0    0    -1
-$EndComp
-Connection ~ 2025 5575
-Wire Wire Line
-	2025 5575 2550 5575
-$Comp
-L power:GND #PWR?
-U 1 1 5D30BAAE
-P 3950 5325
-F 0 "#PWR?" H 3950 5075 50  0001 C CNN
-F 1 "GND" H 3955 5152 50  0000 C CNN
-F 2 "" H 3950 5325 50  0001 C CNN
-F 3 "" H 3950 5325 50  0001 C CNN
-	1    3950 5325
-	0    1    1    0
-$EndComp
-Wire Wire Line
-	3950 5325 4125 5325
-Text Label 4125 5025 2    50   ~ 0
-DI(MOSI)
-Text Label 4125 5225 2    50   ~ 0
-SCLK
-Text Label 4125 5425 2    50   ~ 0
-DO(MISO)
-NoConn ~ 4125 5525
-NoConn ~ 4125 4825
-Text Label 4125 4925 2    50   ~ 0
-CD
+Text Label 4150 1800 2    50   ~ 0
+BWL
+Text Label 4550 4450 2    50   ~ 0
+BWL
+Text Label 4150 1900 2    50   ~ 0
+IN1
+Text Label 4150 2000 2    50   ~ 0
+IN2
 $EndSCHEMATC

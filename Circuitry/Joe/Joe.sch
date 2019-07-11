@@ -318,17 +318,6 @@ Wire Wire Line
 Wire Wire Line
 	2450 1450 2975 1450
 $Comp
-L Timer_RTC:DS3231M U?
-U 1 1 5D1CA19F
-P 1950 1650
-F 0 "U?" H 1150 2575 50  0000 C CNN
-F 1 "DS3231M" H 900 2575 50  0000 C CNN
-F 2 "Package_SO:SOIC-16W_7.5x10.3mm_P1.27mm" H 1950 1050 50  0001 C CNN
-F 3 "http://datasheets.maximintegrated.com/en/ds/DS3231.pdf" H 2220 1700 50  0001 C CNN
-	1    1950 1650
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:R R?
 U 1 1 5D1CB0F1
 P 1150 1400
@@ -652,7 +641,7 @@ Text Label 10875 3350 0    50   ~ 0
 PHO3
 Text Label 10875 3150 0    50   ~ 0
 PHO4
-Text Label 6850 4600 2    50   ~ 0
+Text Label 4550 2875 2    50   ~ 0
 TEMP
 Wire Wire Line
 	9450 1550 9250 1550
@@ -765,40 +754,29 @@ Text Label 10850 2450 0    50   ~ 0
 STBY
 Wire Wire Line
 	10650 2450 10850 2450
-Text Label 6850 4700 2    50   ~ 0
+Text Label 4550 2975 2    50   ~ 0
 CVBS
-$Comp
-L Joe-rescue:UFDFPN8-MC-Custom U?
-U 1 1 5D2D63AB
-P 4925 6900
-F 0 "U?" H 4950 7265 50  0000 C CNN
-F 1 "UFDFPN8-MC" H 4950 7174 50  0000 C CNN
-F 2 "" H 4925 6900 50  0001 C CNN
-F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/8c/54/f2/63/4c/4a/CD00001012.pdf/files/CD00001012.pdf/jcr:content/translations/en.CD00001012.pdf" H 4925 6900 50  0001 C CNN
-	1    4925 6900
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	5275 6800 5475 6800
-Text Label 5275 6900 0    50   ~ 0
+	3725 6025 3925 6025
+Text Label 3725 6125 0    50   ~ 0
 WC
-Text Label 5275 7000 0    50   ~ 0
+Text Label 3725 6225 0    50   ~ 0
 SCL
-Text Label 5275 7100 0    50   ~ 0
+Text Label 3725 6325 0    50   ~ 0
 SDA
 $Comp
 L power:GND #PWR?
 U 1 1 5D2C2E70
-P 4450 7100
-F 0 "#PWR?" H 4450 6850 50  0001 C CNN
-F 1 "GND" H 4455 6927 50  0000 C CNN
-F 2 "" H 4450 7100 50  0001 C CNN
-F 3 "" H 4450 7100 50  0001 C CNN
-	1    4450 7100
+P 2900 6325
+F 0 "#PWR?" H 2900 6075 50  0001 C CNN
+F 1 "GND" H 2905 6152 50  0000 C CNN
+F 2 "" H 2900 6325 50  0001 C CNN
+F 3 "" H 2900 6325 50  0001 C CNN
+	1    2900 6325
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4625 7100 4450 7100
+	3075 6325 2900 6325
 Text Label 10875 4250 0    50   ~ 0
 WC
 Wire Notes Line
@@ -809,62 +787,16 @@ Wire Notes Line
 	4150 3825 2650 3825
 Wire Notes Line
 	2650 3825 2650 2475
-Text Notes 4325 6350 0    50   ~ 0
-EEPROM\n
-$Comp
-L 74xx:74HC595 U?
-U 1 1 5D4B08F4
-P 3525 6575
-F 0 "U?" H 2750 7550 50  0000 C CNN
-F 1 "74HC595" H 2875 7450 50  0000 C CNN
-F 2 "" H 3525 6575 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 3525 6575 50  0001 C CNN
-	1    3525 6575
-	1    0    0    -1  
-$EndComp
-Text Notes 6775 4425 0    50   ~ 0
+Text Notes 4475 2700 0    50   ~ 0
 Joe <--> Burt\n
-$Comp
-L power:GND #PWR?
-U 1 1 5D4CD56F
-P 3525 7275
-F 0 "#PWR?" H 3525 7025 50  0001 C CNN
-F 1 "GND" H 3530 7102 50  0000 C CNN
-F 2 "" H 3525 7275 50  0001 C CNN
-F 3 "" H 3525 7275 50  0001 C CNN
-	1    3525 7275
-	1    0    0    -1  
-$EndComp
 Text Label 10875 4350 0    50   ~ 0
 SER
-Text Label 3125 6175 2    50   ~ 0
-SER
-Text Label 3925 6175 0    50   ~ 0
-BL1
-Text Label 3925 6275 0    50   ~ 0
-BL2
-Text Label 3925 6375 0    50   ~ 0
-BL3
-Text Label 3925 6475 0    50   ~ 0
-BL4
-Text Label 3925 6575 0    50   ~ 0
-BL5
-Text Label 3925 6675 0    50   ~ 0
-BL6
-Text Label 3925 6775 0    50   ~ 0
-BL7
-Text Label 3925 6875 0    50   ~ 0
-BL8
-Text Label 3125 6775 2    50   ~ 0
-OE
 Text Label 10875 4450 0    50   ~ 0
 OE
 Text Label 10850 2050 0    50   ~ 0
 BP1
 Text Label 10850 2150 0    50   ~ 0
 BP2
-Text Label 3125 6475 2    50   ~ 0
-~SRCLR
 Wire Notes Line
 	2650 3875 4150 3875
 Wire Notes Line
@@ -873,16 +805,6 @@ Wire Notes Line
 	4150 5375 2650 5375
 Wire Notes Line
 	2650 3875 2650 5375
-Wire Notes Line
-	2650 5425 4150 5425
-Wire Notes Line
-	4150 5425 4150 7750
-Wire Notes Line
-	4150 7750 2650 7750
-Wire Notes Line
-	2650 7750 2650 5425
-Text Notes 2700 5550 0    50   ~ 0
-Shift Register (for launcher bw)
 $Comp
 L Joe-rescue:DF12-20DS-Custom U?
 U 1 1 5D782D20
@@ -934,11 +856,9 @@ Wire Notes Line
 	6200 2425 6200 500 
 Wire Notes Line
 	6200 500  4050 500 
-Text Label 6850 5200 2    50   ~ 0
-BWL
-Text Label 6850 5000 2    50   ~ 0
+Text Label 4550 3275 2    50   ~ 0
 BP1
-Text Label 6850 5100 2    50   ~ 0
+Text Label 4550 3375 2    50   ~ 0
 BP2
 $Comp
 L Connector:Micro_SD_Card J?
@@ -1000,45 +920,30 @@ Text Label 10875 2550 0    50   ~ 0
 ~CS
 Wire Wire Line
 	10650 2550 10875 2550
-Text Label 3125 6375 2    50   ~ 0
-SRCLK
-Text Label 3125 6675 2    50   ~ 0
-RCLK
 Wire Wire Line
-	4625 7000 4450 7000
+	3075 6225 2900 6225
 Wire Wire Line
-	4450 7000 4450 7100
-Connection ~ 4450 7100
+	2900 6225 2900 6325
+Connection ~ 2900 6325
 Wire Wire Line
-	4625 6900 4450 6900
+	3075 6125 2900 6125
 Wire Wire Line
-	4450 6900 4450 7000
-Connection ~ 4450 7000
+	2900 6125 2900 6225
+Connection ~ 2900 6225
 Wire Wire Line
-	4625 6800 4450 6800
+	3075 6025 2900 6025
 Wire Wire Line
-	4450 6800 4450 6900
-Connection ~ 4450 6900
+	2900 6025 2900 6125
+Connection ~ 2900 6125
 $Comp
 L power:+3V3 #PWR?
 U 1 1 5D3707C8
-P 5475 6800
-F 0 "#PWR?" H 5475 6650 50  0001 C CNN
-F 1 "+3V3" H 5490 6973 50  0000 C CNN
-F 2 "" H 5475 6800 50  0001 C CNN
-F 3 "" H 5475 6800 50  0001 C CNN
-	1    5475 6800
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3V3 #PWR?
-U 1 1 5D371FC8
-P 3525 5975
-F 0 "#PWR?" H 3525 5825 50  0001 C CNN
-F 1 "+3V3" H 3540 6148 50  0000 C CNN
-F 2 "" H 3525 5975 50  0001 C CNN
-F 3 "" H 3525 5975 50  0001 C CNN
-	1    3525 5975
+P 3925 6025
+F 0 "#PWR?" H 3925 5875 50  0001 C CNN
+F 1 "+3V3" H 3940 6198 50  0000 C CNN
+F 2 "" H 3925 6025 50  0001 C CNN
+F 3 "" H 3925 6025 50  0001 C CNN
+	1    3925 6025
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1247,4 +1152,50 @@ Text Label 10875 4050 0    50   ~ 0
 SRCLK
 Text Label 10875 3950 0    50   ~ 0
 ~SRCLR
+Text Notes 2775 5575 0    50   ~ 0
+EEPROM\n
+$Comp
+L Joe-rescue:UFDFPN8-MC-Custom U?
+U 1 1 5D2D63AB
+P 3375 6125
+F 0 "U?" H 3400 6490 50  0000 C CNN
+F 1 "UFDFPN8-MC" H 3400 6399 50  0000 C CNN
+F 2 "" H 3375 6125 50  0001 C CNN
+F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/8c/54/f2/63/4c/4a/CD00001012.pdf/files/CD00001012.pdf/jcr:content/translations/en.CD00001012.pdf" H 3375 6125 50  0001 C CNN
+	1    3375 6125
+	1    0    0    -1  
+$EndComp
+Text Label 4550 3075 2    50   ~ 0
+TX
+Text Label 4550 3175 2    50   ~ 0
+RX
+Text Label 4550 3475 2    50   ~ 0
+SER
+Text Label 4550 3575 2    50   ~ 0
+SRCLK
+Text Label 4550 3675 2    50   ~ 0
+RCLK
+$Comp
+L Timer_RTC:DS3231MZ U?
+U 1 1 5D2C648B
+P 1950 1650
+F 0 "U?" H 1950 1161 50  0000 C CNN
+F 1 "DS3231MZ" H 1950 1070 50  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 1950 1150 50  0001 C CNN
+F 3 "http://datasheets.maximintegrated.com/en/ds/DS3231M.pdf" H 1950 1050 50  0001 C CNN
+	1    1950 1650
+	1    0    0    -1  
+$EndComp
+Text Notes 5325 2875 0    39   ~ 0
+Temp Sensor Data Input
+Text Notes 5325 2975 0    39   ~ 0
+Img Sensor Data Input
+Text Notes 5325 3075 0    39   ~ 0
+TX Output for Img Processor
+Text Notes 5325 3175 0    39   ~ 0
+RX Output for Img Processor
+Text Notes 5325 3275 0    39   ~ 0
+Burn Wire Output 1 for Pyrolysis
+Text Notes 5325 3375 0    39   ~ 0
+Burn Wire Output 2 for Pyrolysis
 $EndSCHEMATC
