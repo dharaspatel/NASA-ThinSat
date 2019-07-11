@@ -802,9 +802,9 @@ Wire Notes Line
 	6200 2425 6200 500 
 Wire Notes Line
 	6200 500  4050 500 
-Text Label 4525 3350 2    50   ~ 0
+Text Label 4525 3800 2    50   ~ 0
 BP1
-Text Label 4525 3450 2    50   ~ 0
+Text Label 4525 3900 2    50   ~ 0
 BP2
 $Comp
 L Connector:Micro_SD_Card J4
@@ -1115,14 +1115,14 @@ F 4 "https://www.digikey.com/products/en/integrated-circuits-ics/memory/774?k=m2
 	1    0    0    -1  
 $EndComp
 Text Label 4525 3150 2    50   ~ 0
-TX
+CS
 Text Label 4525 3250 2    50   ~ 0
-RX
-Text Label 4525 3550 2    50   ~ 0
+MOSI
+Text Label 4525 4000 2    50   ~ 0
 SER
-Text Label 4525 3650 2    50   ~ 0
+Text Label 4525 4100 2    50   ~ 0
 SRCLK
-Text Label 4525 3750 2    50   ~ 0
+Text Label 4525 4200 2    50   ~ 0
 RCLK
 $Comp
 L Timer_RTC:DS3231MZ U5
@@ -1141,39 +1141,23 @@ Temp Sensor Data Input
 Text Notes 4950 3050 0    39   ~ 0
 Img Sensor Data Input
 Text Notes 4950 3150 0    39   ~ 0
-TX Output for Img Processor
+CS Output for Img Sensor
 Text Notes 4950 3250 0    39   ~ 0
-RX Output for Img Processor
-Text Notes 4950 3350 0    39   ~ 0
+MOSI Output for Img Sensor
+Text Notes 4950 3800 0    39   ~ 0
 Burn Wire Output 1 for Pyrolysis
-Text Notes 4950 3450 0    39   ~ 0
+Text Notes 4950 3900 0    39   ~ 0
 Burn Wire Output 2 for Pyrolysis
-Text Notes 4950 3550 0    39   ~ 0
-Serial Output for Shift Regs
-Text Notes 4950 3650 0    39   ~ 0
-Serial Clk Output for Shift Regs\n
-Text Notes 4950 3750 0    39   ~ 0
-Reg Clk Output for Shift Regs\n
+Text Notes 4950 4000 0    39   ~ 0
+Serial Output for Shift Reg
+Text Notes 4950 4200 0    39   ~ 0
+Reg Clk Output for Shift Reg
 Text Notes 4350 2775 0    39   ~ 0
 Input = Data from Burt to Joe\nOutput = Data from Joe to Burt
-$Comp
-L Connector:Screw_Terminal_01x09 J2
-U 1 1 5D2DF900
-P 4725 3350
-F 0 "J2" H 5300 4100 50  0000 L CNN
-F 1 "Screw_Terminal_01x09" H 4350 4100 50  0000 L CNN
-F 2 "" H 4725 3350 50  0001 C CNN
-F 3 "~" H 4725 3350 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/amphenol-anytek/VI0921550000G/609-3943-ND/2261377" H 4725 3350 50  0001 C CNN "Part URL"
-	1    4725 3350
-	1    0    0    -1  
-$EndComp
 Wire Notes Line
 	4200 2475 6200 2475
 Wire Notes Line
 	6200 2475 6200 3825
-Wire Notes Line
-	6200 3825 4200 3825
 Wire Notes Line
 	4200 3825 4200 2475
 Wire Notes Line
@@ -1285,4 +1269,30 @@ Wire Wire Line
 	1250 6950 1600 6950
 Wire Wire Line
 	1900 6950 2225 6950
+Text Label 4525 4300 2    50   ~ 0
+IN1
+Text Label 4525 4400 2    50   ~ 0
+IN2
+Text Notes 4950 4300 0    39   ~ 0
+Motor Driver for Launchers Output 1
+Text Notes 4950 4400 0    39   ~ 0
+Motor Driver for Launchers Output 2\n
+Text Notes 4950 4100 0    39   ~ 0
+Serial Clk Output for Shift Reg
+Text Label 4525 3350 2    50   ~ 0
+MISO
+Text Label 4525 3450 2    50   ~ 0
+SCLK
+Text Label 4525 3550 2    50   ~ 0
+SDA
+Text Label 4525 3650 2    50   ~ 0
+SCL
+Text Notes 4950 3350 0    39   ~ 0
+MISO Output for Img Sensor
+Text Notes 4950 3450 0    39   ~ 0
+SCLK Output for Img Sensor
+Text Notes 4950 3550 0    39   ~ 0
+SDA Output for Img Sensor
+Text Notes 4950 3650 0    39   ~ 0
+SCL Output for Img Sensor
 $EndSCHEMATC
