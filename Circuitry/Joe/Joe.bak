@@ -71,6 +71,7 @@ F 0 "U9" H 9675 6450 50  0000 C CNN
 F 1 "ATmega32U4-MU" H 9225 6450 50  0000 C CNN
 F 2 "Package_DFN_QFN:QFN-44-1EP_7x7mm_P0.5mm_EP5.2x5.2mm" H 10025 4150 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf" H 10025 4150 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/microchip-technology/ATMEGA32U4-MU/ATMEGA32U4-MU-ND/1914603" H 10025 4150 50  0001 C CNN "Part URL"
 	1    10025 4150
 	1    0    0    -1  
 $EndComp
@@ -194,7 +195,7 @@ F 0 "D1" H 3468 4541 50  0000 C CNN
 F 1 "LED" H 3468 4450 50  0000 C CNN
 F 2 "" H 3475 4325 50  0001 C CNN
 F 3 "~" H 3475 4325 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191KGKT/160-1446-2-ND/386835" H 3475 4325 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191KFKT/160-1445-1-ND/386832" H 3475 4325 50  0001 C CNN "Part URL"
 	1    3475 4325
 	1    0    0    -1  
 $EndComp
@@ -218,7 +219,7 @@ F 0 "D2" H 3468 4866 50  0000 C CNN
 F 1 "LED" H 3468 4775 50  0000 C CNN
 F 2 "" H 3475 4650 50  0001 C CNN
 F 3 "~" H 3475 4650 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191KGKT/160-1446-2-ND/386835" H 3475 4650 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191KRKT/160-1447-1-ND/386836" H 3475 4650 50  0001 C CNN "Part URL"
 	1    3475 4650
 	1    0    0    -1  
 $EndComp
@@ -242,7 +243,7 @@ F 0 "D3" H 3468 5191 50  0000 C CNN
 F 1 "LED" H 3468 5100 50  0000 C CNN
 F 2 "" H 3475 4975 50  0001 C CNN
 F 3 "~" H 3475 4975 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191KGKT/160-1446-2-ND/386835" H 3475 4975 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191TBKT/160-1647-1-ND/573587" H 3475 4975 50  0001 C CNN "Part URL"
 	1    3475 4975
 	1    0    0    -1  
 $EndComp
@@ -757,6 +758,7 @@ F 0 "U7" H 5050 2200 50  0000 C CNN
 F 1 "DF12-20DS" H 5050 2109 50  0000 C CNN
 F 2 "" H 5050 2125 50  0001 C CNN
 F 3 "" H 5050 2125 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/hirose-electric-co-ltd/DF12-20DS-0.5V-86/H5214CT-ND/948727" H 5050 1525 50  0001 C CNN "Part URL"
 	1    5050 1525
 	1    0    0    -1  
 $EndComp
@@ -1023,6 +1025,7 @@ F 0 "U8" H 9525 1300 50  0000 C CNN
 F 1 "AP2127N-3.3" H 9150 1300 50  0000 C CNN
 F 2 "Package_TO_SOT_SMD:SOT-23" H 10025 1375 50  0001 C CIN
 F 3 "https://www.diodes.com/assets/Datasheets/AP2127.pdf" H 10025 1150 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/diodes-incorporated/AP2127N-3.3TRG1/AP2127N-3.3TRG1DICT-ND/8545775" H 10025 1150 50  0001 C CNN "Part URL"
 	1    10025 1150
 	1    0    0    -1  
 $EndComp
@@ -1107,6 +1110,7 @@ F 0 "U6" H 3400 6490 50  0000 C CNN
 F 1 "UFDFPN8-MC" H 3400 6399 50  0000 C CNN
 F 2 "" H 3375 6125 50  0001 C CNN
 F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/8c/54/f2/63/4c/4a/CD00001012.pdf/files/CD00001012.pdf/jcr:content/translations/en.CD00001012.pdf" H 3375 6125 50  0001 C CNN
+F 4 "https://www.digikey.com/products/en/integrated-circuits-ics/memory/774?k=m24c32&k=8ufdfpn&k=&pkeyword=m24c32&sv=0&pv7=2&pv1989=0&pv276=384&sf=0&FV=ffe00306&quantity=&ColumnSort=0&page=1&pageSize=25" H 3375 6125 50  0001 C CNN "Part URL"
 	1    3375 6125
 	1    0    0    -1  
 $EndComp
@@ -1128,6 +1132,7 @@ F 0 "U5" H 675 2475 50  0000 C CNN
 F 1 "DS3231MZ" H 825 2575 50  0000 C CNN
 F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 1950 1150 50  0001 C CNN
 F 3 "http://datasheets.maximintegrated.com/en/ds/DS3231M.pdf" H 1950 1050 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/maxim-integrated/DS3231MZ/DS3231MZ-ND/2754396" H 1950 1650 50  0001 C CNN "Part URL"
 	1    1950 1650
 	1    0    0    -1  
 $EndComp
@@ -1217,46 +1222,50 @@ Wire Notes Line
 Wire Notes Line
 	8775 500  8775 6450
 $Comp
-L Device:R_PHOTO R?
+L Device:R_PHOTO R12
 U 1 1 5D3F3BA1
 P 1650 3525
-F 0 "R?" V 1325 3525 50  0000 C CNN
+F 0 "R12" V 1325 3525 50  0000 C CNN
 F 1 "R_PHOTO" V 1416 3525 50  0000 C CNN
 F 2 "" V 1700 3275 50  0001 L CNN
 F 3 "~" H 1650 3475 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028" H 1650 3525 50  0001 C CNN "Part URL"
 	1    1650 3525
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_PHOTO R?
+L Device:R_PHOTO R13
 U 1 1 5D40B08B
 P 1700 4650
-F 0 "R?" V 1375 4650 50  0000 C CNN
+F 0 "R13" V 1375 4650 50  0000 C CNN
 F 1 "R_PHOTO" V 1466 4650 50  0000 C CNN
 F 2 "" V 1750 4400 50  0001 L CNN
 F 3 "~" H 1700 4600 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028" H 1700 4650 50  0001 C CNN "Part URL"
 	1    1700 4650
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_PHOTO R?
+L Device:R_PHOTO R14
 U 1 1 5D40BCB5
 P 1725 5800
-F 0 "R?" V 1400 5800 50  0000 C CNN
+F 0 "R14" V 1400 5800 50  0000 C CNN
 F 1 "R_PHOTO" V 1491 5800 50  0000 C CNN
 F 2 "" V 1775 5550 50  0001 L CNN
 F 3 "~" H 1725 5750 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028" H 1725 5800 50  0001 C CNN "Part URL"
 	1    1725 5800
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_PHOTO R?
+L Device:R_PHOTO R15
 U 1 1 5D40F4BF
 P 1750 6950
-F 0 "R?" V 1425 6950 50  0000 C CNN
+F 0 "R15" V 1425 6950 50  0000 C CNN
 F 1 "R_PHOTO" V 1516 6950 50  0000 C CNN
 F 2 "" V 1800 6700 50  0001 L CNN
 F 3 "~" H 1750 6900 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028" H 1750 6950 50  0001 C CNN "Part URL"
 	1    1750 6950
 	0    1    1    0   
 $EndComp

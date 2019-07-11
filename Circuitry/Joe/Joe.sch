@@ -207,7 +207,7 @@ F 0 "R9" V 2968 4325 50  0000 C CNN
 F 1 "440R" V 3059 4325 50  0000 C CNN
 F 2 "" V 3105 4325 50  0001 C CNN
 F 3 "~" H 3175 4325 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/vishay-foil-resistors-division-of-vishay-precision-group/Y1625440R000Q24W/Y1625440R000Q24W-ND/6029380" H 3175 4325 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-07442RL/311-442HRCT-ND/730189" H 3175 4325 50  0001 C CNN "Part URL"
 	1    3175 4325
 	0    1    1    0   
 $EndComp
@@ -231,7 +231,7 @@ F 0 "R10" V 2968 4650 50  0000 C CNN
 F 1 "440R" V 3059 4650 50  0000 C CNN
 F 2 "" V 3105 4650 50  0001 C CNN
 F 3 "~" H 3175 4650 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/vishay-foil-resistors-division-of-vishay-precision-group/Y1625440R000Q24W/Y1625440R000Q24W-ND/6029380" H 3175 4650 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-07442RL/311-442HRCT-ND/730189" H 3175 4650 50  0001 C CNN "Part URL"
 	1    3175 4650
 	0    1    1    0   
 $EndComp
@@ -255,7 +255,7 @@ F 0 "R11" V 2968 4975 50  0000 C CNN
 F 1 "440R" V 3059 4975 50  0000 C CNN
 F 2 "" V 3105 4975 50  0001 C CNN
 F 3 "~" H 3175 4975 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/vishay-foil-resistors-division-of-vishay-precision-group/Y1625440R000Q24W/Y1625440R000Q24W-ND/6029380" H 3175 4975 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-07442RL/311-442HRCT-ND/730189" H 3175 4975 50  0001 C CNN "Part URL"
 	1    3175 4975
 	0    1    1    0   
 $EndComp
@@ -326,7 +326,7 @@ F 0 "R6" H 1220 1446 50  0000 L CNN
 F 1 "10k" H 1220 1355 50  0000 L CNN
 F 2 "" V 1080 1400 50  0001 C CNN
 F 3 "~" H 1150 1400 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CRGCQ2010F10K/A129944CT-ND/8577776" H 1150 1400 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 1150 1400 50  0001 C CNN "Part URL"
 	1    1150 1400
 	1    0    0    -1  
 $EndComp
@@ -341,7 +341,7 @@ F 0 "R2" H 825 1375 50  0000 L CNN
 F 1 "10k" H 825 1300 50  0000 L CNN
 F 2 "" V 930 1300 50  0001 C CNN
 F 3 "~" H 1000 1300 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CRGCQ2010F10K/A129944CT-ND/8577776" H 1000 1300 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 1000 1300 50  0001 C CNN "Part URL"
 	1    1000 1300
 	1    0    0    -1  
 $EndComp
@@ -379,7 +379,7 @@ F 0 "R7" H 2820 1496 50  0000 L CNN
 F 1 "10k" H 2820 1405 50  0000 L CNN
 F 2 "" V 2680 1450 50  0001 C CNN
 F 3 "~" H 2750 1450 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CRGCQ2010F10K/A129944CT-ND/8577776" H 2750 1450 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 2750 1450 50  0001 C CNN "Part URL"
 	1    2750 1450
 	1    0    0    -1  
 $EndComp
@@ -391,7 +391,7 @@ F 0 "R8" H 3045 1346 50  0000 L CNN
 F 1 "10k" H 3045 1255 50  0000 L CNN
 F 2 "" V 2905 1300 50  0001 C CNN
 F 3 "~" H 2975 1300 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CRGCQ2010F10K/A129944CT-ND/8577776" H 2975 1300 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 2975 1300 50  0001 C CNN "Part URL"
 	1    2975 1300
 	1    0    0    -1  
 $EndComp
@@ -442,7 +442,7 @@ F 0 "R1" H 1045 3721 50  0000 L CNN
 F 1 "1k" H 1045 3630 50  0000 L CNN
 F 2 "" V 905 3675 50  0001 C CNN
 F 3 "~" H 975 3675 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-6GEYJ102V/P1.0KACT-ND/42833" H 975 3675 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603DRD071KL/311-1.0KDCT-ND/1035738" H 975 3675 50  0001 C CNN "Part URL"
 	1    975  3675
 	1    0    0    -1  
 $EndComp
@@ -474,7 +474,7 @@ F 0 "R3" H 1070 4846 50  0000 L CNN
 F 1 "1k" H 1070 4755 50  0000 L CNN
 F 2 "" V 930 4800 50  0001 C CNN
 F 3 "~" H 1000 4800 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-6GEYJ102V/P1.0KACT-ND/42833" H 1000 4800 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603DRD071KL/311-1.0KDCT-ND/1035738" H 1000 4800 50  0001 C CNN "Part URL"
 	1    1000 4800
 	1    0    0    -1  
 $EndComp
@@ -506,7 +506,7 @@ F 0 "R4" H 1095 5996 50  0000 L CNN
 F 1 "1k" H 1095 5905 50  0000 L CNN
 F 2 "" V 955 5950 50  0001 C CNN
 F 3 "~" H 1025 5950 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-6GEYJ102V/P1.0KACT-ND/42833" H 1025 5950 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603DRD071KL/311-1.0KDCT-ND/1035738" H 1025 5950 50  0001 C CNN "Part URL"
 	1    1025 5950
 	1    0    0    -1  
 $EndComp
@@ -538,7 +538,7 @@ F 0 "R5" H 1120 7146 50  0000 L CNN
 F 1 "1k" H 1120 7055 50  0000 L CNN
 F 2 "" V 980 7100 50  0001 C CNN
 F 3 "~" H 1050 7100 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-6GEYJ102V/P1.0KACT-ND/42833" H 1050 7100 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603DRD071KL/311-1.0KDCT-ND/1035738" H 1050 7100 50  0001 C CNN "Part URL"
 	1    1050 7100
 	1    0    0    -1  
 $EndComp
