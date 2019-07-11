@@ -89,7 +89,7 @@ F 0 "J1" H 2800 3725 50  0000 C CNN
 F 1 "Conn_02x03_Counter_Clockwise" H 3350 3825 50  0000 C CNN
 F 2 "" H 3350 3250 50  0001 C CNN
 F 3 "~" H 3350 3250 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/sullins-connector-solutions/GRPB032VWVN-RC/S9015E-03-ND/1786453" H 3350 3250 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/amphenol-icc-fci/67996-206HLF/609-3210-ND/1878485" H 3350 3250 50  0001 C CNN "Part URL"
 	1    3350 3250
 	1    0    0    -1  
 $EndComp
@@ -207,7 +207,7 @@ F 0 "R9" V 2968 4325 50  0000 C CNN
 F 1 "440R" V 3059 4325 50  0000 C CNN
 F 2 "" V 3105 4325 50  0001 C CNN
 F 3 "~" H 3175 4325 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/vishay-foil-resistors-division-of-vishay-precision-group/Y1625440R000Q24W/Y1625440R000Q24W-ND/6029380" H 3175 4325 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-07442RL/311-442HRCT-ND/730189" H 3175 4325 50  0001 C CNN "Part URL"
 	1    3175 4325
 	0    1    1    0   
 $EndComp
@@ -231,7 +231,7 @@ F 0 "R10" V 2968 4650 50  0000 C CNN
 F 1 "440R" V 3059 4650 50  0000 C CNN
 F 2 "" V 3105 4650 50  0001 C CNN
 F 3 "~" H 3175 4650 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/vishay-foil-resistors-division-of-vishay-precision-group/Y1625440R000Q24W/Y1625440R000Q24W-ND/6029380" H 3175 4650 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-07442RL/311-442HRCT-ND/730189" H 3175 4650 50  0001 C CNN "Part URL"
 	1    3175 4650
 	0    1    1    0   
 $EndComp
@@ -255,7 +255,7 @@ F 0 "R11" V 2968 4975 50  0000 C CNN
 F 1 "440R" V 3059 4975 50  0000 C CNN
 F 2 "" V 3105 4975 50  0001 C CNN
 F 3 "~" H 3175 4975 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/vishay-foil-resistors-division-of-vishay-precision-group/Y1625440R000Q24W/Y1625440R000Q24W-ND/6029380" H 3175 4975 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-07442RL/311-442HRCT-ND/730189" H 3175 4975 50  0001 C CNN "Part URL"
 	1    3175 4975
 	0    1    1    0   
 $EndComp
@@ -326,7 +326,7 @@ F 0 "R6" H 1220 1446 50  0000 L CNN
 F 1 "10k" H 1220 1355 50  0000 L CNN
 F 2 "" V 1080 1400 50  0001 C CNN
 F 3 "~" H 1150 1400 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CRGCQ2010F10K/A129944CT-ND/8577776" H 1150 1400 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 1150 1400 50  0001 C CNN "Part URL"
 	1    1150 1400
 	1    0    0    -1  
 $EndComp
@@ -341,7 +341,7 @@ F 0 "R2" H 825 1375 50  0000 L CNN
 F 1 "10k" H 825 1300 50  0000 L CNN
 F 2 "" V 930 1300 50  0001 C CNN
 F 3 "~" H 1000 1300 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CRGCQ2010F10K/A129944CT-ND/8577776" H 1000 1300 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 1000 1300 50  0001 C CNN "Part URL"
 	1    1000 1300
 	1    0    0    -1  
 $EndComp
@@ -356,7 +356,7 @@ F 0 "C1" H 2263 1046 50  0000 L CNN
 F 1 "0.1uF" H 2263 955 50  0000 L CNN
 F 2 "" H 2175 1000 50  0001 C CNN
 F 3 "~" H 2175 1000 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/knowles-syfer/0603Y0250104KET/1608-1305-6-ND/7383324" H 2175 1000 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/CC0603KRX7R8BB104/311-1341-1-ND/2103125" H 2175 1000 50  0001 C CNN "Part URL"
 	1    2175 1000
 	1    0    0    -1  
 $EndComp
@@ -379,7 +379,7 @@ F 0 "R7" H 2820 1496 50  0000 L CNN
 F 1 "10k" H 2820 1405 50  0000 L CNN
 F 2 "" V 2680 1450 50  0001 C CNN
 F 3 "~" H 2750 1450 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CRGCQ2010F10K/A129944CT-ND/8577776" H 2750 1450 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 2750 1450 50  0001 C CNN "Part URL"
 	1    2750 1450
 	1    0    0    -1  
 $EndComp
@@ -391,7 +391,7 @@ F 0 "R8" H 3045 1346 50  0000 L CNN
 F 1 "10k" H 3045 1255 50  0000 L CNN
 F 2 "" V 2905 1300 50  0001 C CNN
 F 3 "~" H 2975 1300 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/te-connectivity-passive-product/CRGCQ2010F10K/A129944CT-ND/8577776" H 2975 1300 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 2975 1300 50  0001 C CNN "Part URL"
 	1    2975 1300
 	1    0    0    -1  
 $EndComp
@@ -406,7 +406,7 @@ F 0 "C2" H 3592 921 50  0000 L CNN
 F 1 "0.1uF" H 3592 830 50  0000 L CNN
 F 2 "" H 3500 875 50  0001 C CNN
 F 3 "~" H 3500 875 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/knowles-syfer/0603Y0250104KET/1608-1305-6-ND/7383324" H 3500 875 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/CC0603KRX7R8BB104/311-1341-1-ND/2103125" H 3500 875 50  0001 C CNN "Part URL"
 	1    3500 875 
 	1    0    0    -1  
 $EndComp
@@ -442,7 +442,7 @@ F 0 "R1" H 1045 3721 50  0000 L CNN
 F 1 "1k" H 1045 3630 50  0000 L CNN
 F 2 "" V 905 3675 50  0001 C CNN
 F 3 "~" H 975 3675 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-6GEYJ102V/P1.0KACT-ND/42833" H 975 3675 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603DRD071KL/311-1.0KDCT-ND/1035738" H 975 3675 50  0001 C CNN "Part URL"
 	1    975  3675
 	1    0    0    -1  
 $EndComp
@@ -474,7 +474,7 @@ F 0 "R3" H 1070 4846 50  0000 L CNN
 F 1 "1k" H 1070 4755 50  0000 L CNN
 F 2 "" V 930 4800 50  0001 C CNN
 F 3 "~" H 1000 4800 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-6GEYJ102V/P1.0KACT-ND/42833" H 1000 4800 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603DRD071KL/311-1.0KDCT-ND/1035738" H 1000 4800 50  0001 C CNN "Part URL"
 	1    1000 4800
 	1    0    0    -1  
 $EndComp
@@ -506,7 +506,7 @@ F 0 "R4" H 1095 5996 50  0000 L CNN
 F 1 "1k" H 1095 5905 50  0000 L CNN
 F 2 "" V 955 5950 50  0001 C CNN
 F 3 "~" H 1025 5950 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-6GEYJ102V/P1.0KACT-ND/42833" H 1025 5950 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603DRD071KL/311-1.0KDCT-ND/1035738" H 1025 5950 50  0001 C CNN "Part URL"
 	1    1025 5950
 	1    0    0    -1  
 $EndComp
@@ -538,7 +538,7 @@ F 0 "R5" H 1120 7146 50  0000 L CNN
 F 1 "1k" H 1120 7055 50  0000 L CNN
 F 2 "" V 980 7100 50  0001 C CNN
 F 3 "~" H 1050 7100 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/panasonic-electronic-components/ERJ-6GEYJ102V/P1.0KACT-ND/42833" H 1050 7100 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603DRD071KL/311-1.0KDCT-ND/1035738" H 1050 7100 50  0001 C CNN "Part URL"
 	1    1050 7100
 	1    0    0    -1  
 $EndComp
@@ -592,7 +592,7 @@ Text Label 10850 4450 0    50   ~ 0
 PHO3
 Text Label 10850 4250 0    50   ~ 0
 PHO4
-Text Label 4525 2950 2    50   ~ 0
+Text Label 4525 2850 2    50   ~ 0
 TEMP
 Wire Wire Line
 	9425 2650 9225 2650
@@ -635,7 +635,7 @@ F 0 "C3" H 9065 3446 50  0000 L CNN
 F 1 "1uF" H 9065 3355 50  0000 L CNN
 F 2 "" H 8988 3250 50  0001 C CNN
 F 3 "~" H 8950 3400 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/murata-electronics-north-america/GCM188R71C105KA64D/490-5241-1-ND/1979252" H 8950 3400 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/CC0603KRX5R8BB105/311-1445-1-ND/2833751" H 8950 3400 50  0001 C CNN "Part URL"
 	1    8950 3400
 	1    0    0    -1  
 $EndComp
@@ -660,7 +660,7 @@ F 0 "C4" H 9065 4146 50  0000 L CNN
 F 1 "1uF" H 9065 4055 50  0000 L CNN
 F 2 "" H 8988 3950 50  0001 C CNN
 F 3 "~" H 8950 4100 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/murata-electronics-north-america/GCM188R71C105KA64D/490-5241-1-ND/1979252" H 8950 4100 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/yageo/CC0603KRX5R8BB105/311-1445-1-ND/2833751" H 8950 4100 50  0001 C CNN "Part URL"
 	1    8950 4100
 	1    0    0    -1  
 $EndComp
@@ -703,7 +703,7 @@ Text Label 10825 3550 0    50   ~ 0
 STBY
 Wire Wire Line
 	10625 3550 10825 3550
-Text Label 4525 3050 2    50   ~ 0
+Text Label 4525 2950 2    50   ~ 0
 CVBS
 Wire Wire Line
 	3725 6025 3925 6025
@@ -802,9 +802,9 @@ Wire Notes Line
 	6200 2425 6200 500 
 Wire Notes Line
 	6200 500  4050 500 
-Text Label 4525 3350 2    50   ~ 0
+Text Label 4525 3250 2    50   ~ 0
 BP1
-Text Label 4525 3450 2    50   ~ 0
+Text Label 4525 3350 2    50   ~ 0
 BP2
 $Comp
 L Connector:Micro_SD_Card J4
@@ -1114,15 +1114,15 @@ F 4 "https://www.digikey.com/products/en/integrated-circuits-ics/memory/774?k=m2
 	1    3375 6125
 	1    0    0    -1  
 $EndComp
-Text Label 4525 3150 2    50   ~ 0
+Text Label 4525 3050 2    50   ~ 0
 TX
-Text Label 4525 3250 2    50   ~ 0
+Text Label 4525 3150 2    50   ~ 0
 RX
-Text Label 4525 3550 2    50   ~ 0
+Text Label 4525 3450 2    50   ~ 0
 SER
-Text Label 4525 3650 2    50   ~ 0
+Text Label 4525 3550 2    50   ~ 0
 SRCLK
-Text Label 4525 3750 2    50   ~ 0
+Text Label 4525 3650 2    50   ~ 0
 RCLK
 $Comp
 L Timer_RTC:DS3231MZ U5
@@ -1156,26 +1156,14 @@ Text Notes 4950 3750 0    39   ~ 0
 Reg Clk Output for Shift Regs\n
 Text Notes 4350 2775 0    39   ~ 0
 Input = Data from Burt to Joe\nOutput = Data from Joe to Burt
-$Comp
-L Connector:Screw_Terminal_01x09 J2
-U 1 1 5D2DF900
-P 4725 3350
-F 0 "J2" H 5300 4100 50  0000 L CNN
-F 1 "Screw_Terminal_01x09" H 4350 4100 50  0000 L CNN
-F 2 "" H 4725 3350 50  0001 C CNN
-F 3 "~" H 4725 3350 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/amphenol-anytek/VI0921550000G/609-3943-ND/2261377" H 4725 3350 50  0001 C CNN "Part URL"
-	1    4725 3350
-	1    0    0    -1  
-$EndComp
 Wire Notes Line
 	4200 2475 6200 2475
 Wire Notes Line
-	6200 2475 6200 3825
+	6200 2475 6200 3875
 Wire Notes Line
-	6200 3825 4200 3825
+	6200 3875 4200 3875
 Wire Notes Line
-	4200 3825 4200 2475
+	4200 3875 4200 2475
 Wire Notes Line
 	2650 5425 4150 5425
 Wire Notes Line
@@ -1285,4 +1273,16 @@ Wire Wire Line
 	1250 6950 1600 6950
 Wire Wire Line
 	1900 6950 2225 6950
+$Comp
+L Connector_Generic:Conn_01x10 J?
+U 1 1 5D462310
+P 4725 3250
+F 0 "J?" H 4805 3242 50  0000 L CNN
+F 1 "Conn_01x10" V 4805 3151 50  0000 L CNN
+F 2 "" H 4725 3250 50  0001 C CNN
+F 3 "~" H 4725 3250 50  0001 C CNN
+	1    4725 3250
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4525 3750
 $EndSCHEMATC
