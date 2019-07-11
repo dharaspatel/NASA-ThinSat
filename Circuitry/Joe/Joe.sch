@@ -14,7 +14,7 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Notes 725  645  0    50   ~ 0
+Text Notes 625  650  0    50   ~ 0
 Real Time Clock
 Wire Wire Line
 	1150 1250 1150 1150
@@ -33,7 +33,7 @@ Wire Wire Line
 	1950 1250 1950 900 
 Wire Wire Line
 	1950 900  2175 900 
-Text Notes 9475 625  0    50   ~ 0
+Text Notes 8900 1775 0    50   ~ 0
 Microcontroller
 Text Notes 4125 650  0    50   ~ 0
 NSL Connector
@@ -66,17 +66,16 @@ Wire Wire Line
 $Comp
 L MCU_Microchip_ATmega:ATmega32U4-MU U?
 U 1 1 5D1491C0
-P 10050 3050
-F 0 "U?" H 10200 5425 50  0000 C CNN
-F 1 "ATmega32U4-MU" H 9800 5425 50  0000 C CNN
-F 2 "Package_DFN_QFN:QFN-44-1EP_7x7mm_P0.5mm_EP5.2x5.2mm" H 10050 3050 50  0001 C CIN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf" H 10050 3050 50  0001 C CNN
-	1    10050 3050
+P 10025 4150
+F 0 "U?" H 9675 6450 50  0000 C CNN
+F 1 "ATmega32U4-MU" H 9225 6450 50  0000 C CNN
+F 2 "Package_DFN_QFN:QFN-44-1EP_7x7mm_P0.5mm_EP5.2x5.2mm" H 10025 4150 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf" H 10025 4150 50  0001 C CNN
+	1    10025 4150
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10150 1250 10050 1250
-Connection ~ 10050 1250
+	10125 2350 10025 2350
 Text Label 4450 1475 2    50   ~ 0
 TX
 Text Label 5650 1475 0    50   ~ 0
@@ -92,21 +91,21 @@ F 3 "~" H 3350 3250 50  0001 C CNN
 	1    3350 3250
 	1    0    0    -1  
 $EndComp
-Text Label 10850 1750 0    50   ~ 0
+Text Label 10825 2850 0    50   ~ 0
 MOSI
-Text Label 10850 1850 0    50   ~ 0
+Text Label 10825 2950 0    50   ~ 0
 MISO
-Text Label 10850 1650 0    50   ~ 0
+Text Label 10825 2750 0    50   ~ 0
 SCK
 $Comp
 L power:GND #PWR?
 U 1 1 5D207379
-P 10050 5100
-F 0 "#PWR?" H 10050 4850 50  0001 C CNN
-F 1 "GND" H 10055 4927 50  0000 C CNN
-F 2 "" H 10050 5100 50  0001 C CNN
-F 3 "" H 10050 5100 50  0001 C CNN
-	1    10050 5100
+P 10025 6200
+F 0 "#PWR?" H 10025 5950 50  0001 C CNN
+F 1 "GND" H 10030 6027 50  0000 C CNN
+F 2 "" H 10025 6200 50  0001 C CNN
+F 3 "" H 10025 6200 50  0001 C CNN
+	1    10025 6200
 	1    0    0    -1  
 $EndComp
 Text Label 2950 3150 2    50   ~ 0
@@ -132,7 +131,7 @@ F 3 "" H 3850 3450 50  0001 C CNN
 $EndComp
 Text Notes 2750 2625 0    50   ~ 0
 Programming Header
-Text Label 10875 2850 0    50   ~ 0
+Text Label 10850 3950 0    50   ~ 0
 SDA
 Text Label 725  1450 2    50   ~ 0
 SCL
@@ -140,31 +139,29 @@ Text Label 725  1550 2    50   ~ 0
 SDA
 Text Label 3250 1450 0    50   ~ 0
 CRYSTAL
-Text Label 9250 1750 2    50   ~ 0
+Text Label 9225 2850 2    50   ~ 0
 CRYSTAL
 Text Label 3250 1750 0    50   ~ 0
 SQW
-Text Label 10875 3750 0    50   ~ 0
+Text Label 10850 4850 0    50   ~ 0
 SQW
 Wire Wire Line
-	10650 1650 10850 1650
+	10625 2750 10825 2750
 Wire Wire Line
-	10650 1750 10850 1750
+	10625 2850 10825 2850
 Wire Wire Line
-	10650 1850 10850 1850
+	10625 2950 10825 2950
 Wire Wire Line
-	10650 2850 10875 2850
+	10625 3950 10850 3950
 Wire Wire Line
-	10650 3750 10875 3750
+	10625 4850 10850 4850
 Wire Wire Line
-	9250 1750 9450 1750
+	9225 2850 9425 2850
 Wire Wire Line
-	10050 1025 10050 1250
+	10025 2125 10025 2350
 Wire Wire Line
-	10050 4850 10050 5100
-NoConn ~ 9450 1950
-Wire Notes Line
-	11175 500  11175 5525
+	10025 5950 10025 6200
+NoConn ~ 9425 3050
 Text Label 900  1850 2    50   ~ 0
 TMR_RST
 Wire Wire Line
@@ -182,117 +179,117 @@ Wire Wire Line
 Wire Wire Line
 	3150 3350 2950 3350
 Wire Wire Line
-	10650 3450 10875 3450
+	10625 4550 10850 4550
 Connection ~ 1150 1150
-Text Label 10850 1950 0    50   ~ 0
+Text Label 10825 3050 0    50   ~ 0
 PHO1
 Wire Wire Line
-	10650 1950 10850 1950
+	10625 3050 10825 3050
 $Comp
 L Device:LED D?
 U 1 1 5D18A19A
-P 3600 4325
-F 0 "D?" H 3593 4541 50  0000 C CNN
-F 1 "LED" H 3593 4450 50  0000 C CNN
-F 2 "" H 3600 4325 50  0001 C CNN
-F 3 "~" H 3600 4325 50  0001 C CNN
-	1    3600 4325
+P 3475 4325
+F 0 "D?" H 3468 4541 50  0000 C CNN
+F 1 "LED" H 3468 4450 50  0000 C CNN
+F 2 "" H 3475 4325 50  0001 C CNN
+F 3 "~" H 3475 4325 50  0001 C CNN
+	1    3475 4325
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5D18F2FE
-P 3300 4325
-F 0 "R?" V 3093 4325 50  0000 C CNN
-F 1 "R" V 3184 4325 50  0000 C CNN
-F 2 "" V 3230 4325 50  0001 C CNN
-F 3 "~" H 3300 4325 50  0001 C CNN
-	1    3300 4325
+P 3175 4325
+F 0 "R?" V 2968 4325 50  0000 C CNN
+F 1 "R" V 3059 4325 50  0000 C CNN
+F 2 "" V 3105 4325 50  0001 C CNN
+F 3 "~" H 3175 4325 50  0001 C CNN
+	1    3175 4325
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:LED D?
 U 1 1 5D19383C
-P 3600 4650
-F 0 "D?" H 3593 4866 50  0000 C CNN
-F 1 "LED" H 3593 4775 50  0000 C CNN
-F 2 "" H 3600 4650 50  0001 C CNN
-F 3 "~" H 3600 4650 50  0001 C CNN
-	1    3600 4650
+P 3475 4650
+F 0 "D?" H 3468 4866 50  0000 C CNN
+F 1 "LED" H 3468 4775 50  0000 C CNN
+F 2 "" H 3475 4650 50  0001 C CNN
+F 3 "~" H 3475 4650 50  0001 C CNN
+	1    3475 4650
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5D193842
-P 3300 4650
-F 0 "R?" V 3093 4650 50  0000 C CNN
-F 1 "R" V 3184 4650 50  0000 C CNN
-F 2 "" V 3230 4650 50  0001 C CNN
-F 3 "~" H 3300 4650 50  0001 C CNN
-	1    3300 4650
+P 3175 4650
+F 0 "R?" V 2968 4650 50  0000 C CNN
+F 1 "R" V 3059 4650 50  0000 C CNN
+F 2 "" V 3105 4650 50  0001 C CNN
+F 3 "~" H 3175 4650 50  0001 C CNN
+	1    3175 4650
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:LED D?
 U 1 1 5D195D15
-P 3600 4975
-F 0 "D?" H 3593 5191 50  0000 C CNN
-F 1 "LED" H 3593 5100 50  0000 C CNN
-F 2 "" H 3600 4975 50  0001 C CNN
-F 3 "~" H 3600 4975 50  0001 C CNN
-	1    3600 4975
+P 3475 4975
+F 0 "D?" H 3468 5191 50  0000 C CNN
+F 1 "LED" H 3468 5100 50  0000 C CNN
+F 2 "" H 3475 4975 50  0001 C CNN
+F 3 "~" H 3475 4975 50  0001 C CNN
+	1    3475 4975
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5D195D1B
-P 3300 4975
-F 0 "R?" V 3093 4975 50  0000 C CNN
-F 1 "R" V 3184 4975 50  0000 C CNN
-F 2 "" V 3230 4975 50  0001 C CNN
-F 3 "~" H 3300 4975 50  0001 C CNN
-	1    3300 4975
+P 3175 4975
+F 0 "R?" V 2968 4975 50  0000 C CNN
+F 1 "R" V 3059 4975 50  0000 C CNN
+F 2 "" V 3105 4975 50  0001 C CNN
+F 3 "~" H 3175 4975 50  0001 C CNN
+	1    3175 4975
 	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5D19812D
-P 2950 4325
-F 0 "#PWR?" H 2950 4075 50  0001 C CNN
-F 1 "GND" H 2955 4152 50  0000 C CNN
-F 2 "" H 2950 4325 50  0001 C CNN
-F 3 "" H 2950 4325 50  0001 C CNN
-	1    2950 4325
+P 2825 4325
+F 0 "#PWR?" H 2825 4075 50  0001 C CNN
+F 1 "GND" H 2830 4152 50  0000 C CNN
+F 2 "" H 2825 4325 50  0001 C CNN
+F 3 "" H 2825 4325 50  0001 C CNN
+	1    2825 4325
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2950 4325 3150 4325
+	2825 4325 3025 4325
 $Comp
 L power:GND #PWR?
 U 1 1 5D19BB8C
-P 2950 4650
-F 0 "#PWR?" H 2950 4400 50  0001 C CNN
-F 1 "GND" H 2955 4477 50  0000 C CNN
-F 2 "" H 2950 4650 50  0001 C CNN
-F 3 "" H 2950 4650 50  0001 C CNN
-	1    2950 4650
+P 2825 4650
+F 0 "#PWR?" H 2825 4400 50  0001 C CNN
+F 1 "GND" H 2830 4477 50  0000 C CNN
+F 2 "" H 2825 4650 50  0001 C CNN
+F 3 "" H 2825 4650 50  0001 C CNN
+	1    2825 4650
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2950 4650 3150 4650
+	2825 4650 3025 4650
 $Comp
 L power:GND #PWR?
 U 1 1 5D19E020
-P 2950 4975
-F 0 "#PWR?" H 2950 4725 50  0001 C CNN
-F 1 "GND" H 2955 4802 50  0000 C CNN
-F 2 "" H 2950 4975 50  0001 C CNN
-F 3 "" H 2950 4975 50  0001 C CNN
-	1    2950 4975
+P 2825 4975
+F 0 "#PWR?" H 2825 4725 50  0001 C CNN
+F 1 "GND" H 2830 4802 50  0000 C CNN
+F 2 "" H 2825 4975 50  0001 C CNN
+F 3 "" H 2825 4975 50  0001 C CNN
+	1    2825 4975
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2950 4975 3150 4975
+	2825 4975 3025 4975
 Text Label 5650 1375 0    50   ~ 0
 BUSY
 Text Notes 2775 4025 0    50   ~ 0
@@ -307,10 +304,6 @@ Wire Notes Line
 	4050 2425 4050 500 
 Wire Notes Line
 	11175 500  8775 500 
-Wire Notes Line
-	8775 500  8775 5525
-Wire Notes Line
-	8775 5525 11175 5525
 Wire Wire Line
 	725  1450 1000 1450
 Wire Wire Line
@@ -632,32 +625,32 @@ Wire Wire Line
 Text Notes 7025 6775 0    118  ~ 24
 JOE LOFTUS
 Wire Wire Line
-	10650 3350 10875 3350
+	10625 4450 10850 4450
 Wire Wire Line
-	10650 3150 10875 3150
-Text Label 10875 3450 0    50   ~ 0
+	10625 4250 10850 4250
+Text Label 10850 4550 0    50   ~ 0
 PHO2
-Text Label 10875 3350 0    50   ~ 0
+Text Label 10850 4450 0    50   ~ 0
 PHO3
-Text Label 10875 3150 0    50   ~ 0
+Text Label 10850 4250 0    50   ~ 0
 PHO4
-Text Label 4550 2875 2    50   ~ 0
+Text Label 4525 2950 2    50   ~ 0
 TEMP
 Wire Wire Line
-	9450 1550 9250 1550
-Text Label 9250 1550 2    50   ~ 0
+	9425 2650 9225 2650
+Text Label 9225 2650 2    50   ~ 0
 RST
-Text Label 10850 2250 0    50   ~ 0
+Text Label 10825 3350 0    50   ~ 0
 TMR_RST
 Wire Wire Line
-	10650 2250 10850 2250
-Text Label 10875 2750 0    50   ~ 0
+	10625 3350 10825 3350
+Text Label 10850 3850 0    50   ~ 0
 SCL
 Wire Wire Line
-	10650 2750 10875 2750
+	10625 3850 10850 3850
 Wire Wire Line
-	9950 4850 10050 4850
-Connection ~ 10050 4850
+	9925 5950 10025 5950
+Connection ~ 10025 5950
 NoConn ~ 4450 1275
 Wire Wire Line
 	900  1850 1450 1850
@@ -679,82 +672,78 @@ $EndComp
 $Comp
 L Device:C C?
 U 1 1 5D33F6A0
-P 8975 2300
-F 0 "C?" H 9090 2346 50  0000 L CNN
-F 1 "1uF" H 9090 2255 50  0000 L CNN
-F 2 "" H 9013 2150 50  0001 C CNN
-F 3 "~" H 8975 2300 50  0001 C CNN
-	1    8975 2300
+P 8950 3400
+F 0 "C?" H 9065 3446 50  0000 L CNN
+F 1 "1uF" H 9065 3355 50  0000 L CNN
+F 2 "" H 8988 3250 50  0001 C CNN
+F 3 "~" H 8950 3400 50  0001 C CNN
+	1    8950 3400
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5D3400A3
-P 8975 2450
-F 0 "#PWR?" H 8975 2200 50  0001 C CNN
-F 1 "GND" H 8980 2277 50  0000 C CNN
-F 2 "" H 8975 2450 50  0001 C CNN
-F 3 "" H 8975 2450 50  0001 C CNN
-	1    8975 2450
+P 8950 3550
+F 0 "#PWR?" H 8950 3300 50  0001 C CNN
+F 1 "GND" H 8955 3377 50  0000 C CNN
+F 2 "" H 8950 3550 50  0001 C CNN
+F 3 "" H 8950 3550 50  0001 C CNN
+	1    8950 3550
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8975 2150 9450 2150
+	8950 3250 9425 3250
 $Comp
 L Device:C C?
 U 1 1 5D3463CF
-P 8975 3000
-F 0 "C?" H 9090 3046 50  0000 L CNN
-F 1 "1uF" H 9090 2955 50  0000 L CNN
-F 2 "" H 9013 2850 50  0001 C CNN
-F 3 "~" H 8975 3000 50  0001 C CNN
-	1    8975 3000
+P 8950 4100
+F 0 "C?" H 9065 4146 50  0000 L CNN
+F 1 "1uF" H 9065 4055 50  0000 L CNN
+F 2 "" H 8988 3950 50  0001 C CNN
+F 3 "~" H 8950 4100 50  0001 C CNN
+	1    8950 4100
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5D3463D5
-P 8975 3150
-F 0 "#PWR?" H 8975 2900 50  0001 C CNN
-F 1 "GND" H 8980 2977 50  0000 C CNN
-F 2 "" H 8975 3150 50  0001 C CNN
-F 3 "" H 8975 3150 50  0001 C CNN
-	1    8975 3150
+P 8950 4250
+F 0 "#PWR?" H 8950 4000 50  0001 C CNN
+F 1 "GND" H 8955 4077 50  0000 C CNN
+F 2 "" H 8950 4250 50  0001 C CNN
+F 3 "" H 8950 4250 50  0001 C CNN
+	1    8950 4250
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8975 2850 9450 2850
-Text Label 10875 2950 0    50   ~ 0
+	8950 3950 9425 3950
+Text Label 10850 4050 0    50   ~ 0
 RX
-Text Label 10875 3050 0    50   ~ 0
+Text Label 10850 4150 0    50   ~ 0
 TX
 Wire Wire Line
-	10650 2950 10875 2950
+	10625 4050 10850 4050
 Wire Wire Line
-	10650 3050 10875 3050
+	10625 4150 10850 4150
 Wire Wire Line
-	10650 3950 10875 3950
+	10625 5150 10850 5150
 Wire Wire Line
-	10650 4050 10875 4050
+	10625 5250 10850 5250
 Wire Wire Line
-	10650 4150 10875 4150
+	10625 5350 10850 5350
 Wire Wire Line
-	10650 4250 10875 4250
+	10625 5450 10850 5450
 Wire Wire Line
-	10650 4350 10875 4350
+	10625 3150 10825 3150
 Wire Wire Line
-	10650 4450 10875 4450
-Wire Wire Line
-	10650 2050 10850 2050
-Wire Wire Line
-	10650 2150 10850 2150
+	10625 3250 10825 3250
 Text Label 5650 1275 0    50   ~ 0
 STBY
-Text Label 10850 2450 0    50   ~ 0
+Text Label 10825 3550 0    50   ~ 0
 STBY
 Wire Wire Line
-	10650 2450 10850 2450
-Text Label 4550 2975 2    50   ~ 0
+	10625 3550 10825 3550
+Text Label 4525 3050 2    50   ~ 0
 CVBS
 Wire Wire Line
 	3725 6025 3925 6025
@@ -777,7 +766,7 @@ F 3 "" H 2900 6325 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	3075 6325 2900 6325
-Text Label 10875 4250 0    50   ~ 0
+Text Label 10850 5350 0    50   ~ 0
 WC
 Wire Notes Line
 	2650 2475 4150 2475
@@ -787,15 +776,11 @@ Wire Notes Line
 	4150 3825 2650 3825
 Wire Notes Line
 	2650 3825 2650 2475
-Text Notes 4475 2700 0    50   ~ 0
-Joe <--> Burt\n
-Text Label 10875 4350 0    50   ~ 0
+Text Label 10850 5450 0    50   ~ 0
 SER
-Text Label 10875 4450 0    50   ~ 0
-OE
-Text Label 10850 2050 0    50   ~ 0
+Text Label 10825 3150 0    50   ~ 0
 BP1
-Text Label 10850 2150 0    50   ~ 0
+Text Label 10825 3250 0    50   ~ 0
 BP2
 Wire Notes Line
 	2650 3875 4150 3875
@@ -856,9 +841,9 @@ Wire Notes Line
 	6200 2425 6200 500 
 Wire Notes Line
 	6200 500  4050 500 
-Text Label 4550 3275 2    50   ~ 0
+Text Label 4525 3350 2    50   ~ 0
 BP1
-Text Label 4550 3375 2    50   ~ 0
+Text Label 4525 3450 2    50   ~ 0
 BP2
 $Comp
 L Connector:Micro_SD_Card J?
@@ -916,10 +901,10 @@ Wire Wire Line
 	6600 1700 6800 1700
 NoConn ~ 6800 1900
 NoConn ~ 6800 1200
-Text Label 10875 2550 0    50   ~ 0
+Text Label 10850 3650 0    50   ~ 0
 ~CS
 Wire Wire Line
-	10650 2550 10875 2550
+	10625 3650 10850 3650
 Wire Wire Line
 	3075 6225 2900 6225
 Wire Wire Line
@@ -1016,99 +1001,99 @@ $EndComp
 $Comp
 L power:+3V3 #PWR?
 U 1 1 5D37C4D1
-P 10050 1025
-F 0 "#PWR?" H 10050 875 50  0001 C CNN
-F 1 "+3V3" H 10065 1198 50  0000 C CNN
-F 2 "" H 10050 1025 50  0001 C CNN
-F 3 "" H 10050 1025 50  0001 C CNN
-	1    10050 1025
+P 10025 2125
+F 0 "#PWR?" H 10025 1975 50  0001 C CNN
+F 1 "+3V3" H 10040 2298 50  0000 C CNN
+F 2 "" H 10025 2125 50  0001 C CNN
+F 3 "" H 10025 2125 50  0001 C CNN
+	1    10025 2125
 	1    0    0    -1  
 $EndComp
 $Comp
 L Connector:USB_B_Micro J?
 U 1 1 5D37DE2D
-P 7900 2875
-F 0 "J?" H 7957 3342 50  0000 C CNN
-F 1 "USB_B_Micro" H 7957 3251 50  0000 C CNN
-F 2 "" H 8050 2825 50  0001 C CNN
-F 3 "~" H 8050 2825 50  0001 C CNN
-	1    7900 2875
+P 7125 3000
+F 0 "J?" H 7182 3467 50  0000 C CNN
+F 1 "USB_B_Micro" H 7182 3376 50  0000 C CNN
+F 2 "" H 7275 2950 50  0001 C CNN
+F 3 "~" H 7275 2950 50  0001 C CNN
+	1    7125 3000
 	1    0    0    -1  
 $EndComp
-Text Label 8200 2875 0    50   ~ 0
+Text Label 7425 3000 0    50   ~ 0
 D+
-Text Label 8200 2975 0    50   ~ 0
+Text Label 7425 3100 0    50   ~ 0
 D-
-Text Label 9450 2550 2    50   ~ 0
+Text Label 9425 3650 2    50   ~ 0
 D+
-Text Label 9450 2650 2    50   ~ 0
+Text Label 9425 3750 2    50   ~ 0
 D-
 Wire Wire Line
-	8200 2675 8275 2675
+	7425 2800 7500 2800
 $Comp
 L power:GND #PWR?
 U 1 1 5D385ECE
-P 7800 3275
-F 0 "#PWR?" H 7800 3025 50  0001 C CNN
-F 1 "GND" H 7805 3102 50  0000 C CNN
-F 2 "" H 7800 3275 50  0001 C CNN
-F 3 "" H 7800 3275 50  0001 C CNN
-	1    7800 3275
+P 7025 3400
+F 0 "#PWR?" H 7025 3150 50  0001 C CNN
+F 1 "GND" H 7030 3227 50  0000 C CNN
+F 2 "" H 7025 3400 50  0001 C CNN
+F 3 "" H 7025 3400 50  0001 C CNN
+	1    7025 3400
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5D386288
-P 7900 3275
-F 0 "#PWR?" H 7900 3025 50  0001 C CNN
-F 1 "GND" H 7905 3102 50  0000 C CNN
-F 2 "" H 7900 3275 50  0001 C CNN
-F 3 "" H 7900 3275 50  0001 C CNN
-	1    7900 3275
+P 7125 3400
+F 0 "#PWR?" H 7125 3150 50  0001 C CNN
+F 1 "GND" H 7130 3227 50  0000 C CNN
+F 2 "" H 7125 3400 50  0001 C CNN
+F 3 "" H 7125 3400 50  0001 C CNN
+	1    7125 3400
 	1    0    0    -1  
 $EndComp
-Text Label 8275 2675 0    50   ~ 0
+Text Label 7500 2800 0    50   ~ 0
 VBUS
 $Comp
 L Regulator_Linear:AP2127N-3.3 U?
 U 1 1 5D3894A7
-P 9325 975
-F 0 "U?" H 9325 1217 50  0000 C CNN
-F 1 "AP2127N-3.3" H 9325 1126 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 9325 1200 50  0001 C CIN
-F 3 "https://www.diodes.com/assets/Datasheets/AP2127.pdf" H 9325 975 50  0001 C CNN
-	1    9325 975 
+P 10025 1150
+F 0 "U?" H 9525 1300 50  0000 C CNN
+F 1 "AP2127N-3.3" H 9150 1300 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 10025 1375 50  0001 C CIN
+F 3 "https://www.diodes.com/assets/Datasheets/AP2127.pdf" H 10025 1150 50  0001 C CNN
+	1    10025 1150
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5D38A5D4
-P 9325 1275
-F 0 "#PWR?" H 9325 1025 50  0001 C CNN
-F 1 "GND" H 9330 1102 50  0000 C CNN
-F 2 "" H 9325 1275 50  0001 C CNN
-F 3 "" H 9325 1275 50  0001 C CNN
-	1    9325 1275
+P 10025 1450
+F 0 "#PWR?" H 10025 1200 50  0001 C CNN
+F 1 "GND" H 10030 1277 50  0000 C CNN
+F 2 "" H 10025 1450 50  0001 C CNN
+F 3 "" H 10025 1450 50  0001 C CNN
+	1    10025 1450
 	1    0    0    -1  
 $EndComp
-Text Label 9025 975  2    50   ~ 0
+Text Label 9725 1150 2    50   ~ 0
 VBUS
-Text Label 9950 1250 2    50   ~ 0
+Text Label 9925 2350 2    50   ~ 0
 VBUS
 $Comp
 L power:+3V3 #PWR?
 U 1 1 5D38F4D1
-P 9700 975
-F 0 "#PWR?" H 9700 825 50  0001 C CNN
-F 1 "+3V3" H 9715 1148 50  0000 C CNN
-F 2 "" H 9700 975 50  0001 C CNN
-F 3 "" H 9700 975 50  0001 C CNN
-	1    9700 975 
+P 10400 1150
+F 0 "#PWR?" H 10400 1000 50  0001 C CNN
+F 1 "+3V3" H 10415 1323 50  0000 C CNN
+F 2 "" H 10400 1150 50  0001 C CNN
+F 3 "" H 10400 1150 50  0001 C CNN
+	1    10400 1150
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9700 975  9625 975 
-NoConn ~ 8200 3075
+	10400 1150 10325 1150
+NoConn ~ 7425 3200
 $Comp
 L Device:Battery_Cell BT?
 U 1 1 5D39BFD5
@@ -1144,14 +1129,12 @@ NoConn ~ 5650 1775
 NoConn ~ 5650 1675
 NoConn ~ 5650 1575
 NoConn ~ 4450 1575
-Text Label 9450 2350 2    50   ~ 0
+Text Label 9425 3450 2    50   ~ 0
 VBUS
-Text Label 10875 4150 0    50   ~ 0
+Text Label 10850 5250 0    50   ~ 0
 RCLK
-Text Label 10875 4050 0    50   ~ 0
+Text Label 10850 5150 0    50   ~ 0
 SRCLK
-Text Label 10875 3950 0    50   ~ 0
-~SRCLR
 Text Notes 2775 5575 0    50   ~ 0
 EEPROM\n
 $Comp
@@ -1165,37 +1148,109 @@ F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/
 	1    3375 6125
 	1    0    0    -1  
 $EndComp
-Text Label 4550 3075 2    50   ~ 0
+Text Label 4525 3150 2    50   ~ 0
 TX
-Text Label 4550 3175 2    50   ~ 0
+Text Label 4525 3250 2    50   ~ 0
 RX
-Text Label 4550 3475 2    50   ~ 0
+Text Label 4525 3550 2    50   ~ 0
 SER
-Text Label 4550 3575 2    50   ~ 0
+Text Label 4525 3650 2    50   ~ 0
 SRCLK
-Text Label 4550 3675 2    50   ~ 0
+Text Label 4525 3750 2    50   ~ 0
 RCLK
 $Comp
 L Timer_RTC:DS3231MZ U?
 U 1 1 5D2C648B
 P 1950 1650
-F 0 "U?" H 1950 1161 50  0000 C CNN
-F 1 "DS3231MZ" H 1950 1070 50  0000 C CNN
+F 0 "U?" H 675 2475 50  0000 C CNN
+F 1 "DS3231MZ" H 825 2575 50  0000 C CNN
 F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 1950 1150 50  0001 C CNN
 F 3 "http://datasheets.maximintegrated.com/en/ds/DS3231M.pdf" H 1950 1050 50  0001 C CNN
 	1    1950 1650
 	1    0    0    -1  
 $EndComp
-Text Notes 5325 2875 0    39   ~ 0
+Text Notes 4950 2950 0    39   ~ 0
 Temp Sensor Data Input
-Text Notes 5325 2975 0    39   ~ 0
+Text Notes 4950 3050 0    39   ~ 0
 Img Sensor Data Input
-Text Notes 5325 3075 0    39   ~ 0
+Text Notes 4950 3150 0    39   ~ 0
 TX Output for Img Processor
-Text Notes 5325 3175 0    39   ~ 0
+Text Notes 4950 3250 0    39   ~ 0
 RX Output for Img Processor
-Text Notes 5325 3275 0    39   ~ 0
+Text Notes 4950 3350 0    39   ~ 0
 Burn Wire Output 1 for Pyrolysis
-Text Notes 5325 3375 0    39   ~ 0
+Text Notes 4950 3450 0    39   ~ 0
 Burn Wire Output 2 for Pyrolysis
+Text Notes 4950 3550 0    39   ~ 0
+Serial Output for Shift Regs
+Text Notes 4950 3650 0    39   ~ 0
+Serial Clk Output for Shift Regs\n
+Text Notes 4950 3750 0    39   ~ 0
+Reg Clk Output for Shift Regs\n
+Text Notes 4350 2775 0    39   ~ 0
+Input = Data from Burt to Joe\nOutput = Data from Joe to Burt
+$Comp
+L Connector:Screw_Terminal_01x09 J?
+U 1 1 5D2DF900
+P 4725 3350
+F 0 "J?" H 5300 4100 50  0000 L CNN
+F 1 "Screw_Terminal_01x09" H 4350 4100 50  0000 L CNN
+F 2 "" H 4725 3350 50  0001 C CNN
+F 3 "~" H 4725 3350 50  0001 C CNN
+	1    4725 3350
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	4200 2475 6200 2475
+Wire Notes Line
+	6200 2475 6200 3825
+Wire Notes Line
+	6200 3825 4200 3825
+Wire Notes Line
+	4200 3825 4200 2475
+Wire Notes Line
+	2650 5425 4150 5425
+Wire Notes Line
+	4150 5425 4150 6650
+Wire Notes Line
+	4150 6650 2650 6650
+Wire Notes Line
+	2650 6650 2650 5425
+Text Notes 6325 650  0    50   ~ 0
+Data Storage: USB and SD
+Wire Notes Line
+	6275 500  8725 500 
+Wire Notes Line
+	8725 500  8725 3825
+Wire Notes Line
+	8725 3825 6275 3825
+Wire Notes Line
+	6275 3825 6275 500 
+Text Label 10825 2650 0    50   ~ 0
+PLED1
+Wire Wire Line
+	10625 2650 10825 2650
+Text Label 10850 4750 0    50   ~ 0
+PLED2
+Wire Wire Line
+	10625 4750 10850 4750
+Text Label 10850 5550 0    50   ~ 0
+PLED2
+Wire Wire Line
+	10625 5550 10850 5550
+Text Label 3625 4975 0    50   ~ 0
+PLED3
+Text Label 3625 4650 0    50   ~ 0
+PLED2
+Text Label 3625 4325 0    50   ~ 0
+PLED1
+Connection ~ 10025 2350
+Text Notes 8900 925  0    50   ~ 0
+5V to 3.3V Regulator\n
+Wire Notes Line
+	11175 500  11175 6450
+Wire Notes Line
+	11175 6450 8775 6450
+Wire Notes Line
+	8775 500  8775 6450
 $EndSCHEMATC
