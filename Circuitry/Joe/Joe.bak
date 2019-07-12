@@ -592,7 +592,7 @@ Text Label 10850 4450 0    50   ~ 0
 PHO3
 Text Label 10850 4250 0    50   ~ 0
 PHO4
-Text Label 4525 2950 2    50   ~ 0
+Text Label 4775 2925 2    50   ~ 0
 TEMP
 Wire Wire Line
 	9425 2650 9225 2650
@@ -612,8 +612,6 @@ Connection ~ 10025 5950
 NoConn ~ 4450 1275
 Wire Wire Line
 	900  1850 1450 1850
-Text Label 4450 1375 2    50   ~ 0
-1HZ
 Wire Wire Line
 	1150 1150 1150 975 
 $Comp
@@ -703,8 +701,6 @@ Text Label 10825 3550 0    50   ~ 0
 STBY
 Wire Wire Line
 	10625 3550 10825 3550
-Text Label 4525 3050 2    50   ~ 0
-CVBS
 Wire Wire Line
 	3725 6025 3925 6025
 Text Label 3725 6125 0    50   ~ 0
@@ -802,9 +798,9 @@ Wire Notes Line
 	6200 2425 6200 500 
 Wire Notes Line
 	6200 500  4050 500 
-Text Label 4525 3350 2    50   ~ 0
+Text Label 4775 3625 2    50   ~ 0
 BP1
-Text Label 4525 3450 2    50   ~ 0
+Text Label 4775 3725 2    50   ~ 0
 BP2
 $Comp
 L Connector:Micro_SD_Card J4
@@ -854,7 +850,7 @@ $EndComp
 Text Label 6800 1400 2    50   ~ 0
 MOSI
 Text Label 6800 1300 2    50   ~ 0
-~CS
+~CS_SD
 Text Label 6800 1600 2    50   ~ 0
 SCK
 Text Label 6800 1800 2    50   ~ 0
@@ -864,7 +860,7 @@ Wire Wire Line
 NoConn ~ 6800 1900
 NoConn ~ 6800 1200
 Text Label 10850 3650 0    50   ~ 0
-~CS
+~CS_SD
 Wire Wire Line
 	10625 3650 10850 3650
 Wire Wire Line
@@ -1114,15 +1110,15 @@ F 4 "https://www.digikey.com/products/en/integrated-circuits-ics/memory/774?k=m2
 	1    3375 6125
 	1    0    0    -1  
 $EndComp
-Text Label 4525 3150 2    50   ~ 0
-TX
-Text Label 4525 3250 2    50   ~ 0
-RX
-Text Label 4525 3550 2    50   ~ 0
+Text Label 4775 3025 2    50   ~ 0
+CS_IMG
+Text Label 4775 3125 2    50   ~ 0
+MOSI
+Text Label 4775 3825 2    50   ~ 0
 SER
-Text Label 4525 3650 2    50   ~ 0
+Text Label 4775 3925 2    50   ~ 0
 SRCLK
-Text Label 4525 3750 2    50   ~ 0
+Text Label 4775 4025 2    50   ~ 0
 RCLK
 $Comp
 L Timer_RTC:DS3231MZ U5
@@ -1136,30 +1132,28 @@ F 4 "https://www.digikey.com/product-detail/en/maxim-integrated/DS3231MZ/DS3231M
 	1    1950 1650
 	1    0    0    -1  
 $EndComp
-Text Notes 4950 2950 0    39   ~ 0
+Text Notes 5200 2925 0    39   ~ 0
 Temp Sensor Data Input
-Text Notes 4950 3050 0    39   ~ 0
-Img Sensor Data Input
-Text Notes 4950 3150 0    39   ~ 0
-TX Output for Img Processor
-Text Notes 4950 3250 0    39   ~ 0
-RX Output for Img Processor
-Text Notes 4950 3350 0    39   ~ 0
+Text Notes 5200 3025 0    39   ~ 0
+CS Output for Img Sensor
+Text Notes 5200 3125 0    39   ~ 0
+MOSI Output for Img Sensor
+Text Notes 5200 3625 0    39   ~ 0
 Burn Wire Output 1 for Pyrolysis
-Text Notes 4950 3450 0    39   ~ 0
+Text Notes 5200 3725 0    39   ~ 0
 Burn Wire Output 2 for Pyrolysis
-Text Notes 4950 3550 0    39   ~ 0
+Text Notes 5200 3825 0    39   ~ 0
 Serial Output for Shift Reg
-Text Notes 4950 3750 0    39   ~ 0
+Text Notes 5200 4025 0    39   ~ 0
 Reg Clk Output for Shift Reg
-Text Notes 4350 2775 0    39   ~ 0
+Text Notes 4600 2750 0    39   ~ 0
 Input = Data from Burt to Joe\nOutput = Data from Joe to Burt
 Wire Notes Line
 	4200 2475 6200 2475
 Wire Notes Line
-	6200 2475 6200 3825
+	6200 2475 6200 4775
 Wire Notes Line
-	4200 3825 4200 2475
+	4200 4775 4200 2475
 Wire Notes Line
 	2650 5425 4150 5425
 Wire Notes Line
@@ -1187,7 +1181,7 @@ PLED2
 Wire Wire Line
 	10625 4750 10850 4750
 Text Label 10850 5550 0    50   ~ 0
-PLED2
+PLED3
 Wire Wire Line
 	10625 5550 10850 5550
 Text Label 3625 4975 0    50   ~ 0
@@ -1269,14 +1263,80 @@ Wire Wire Line
 	1250 6950 1600 6950
 Wire Wire Line
 	1900 6950 2225 6950
-Text Label 4525 3850 2    50   ~ 0
+Text Label 4775 4125 2    50   ~ 0
 IN1
-Text Label 4525 3950 2    50   ~ 0
+Text Label 4775 4225 2    50   ~ 0
 IN2
-Text Notes 4950 3850 0    39   ~ 0
+Text Notes 5200 4125 0    39   ~ 0
 Motor Driver for Launchers Output 1
-Text Notes 4950 3950 0    39   ~ 0
+Text Notes 5200 4225 0    39   ~ 0
 Motor Driver for Launchers Output 2\n
-Text Notes 4950 3650 0    39   ~ 0
+Text Notes 5200 3925 0    39   ~ 0
 Serial Clk Output for Shift Reg
+Text Label 4775 3225 2    50   ~ 0
+MISO
+Text Label 4775 3325 2    50   ~ 0
+SCK
+Text Label 4775 3425 2    50   ~ 0
+SDA
+Text Label 4775 3525 2    50   ~ 0
+SCL
+Text Notes 5200 3225 0    39   ~ 0
+MISO Output for Img Sensor
+Text Notes 5200 3325 0    39   ~ 0
+SCLK Output for Img Sensor
+Text Notes 5200 3425 0    39   ~ 0
+SDA Output for Img Sensor
+Text Notes 5200 3525 0    39   ~ 0
+SCL Output for Img Sensor
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D47F25B
+P 4775 4325
+F 0 "#PWR?" H 4775 4175 50  0001 C CNN
+F 1 "+3V3" V 4790 4453 50  0000 L CNN
+F 2 "" H 4775 4325 50  0001 C CNN
+F 3 "" H 4775 4325 50  0001 C CNN
+	1    4775 4325
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+5V #PWR?
+U 1 1 5D480338
+P 4775 4425
+F 0 "#PWR?" H 4775 4275 50  0001 C CNN
+F 1 "+5V" V 4790 4553 50  0000 L CNN
+F 2 "" H 4775 4425 50  0001 C CNN
+F 3 "" H 4775 4425 50  0001 C CNN
+	1    4775 4425
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D480BD6
+P 4775 4525
+F 0 "#PWR?" H 4775 4275 50  0001 C CNN
+F 1 "GND" H 4780 4352 50  0000 C CNN
+F 2 "" H 4775 4525 50  0001 C CNN
+F 3 "" H 4775 4525 50  0001 C CNN
+	1    4775 4525
+	1    0    0    -1  
+$EndComp
+Text Label 10625 4350 0    50   ~ 0
+BUSY
+NoConn ~ 4450 1375
+$Comp
+L Connector_Generic:Conn_01x17 J?
+U 1 1 5D48D629
+P 4975 3725
+F 0 "J?" V 5075 3600 50  0000 L CNN
+F 1 "Conn_01x17" V 5075 3825 50  0000 L CNN
+F 2 "" H 4975 3725 50  0001 C CNN
+F 3 "~" H 4975 3725 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/molex/0522071733/WM10952CT-ND/5170967" H 4975 3725 50  0001 C CNN "Part URL"
+	1    4975 3725
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	4200 4775 6200 4775
 $EndSCHEMATC
