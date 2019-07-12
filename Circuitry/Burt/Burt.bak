@@ -21,51 +21,38 @@ TEMP
 $Comp
 L Device:R_Small R6
 U 1 1 5D28D225
-P 5825 1750
-F 0 "R6" H 5884 1796 50  0000 L CNN
-F 1 "470R" H 5884 1705 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 5825 1750 50  0001 C CNN
-F 3 "~" H 5825 1750 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-07470RL/311-470HRCT-ND/730203" H 5825 1750 50  0001 C CNN "Part URL"
-	1    5825 1750
+P 4550 1175
+F 0 "R6" H 4609 1221 50  0000 L CNN
+F 1 "470R" H 4609 1130 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 4550 1175 50  0001 C CNN
+F 3 "~" H 4550 1175 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-07470RL/311-470HRCT-ND/730203" H 4550 1175 50  0001 C CNN "Part URL"
+	1    4550 1175
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R7
 U 1 1 5D28D9E9
-P 6000 1200
-F 0 "R7" H 5941 1154 50  0000 R CNN
-F 1 "20k" H 5941 1245 50  0000 R CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 6000 1200 50  0001 C CNN
-F 3 "~" H 6000 1200 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0720KL/311-20.0KHRCT-ND/729987" H 6000 1200 50  0001 C CNN "Part URL"
-	1    6000 1200
+P 5925 1375
+F 0 "R7" H 5866 1329 50  0000 R CNN
+F 1 "20k" H 5866 1420 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 5925 1375 50  0001 C CNN
+F 3 "~" H 5925 1375 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-0720KL/311-20.0KHRCT-ND/729987" H 5925 1375 50  0001 C CNN "Part URL"
+	1    5925 1375
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	5825 975  6000 975 
-Wire Wire Line
-	6000 975  6000 1100
-Wire Wire Line
-	5825 1375 6000 1375
-Wire Wire Line
-	6000 1375 6000 1300
 $Comp
 L power:GND #PWR013
 U 1 1 5D292366
-P 6000 1375
-F 0 "#PWR013" H 6000 1125 50  0001 C CNN
-F 1 "GND" H 6005 1202 50  0000 C CNN
-F 2 "" H 6000 1375 50  0001 C CNN
-F 3 "" H 6000 1375 50  0001 C CNN
-	1    6000 1375
+P 5925 1525
+F 0 "#PWR013" H 5925 1275 50  0001 C CNN
+F 1 "GND" H 5930 1352 50  0000 C CNN
+F 2 "" H 5925 1525 50  0001 C CNN
+F 3 "" H 5925 1525 50  0001 C CNN
+	1    5925 1525
 	1    0    0    -1  
 $EndComp
-Connection ~ 6000 1375
-Wire Wire Line
-	5825 1575 5825 1650
-Wire Wire Line
-	5825 2025 5825 1850
 Text Label 4825 5075 2    50   ~ 0
 BP1
 Text Label 4825 5175 2    50   ~ 0
@@ -119,8 +106,6 @@ F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-N
 $EndComp
 Text Label 9400 1325 2    50   ~ 0
 BL5
-Wire Wire Line
-	5025 1375 4900 1375
 $Comp
 L Burt-rescue:A3908-Custom U2
 U 1 1 5D5325EF
@@ -187,7 +172,7 @@ U 1 1 5D49D045
 P 1850 1425
 F 0 "M1" V 1525 1450 50  0000 L CNN
 F 1 "Motor_DC" V 1625 1200 50  0000 L CNN
-F 2 "Connector_JST:JST_JWPF_B02B-JWPF-SK-R_1x02_P2.00mm_Vertical" H 1850 1335 50  0001 C CNN
+F 2 "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical" H 1850 1335 50  0001 C CNN
 F 3 "~" H 1850 1335 50  0001 C CNN
 F 4 "https://www.pololu.com/product/4790/" H 1850 1425 50  0001 C CNN "Part URL"
 	1    1850 1425
@@ -221,7 +206,7 @@ F 0 "U3" H 5425 1890 50  0000 C CNN
 F 1 "MCP73831-DFN" H 5425 1799 50  0000 C CNN
 F 2 "Package_DFN_QFN:DFN-8-1EP_3x2mm_P0.5mm_EP1.3x1.5mm" H 5425 1275 50  0001 C CNN
 F 3 "" H 5425 1275 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/microchip-technology/MCP73831T-2ACI-MC/MCP73831T-2ACI-MCCT-ND/7065590" H 5425 1275 50  0001 C CNN "Part URL"
+F 4 "https://www.digikey.com/product-detail/en/microchip-technology/MCP73831T-2ACI-OT/MCP73831T-2ACI-OTCT-ND/1979802" H 5425 1275 50  0001 C CNN "Part URL"
 	1    5425 1275
 	1    0    0    -1  
 $EndComp
@@ -263,50 +248,26 @@ Wire Notes Line
 $Comp
 L Device:C_Small C2
 U 1 1 5D28C167
-P 4900 1475
-F 0 "C2" H 4700 1500 50  0000 L CNN
-F 1 "4.7uF" H 4575 1400 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 4900 1475 50  0001 C CNN
-F 3 "~" H 4900 1475 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL10A475MQ8NNNC/1276-1907-1-ND/3889993" H 4900 1475 50  0001 C CNN "Part URL"
-	1    4900 1475
+P 6225 1175
+F 0 "C2" H 6025 1200 50  0000 L CNN
+F 1 "4.7uF" H 5900 1100 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 6225 1175 50  0001 C CNN
+F 3 "~" H 6225 1175 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL10A475MQ8NNNC/1276-1907-1-ND/3889993" H 6225 1175 50  0001 C CNN "Part URL"
+	1    6225 1175
 	1    0    0    -1  
 $EndComp
-Connection ~ 4900 1375
-$Comp
-L power:GND #PWR09
-U 1 1 5D28CAB7
-P 4900 1575
-F 0 "#PWR09" H 4900 1325 50  0001 C CNN
-F 1 "GND" H 4905 1402 50  0000 C CNN
-F 2 "" H 4900 1575 50  0001 C CNN
-F 3 "" H 4900 1575 50  0001 C CNN
-	1    4900 1575
-	1    0    0    -1  
-$EndComp
-Text Notes 6200 1200 0    50   ~ 0
+Text Notes 6000 1600 0    50   ~ 0
 SET TO 50 mA
-$Comp
-L Device:Battery_Cell BT1
-U 1 1 5D28E83B
-P 4425 1575
-F 0 "BT1" V 4175 1325 50  0000 L CNN
-F 1 "Battery_Cell" V 4250 1325 50  0000 L CNN
-F 2 "" V 4425 1635 50  0001 C CNN
-F 3 "~" V 4425 1635 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/jst-sales-america-inc/B2B-PH-K-S-LF-SN/455-1704-ND/926611" H 4425 1575 50  0001 C CNN "Part URL"
-	1    4425 1575
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:GND #PWR02
 U 1 1 5D291472
-P 4425 1675
-F 0 "#PWR02" H 4425 1425 50  0001 C CNN
-F 1 "GND" H 4430 1502 50  0000 C CNN
-F 2 "" H 4425 1675 50  0001 C CNN
-F 3 "" H 4425 1675 50  0001 C CNN
-	1    4425 1675
+P 6325 1375
+F 0 "#PWR02" H 6325 1125 50  0001 C CNN
+F 1 "GND" H 6450 1300 50  0000 C CNN
+F 2 "" H 6325 1375 50  0001 C CNN
+F 3 "" H 6325 1375 50  0001 C CNN
+	1    6325 1375
 	1    0    0    -1  
 $EndComp
 Wire Notes Line
@@ -329,7 +290,7 @@ U 1 1 5D2A0648
 P 3250 3225
 F 0 "U4" H 3375 3875 50  0000 C CNN
 F 1 "74HC595" H 3500 3800 50  0000 C CNN
-F 2 "" H 3250 3225 50  0001 C CNN
+F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 3250 3225 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 3250 3225 50  0001 C CNN
 F 4 "https://www.digikey.com/product-detail/en/nexperia-usa-inc/74HC595D118/1727-2821-1-ND/763394" H 3250 3225 50  0001 C CNN "Part URL"
 	1    3250 3225
@@ -455,7 +416,7 @@ U 1 1 5D2B2C99
 P 6400 2975
 F 0 "J2" H 6500 3500 50  0000 L CNN
 F 1 "Conn_01x08_Female" H 5650 3500 50  0000 L CNN
-F 2 "Connector_PinSocket_1.00mm:PinSocket_1x08_P1.00mm_Vertical" H 6400 2975 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 6400 2975 50  0001 C CNN
 F 3 "~" H 6400 2975 50  0001 C CNN
 F 4 "https://www.digikey.com/product-detail/en/sullins-connector-solutions/PPTC081LGBN-RC/S5444-ND/775902" H 6400 2975 50  0001 C CNN "Part URL"
 	1    6400 2975
@@ -630,7 +591,7 @@ U 1 1 5D6AE278
 P 5025 5175
 F 0 "J1" H 5175 6350 50  0000 L CNN
 F 1 "Conn_01x17" H 4625 6350 50  0000 L CNN
-F 2 "" H 5025 5175 50  0001 C CNN
+F 2 "Custom:0522071733" H 5025 5175 50  0001 C CNN
 F 3 "~" H 5025 5175 50  0001 C CNN
 F 4 "https://www.digikey.com/product-detail/en/molex/0522071733/WM10952CT-ND/5170967" H 5025 5175 50  0001 C CNN "Part URL"
 	1    5025 5175
@@ -1457,16 +1418,13 @@ $EndComp
 Wire Wire Line
 	9425 5775 9775 5775
 Connection ~ 9775 5775
-Wire Wire Line
-	4425 1375 4900 1375
-NoConn ~ 5025 1575
 $Comp
 L Device:LED D1
 U 1 1 5D3F25BA
 P 4550 925
 F 0 "D1" H 4543 1141 50  0000 C CNN
 F 1 "LED" H 4543 1050 50  0000 C CNN
-F 2 "LED_SMD:LED_0201_0603Metric" H 4550 925 50  0001 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric" H 4550 925 50  0001 C CNN
 F 3 "~" H 4550 925 50  0001 C CNN
 F 4 "https://www.digikey.com/product-detail/en/lumex-opto-components-inc/SML-LXFM0603SUGCTR/67-2320-1-ND/9521881" H 4550 925 50  0001 C CNN "Part URL"
 	1    4550 925 
@@ -1512,29 +1470,43 @@ F 4 "https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL10A47
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4550 775  4800 775 
-Wire Wire Line
-	5025 775  5025 975 
+	5025 775  5025 1075
 Connection ~ 4550 775 
-Wire Wire Line
-	4800 775  4800 1175
-Wire Wire Line
-	4800 1175 5025 1175
-Connection ~ 4800 775 
-Wire Wire Line
-	4800 775  5025 775 
 $Comp
-L power:GND #PWR0140
-U 1 1 5D9A62EB
-P 4550 1075
-F 0 "#PWR0140" H 4550 825 50  0001 C CNN
-F 1 "GND" H 4555 902 50  0000 C CNN
-F 2 "" H 4550 1075 50  0001 C CNN
-F 3 "" H 4550 1075 50  0001 C CNN
-	1    4550 1075
+L Device:Battery_Cell BT1
+U 1 1 5D28E83B
+P 6425 1275
+F 0 "BT1" V 6475 1450 50  0000 L CNN
+F 1 "Battery_Cell" V 6550 1100 50  0000 L CNN
+F 2 "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical" V 6425 1335 50  0001 C CNN
+F 3 "~" V 6425 1335 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/jst-sales-america-inc/B2B-PH-K-S-LF-SN/455-1704-ND/926611" H 6425 1275 50  0001 C CNN "Part URL"
+	1    6425 1275
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4200 775  4150 775 
-Connection ~ 4200 775 
+	4550 775  5025 775 
+Wire Wire Line
+	4550 1275 4550 1475
+Wire Wire Line
+	4550 1475 5025 1475
+Wire Wire Line
+	5825 1275 5925 1275
+Wire Wire Line
+	5925 1475 5825 1475
+Wire Wire Line
+	5925 1525 5925 1475
+Connection ~ 5925 1475
+Connection ~ 6225 1075
+Wire Wire Line
+	6225 1075 6425 1075
+Wire Wire Line
+	5825 1075 6225 1075
+Wire Wire Line
+	6225 1275 6225 1375
+Wire Wire Line
+	6225 1375 6325 1375
+Wire Wire Line
+	6325 1375 6425 1375
+Connection ~ 6325 1375
 $EndSCHEMATC
