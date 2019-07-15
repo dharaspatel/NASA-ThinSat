@@ -1,4 +1,4 @@
-15984552666904403
+15986115882177723
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -42256,8 +42256,8 @@ Custom
 
 
 0
-20
-20
+24
+21
 Custom
 0522071733
 
@@ -42272,6 +42272,13 @@ DFN DFN_QFN
 0
 13
 9
+Custom
+CosmicDC
+
+
+0
+0
+0
 Custom
 DF12-20DS-0.5V(86)
 
