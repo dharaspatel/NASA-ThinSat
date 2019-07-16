@@ -33,8 +33,17 @@
 #define BURN1_ADDR PORTC7 //output for burn wire 9
 #define BURN1_ADDR PORTC6 //output for burn wire 10
 
-/*___DECLARATIONS___*/
+//DCF77 REGISTER ADDRESSES
+#define SEC_ADDR 0x0h
+#define MIN_ADDR 0x1h
+#define HOUR_ADDR 0x2h
+#define DATE_ADDR 0x4h
+#define MON_ADDR 0x5h
+#define YEAR_ADDR 0x6h
 
+/*___DECLARATIONS___*/
+DCF77 rtc = DCF77(pin, interrupt);
+EEPROM eeprom;
 
 
 /*_________FUNCTIONS USED IN BOTH BILL AND BURT__________*/
@@ -57,6 +66,10 @@ float sync(DateTime rtc){
   */
 }
 
+DateTime time(){
+  Wire.requestFrom(8,6) //device number, number of bytes
+  byte sec = Wire.recieve()
+}
 void orient(float rotation[]){
   /*
     FUNCTION: Uses the thrusters and gyroscope located on Joe to orient the satellites in a particular direction
