@@ -1142,7 +1142,7 @@ U 1 1 5D3F3BA1
 P 1650 3525
 F 0 "R12" V 1325 3525 50  0000 C CNN
 F 1 "R_PHOTO" V 1416 3525 50  0000 C CNN
-F 2 "OptoDevice:R_LDR_10x8.5mm_P7.6mm_Vertical" V 1700 3275 50  0001 L CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 1700 3275 50  0001 L CNN
 F 3 "~" H 1650 3475 50  0001 C CNN
 F 4 "https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028" H 1650 3525 50  0001 C CNN "Part URL"
 	1    1650 3525
@@ -1154,7 +1154,7 @@ U 1 1 5D40B08B
 P 1700 4650
 F 0 "R13" V 1375 4650 50  0000 C CNN
 F 1 "R_PHOTO" V 1466 4650 50  0000 C CNN
-F 2 "OptoDevice:R_LDR_10x8.5mm_P7.6mm_Vertical" V 1750 4400 50  0001 L CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 1750 4400 50  0001 L CNN
 F 3 "~" H 1700 4600 50  0001 C CNN
 F 4 "https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028" H 1700 4650 50  0001 C CNN "Part URL"
 	1    1700 4650
@@ -1166,7 +1166,7 @@ U 1 1 5D40BCB5
 P 1725 5800
 F 0 "R14" V 1400 5800 50  0000 C CNN
 F 1 "R_PHOTO" V 1491 5800 50  0000 C CNN
-F 2 "OptoDevice:R_LDR_10x8.5mm_P7.6mm_Vertical" V 1775 5550 50  0001 L CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 1775 5550 50  0001 L CNN
 F 3 "~" H 1725 5750 50  0001 C CNN
 F 4 "https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028" H 1725 5800 50  0001 C CNN "Part URL"
 	1    1725 5800
@@ -1178,7 +1178,7 @@ U 1 1 5D40F4BF
 P 1750 6950
 F 0 "R15" V 1425 6950 50  0000 C CNN
 F 1 "R_PHOTO" V 1516 6950 50  0000 C CNN
-F 2 "OptoDevice:R_LDR_10x8.5mm_P7.6mm_Vertical" V 1800 6700 50  0001 L CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 1800 6700 50  0001 L CNN
 F 3 "~" H 1750 6900 50  0001 C CNN
 F 4 "https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028" H 1750 6950 50  0001 C CNN "Part URL"
 	1    1750 6950

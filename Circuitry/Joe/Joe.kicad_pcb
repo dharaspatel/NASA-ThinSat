@@ -1,4 +1,4 @@
-(kicad_pcb (version 20171130) (host pcbnew 5.1.2-f72e74a~84~ubuntu18.04.1)
+(kicad_pcb (version 20171130) (host pcbnew "(5.1.2)-2")
 
   (general
     (thickness 1.6)
@@ -61,7 +61,7 @@
     (pad_to_mask_clearance 0.051)
     (solder_mask_min_width 0.25)
     (aux_axis_origin 0 0)
-    (visible_elements FFFFFF7F)
+    (visible_elements 7FFFFFFF)
     (pcbplotparams
       (layerselection 0x010fc_ffffffff)
       (usegerberextensions false)
@@ -1714,9 +1714,6 @@
     )
   )
 
-  (via (at -30.0228 7.4676) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 2))
-  (via (at -26.9748 4.572) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 2))
-  (via (at -30.3276 2.1336) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 2))
   (segment (start -19.51449 -1.25489) (end -18.85489 -1.25489) (width 0.25) (layer F.Cu) (net 1))
   (segment (start -19.8852 -1.6256) (end -19.51449 -1.25489) (width 0.25) (layer F.Cu) (net 1))
   (segment (start -18.1742 19.9742) (end -18.1742 33.8836) (width 0.25) (layer F.Cu) (net 1))
@@ -1733,6 +1730,9 @@
   (segment (start -18.407916 2.694915) (end -18.135179 2.967652) (width 0.25) (layer F.Cu) (net 1))
   (segment (start -18.135179 1.726174) (end -18.407916 1.998911) (width 0.25) (layer F.Cu) (net 1))
   (segment (start -18.407916 1.998911) (end -18.407916 2.694915) (width 0.25) (layer F.Cu) (net 1))
+  (via (at -30.0228 7.4676) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 2))
+  (via (at -26.9748 4.572) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 2))
+  (via (at -30.3276 2.1336) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 2))
   (segment (start -37.114 -40.3967) (end -38.314 -40.3967) (width 0.25) (layer F.Cu) (net 2))
   (segment (start -20.1088 -9.771) (end -19.6088 -9.271) (width 0.25) (layer F.Cu) (net 2))
   (segment (start -22.9463 -9.771) (end -20.1088 -9.771) (width 0.25) (layer F.Cu) (net 2))
@@ -2492,7 +2492,7 @@
     (fill yes (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
     (polygon
       (pts
-        (xy -52.2 -45.8) (xy -0.9 -45.9) (xy -0.8 61.8) (xy -51.9 61.8)
+        (xy -52.25 -46) (xy -0.9 -45.9) (xy -0.8 61.8) (xy -52.25 62)
       )
     )
     (filled_polygon
