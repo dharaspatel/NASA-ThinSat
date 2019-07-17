@@ -77,9 +77,9 @@ F 4 "https://www.digikey.com/product-detail/en/microchip-technology/ATMEGA32U4-M
 $EndComp
 Wire Wire Line
 	10125 2350 10025 2350
-Text Label 4450 1475 2    50   ~ 0
-TX
 Text Label 5650 1475 0    50   ~ 0
+TX
+Text Label 4450 1475 2    50   ~ 0
 RX
 $Comp
 L Connector_Generic:Conn_02x03_Counter_Clockwise J1
@@ -632,9 +632,9 @@ F 3 "" H 8950 4250 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	8950 3950 9425 3950
-Text Label 10850 4050 0    50   ~ 0
-RX
 Text Label 10850 4150 0    50   ~ 0
+RX
+Text Label 10850 4050 0    50   ~ 0
 TX
 Wire Wire Line
 	10625 4050 10850 4050
