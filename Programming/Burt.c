@@ -1,5 +1,5 @@
 /*  ________________________________________________
-    Description: main file that controls electronics on Burt
+    Description: file that controls electronics on Burt
     Author: Dhara Patel
     ________________________________________________*/
 
