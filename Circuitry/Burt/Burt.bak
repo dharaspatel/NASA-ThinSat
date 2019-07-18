@@ -14,9 +14,9 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Notes 7000 6750 0    118  ~ 24
+Text Notes 6975 6725 0    118  ~ 24
 BURT
-Text Label 4825 4375 2    50   ~ 0
+Text Label 3825 4375 2    50   ~ 0
 TEMP
 $Comp
 L Device:R_Small R6
@@ -53,58 +53,32 @@ F 3 "" H 5925 1525 50  0001 C CNN
 	1    5925 1525
 	1    0    0    -1  
 $EndComp
-Text Label 4825 5075 2    50   ~ 0
-BP1
-Text Label 4825 5175 2    50   ~ 0
-BP2
 $Comp
 L Device:R R13
 U 1 1 5D455BC6
-P 8275 1075
-F 0 "R13" V 8068 1075 50  0000 C CNN
-F 1 "BURNWIRE" V 8159 1075 50  0000 C CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 8205 1075 50  0001 C CNN
-F 3 "~" H 8275 1075 50  0001 C CNN
-	1    8275 1075
+P 8275 975
+F 0 "R13" V 8068 975 50  0000 C CNN
+F 1 "BURNWIRE" V 8159 975 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 8205 975 50  0001 C CNN
+F 3 "~" H 8275 975 50  0001 C CNN
+	1    8275 975 
 	0    1    1    0   
 $EndComp
-$Comp
-L power:+BATT #PWR018
-U 1 1 5D455BCC
-P 8700 1075
-F 0 "#PWR018" H 8700 925 50  0001 C CNN
-F 1 "+BATT" H 8715 1248 50  0000 C CNN
-F 2 "" H 8700 1075 50  0001 C CNN
-F 3 "" H 8700 1075 50  0001 C CNN
-	1    8700 1075
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	8425 1075 8700 1075
-$Comp
-L power:GND #PWR023
-U 1 1 5D455BD4
-P 8400 1525
-F 0 "#PWR023" H 8400 1275 50  0001 C CNN
-F 1 "GND" H 8405 1352 50  0000 C CNN
-F 2 "" H 8400 1525 50  0001 C CNN
-F 3 "" H 8400 1525 50  0001 C CNN
-	1    8400 1525
-	1    0    0    -1  
-$EndComp
+	8425 975  8700 975 
 $Comp
 L Device:R R8
 U 1 1 5D455BDA
-P 7750 1475
-F 0 "R8" H 7820 1521 50  0000 L CNN
-F 1 "10k" H 7820 1430 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 7680 1475 50  0001 C CNN
-F 3 "~" H 7750 1475 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 7750 1475 50  0001 C CNN "Part URL"
-	1    7750 1475
+P 7750 1375
+F 0 "R8" H 7820 1421 50  0000 L CNN
+F 1 "10k" H 7820 1330 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 7680 1375 50  0001 C CNN
+F 3 "~" H 7750 1375 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 7750 1375 50  0001 C CNN "Part URL"
+	1    7750 1375
 	-1   0    0    1   
 $EndComp
-Text Label 7400 1325 2    50   ~ 0
+Text Label 6000 2400 2    50   ~ 0
 BL1
 $Comp
 L Burt-rescue:A3908-Custom U2
@@ -169,13 +143,13 @@ Wire Wire Line
 $Comp
 L Motor:Motor_DC M1
 U 1 1 5D49D045
-P 1850 1425
-F 0 "M1" V 1525 1450 50  0000 L CNN
-F 1 "Motor_DC" V 1625 1200 50  0000 L CNN
-F 2 "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical" H 1850 1335 50  0001 C CNN
-F 3 "~" H 1850 1335 50  0001 C CNN
-F 4 "https://www.pololu.com/product/4790/" H 1850 1425 50  0001 C CNN "Part URL"
-	1    1850 1425
+P 1450 1450
+F 0 "M1" V 1125 1475 50  0000 L CNN
+F 1 "Motor_DC" V 1225 1225 50  0000 L CNN
+F 2 "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical" H 1450 1360 50  0001 C CNN
+F 3 "~" H 1450 1360 50  0001 C CNN
+F 4 "https://www.pololu.com/product/4790/" H 1450 1450 50  0001 C CNN "Part URL"
+	1    1450 1450
 	1    0    0    -1  
 $EndComp
 Text Label 3200 1025 0    50   ~ 0
@@ -186,16 +160,6 @@ Wire Wire Line
 	2975 1025 3200 1025
 Wire Wire Line
 	2975 1125 3200 1125
-Wire Wire Line
-	2275 1125 1850 1125
-Wire Wire Line
-	1850 1125 1850 1225
-Wire Wire Line
-	2275 1225 2075 1225
-Wire Wire Line
-	2075 1225 2075 1725
-Wire Wire Line
-	2075 1725 1850 1725
 Wire Notes Line
 	6825 550  11150 550 
 $Comp
@@ -213,38 +177,38 @@ $EndComp
 $Comp
 L Burt-rescue:MCP9701A-Custom U1
 U 1 1 5D425D1D
-P 4800 3050
-F 0 "U1" H 4775 2475 50  0000 L CNN
-F 1 "MCP9701A" H 4925 2475 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 4525 3200 50  0001 C CNN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001942G.pdf" H 4525 3200 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/microchip-technology/MCP9701AT-E-TT/MCP9701AT-E-TTCT-ND/1987449" H 4800 3050 50  0001 C CNN "Part URL"
-	1    4800 3050
+P 3800 3050
+F 0 "U1" H 3775 2475 50  0000 L CNN
+F 1 "MCP9701A" H 3925 2475 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 3525 3200 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001942G.pdf" H 3525 3200 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/microchip-technology/MCP9701AT-E-TT/MCP9701AT-E-TTCT-ND/1987449" H 3800 3050 50  0001 C CNN "Part URL"
+	1    3800 3050
 	-1   0    0    1   
 $EndComp
-Text Label 4600 2750 2    50   ~ 0
+Text Label 3600 2750 2    50   ~ 0
 TEMP
 $Comp
 L power:GND #PWR06
 U 1 1 5D2E4603
-P 4800 3400
-F 0 "#PWR06" H 4800 3150 50  0001 C CNN
-F 1 "GND" H 4805 3227 50  0000 C CNN
-F 2 "" H 4800 3400 50  0001 C CNN
-F 3 "" H 4800 3400 50  0001 C CNN
-	1    4800 3400
+P 3800 3400
+F 0 "#PWR06" H 3800 3150 50  0001 C CNN
+F 1 "GND" H 3805 3227 50  0000 C CNN
+F 2 "" H 3800 3400 50  0001 C CNN
+F 3 "" H 3800 3400 50  0001 C CNN
+	1    3800 3400
 	1    0    0    -1  
 $EndComp
-Text Notes 4275 2400 0    50   ~ 0
+Text Notes 3275 2400 0    50   ~ 0
 Temperature Sensor
 Wire Notes Line
-	5425 2200 4200 2200
+	4425 2200 3200 2200
 Wire Notes Line
-	4200 2200 4200 3700
+	3200 2200 3200 3700
 Wire Notes Line
-	4200 3700 5425 3700
+	3200 3700 4425 3700
 Wire Notes Line
-	5425 3700 5425 2200
+	4425 3700 4425 2200
 $Comp
 L Device:C_Small C2
 U 1 1 5D28C167
@@ -282,82 +246,82 @@ Text Notes 3900 650  0    50   ~ 0
 Charging and Battery
 Text Notes 1275 725  0    50   ~ 0
 Motor Driver \n(launchers)\n
-Text Notes 5650 2400 0    50   ~ 0
+Text Notes 4650 2400 0    50   ~ 0
 Image Sensor Connector\n
 $Comp
 L 74xx:74HC595 U4
 U 1 1 5D2A0648
-P 3250 3225
-F 0 "U4" H 3375 3875 50  0000 C CNN
-F 1 "74HC595" H 3500 3800 50  0000 C CNN
-F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 3250 3225 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 3250 3225 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/nexperia-usa-inc/74HC595D118/1727-2821-1-ND/763394" H 3250 3225 50  0001 C CNN "Part URL"
-	1    3250 3225
+P 2250 3225
+F 0 "U4" H 2375 3875 50  0000 C CNN
+F 1 "74HC595" H 2500 3800 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 2250 3225 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 2250 3225 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/nexperia-usa-inc/74HC595D118/1727-2821-1-ND/763394" H 2250 3225 50  0001 C CNN "Part URL"
+	1    2250 3225
 	1    0    0    -1  
 $EndComp
-Text Label 4825 5575 2    50   ~ 0
+Text Label 3825 5575 2    50   ~ 0
 IN1
-Text Label 4825 5675 2    50   ~ 0
+Text Label 3825 5675 2    50   ~ 0
 IN2
-Text Label 2850 2825 2    50   ~ 0
+Text Label 1850 2825 2    50   ~ 0
 SER
-Text Label 2850 3025 2    50   ~ 0
+Text Label 1850 3025 2    50   ~ 0
 SRCLK
-Text Label 2850 3325 2    50   ~ 0
+Text Label 1850 3325 2    50   ~ 0
 RCLK
-Text Label 3650 2825 0    50   ~ 0
+Text Label 2650 2825 0    50   ~ 0
 BL1
-Text Label 3650 2925 0    50   ~ 0
+Text Label 2650 2925 0    50   ~ 0
 BL2
-Text Label 3650 3025 0    50   ~ 0
+Text Label 2650 3025 0    50   ~ 0
 BL3
-Text Label 3650 3125 0    50   ~ 0
+Text Label 2650 3125 0    50   ~ 0
 BL4
-Text Label 3650 3225 0    50   ~ 0
+Text Label 2650 3225 0    50   ~ 0
 BL5
-Text Label 3650 3325 0    50   ~ 0
+Text Label 2650 3325 0    50   ~ 0
 BL6
-Text Label 3650 3425 0    50   ~ 0
-BL7
-Text Label 3650 3525 0    50   ~ 0
-BL8
+Text Label 2650 3425 0    50   ~ 0
+BP3
+Text Label 2650 3525 0    50   ~ 0
+BP4
 $Comp
 L power:GND #PWR017
 U 1 1 5D2A6513
-P 2475 3425
-F 0 "#PWR017" H 2475 3175 50  0001 C CNN
-F 1 "GND" H 2480 3252 50  0000 C CNN
-F 2 "" H 2475 3425 50  0001 C CNN
-F 3 "" H 2475 3425 50  0001 C CNN
-	1    2475 3425
+P 1475 3425
+F 0 "#PWR017" H 1475 3175 50  0001 C CNN
+F 1 "GND" H 1480 3252 50  0000 C CNN
+F 2 "" H 1475 3425 50  0001 C CNN
+F 3 "" H 1475 3425 50  0001 C CNN
+	1    1475 3425
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2475 3425 2850 3425
+	1475 3425 1850 3425
 Wire Wire Line
-	2475 3125 2850 3125
+	1475 3125 1850 3125
 $Comp
 L Custom:SSM6N58NU Q1
 U 1 1 5D410713
-P 8025 1325
-F 0 "Q1" H 7250 1675 50  0000 L CNN
-F 1 "SSM6N58NU" H 7250 1775 50  0000 L CNN
-F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 8225 1425 50  0001 C CNN
-F 3 "~" H 8025 1325 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 8025 1325 50  0001 C CNN "Part URL"
-	1    8025 1325
+P 8025 1225
+F 0 "Q1" H 7250 1575 50  0000 L CNN
+F 1 "SSM6N58NU" H 7250 1675 50  0000 L CNN
+F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 8225 1325 50  0001 C CNN
+F 3 "~" H 8025 1225 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 8025 1225 50  0001 C CNN "Part URL"
+	1    8025 1225
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0101
 U 1 1 5D44062F
-P 3250 3925
-F 0 "#PWR0101" H 3250 3675 50  0001 C CNN
-F 1 "GND" H 3255 3752 50  0000 C CNN
-F 2 "" H 3250 3925 50  0001 C CNN
-F 3 "" H 3250 3925 50  0001 C CNN
-	1    3250 3925
+P 2250 3925
+F 0 "#PWR0101" H 2250 3675 50  0001 C CNN
+F 1 "GND" H 2255 3752 50  0000 C CNN
+F 2 "" H 2250 3925 50  0001 C CNN
+F 3 "" H 2250 3925 50  0001 C CNN
+	1    2250 3925
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -382,109 +346,104 @@ F 3 "" H 3200 1725 50  0001 C CNN
 	1    3200 1725
 	1    0    0    -1  
 $EndComp
-Text Label 4825 5275 2    50   ~ 0
+Text Label 3825 5275 2    50   ~ 0
 SER
-Text Label 4825 5375 2    50   ~ 0
+Text Label 3825 5375 2    50   ~ 0
 SRCLK
-Text Label 4825 5475 2    50   ~ 0
+Text Label 3825 5475 2    50   ~ 0
 RCLK
-Text Notes 5325 4375 0    39   ~ 0
+Text Notes 4325 4375 0    39   ~ 0
 Temp Sensor Data Output
-Text Notes 5325 4475 0    39   ~ 0
+Text Notes 4325 4475 0    39   ~ 0
 CS Input for Img Sensor
-Text Notes 5325 4575 0    39   ~ 0
+Text Notes 4325 4575 0    39   ~ 0
 MOSI Input for Img Sensor
-Text Notes 5325 5075 0    39   ~ 0
-Burn Wire Input 1 for Pyrolysis
-Text Notes 5325 5175 0    39   ~ 0
-Burn Wire Input 2 for Pyrolysis
-Text Notes 5325 5275 0    39   ~ 0
+Text Notes 4325 5275 0    39   ~ 0
 Serial Input for Shift Reg
-Text Notes 5325 5375 0    39   ~ 0
+Text Notes 4325 5375 0    39   ~ 0
 Serial Clk Input for Shift Reg
-Text Notes 5325 5475 0    39   ~ 0
+Text Notes 4325 5475 0    39   ~ 0
 Reg Clk Input for Shift Reg
-Text Notes 5325 5575 0    39   ~ 0
+Text Notes 4325 5575 0    39   ~ 0
 Motor Driver for Launchers Input 1
-Text Notes 5325 5675 0    39   ~ 0
+Text Notes 4325 5675 0    39   ~ 0
 Motor Driver for Launchers Input 2
-Text Notes 4625 4200 0    39   ~ 0
+Text Notes 3625 4200 0    39   ~ 0
 Input = Data from Burt to Joe\nOutput = Data from Joe to Burt
 $Comp
 L Connector:Conn_01x08_Female J2
 U 1 1 5D2B2C99
-P 6400 2975
-F 0 "J2" H 6500 3500 50  0000 L CNN
-F 1 "Conn_01x08_Female" H 5650 3500 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Horizontal" H 6400 2975 50  0001 C CNN
-F 3 "~" H 6400 2975 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/sullins-connector-solutions/PPTC081LGBN-RC/S5444-ND/775902" H 6400 2975 50  0001 C CNN "Part URL"
-	1    6400 2975
+P 5400 2975
+F 0 "J2" H 5500 3500 50  0000 L CNN
+F 1 "Conn_01x08_Female" H 4650 3500 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Horizontal" H 5400 2975 50  0001 C CNN
+F 3 "~" H 5400 2975 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/sullins-connector-solutions/PPTC081LGBN-RC/S5444-ND/775902" H 5400 2975 50  0001 C CNN "Part URL"
+	1    5400 2975
 	1    0    0    -1  
 $EndComp
-Text Label 4825 4475 2    50   ~ 0
+Text Label 3825 4475 2    50   ~ 0
 CS_IMG
-Text Label 4825 4575 2    50   ~ 0
+Text Label 3825 4575 2    50   ~ 0
 MOSI
-Text Label 4825 4675 2    50   ~ 0
+Text Label 3825 4675 2    50   ~ 0
 MISO
-Text Label 4825 4775 2    50   ~ 0
+Text Label 3825 4775 2    50   ~ 0
 SCK
-Text Label 4825 4875 2    50   ~ 0
+Text Label 3825 4875 2    50   ~ 0
 SDA
-Text Label 4825 4975 2    50   ~ 0
+Text Label 3825 4975 2    50   ~ 0
 SCL
-Text Notes 5325 4675 0    39   ~ 0
+Text Notes 4325 4675 0    39   ~ 0
 MISO Input for Img Sensor
-Text Notes 5325 4775 0    39   ~ 0
+Text Notes 4325 4775 0    39   ~ 0
 SCLK Input for Img Sensor
-Text Notes 5325 4875 0    39   ~ 0
+Text Notes 4325 4875 0    39   ~ 0
 SDA Input for Img Sensor
-Text Notes 5325 4975 0    39   ~ 0
+Text Notes 4325 4975 0    39   ~ 0
 SCL Input for Img Sensor
-Text Label 6200 2675 2    50   ~ 0
+Text Label 5200 2675 2    50   ~ 0
 CS_IMG
-Text Label 6200 2775 2    50   ~ 0
+Text Label 5200 2775 2    50   ~ 0
 MOSI
-Text Label 6200 2875 2    50   ~ 0
+Text Label 5200 2875 2    50   ~ 0
 MISO
-Text Label 6200 2975 2    50   ~ 0
+Text Label 5200 2975 2    50   ~ 0
 SCK
-Text Label 6200 3275 2    50   ~ 0
+Text Label 5200 3275 2    50   ~ 0
 SDA
-Text Label 6200 3375 2    50   ~ 0
+Text Label 5200 3375 2    50   ~ 0
 SCL
 $Comp
 L power:+5V #PWR0104
 U 1 1 5D33377C
-P 5900 3075
-F 0 "#PWR0104" H 5900 2925 50  0001 C CNN
-F 1 "+5V" H 5915 3248 50  0000 C CNN
-F 2 "" H 5900 3075 50  0001 C CNN
-F 3 "" H 5900 3075 50  0001 C CNN
-	1    5900 3075
+P 4900 3075
+F 0 "#PWR0104" H 4900 2925 50  0001 C CNN
+F 1 "+5V" H 4915 3248 50  0000 C CNN
+F 2 "" H 4900 3075 50  0001 C CNN
+F 3 "" H 4900 3075 50  0001 C CNN
+	1    4900 3075
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0105
 U 1 1 5D333CA6
-P 5900 3175
-F 0 "#PWR0105" H 5900 2925 50  0001 C CNN
-F 1 "GND" H 5905 3002 50  0000 C CNN
-F 2 "" H 5900 3175 50  0001 C CNN
-F 3 "" H 5900 3175 50  0001 C CNN
-	1    5900 3175
+P 4900 3175
+F 0 "#PWR0105" H 4900 2925 50  0001 C CNN
+F 1 "GND" H 4905 3002 50  0000 C CNN
+F 2 "" H 4900 3175 50  0001 C CNN
+F 3 "" H 4900 3175 50  0001 C CNN
+	1    4900 3175
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5900 3075 6200 3075
+	4900 3075 5200 3075
 Wire Wire Line
-	5900 3175 6200 3175
-NoConn ~ 3650 3725
+	4900 3175 5200 3175
 Text Notes 6975 700  0    50   ~ 0
 Burn Wire Circuitry for Launchers
 Wire Notes Line
-	6825 6425 11150 6425
+	6825 6525 11150 6525
 Wire Wire Line
 	2275 1325 2275 1725
 Wire Notes Line
@@ -496,908 +455,534 @@ Wire Notes Line
 Wire Notes Line
 	1175 550  3800 550 
 Wire Notes Line
-	5525 2200 5525 3700
+	4525 2200 4525 3700
 Wire Notes Line
-	5525 3700 6750 3700
+	4525 3700 5750 3700
 Wire Notes Line
-	6750 3700 6750 2200
+	5750 3700 5750 2200
 Wire Notes Line
-	6750 2200 5525 2200
+	5750 2200 4525 2200
 $Comp
 L power:GND #PWR0106
 U 1 1 5D61FC62
-P 4825 5975
-F 0 "#PWR0106" H 4825 5725 50  0001 C CNN
-F 1 "GND" H 4830 5802 50  0000 C CNN
-F 2 "" H 4825 5975 50  0001 C CNN
-F 3 "" H 4825 5975 50  0001 C CNN
-	1    4825 5975
+P 3825 5975
+F 0 "#PWR0106" H 3825 5725 50  0001 C CNN
+F 1 "GND" H 3830 5802 50  0000 C CNN
+F 2 "" H 3825 5975 50  0001 C CNN
+F 3 "" H 3825 5975 50  0001 C CNN
+	1    3825 5975
 	0    1    1    0   
 $EndComp
 $Comp
 L power:+5V #PWR0107
 U 1 1 5D62044A
-P 4825 5875
-F 0 "#PWR0107" H 4825 5725 50  0001 C CNN
-F 1 "+5V" V 4840 6003 50  0000 L CNN
-F 2 "" H 4825 5875 50  0001 C CNN
-F 3 "" H 4825 5875 50  0001 C CNN
-	1    4825 5875
+P 3825 5875
+F 0 "#PWR0107" H 3825 5725 50  0001 C CNN
+F 1 "+5V" V 3840 6003 50  0000 L CNN
+F 2 "" H 3825 5875 50  0001 C CNN
+F 3 "" H 3825 5875 50  0001 C CNN
+	1    3825 5875
 	0    -1   -1   0   
 $EndComp
 $Comp
 L power:+3V3 #PWR0108
 U 1 1 5D620CA2
-P 4825 5775
-F 0 "#PWR0108" H 4825 5625 50  0001 C CNN
-F 1 "+3V3" V 4840 5903 50  0000 L CNN
-F 2 "" H 4825 5775 50  0001 C CNN
-F 3 "" H 4825 5775 50  0001 C CNN
-	1    4825 5775
+P 3825 5775
+F 0 "#PWR0108" H 3825 5625 50  0001 C CNN
+F 1 "+3V3" V 3840 5903 50  0000 L CNN
+F 2 "" H 3825 5775 50  0001 C CNN
+F 3 "" H 3825 5775 50  0001 C CNN
+	1    3825 5775
 	0    -1   -1   0   
 $EndComp
 $Comp
 L power:+3V3 #PWR0109
 U 1 1 5D628336
-P 3250 2625
-F 0 "#PWR0109" H 3250 2475 50  0001 C CNN
-F 1 "+3V3" H 3265 2798 50  0000 C CNN
-F 2 "" H 3250 2625 50  0001 C CNN
-F 3 "" H 3250 2625 50  0001 C CNN
-	1    3250 2625
+P 2250 2625
+F 0 "#PWR0109" H 2250 2475 50  0001 C CNN
+F 1 "+3V3" H 2265 2798 50  0000 C CNN
+F 2 "" H 2250 2625 50  0001 C CNN
+F 3 "" H 2250 2625 50  0001 C CNN
+	1    2250 2625
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR0110
 U 1 1 5D63D7DB
-P 5000 2750
-F 0 "#PWR0110" H 5000 2600 50  0001 C CNN
-F 1 "+3V3" H 5015 2923 50  0000 C CNN
-F 2 "" H 5000 2750 50  0001 C CNN
-F 3 "" H 5000 2750 50  0001 C CNN
-	1    5000 2750
+P 4000 2750
+F 0 "#PWR0110" H 4000 2600 50  0001 C CNN
+F 1 "+3V3" H 4015 2923 50  0000 C CNN
+F 2 "" H 4000 2750 50  0001 C CNN
+F 3 "" H 4000 2750 50  0001 C CNN
+	1    4000 2750
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR0111
 U 1 1 5D644F6B
-P 2475 3125
-F 0 "#PWR0111" H 2475 2975 50  0001 C CNN
-F 1 "+3V3" H 2490 3298 50  0000 C CNN
-F 2 "" H 2475 3125 50  0001 C CNN
-F 3 "" H 2475 3125 50  0001 C CNN
-	1    2475 3125
+P 1475 3125
+F 0 "#PWR0111" H 1475 2975 50  0001 C CNN
+F 1 "+3V3" H 1490 3298 50  0000 C CNN
+F 2 "" H 1475 3125 50  0001 C CNN
+F 3 "" H 1475 3125 50  0001 C CNN
+	1    1475 3125
 	1    0    0    -1  
 $EndComp
-Text Notes 2225 2350 0    50   ~ 0
+Text Notes 1225 2350 0    50   ~ 0
 Shift Registers for Launcher Burn Wires
 Wire Notes Line
-	4075 2200 4075 4250
+	3075 2200 3075 6100
 Wire Notes Line
-	4075 4250 2175 4250
+	3075 6100 1175 6100
 Wire Notes Line
-	2175 4250 2175 2200
+	1175 6100 1175 2200
 Wire Notes Line
-	2175 2200 4075 2200
+	1175 2200 3075 2200
 Wire Notes Line
-	4200 6425 6750 6425
+	3200 6425 5750 6425
 Wire Notes Line
-	6750 6425 6750 3800
+	5750 6425 5750 3800
 Wire Notes Line
-	6750 3800 4200 3800
+	5750 3800 3200 3800
 Wire Notes Line
-	4200 3800 4200 6425
+	3200 3800 3200 6425
 Wire Wire Line
-	8125 1125 8125 1075
+	8125 1025 8125 975 
 Wire Wire Line
-	7750 1325 7825 1325
-Text Notes 8450 1475 2    50   ~ 0
+	7750 1225 7825 1225
+Text Notes 8450 1375 2    50   ~ 0
 Source
-Text Notes 7950 1300 2    50   ~ 0
+Text Notes 7950 1200 2    50   ~ 0
 Gate\n
-Text Notes 8400 1250 2    50   ~ 0
+Text Notes 8400 1150 2    50   ~ 0
 Drain
 Wire Wire Line
-	8125 1525 8400 1525
-$Comp
-L power:GND #PWR0112
-U 1 1 5D805147
-P 7750 1625
-F 0 "#PWR0112" H 7750 1375 50  0001 C CNN
-F 1 "GND" H 7755 1452 50  0000 C CNN
-F 2 "" H 7750 1625 50  0001 C CNN
-F 3 "" H 7750 1625 50  0001 C CNN
-	1    7750 1625
-	1    0    0    -1  
-$EndComp
+	8125 1425 8400 1425
 Wire Wire Line
-	7400 1325 7750 1325
-Connection ~ 7750 1325
-$Comp
-L Device:R R21
-U 1 1 5D8602AD
-P 10125 4250
-F 0 "R21" V 9918 4250 50  0000 C CNN
-F 1 "BURNWIRE" V 10009 4250 50  0000 C CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 10055 4250 50  0001 C CNN
-F 3 "~" H 10125 4250 50  0001 C CNN
-	1    10125 4250
-	0    1    1    0   
-$EndComp
-$Comp
-L power:+BATT #PWR0113
-U 1 1 5D8602B3
-P 10550 4250
-F 0 "#PWR0113" H 10550 4100 50  0001 C CNN
-F 1 "+BATT" H 10565 4423 50  0000 C CNN
-F 2 "" H 10550 4250 50  0001 C CNN
-F 3 "" H 10550 4250 50  0001 C CNN
-	1    10550 4250
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	10275 4250 10550 4250
-$Comp
-L power:GND #PWR0114
-U 1 1 5D8602BA
-P 10250 4700
-F 0 "#PWR0114" H 10250 4450 50  0001 C CNN
-F 1 "GND" H 10255 4527 50  0000 C CNN
-F 2 "" H 10250 4700 50  0001 C CNN
-F 3 "" H 10250 4700 50  0001 C CNN
-	1    10250 4700
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R17
-U 1 1 5D8602C1
-P 9600 4650
-F 0 "R17" H 9670 4696 50  0000 L CNN
-F 1 "10k" H 9670 4605 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 9530 4650 50  0001 C CNN
-F 3 "~" H 9600 4650 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 9600 4650 50  0001 C CNN "Part URL"
-	1    9600 4650
-	-1   0    0    1   
-$EndComp
-Text Label 9250 4500 2    50   ~ 0
-BL8
-$Comp
-L Custom:SSM6N58NU Q4
-U 2 1 5D8602C9
-P 9875 4500
-F 0 "Q4" H 9100 4850 50  0000 L CNN
-F 1 "SSM6N58NU" H 9100 4950 50  0000 L CNN
-F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 10075 4600 50  0001 C CNN
-F 3 "~" H 9875 4500 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 9875 4500 50  0001 C CNN "Part URL"
-	2    9875 4500
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9975 4300 9975 4250
-Wire Wire Line
-	9600 4500 9675 4500
-Text Notes 10300 4650 2    50   ~ 0
-Source
-Text Notes 9800 4475 2    50   ~ 0
-Gate\n
-Text Notes 10250 4425 2    50   ~ 0
-Drain
-Wire Wire Line
-	9975 4700 10250 4700
-$Comp
-L power:GND #PWR0115
-U 1 1 5D8602D5
-P 9600 4800
-F 0 "#PWR0115" H 9600 4550 50  0001 C CNN
-F 1 "GND" H 9605 4627 50  0000 C CNN
-F 2 "" H 9600 4800 50  0001 C CNN
-F 3 "" H 9600 4800 50  0001 C CNN
-	1    9600 4800
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9250 4500 9600 4500
-Connection ~ 9600 4500
+	7400 1225 7750 1225
+Connection ~ 7750 1225
 $Comp
 L Device:R R11
 U 1 1 5D86E236
-P 8325 2125
-F 0 "R11" V 8118 2125 50  0000 C CNN
-F 1 "BURNWIRE" V 8209 2125 50  0000 C CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 8255 2125 50  0001 C CNN
-F 3 "~" H 8325 2125 50  0001 C CNN
-	1    8325 2125
+P 8225 1875
+F 0 "R11" V 8018 1875 50  0000 C CNN
+F 1 "BURNWIRE" V 8109 1875 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 8155 1875 50  0001 C CNN
+F 3 "~" H 8225 1875 50  0001 C CNN
+	1    8225 1875
 	0    1    1    0   
 $EndComp
-$Comp
-L power:+BATT #PWR0116
-U 1 1 5D86E23C
-P 8750 2125
-F 0 "#PWR0116" H 8750 1975 50  0001 C CNN
-F 1 "+BATT" H 8765 2298 50  0000 C CNN
-F 2 "" H 8750 2125 50  0001 C CNN
-F 3 "" H 8750 2125 50  0001 C CNN
-	1    8750 2125
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	8475 2125 8750 2125
-$Comp
-L power:GND #PWR0117
-U 1 1 5D86E243
-P 8450 2575
-F 0 "#PWR0117" H 8450 2325 50  0001 C CNN
-F 1 "GND" H 8455 2402 50  0000 C CNN
-F 2 "" H 8450 2575 50  0001 C CNN
-F 3 "" H 8450 2575 50  0001 C CNN
-	1    8450 2575
-	1    0    0    -1  
-$EndComp
+	8375 1875 8650 1875
 $Comp
 L Device:R R1
 U 1 1 5D86E24A
-P 7800 2525
-F 0 "R1" H 7870 2571 50  0000 L CNN
-F 1 "10k" H 7870 2480 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 7730 2525 50  0001 C CNN
-F 3 "~" H 7800 2525 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 7800 2525 50  0001 C CNN "Part URL"
-	1    7800 2525
+P 7700 2275
+F 0 "R1" H 7770 2321 50  0000 L CNN
+F 1 "10k" H 7770 2230 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 7630 2275 50  0001 C CNN
+F 3 "~" H 7700 2275 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 7700 2275 50  0001 C CNN "Part URL"
+	1    7700 2275
 	-1   0    0    1   
 $EndComp
-Text Label 7450 2375 2    50   ~ 0
-BL3
 $Comp
 L Custom:SSM6N58NU Q2
 U 1 1 5D86E252
-P 8075 2375
-F 0 "Q2" H 7300 2725 50  0000 L CNN
-F 1 "SSM6N58NU" H 7300 2825 50  0000 L CNN
-F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 8275 2475 50  0001 C CNN
-F 3 "~" H 8075 2375 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 8075 2375 50  0001 C CNN "Part URL"
-	1    8075 2375
+P 7975 2125
+F 0 "Q2" H 7200 2475 50  0000 L CNN
+F 1 "SSM6N58NU" H 7200 2575 50  0000 L CNN
+F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 8175 2225 50  0001 C CNN
+F 3 "~" H 7975 2125 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 7975 2125 50  0001 C CNN "Part URL"
+	1    7975 2125
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8175 2175 8175 2125
+	8075 1925 8075 1875
 Wire Wire Line
-	7800 2375 7875 2375
-Text Notes 8500 2525 2    50   ~ 0
+	7700 2125 7775 2125
+Text Notes 8400 2275 2    50   ~ 0
 Source
-Text Notes 8000 2350 2    50   ~ 0
+Text Notes 7900 2100 2    50   ~ 0
 Gate\n
-Text Notes 8450 2300 2    50   ~ 0
+Text Notes 8350 2050 2    50   ~ 0
 Drain
 Wire Wire Line
-	8175 2575 8450 2575
-$Comp
-L power:GND #PWR0118
-U 1 1 5D86E25E
-P 7800 2675
-F 0 "#PWR0118" H 7800 2425 50  0001 C CNN
-F 1 "GND" H 7805 2502 50  0000 C CNN
-F 2 "" H 7800 2675 50  0001 C CNN
-F 3 "" H 7800 2675 50  0001 C CNN
-	1    7800 2675
-	1    0    0    -1  
-$EndComp
+	8075 2325 8350 2325
 Wire Wire Line
-	7450 2375 7800 2375
-Connection ~ 7800 2375
+	7350 2125 7700 2125
+Connection ~ 7700 2125
 $Comp
 L Device:R R12
 U 1 1 5D86E266
-P 10350 2200
-F 0 "R12" V 10143 2200 50  0000 C CNN
-F 1 "BURNWIRE" V 10234 2200 50  0000 C CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 10280 2200 50  0001 C CNN
-F 3 "~" H 10350 2200 50  0001 C CNN
-	1    10350 2200
+P 10250 1950
+F 0 "R12" V 10043 1950 50  0000 C CNN
+F 1 "BURNWIRE" V 10134 1950 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 10180 1950 50  0001 C CNN
+F 3 "~" H 10250 1950 50  0001 C CNN
+	1    10250 1950
 	0    1    1    0   
 $EndComp
-$Comp
-L power:+BATT #PWR0119
-U 1 1 5D86E26C
-P 10775 2200
-F 0 "#PWR0119" H 10775 2050 50  0001 C CNN
-F 1 "+BATT" H 10790 2373 50  0000 C CNN
-F 2 "" H 10775 2200 50  0001 C CNN
-F 3 "" H 10775 2200 50  0001 C CNN
-	1    10775 2200
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	10500 2200 10775 2200
-$Comp
-L power:GND #PWR0120
-U 1 1 5D86E273
-P 10475 2650
-F 0 "#PWR0120" H 10475 2400 50  0001 C CNN
-F 1 "GND" H 10480 2477 50  0000 C CNN
-F 2 "" H 10475 2650 50  0001 C CNN
-F 3 "" H 10475 2650 50  0001 C CNN
-	1    10475 2650
-	1    0    0    -1  
-$EndComp
+	10400 1950 10675 1950
 $Comp
 L Device:R R2
 U 1 1 5D86E27A
-P 9825 2600
-F 0 "R2" H 9895 2646 50  0000 L CNN
-F 1 "10k" H 9895 2555 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 9755 2600 50  0001 C CNN
-F 3 "~" H 9825 2600 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 9825 2600 50  0001 C CNN "Part URL"
-	1    9825 2600
+P 9725 2350
+F 0 "R2" H 9795 2396 50  0000 L CNN
+F 1 "10k" H 9795 2305 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9655 2350 50  0001 C CNN
+F 3 "~" H 9725 2350 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 9725 2350 50  0001 C CNN "Part URL"
+	1    9725 2350
 	-1   0    0    1   
 $EndComp
-Text Label 9475 2450 2    50   ~ 0
+Text Label 6000 2700 2    50   ~ 0
 BL4
 $Comp
 L Custom:SSM6N58NU Q2
 U 2 1 5D86E282
-P 10100 2450
-F 0 "Q2" H 9325 2800 50  0000 L CNN
-F 1 "SSM6N58NU" H 9325 2900 50  0000 L CNN
-F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 10300 2550 50  0001 C CNN
-F 3 "~" H 10100 2450 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 10100 2450 50  0001 C CNN "Part URL"
-	2    10100 2450
+P 10000 2200
+F 0 "Q2" H 9225 2550 50  0000 L CNN
+F 1 "SSM6N58NU" H 9225 2650 50  0000 L CNN
+F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 10200 2300 50  0001 C CNN
+F 3 "~" H 10000 2200 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 10000 2200 50  0001 C CNN "Part URL"
+	2    10000 2200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10200 2250 10200 2200
+	10100 2000 10100 1950
 Wire Wire Line
-	9825 2450 9900 2450
-Text Notes 10525 2600 2    50   ~ 0
+	9725 2200 9800 2200
+Text Notes 10425 2350 2    50   ~ 0
 Source
-Text Notes 10025 2425 2    50   ~ 0
+Text Notes 9925 2175 2    50   ~ 0
 Gate\n
-Text Notes 10475 2375 2    50   ~ 0
+Text Notes 10375 2125 2    50   ~ 0
 Drain
 Wire Wire Line
-	10200 2650 10475 2650
-$Comp
-L power:GND #PWR0121
-U 1 1 5D86E28E
-P 9825 2750
-F 0 "#PWR0121" H 9825 2500 50  0001 C CNN
-F 1 "GND" H 9830 2577 50  0000 C CNN
-F 2 "" H 9825 2750 50  0001 C CNN
-F 3 "" H 9825 2750 50  0001 C CNN
-	1    9825 2750
-	1    0    0    -1  
-$EndComp
+	10100 2400 10375 2400
 Wire Wire Line
-	9475 2450 9825 2450
-Connection ~ 9825 2450
-Text Notes 6900 5225 0    50   ~ 0
+	9375 2200 9725 2200
+Connection ~ 9725 2200
+Text Notes 6925 3775 0    50   ~ 0
 Burn Wire Circuitry for Pyrolysis
 $Comp
 L Device:R R23
 U 1 1 5D892B60
-P 8175 5600
-F 0 "R23" V 7968 5600 50  0000 C CNN
-F 1 "BURNWIRE" V 8059 5600 50  0000 C CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 8105 5600 50  0001 C CNN
-F 3 "~" H 8175 5600 50  0001 C CNN
-	1    8175 5600
+P 8200 4050
+F 0 "R23" V 7993 4050 50  0000 C CNN
+F 1 "BURNWIRE" V 8084 4050 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 8130 4050 50  0001 C CNN
+F 3 "~" H 8200 4050 50  0001 C CNN
+	1    8200 4050
 	0    1    1    0   
 $EndComp
-$Comp
-L power:+BATT #PWR0122
-U 1 1 5D892B66
-P 8600 5600
-F 0 "#PWR0122" H 8600 5450 50  0001 C CNN
-F 1 "+BATT" H 8615 5773 50  0000 C CNN
-F 2 "" H 8600 5600 50  0001 C CNN
-F 3 "" H 8600 5600 50  0001 C CNN
-	1    8600 5600
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	8325 5600 8600 5600
+	8350 4050 8625 4050
 $Comp
 L power:GND #PWR0123
 U 1 1 5D892B6D
-P 8300 6050
-F 0 "#PWR0123" H 8300 5800 50  0001 C CNN
-F 1 "GND" H 8305 5877 50  0000 C CNN
-F 2 "" H 8300 6050 50  0001 C CNN
-F 3 "" H 8300 6050 50  0001 C CNN
-	1    8300 6050
+P 8325 4500
+F 0 "#PWR0123" H 8325 4250 50  0001 C CNN
+F 1 "GND" H 8330 4327 50  0000 C CNN
+F 2 "" H 8325 4500 50  0001 C CNN
+F 3 "" H 8325 4500 50  0001 C CNN
+	1    8325 4500
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R19
 U 1 1 5D892B74
-P 7650 6000
-F 0 "R19" H 7720 6046 50  0000 L CNN
-F 1 "10k" H 7720 5955 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 7580 6000 50  0001 C CNN
-F 3 "~" H 7650 6000 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 7650 6000 50  0001 C CNN "Part URL"
-	1    7650 6000
+P 7675 4450
+F 0 "R19" H 7745 4496 50  0000 L CNN
+F 1 "10k" H 7745 4405 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 7605 4450 50  0001 C CNN
+F 3 "~" H 7675 4450 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 7675 4450 50  0001 C CNN "Part URL"
+	1    7675 4450
 	-1   0    0    1   
 $EndComp
-Text Label 7300 5850 2    50   ~ 0
+Text Label 7325 4300 2    50   ~ 0
 BP1
 $Comp
 L Custom:SSM6N58NU Q5
 U 1 1 5D892B7C
-P 7925 5850
-F 0 "Q5" H 7150 6200 50  0000 L CNN
-F 1 "SSM6N58NU" H 7150 6300 50  0000 L CNN
-F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 8125 5950 50  0001 C CNN
-F 3 "~" H 7925 5850 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 7925 5850 50  0001 C CNN "Part URL"
-	1    7925 5850
+P 7950 4300
+F 0 "Q5" H 7175 4650 50  0000 L CNN
+F 1 "SSM6N58NU" H 7175 4750 50  0000 L CNN
+F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 8150 4400 50  0001 C CNN
+F 3 "~" H 7950 4300 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 7950 4300 50  0001 C CNN "Part URL"
+	1    7950 4300
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8025 5650 8025 5600
+	8050 4100 8050 4050
 Wire Wire Line
-	7650 5850 7725 5850
-Text Notes 8350 6000 2    50   ~ 0
+	7675 4300 7750 4300
+Text Notes 8375 4450 2    50   ~ 0
 Source
-Text Notes 7850 5825 2    50   ~ 0
+Text Notes 7875 4275 2    50   ~ 0
 Gate\n
-Text Notes 8300 5775 2    50   ~ 0
+Text Notes 8325 4225 2    50   ~ 0
 Drain
 Wire Wire Line
-	8025 6050 8300 6050
+	8050 4500 8325 4500
 $Comp
 L power:GND #PWR0124
 U 1 1 5D892B88
-P 7650 6150
-F 0 "#PWR0124" H 7650 5900 50  0001 C CNN
-F 1 "GND" H 7655 5977 50  0000 C CNN
-F 2 "" H 7650 6150 50  0001 C CNN
-F 3 "" H 7650 6150 50  0001 C CNN
-	1    7650 6150
+P 7675 4600
+F 0 "#PWR0124" H 7675 4350 50  0001 C CNN
+F 1 "GND" H 7680 4427 50  0000 C CNN
+F 2 "" H 7675 4600 50  0001 C CNN
+F 3 "" H 7675 4600 50  0001 C CNN
+	1    7675 4600
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7300 5850 7650 5850
-Connection ~ 7650 5850
+	7325 4300 7675 4300
+Connection ~ 7675 4300
 $Comp
 L Device:R R24
 U 1 1 5D892B90
-P 10100 5600
-F 0 "R24" V 9893 5600 50  0000 C CNN
-F 1 "BURNWIRE" V 9984 5600 50  0000 C CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 10030 5600 50  0001 C CNN
-F 3 "~" H 10100 5600 50  0001 C CNN
-	1    10100 5600
+P 10125 4050
+F 0 "R24" V 9918 4050 50  0000 C CNN
+F 1 "BURNWIRE" V 10009 4050 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 10055 4050 50  0001 C CNN
+F 3 "~" H 10125 4050 50  0001 C CNN
+	1    10125 4050
 	0    1    1    0   
 $EndComp
-$Comp
-L power:+BATT #PWR0125
-U 1 1 5D892B96
-P 10525 5600
-F 0 "#PWR0125" H 10525 5450 50  0001 C CNN
-F 1 "+BATT" H 10540 5773 50  0000 C CNN
-F 2 "" H 10525 5600 50  0001 C CNN
-F 3 "" H 10525 5600 50  0001 C CNN
-	1    10525 5600
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	10250 5600 10525 5600
+	10275 4050 10550 4050
 $Comp
 L power:GND #PWR0126
 U 1 1 5D892B9D
-P 10225 6050
-F 0 "#PWR0126" H 10225 5800 50  0001 C CNN
-F 1 "GND" H 10230 5877 50  0000 C CNN
-F 2 "" H 10225 6050 50  0001 C CNN
-F 3 "" H 10225 6050 50  0001 C CNN
-	1    10225 6050
+P 10250 4500
+F 0 "#PWR0126" H 10250 4250 50  0001 C CNN
+F 1 "GND" H 10255 4327 50  0000 C CNN
+F 2 "" H 10250 4500 50  0001 C CNN
+F 3 "" H 10250 4500 50  0001 C CNN
+	1    10250 4500
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R20
 U 1 1 5D892BA4
-P 9575 6000
-F 0 "R20" H 9645 6046 50  0000 L CNN
-F 1 "10k" H 9645 5955 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 9505 6000 50  0001 C CNN
-F 3 "~" H 9575 6000 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 9575 6000 50  0001 C CNN "Part URL"
-	1    9575 6000
+P 9600 4450
+F 0 "R20" H 9670 4496 50  0000 L CNN
+F 1 "10k" H 9670 4405 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9530 4450 50  0001 C CNN
+F 3 "~" H 9600 4450 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 9600 4450 50  0001 C CNN "Part URL"
+	1    9600 4450
 	-1   0    0    1   
 $EndComp
-Text Label 9225 5850 2    50   ~ 0
+Text Label 9250 4300 2    50   ~ 0
 BP2
 $Comp
 L Custom:SSM6N58NU Q5
 U 2 1 5D892BAC
-P 9850 5850
-F 0 "Q5" H 9075 6200 50  0000 L CNN
-F 1 "SSM6N58NU" H 9075 6300 50  0000 L CNN
-F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 10050 5950 50  0001 C CNN
-F 3 "~" H 9850 5850 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 9850 5850 50  0001 C CNN "Part URL"
-	2    9850 5850
+P 9875 4300
+F 0 "Q5" H 9100 4650 50  0000 L CNN
+F 1 "SSM6N58NU" H 9100 4750 50  0000 L CNN
+F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 10075 4400 50  0001 C CNN
+F 3 "~" H 9875 4300 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 9875 4300 50  0001 C CNN "Part URL"
+	2    9875 4300
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9950 5650 9950 5600
+	9975 4100 9975 4050
 Wire Wire Line
-	9575 5850 9650 5850
-Text Notes 10275 6000 2    50   ~ 0
+	9600 4300 9675 4300
+Text Notes 10300 4450 2    50   ~ 0
 Source
-Text Notes 9775 5825 2    50   ~ 0
+Text Notes 9800 4275 2    50   ~ 0
 Gate\n
-Text Notes 10225 5775 2    50   ~ 0
+Text Notes 10250 4225 2    50   ~ 0
 Drain
 Wire Wire Line
-	9950 6050 10225 6050
+	9975 4500 10250 4500
 $Comp
 L power:GND #PWR0127
 U 1 1 5D892BB8
-P 9575 6150
-F 0 "#PWR0127" H 9575 5900 50  0001 C CNN
-F 1 "GND" H 9580 5977 50  0000 C CNN
-F 2 "" H 9575 6150 50  0001 C CNN
-F 3 "" H 9575 6150 50  0001 C CNN
-	1    9575 6150
+P 9600 4600
+F 0 "#PWR0127" H 9600 4350 50  0001 C CNN
+F 1 "GND" H 9605 4427 50  0000 C CNN
+F 2 "" H 9600 4600 50  0001 C CNN
+F 3 "" H 9600 4600 50  0001 C CNN
+	1    9600 4600
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9225 5850 9575 5850
-Connection ~ 9575 5850
+	9250 4300 9600 4300
+Connection ~ 9600 4300
 $Comp
 L Device:R R15
 U 1 1 5D892BC0
-P 10225 3250
-F 0 "R15" V 10018 3250 50  0000 C CNN
-F 1 "BURNWIRE" V 10109 3250 50  0000 C CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 10155 3250 50  0001 C CNN
-F 3 "~" H 10225 3250 50  0001 C CNN
-	1    10225 3250
+P 10175 2850
+F 0 "R15" V 9968 2850 50  0000 C CNN
+F 1 "BURNWIRE" V 10059 2850 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 10105 2850 50  0001 C CNN
+F 3 "~" H 10175 2850 50  0001 C CNN
+	1    10175 2850
 	0    1    1    0   
 $EndComp
-$Comp
-L power:+BATT #PWR0128
-U 1 1 5D892BC6
-P 10650 3250
-F 0 "#PWR0128" H 10650 3100 50  0001 C CNN
-F 1 "+BATT" H 10665 3423 50  0000 C CNN
-F 2 "" H 10650 3250 50  0001 C CNN
-F 3 "" H 10650 3250 50  0001 C CNN
-	1    10650 3250
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	10375 3250 10650 3250
-$Comp
-L power:GND #PWR0129
-U 1 1 5D892BCD
-P 10350 3700
-F 0 "#PWR0129" H 10350 3450 50  0001 C CNN
-F 1 "GND" H 10355 3527 50  0000 C CNN
-F 2 "" H 10350 3700 50  0001 C CNN
-F 3 "" H 10350 3700 50  0001 C CNN
-	1    10350 3700
-	1    0    0    -1  
-$EndComp
+	10325 2850 10600 2850
 $Comp
 L Device:R R9
 U 1 1 5D892BD4
-P 9700 3650
-F 0 "R9" H 9770 3696 50  0000 L CNN
-F 1 "10k" H 9770 3605 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 9630 3650 50  0001 C CNN
-F 3 "~" H 9700 3650 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 9700 3650 50  0001 C CNN "Part URL"
-	1    9700 3650
+P 9650 3250
+F 0 "R9" H 9720 3296 50  0000 L CNN
+F 1 "10k" H 9720 3205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9580 3250 50  0001 C CNN
+F 3 "~" H 9650 3250 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 9650 3250 50  0001 C CNN "Part URL"
+	1    9650 3250
 	-1   0    0    1   
 $EndComp
-Text Label 9350 3500 2    50   ~ 0
+Text Label 9300 3100 2    50   ~ 0
 BL6
 $Comp
 L Custom:SSM6N58NU Q3
 U 2 1 5D892BDC
-P 9975 3500
-F 0 "Q3" H 9200 3850 50  0000 L CNN
-F 1 "SSM6N58NU" H 9200 3950 50  0000 L CNN
-F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 10175 3600 50  0001 C CNN
-F 3 "~" H 9975 3500 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 9975 3500 50  0001 C CNN "Part URL"
-	2    9975 3500
+P 9925 3100
+F 0 "Q3" H 9150 3450 50  0000 L CNN
+F 1 "SSM6N58NU" H 9150 3550 50  0000 L CNN
+F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 10125 3200 50  0001 C CNN
+F 3 "~" H 9925 3100 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 9925 3100 50  0001 C CNN "Part URL"
+	2    9925 3100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10075 3300 10075 3250
+	10025 2900 10025 2850
 Wire Wire Line
-	9700 3500 9775 3500
-Text Notes 10400 3650 2    50   ~ 0
+	9650 3100 9725 3100
+Text Notes 10350 3250 2    50   ~ 0
 Source
-Text Notes 9900 3475 2    50   ~ 0
+Text Notes 9850 3075 2    50   ~ 0
 Gate\n
-Text Notes 10350 3425 2    50   ~ 0
+Text Notes 10300 3025 2    50   ~ 0
 Drain
 Wire Wire Line
-	10075 3700 10350 3700
-$Comp
-L power:GND #PWR0130
-U 1 1 5D892BE8
-P 9700 3800
-F 0 "#PWR0130" H 9700 3550 50  0001 C CNN
-F 1 "GND" H 9705 3627 50  0000 C CNN
-F 2 "" H 9700 3800 50  0001 C CNN
-F 3 "" H 9700 3800 50  0001 C CNN
-	1    9700 3800
-	1    0    0    -1  
-$EndComp
+	10025 3300 10300 3300
 Wire Wire Line
-	9350 3500 9700 3500
-Connection ~ 9700 3500
-$Comp
-L Device:R R16
-U 1 1 5D892BF0
-P 8250 4225
-F 0 "R16" V 8043 4225 50  0000 C CNN
-F 1 "BURNWIRE" V 8134 4225 50  0000 C CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 8180 4225 50  0001 C CNN
-F 3 "~" H 8250 4225 50  0001 C CNN
-	1    8250 4225
-	0    1    1    0   
-$EndComp
-$Comp
-L power:+BATT #PWR0131
-U 1 1 5D892BF6
-P 8675 4225
-F 0 "#PWR0131" H 8675 4075 50  0001 C CNN
-F 1 "+BATT" H 8690 4398 50  0000 C CNN
-F 2 "" H 8675 4225 50  0001 C CNN
-F 3 "" H 8675 4225 50  0001 C CNN
-	1    8675 4225
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8400 4225 8675 4225
-$Comp
-L power:GND #PWR0132
-U 1 1 5D892BFD
-P 8375 4675
-F 0 "#PWR0132" H 8375 4425 50  0001 C CNN
-F 1 "GND" H 8380 4502 50  0000 C CNN
-F 2 "" H 8375 4675 50  0001 C CNN
-F 3 "" H 8375 4675 50  0001 C CNN
-	1    8375 4675
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R10
-U 1 1 5D892C04
-P 7725 4625
-F 0 "R10" H 7795 4671 50  0000 L CNN
-F 1 "10k" H 7795 4580 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 7655 4625 50  0001 C CNN
-F 3 "~" H 7725 4625 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 7725 4625 50  0001 C CNN "Part URL"
-	1    7725 4625
-	-1   0    0    1   
-$EndComp
-Text Label 7375 4475 2    50   ~ 0
-BL7
-$Comp
-L Custom:SSM6N58NU Q4
-U 1 1 5D892C0C
-P 8000 4475
-F 0 "Q4" H 7225 4825 50  0000 L CNN
-F 1 "SSM6N58NU" H 7225 4925 50  0000 L CNN
-F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 8200 4575 50  0001 C CNN
-F 3 "~" H 8000 4475 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 8000 4475 50  0001 C CNN "Part URL"
-	1    8000 4475
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8100 4275 8100 4225
-Wire Wire Line
-	7725 4475 7800 4475
-Text Notes 8425 4625 2    50   ~ 0
-Source
-Text Notes 7925 4450 2    50   ~ 0
-Gate\n
-Text Notes 8375 4400 2    50   ~ 0
-Drain
-Wire Wire Line
-	8100 4675 8375 4675
-$Comp
-L power:GND #PWR0133
-U 1 1 5D892C18
-P 7725 4775
-F 0 "#PWR0133" H 7725 4525 50  0001 C CNN
-F 1 "GND" H 7730 4602 50  0000 C CNN
-F 2 "" H 7725 4775 50  0001 C CNN
-F 3 "" H 7725 4775 50  0001 C CNN
-	1    7725 4775
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7375 4475 7725 4475
-Connection ~ 7725 4475
+	9300 3100 9650 3100
+Connection ~ 9650 3100
 $Comp
 L Device:R R14
 U 1 1 5D8CC389
-P 8200 3200
-F 0 "R14" V 7993 3200 50  0000 C CNN
-F 1 "BURNWIRE" V 8084 3200 50  0000 C CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 8130 3200 50  0001 C CNN
-F 3 "~" H 8200 3200 50  0001 C CNN
-	1    8200 3200
+P 8150 2800
+F 0 "R14" V 7943 2800 50  0000 C CNN
+F 1 "BURNWIRE" V 8034 2800 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 8080 2800 50  0001 C CNN
+F 3 "~" H 8150 2800 50  0001 C CNN
+	1    8150 2800
 	0    1    1    0   
 $EndComp
-$Comp
-L power:+BATT #PWR0134
-U 1 1 5D8CC38F
-P 8625 3200
-F 0 "#PWR0134" H 8625 3050 50  0001 C CNN
-F 1 "+BATT" H 8640 3373 50  0000 C CNN
-F 2 "" H 8625 3200 50  0001 C CNN
-F 3 "" H 8625 3200 50  0001 C CNN
-	1    8625 3200
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	8350 3200 8625 3200
-$Comp
-L power:GND #PWR0135
-U 1 1 5D8CC396
-P 8325 3650
-F 0 "#PWR0135" H 8325 3400 50  0001 C CNN
-F 1 "GND" H 8330 3477 50  0000 C CNN
-F 2 "" H 8325 3650 50  0001 C CNN
-F 3 "" H 8325 3650 50  0001 C CNN
-	1    8325 3650
-	1    0    0    -1  
-$EndComp
+	8300 2800 8575 2800
 $Comp
 L Device:R R3
 U 1 1 5D8CC39D
-P 7675 3600
-F 0 "R3" H 7745 3646 50  0000 L CNN
-F 1 "10k" H 7745 3555 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 7605 3600 50  0001 C CNN
-F 3 "~" H 7675 3600 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 7675 3600 50  0001 C CNN "Part URL"
-	1    7675 3600
+P 7625 3200
+F 0 "R3" H 7695 3246 50  0000 L CNN
+F 1 "10k" H 7695 3155 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 7555 3200 50  0001 C CNN
+F 3 "~" H 7625 3200 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 7625 3200 50  0001 C CNN "Part URL"
+	1    7625 3200
 	-1   0    0    1   
 $EndComp
-Text Label 7325 3450 2    50   ~ 0
+Text Label 7275 3050 2    50   ~ 0
 BL5
 $Comp
 L Custom:SSM6N58NU Q3
 U 1 1 5D8CC3A5
-P 7950 3450
-F 0 "Q3" H 7175 3800 50  0000 L CNN
-F 1 "SSM6N58NU" H 7175 3900 50  0000 L CNN
-F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 8150 3550 50  0001 C CNN
-F 3 "~" H 7950 3450 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 7950 3450 50  0001 C CNN "Part URL"
-	1    7950 3450
+P 7900 3050
+F 0 "Q3" H 7125 3400 50  0000 L CNN
+F 1 "SSM6N58NU" H 7125 3500 50  0000 L CNN
+F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 8100 3150 50  0001 C CNN
+F 3 "~" H 7900 3050 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 7900 3050 50  0001 C CNN "Part URL"
+	1    7900 3050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8050 3250 8050 3200
+	8000 2850 8000 2800
 Wire Wire Line
-	7675 3450 7750 3450
-Text Notes 8375 3600 2    50   ~ 0
+	7625 3050 7700 3050
+Text Notes 8325 3200 2    50   ~ 0
 Source
-Text Notes 7875 3425 2    50   ~ 0
+Text Notes 7825 3025 2    50   ~ 0
 Gate\n
-Text Notes 8325 3375 2    50   ~ 0
+Text Notes 8275 2975 2    50   ~ 0
 Drain
 Wire Wire Line
-	8050 3650 8325 3650
-$Comp
-L power:GND #PWR0136
-U 1 1 5D8CC3B1
-P 7675 3750
-F 0 "#PWR0136" H 7675 3500 50  0001 C CNN
-F 1 "GND" H 7680 3577 50  0000 C CNN
-F 2 "" H 7675 3750 50  0001 C CNN
-F 3 "" H 7675 3750 50  0001 C CNN
-	1    7675 3750
-	1    0    0    -1  
-$EndComp
+	8000 3250 8275 3250
 Wire Wire Line
-	7325 3450 7675 3450
-Connection ~ 7675 3450
+	7275 3050 7625 3050
+Connection ~ 7625 3050
 $Comp
 L Device:R R22
 U 1 1 5D8CC3B9
-P 10300 1125
-F 0 "R22" V 10093 1125 50  0000 C CNN
-F 1 "BURNWIRE" V 10184 1125 50  0000 C CNN
-F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 10230 1125 50  0001 C CNN
-F 3 "~" H 10300 1125 50  0001 C CNN
-	1    10300 1125
+P 10300 1025
+F 0 "R22" V 10093 1025 50  0000 C CNN
+F 1 "BURNWIRE" V 10184 1025 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 10230 1025 50  0001 C CNN
+F 3 "~" H 10300 1025 50  0001 C CNN
+	1    10300 1025
 	0    1    1    0   
 $EndComp
-$Comp
-L power:+BATT #PWR0137
-U 1 1 5D8CC3BF
-P 10725 1125
-F 0 "#PWR0137" H 10725 975 50  0001 C CNN
-F 1 "+BATT" H 10740 1298 50  0000 C CNN
-F 2 "" H 10725 1125 50  0001 C CNN
-F 3 "" H 10725 1125 50  0001 C CNN
-	1    10725 1125
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	10450 1125 10725 1125
-$Comp
-L power:GND #PWR0138
-U 1 1 5D8CC3C6
-P 10425 1575
-F 0 "#PWR0138" H 10425 1325 50  0001 C CNN
-F 1 "GND" H 10430 1402 50  0000 C CNN
-F 2 "" H 10425 1575 50  0001 C CNN
-F 3 "" H 10425 1575 50  0001 C CNN
-	1    10425 1575
-	1    0    0    -1  
-$EndComp
+	10450 1025 10725 1025
 $Comp
 L Device:R R18
 U 1 1 5D8CC3CD
-P 9775 1525
-F 0 "R18" H 9845 1571 50  0000 L CNN
-F 1 "10k" H 9845 1480 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 9705 1525 50  0001 C CNN
-F 3 "~" H 9775 1525 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 9775 1525 50  0001 C CNN "Part URL"
-	1    9775 1525
+P 9775 1425
+F 0 "R18" H 9845 1471 50  0000 L CNN
+F 1 "10k" H 9845 1380 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9705 1425 50  0001 C CNN
+F 3 "~" H 9775 1425 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 9775 1425 50  0001 C CNN "Part URL"
+	1    9775 1425
 	-1   0    0    1   
 $EndComp
-Text Label 9425 1375 2    50   ~ 0
+Text Label 6000 2500 2    50   ~ 0
 BL2
 $Comp
 L Custom:SSM6N58NU Q1
 U 2 1 5D8CC3D5
-P 10050 1375
-F 0 "Q1" H 9275 1725 50  0000 L CNN
-F 1 "SSM6N58NU" H 9275 1825 50  0000 L CNN
-F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 10250 1475 50  0001 C CNN
-F 3 "~" H 10050 1375 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 10050 1375 50  0001 C CNN "Part URL"
-	2    10050 1375
+P 10050 1275
+F 0 "Q1" H 9275 1625 50  0000 L CNN
+F 1 "SSM6N58NU" H 9275 1725 50  0000 L CNN
+F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 10250 1375 50  0001 C CNN
+F 3 "~" H 10050 1275 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 10050 1275 50  0001 C CNN "Part URL"
+	2    10050 1275
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10150 1175 10150 1125
+	10150 1075 10150 1025
 Wire Wire Line
-	9775 1375 9850 1375
-Text Notes 10475 1525 2    50   ~ 0
+	9775 1275 9850 1275
+Text Notes 10475 1425 2    50   ~ 0
 Source
-Text Notes 9975 1350 2    50   ~ 0
+Text Notes 9975 1250 2    50   ~ 0
 Gate\n
-Text Notes 10425 1300 2    50   ~ 0
+Text Notes 10425 1200 2    50   ~ 0
 Drain
 Wire Wire Line
-	10150 1575 10425 1575
-$Comp
-L power:GND #PWR0139
-U 1 1 5D8CC3E1
-P 9775 1675
-F 0 "#PWR0139" H 9775 1425 50  0001 C CNN
-F 1 "GND" H 9780 1502 50  0000 C CNN
-F 2 "" H 9775 1675 50  0001 C CNN
-F 3 "" H 9775 1675 50  0001 C CNN
-	1    9775 1675
-	1    0    0    -1  
-$EndComp
+	10150 1475 10425 1475
 Wire Wire Line
-	9425 1375 9775 1375
-Connection ~ 9775 1375
+	9425 1275 9775 1275
+Connection ~ 9775 1275
 $Comp
 L Device:LED D1
 U 1 1 5D3F25BA
@@ -1490,24 +1075,24 @@ Wire Wire Line
 	6325 1375 6425 1375
 Connection ~ 6325 1375
 Wire Notes Line
-	11150 550  11150 6425
+	11150 550  11150 6525
 Wire Notes Line
-	6825 550  6825 6425
+	6825 550  6825 6525
 $Comp
 L Connector_Generic:Conn_01x20 J1
 U 1 1 5D639B54
-P 5025 5275
-F 0 "J1" H 5105 5267 50  0000 L CNN
-F 1 "Conn_01x20" H 5105 5176 50  0000 L CNN
-F 2 "Custom:62674-201121ALF" H 5025 5275 50  0001 C CNN
-F 3 "~" H 5025 5275 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/amphenol-icc-fci/62674-201121ALF/609-1207-1-ND/1003043" H 5025 5275 50  0001 C CNN "Part URL"
-	1    5025 5275
+P 4025 5275
+F 0 "J1" H 4105 5267 50  0000 L CNN
+F 1 "Conn_01x20" V 4125 4750 50  0000 L CNN
+F 2 "Custom:62674-201121ALF" H 4025 5275 50  0001 C CNN
+F 3 "~" H 4025 5275 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/amphenol-icc-fci/62674-201121ALF/609-1207-1-ND/1003043" H 4025 5275 50  0001 C CNN "Part URL"
+	1    4025 5275
 	1    0    0    -1  
 $EndComp
-NoConn ~ 4825 6075
-NoConn ~ 4825 6175
-NoConn ~ 4825 6275
+NoConn ~ 3825 6075
+NoConn ~ 3825 6175
+NoConn ~ 3825 6275
 $Comp
 L power:+BATT #PWR0140
 U 1 1 5D659F24
@@ -1519,4 +1104,453 @@ F 3 "" H 6225 1075 50  0001 C CNN
 	1    6225 1075
 	1    0    0    -1  
 $EndComp
+$Comp
+L 74xx:74HC595 U5
+U 1 1 5D6E18BD
+P 2250 5125
+F 0 "U5" H 2375 5775 50  0000 C CNN
+F 1 "74HC595" H 2500 5700 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 2250 5125 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 2250 5125 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/nexperia-usa-inc/74HC595D118/1727-2821-1-ND/763394" H 2250 5125 50  0001 C CNN "Part URL"
+	1    2250 5125
+	1    0    0    -1  
+$EndComp
+Text Label 1850 4925 2    50   ~ 0
+SRCLK
+Text Label 1850 5225 2    50   ~ 0
+RCLK
+$Comp
+L power:GND #PWR0112
+U 1 1 5D6E18CE
+P 1475 5325
+F 0 "#PWR0112" H 1475 5075 50  0001 C CNN
+F 1 "GND" H 1480 5152 50  0000 C CNN
+F 2 "" H 1475 5325 50  0001 C CNN
+F 3 "" H 1475 5325 50  0001 C CNN
+	1    1475 5325
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1475 5325 1850 5325
+Wire Wire Line
+	1475 5025 1850 5025
+$Comp
+L power:GND #PWR0113
+U 1 1 5D6E18D6
+P 2250 5825
+F 0 "#PWR0113" H 2250 5575 50  0001 C CNN
+F 1 "GND" H 2255 5652 50  0000 C CNN
+F 2 "" H 2250 5825 50  0001 C CNN
+F 3 "" H 2250 5825 50  0001 C CNN
+	1    2250 5825
+	1    0    0    -1  
+$EndComp
+NoConn ~ 2650 5625
+$Comp
+L power:+3V3 #PWR0114
+U 1 1 5D6E18DD
+P 2250 4525
+F 0 "#PWR0114" H 2250 4375 50  0001 C CNN
+F 1 "+3V3" H 2265 4698 50  0000 C CNN
+F 2 "" H 2250 4525 50  0001 C CNN
+F 3 "" H 2250 4525 50  0001 C CNN
+	1    2250 4525
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0115
+U 1 1 5D6E18E3
+P 1475 5025
+F 0 "#PWR0115" H 1475 4875 50  0001 C CNN
+F 1 "+3V3" H 1490 5198 50  0000 C CNN
+F 2 "" H 1475 5025 50  0001 C CNN
+F 3 "" H 1475 5025 50  0001 C CNN
+	1    1475 5025
+	1    0    0    -1  
+$EndComp
+Text Label 2650 3725 0    50   ~ 0
+QH'
+Text Label 1850 4725 2    50   ~ 0
+QH'
+Text Label 2650 4725 0    50   ~ 0
+BP1
+Text Label 2650 4825 0    50   ~ 0
+BP2
+NoConn ~ 2650 5125
+NoConn ~ 2650 5225
+NoConn ~ 2650 5325
+NoConn ~ 2650 5425
+NoConn ~ 3825 5075
+NoConn ~ 3825 5175
+Connection ~ 7575 5150
+Wire Wire Line
+	7225 5150 7575 5150
+Wire Wire Line
+	7950 5350 8225 5350
+Text Notes 8225 5075 2    50   ~ 0
+Drain
+Text Notes 7775 5125 2    50   ~ 0
+Gate\n
+Text Notes 8275 5300 2    50   ~ 0
+Source
+Wire Wire Line
+	7575 5150 7650 5150
+Wire Wire Line
+	7950 4950 7950 4900
+$Comp
+L Custom:SSM6N58NU Q4
+U 1 1 5D892C0C
+P 7850 5150
+F 0 "Q4" H 7075 5500 50  0000 L CNN
+F 1 "SSM6N58NU" H 7075 5600 50  0000 L CNN
+F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 8050 5250 50  0001 C CNN
+F 3 "~" H 7850 5150 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 7850 5150 50  0001 C CNN "Part URL"
+	1    7850 5150
+	1    0    0    -1  
+$EndComp
+Text Label 7225 5150 2    50   ~ 0
+BP3
+$Comp
+L Device:R R10
+U 1 1 5D892C04
+P 7575 5300
+F 0 "R10" H 7645 5346 50  0000 L CNN
+F 1 "10k" H 7645 5255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 7505 5300 50  0001 C CNN
+F 3 "~" H 7575 5300 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 7575 5300 50  0001 C CNN "Part URL"
+	1    7575 5300
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	8250 4900 8525 4900
+$Comp
+L Device:R R16
+U 1 1 5D892BF0
+P 8100 4900
+F 0 "R16" V 7893 4900 50  0000 C CNN
+F 1 "BURNWIRE" V 7984 4900 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 8030 4900 50  0001 C CNN
+F 3 "~" H 8100 4900 50  0001 C CNN
+	1    8100 4900
+	0    1    1    0   
+$EndComp
+Connection ~ 9450 5175
+Wire Wire Line
+	9100 5175 9450 5175
+Wire Wire Line
+	9825 5375 10100 5375
+Text Notes 10100 5100 2    50   ~ 0
+Drain
+Text Notes 9650 5150 2    50   ~ 0
+Gate\n
+Text Notes 10150 5325 2    50   ~ 0
+Source
+Wire Wire Line
+	9450 5175 9525 5175
+Wire Wire Line
+	9825 4975 9825 4925
+$Comp
+L Custom:SSM6N58NU Q4
+U 2 1 5D8602C9
+P 9725 5175
+F 0 "Q4" H 8950 5525 50  0000 L CNN
+F 1 "SSM6N58NU" H 8950 5625 50  0000 L CNN
+F 2 "Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm" H 9925 5275 50  0001 C CNN
+F 3 "~" H 9725 5175 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408" H 9725 5175 50  0001 C CNN "Part URL"
+	2    9725 5175
+	1    0    0    -1  
+$EndComp
+Text Label 9100 5175 2    50   ~ 0
+BP4
+$Comp
+L Device:R R17
+U 1 1 5D8602C1
+P 9450 5325
+F 0 "R17" H 9520 5371 50  0000 L CNN
+F 1 "10k" H 9520 5280 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9380 5325 50  0001 C CNN
+F 3 "~" H 9450 5325 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589" H 9450 5325 50  0001 C CNN "Part URL"
+	1    9450 5325
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	10125 4925 10400 4925
+$Comp
+L Device:R R21
+U 1 1 5D8602AD
+P 9975 4925
+F 0 "R21" V 9768 4925 50  0000 C CNN
+F 1 "BURNWIRE" V 9859 4925 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical" V 9905 4925 50  0001 C CNN
+F 3 "~" H 9975 4925 50  0001 C CNN
+	1    9975 4925
+	0    1    1    0   
+$EndComp
+Text Label 6000 2600 2    50   ~ 0
+BL3
+$Comp
+L power:+BATT #PWR0120
+U 1 1 5D7668EA
+P 6000 2800
+F 0 "#PWR0120" H 6000 2650 50  0001 C CNN
+F 1 "+BATT" H 6015 2973 50  0000 C CNN
+F 2 "" H 6000 2800 50  0001 C CNN
+F 3 "" H 6000 2800 50  0001 C CNN
+	1    6000 2800
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR0121
+U 1 1 5D7672A2
+P 6000 3100
+F 0 "#PWR0121" H 6000 2850 50  0001 C CNN
+F 1 "GND" H 6005 2927 50  0000 C CNN
+F 2 "" H 6000 3100 50  0001 C CNN
+F 3 "" H 6000 3100 50  0001 C CNN
+	1    6000 3100
+	1    0    0    -1  
+$EndComp
+Text Label 6400 2500 0    50   ~ 0
+BL_OUT_2
+Text Label 6400 2600 0    50   ~ 0
+BL_OUT_3
+Text Label 6400 2700 0    50   ~ 0
+BL_OUT_4
+Text Label 6400 2800 0    50   ~ 0
+BATT_OUT
+Text Label 6400 3100 0    50   ~ 0
+GND_OUT
+Text Label 6400 2400 0    50   ~ 0
+BL_OUT_1
+Text Label 7400 1225 2    50   ~ 0
+BL_OUT_1
+Text Label 9425 1275 2    50   ~ 0
+BL_OUT_2
+Text Label 7350 2125 2    50   ~ 0
+BL_OUT_3
+Text Label 9375 2200 2    50   ~ 0
+BL_OUT_4
+$Comp
+L power:+BATT #PWR0122
+U 1 1 5D76C0C0
+P 8625 4050
+F 0 "#PWR0122" H 8625 3900 50  0001 C CNN
+F 1 "+BATT" H 8640 4223 50  0000 C CNN
+F 2 "" H 8625 4050 50  0001 C CNN
+F 3 "" H 8625 4050 50  0001 C CNN
+	1    8625 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+BATT #PWR0125
+U 1 1 5D76C81A
+P 10550 4050
+F 0 "#PWR0125" H 10550 3900 50  0001 C CNN
+F 1 "+BATT" H 10565 4223 50  0000 C CNN
+F 2 "" H 10550 4050 50  0001 C CNN
+F 3 "" H 10550 4050 50  0001 C CNN
+	1    10550 4050
+	1    0    0    -1  
+$EndComp
+Text Label 10675 1950 0    50   ~ 0
+BATT_OUT
+Text Label 8650 1875 0    50   ~ 0
+BATT_OUT
+Text Label 8700 975  0    50   ~ 0
+BATT_OUT
+Text Label 10725 1025 0    50   ~ 0
+BATT_OUT
+Text Label 7700 2425 3    50   ~ 0
+GND_OUT
+Text Label 8350 2325 0    50   ~ 0
+GND_OUT
+Text Label 8400 1425 0    50   ~ 0
+GND_OUT
+Text Label 7750 1525 3    50   ~ 0
+GND_OUT
+Text Label 9775 1575 3    50   ~ 0
+GND_OUT
+Text Label 10425 1475 0    50   ~ 0
+GND_OUT
+Text Label 10375 2400 0    50   ~ 0
+GND_OUT
+Text Label 9725 2500 3    50   ~ 0
+GND_OUT
+Text Label 2275 1125 2    50   ~ 0
+MOT_A
+Text Label 2275 1225 2    50   ~ 0
+MOT_B
+Text Label 6000 2900 2    50   ~ 0
+MOT_A
+Text Label 6000 3000 2    50   ~ 0
+MOT_B
+Text Label 6400 2900 0    50   ~ 0
+MOT_OUT_A
+Text Label 6400 3000 0    50   ~ 0
+MOT_OUT_B
+Text Label 1450 1250 1    50   ~ 0
+MOT_OUT_A
+Text Label 1450 1750 3    50   ~ 0
+MOT_OUT_B
+$Comp
+L Connector:Conn_01x08_Male J3
+U 1 1 5D7A58CF
+P 6200 2700
+F 0 "J3" V 6350 1900 50  0000 C CNN
+F 1 "Conn_01x08_Male" V 6275 1925 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x08_P1.00mm_Vertical" H 6200 2700 50  0001 C CNN
+F 3 "~" H 6200 2700 50  0001 C CNN
+	1    6200 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x08_Female J4
+U 1 1 5D7A8F06
+P 6200 2700
+F 0 "J4" V 6050 1850 50  0000 L CNN
+F 1 "Conn_01x08_Female" V 6125 1525 50  0000 L CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x08_P1.00mm_Vertical" H 6200 2700 50  0001 C CNN
+F 3 "~" H 6200 2700 50  0001 C CNN
+	1    6200 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+BATT #PWR0130
+U 1 1 5D7AA06F
+P 10400 4925
+F 0 "#PWR0130" H 10400 4775 50  0001 C CNN
+F 1 "+BATT" H 10415 5098 50  0000 C CNN
+F 2 "" H 10400 4925 50  0001 C CNN
+F 3 "" H 10400 4925 50  0001 C CNN
+	1    10400 4925
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+BATT #PWR0131
+U 1 1 5D7AA522
+P 10600 2850
+F 0 "#PWR0131" H 10600 2700 50  0001 C CNN
+F 1 "+BATT" H 10615 3023 50  0000 C CNN
+F 2 "" H 10600 2850 50  0001 C CNN
+F 3 "" H 10600 2850 50  0001 C CNN
+	1    10600 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+BATT #PWR0132
+U 1 1 5D7AABE7
+P 8575 2800
+F 0 "#PWR0132" H 8575 2650 50  0001 C CNN
+F 1 "+BATT" H 8590 2973 50  0000 C CNN
+F 2 "" H 8575 2800 50  0001 C CNN
+F 3 "" H 8575 2800 50  0001 C CNN
+	1    8575 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+BATT #PWR0133
+U 1 1 5D7AB096
+P 8525 4900
+F 0 "#PWR0133" H 8525 4750 50  0001 C CNN
+F 1 "+BATT" H 8540 5073 50  0000 C CNN
+F 2 "" H 8525 4900 50  0001 C CNN
+F 3 "" H 8525 4900 50  0001 C CNN
+	1    8525 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0134
+U 1 1 5D7AB493
+P 7575 5450
+F 0 "#PWR0134" H 7575 5200 50  0001 C CNN
+F 1 "GND" H 7580 5277 50  0000 C CNN
+F 2 "" H 7575 5450 50  0001 C CNN
+F 3 "" H 7575 5450 50  0001 C CNN
+	1    7575 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0135
+U 1 1 5D7AB9BC
+P 8225 5350
+F 0 "#PWR0135" H 8225 5100 50  0001 C CNN
+F 1 "GND" H 8230 5177 50  0000 C CNN
+F 2 "" H 8225 5350 50  0001 C CNN
+F 3 "" H 8225 5350 50  0001 C CNN
+	1    8225 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0136
+U 1 1 5D7ABC66
+P 7625 3350
+F 0 "#PWR0136" H 7625 3100 50  0001 C CNN
+F 1 "GND" H 7630 3177 50  0000 C CNN
+F 2 "" H 7625 3350 50  0001 C CNN
+F 3 "" H 7625 3350 50  0001 C CNN
+	1    7625 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0137
+U 1 1 5D7AC003
+P 8275 3250
+F 0 "#PWR0137" H 8275 3000 50  0001 C CNN
+F 1 "GND" H 8280 3077 50  0000 C CNN
+F 2 "" H 8275 3250 50  0001 C CNN
+F 3 "" H 8275 3250 50  0001 C CNN
+	1    8275 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0138
+U 1 1 5D7AC2D7
+P 9650 3400
+F 0 "#PWR0138" H 9650 3150 50  0001 C CNN
+F 1 "GND" H 9655 3227 50  0000 C CNN
+F 2 "" H 9650 3400 50  0001 C CNN
+F 3 "" H 9650 3400 50  0001 C CNN
+	1    9650 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0139
+U 1 1 5D7AC9A2
+P 10300 3300
+F 0 "#PWR0139" H 10300 3050 50  0001 C CNN
+F 1 "GND" H 10305 3127 50  0000 C CNN
+F 2 "" H 10300 3300 50  0001 C CNN
+F 3 "" H 10300 3300 50  0001 C CNN
+	1    10300 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0141
+U 1 1 5D7ACD9F
+P 10100 5375
+F 0 "#PWR0141" H 10100 5125 50  0001 C CNN
+F 1 "GND" H 10105 5202 50  0000 C CNN
+F 2 "" H 10100 5375 50  0001 C CNN
+F 3 "" H 10100 5375 50  0001 C CNN
+	1    10100 5375
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0142
+U 1 1 5D7AD16A
+P 9450 5475
+F 0 "#PWR0142" H 9450 5225 50  0001 C CNN
+F 1 "GND" H 9455 5302 50  0000 C CNN
+F 2 "" H 9450 5475 50  0001 C CNN
+F 3 "" H 9450 5475 50  0001 C CNN
+	1    9450 5475
+	1    0    0    -1  
+$EndComp
+NoConn ~ 2650 5025
+NoConn ~ 2650 4925
 $EndSCHEMATC
