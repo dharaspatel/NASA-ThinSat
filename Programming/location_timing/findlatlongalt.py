@@ -77,6 +77,16 @@ def aperiodic(y):
             return y
 
 
+def coords_2_vec(lat_d, lon_d, alt):
+    """ convert spherical coordinates to cartesian vectors """
+    lat = np.radians(lat_d)
+    lon = np.radians(lon_d)
+    r = 6378.1 + alt
+    return np.stack((r*np.cos(lat)*np.cos(lon),
+                     r*np.cos(lat)*np.sin(lon),
+                     r*np.sin(lat)), axis=1)
+
+
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 # >> read latitude, longitude, altitude, day length and night length from report
@@ -130,8 +140,8 @@ for i in range(len(reportfiles_1)):
                     epoch).total_seconds() # pick out the bounding times
         start_time = (findjuliandates.utc_to_datetime(start_times_umbra[j]) - \
                     epoch).total_seconds()
-        inds = np.nonzero((elapsed_secs[i] > start_time) * \
-                          (elapsed_secs[i] < end_time)) # and the enclosed indices and times
+        inds = np.nonzero((elapsed_secs[i] >= start_time) * \
+                          (elapsed_secs[i] <= end_time)) # and the enclosed indices and times
         time = elapsed_secs[i][inds]
         # fit sine curve
         # parameters A, ω, phi, d
@@ -148,16 +158,28 @@ for i in range(len(reportfiles_1)):
                                      p0=[20, ω_guess, 0, 230])
 
         if debug:
-            t = np.linspace(start_time, end_time, 250)
+            lat_exp, lat_fit = latitude[i][inds], sine(time, *params_lat)
+            lon_exp, lon_fit = longitude[i][inds], periodic(wiggle(time, *params_lon))
+            alt_exp, alt_fit = altitude[i][inds], sine(time, *params_alt)
+            pos_exp, pos_fit = coords_2_vec(lat_fit, lon_fit, alt_fit), coords_2_vec(lat_exp, lon_exp, alt_exp)
+            error = pos_exp - pos_fit
+            i_worst = np.argmax(np.linalg.norm(error, axis=1))
+            print("The maximum error occurs at t={}s, ({}, {}, {}), where the fit is {} km off.".format(
+                time[i_worst], lat_exp[i_worst], lon_exp[i_worst], alt_exp[i_worst], np.linalg.norm(error[i_worst,:])))
             plt.figure(0)
-            plt.plot(t, sine(t, *params_lat), '-')
-            plt.plot(time, latitude[i][inds])
+            plt.plot(time, lat_fit, '-')
+            plt.plot(time, lat_exp, '-')
             plt.figure(1)
-            plt.plot(t, periodic(wiggle(t, *params_lon)), '-')
-            plt.plot(time, longitude[i][inds])
+            plt.plot(time, lon_fit, '-')
+            plt.plot(time, lon_exp, '-')
             plt.figure(2)
-            plt.plot(t, sine(t, *params_alt), '-')
-            plt.plot(time, altitude[i][inds])
+            plt.plot(time, alt_fit, '-')
+            plt.plot(time, alt_exp, '-')
+            plt.figure(3)
+            plt.axes(projection='3d')
+            plt.plot(pos_fit[:,0], pos_fit[:,1], pos_fit[:,2], marker='.')
+            plt.plot(pos_exp[:,0], pos_exp[:,1], pos_exp[:,2], marker='.')
+            plt.plot(*[[pos_fit[i_worst,k], pos_exp[i_worst,k]] for k in range(3)])
             plt.show()
         
         # report parameters
