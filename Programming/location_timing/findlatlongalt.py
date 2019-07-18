@@ -18,12 +18,10 @@ from scipy.optimize          import curve_fit
 from mpl_toolkits.mplot3d    import Axes3D
 from statsmodels.formula.api import ols
 from statsmodels.stats.anova import anova_lm
-sys.path.insert(0, '/Users/studentadmin/Desktop/findlat')
 # sys.path.insert(0, '/home/echickles/GMAT/R2018a/userfunctions/python')
 import findjuliandates
 
-source_dir = '/Users/studentadmin/Desktop/findlat/reportfiles5/'
-# source_dir = '/home/echickles/Documents/reportfiles6/'
+source_dir = '../../Simulations/'
 debug = False
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
