@@ -131,5 +131,13 @@ uint8_t read_photocells(){
       pho_data[i] = Wire.read();
     }
   }
-  return pho_data                                                                                                                                                                                                                            
+  return pho_data
+}
+
+uint8_t read_eeprom(int address){
+  return EEPROM.read(address)
+}
+
+void write_eeprom(uint8_t data){
+  
 }
