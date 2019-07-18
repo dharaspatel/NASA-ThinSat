@@ -27,27 +27,22 @@ debug = False
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 reportfiles_1 = fm.filter(os.listdir(source_dir),'ReportFile1_*.txt')
-reportfiles_midnight = fm.filter(os.listdir(source_dir),
-                                 'ReportFile2_midnight_*.txt')
-reportfiles_noon = fm.filter(os.listdir(source_dir),'ReportFile2_noon_*.txt')
 reportfiles_sunrise = fm.filter(os.listdir(source_dir),
                                 'ReportFile2_sunrise_*.txt')
 sundata = fm.filter(os.listdir(source_dir),'SunriseSunset_*.txt')
 reportfiles_1.sort()
-reportfiles_midnight.sort()
-reportfiles_noon.sort()
 sundata.sort()
 
 latitude = []
 longitude = []
 altitude = []
-night_times = []
-day_times = []
+night_lengths = []
+day_lengths = []
 elapsed_secs = []
 phase_shift = []
-popt_latitude = []
-popt_longitude = []
-popt_altitude = []
+params_latitude = []
+params_longitude = []
+params_altitude = []
 sunrise_times = []
 sunset_times = []
 sunrise_lat = []
@@ -55,11 +50,32 @@ sunrise_long = []
 sunrise_alt = []
 
 # * A = amplitude
-# * w = frequency = 2pi/T
+# * ω = frequency = 2pi/T
 # * phi = phase shift
 # * d = vertical shift
-def sine(t, A, w, phi, d):
-    return A * (np.sin(w*(t+phi)) + d)
+def sine(t, A, ω, phi, d):
+    """ general sinusoid function """
+    return A * np.sin(ω*(t+phi)) + d
+
+def wiggle(t, A, ω, phi, d):
+    """ sinusoid function plus periodic linear increase """
+    return sine(t, A, 2*ω, phi, d) + np.degrees(ω*t)
+
+def periodic(y):
+    """ wraps y to the periodic range [-180, 180] """
+    return y - np.floor((y+180)/360)*360
+
+def aperiodic(y):
+    """ heals breaks in the array to make it continuous on the real domain
+        (assumes increasing function on range [-180, 180]) """
+    y = y.copy()
+    while True:
+        i_min = np.argmin(y)
+        if i_min != 0:
+            y[i_min:] += 360
+        else:
+            return y
+
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -99,66 +115,58 @@ for i in range(len(reportfiles_1)):
     for j in range(len(start_times_umbra) - 1):
         day.append((findjuliandates.utc_to_datetime(start_times_umbra[j+1]) -\
                     findjuliandates.utc_to_datetime(stop_times_umbra[j])).total_seconds())
-    night_times.append(night)
-    day_times.append(day)
+    night_lengths.append(night)
+    day_lengths.append(day)
 
     # -- get phase shift -------------------------------------------------------
     # for each start_time to start_time period, fit sine curve to latitude,
     # longitude and altitude and report phase shifts
     epoch = findjuliandates.utc_to_datetime(epoch)
-    popt_lat_list = []
-    popt_lon_list = []
-    popt_alt_list = []
-    for j in range(len(start_times_umbra) - 1):
+    params_lat_list = []
+    params_lon_list = []
+    params_alt_list = []
+    for j in range(len(start_times_umbra) - 1): # for each sunset-to-sunset period
         end_time = (findjuliandates.utc_to_datetime(start_times_umbra[j+1]) - \
-                    epoch).total_seconds()
+                    epoch).total_seconds() # pick out the bounding times
         start_time = (findjuliandates.utc_to_datetime(start_times_umbra[j]) - \
                     epoch).total_seconds()
         inds = np.nonzero((elapsed_secs[i] > start_time) * \
-                          (elapsed_secs[i] < end_time))
+                          (elapsed_secs[i] < end_time)) # and the enclosed indices and times
         time = elapsed_secs[i][inds]
         # fit sine curve
-        # parameters A, w, phi, d
+        # parameters A, ω, phi, d
         
+        ω_guess = 2*np.pi/(end_time-start_time)
         # >> latitude
-        popt_lat, pcov = curve_fit(sine, time, latitude[i][inds],
-                                   p0 = [50, 2*np.pi/(end_time-start_time),0,0])
+        params_lat, pcov = curve_fit(sine, time, latitude[i][inds],
+                                     p0=[50, ω_guess, 0, 0])
         # >> longitude
-        try:
-            popt_lon, pcov = curve_fit(sine, time, longitude[i][inds],
-                                       p0 = [150, 2*np.pi/(end_time-start_time),
-                                             0,0])
-        except:
-            inds1 = np.arange(inds[0][0]-20, inds[0][-1]+20)
-            xdata = elapsed_secs[i][inds1]
-            ydata= longitude[i][inds1]
-            p0 = [50, 2*np.pi/(end_time-start_time), 0, 0]
-            popt_lon, pcov = curve_fit(sine, xdata, ydata, p0)
-        # >> altitude    
-        popt_alt, pcov = curve_fit(sine, time, altitude[i][inds],
-                                   p0 = [20, 2*np.pi/(end_time-start_time),0,0])
-        # if i == 20:
-        #     debug = True
+        params_lon, pcov = curve_fit(wiggle, time, aperiodic(longitude[i][inds]),
+                                     p0=[0, ω_guess, 0, longitude[i][inds][0]-np.degrees(ω_guess*time[0])])
+        # >> altitude
+        params_alt, pcov = curve_fit(sine, time, altitude[i][inds],
+                                     p0=[20, ω_guess, 0, 230])
+
         if debug:
             t = np.linspace(start_time, end_time, 250)
             plt.figure(0)
-            plt.plot(t, sine(t, *popt_lat), '-')
+            plt.plot(t, sine(t, *params_lat), '-')
             plt.plot(time, latitude[i][inds])
             plt.figure(1)
-            plt.plot(t, sine(t, *popt_lon), '-')
+            plt.plot(t, periodic(wiggle(t, *params_lon)), '-')
             plt.plot(time, longitude[i][inds])
             plt.figure(2)
-            plt.plot(t, sine(t, *popt_alt), '-')
+            plt.plot(t, sine(t, *params_alt), '-')
             plt.plot(time, altitude[i][inds])
-        # debug = False
+            plt.show()
         
         # report parameters
-        popt_lat_list.append(popt_lat)
-        popt_lon_list.append(popt_lon)
-        popt_alt_list.append(popt_alt)
-    popt_latitude.append(popt_lat_list)
-    popt_longitude.append(popt_lon_list)
-    popt_altitude.append(popt_alt_list)
+        params_lat_list.append(params_lat)
+        params_lon_list.append(params_lon)
+        params_alt_list.append(params_alt)
+    params_latitude.append(params_lat_list)
+    params_longitude.append(params_lon_list)
+    params_altitude.append(params_alt_list)
 
     # -- get sunrise time, lat, long, alt --------------------------------------
     with open(source_dir + 'ReportFile2_sunrise_' + str(i) + '.txt', 'r') as f:
@@ -172,27 +180,27 @@ for i in range(len(reportfiles_1)):
         sunrise_alt.append(np.array([float(line.split()[7]) for line in lines]))
 
 # :: multiple regression :::::::::::::::::::::::::::::::::::::::::::::::::::::::
-param = np.zeros([np.shape(day_times)[1], 3, 3])
+param = np.zeros([np.shape(day_lengths)[1], 3, 3])
 A = np.zeros([80, 3])
-w = np.zeros([80, 3])
+ω = np.zeros([80, 3])
 d = np.zeros([80, 3])
 
-for i in range(np.shape(day_times)[1]): # >> loop through each time
+for i in range(np.shape(day_lengths)[1]): # >> loop through each time
     for j in range(3): # >> loop through latitude, longitude, altitude
         # >> difference in day length:
-        x = [sample[i] - day_times[0][i] for sample in day_times[1:]]
+        x = [sample[i] - day_lengths[0][i] for sample in day_lengths[1:]]
         # >> difference in night length: 
-        y = [sample[i] - night_times[0][i] for sample in night_times[1:]]
+        y = [sample[i] - night_lengths[0][i] for sample in night_lengths[1:]]
         # >> difference in phase shift
         if j == 0:
-            z = [popt[i][2] - popt_latitude[0][i][2] for popt in \
-                 popt_latitude[1:]]
+            z = [params[i][2] - params_latitude[0][i][2] for params in \
+                 params_latitude[1:]]
         elif j == 1:
-            z = [popt[i][2] - popt_longitude[0][i][2] for popt in \
-                 popt_longitude[1:]]
+            z = [params[i][2] - params_longitude[0][i][2] for params in \
+                 params_longitude[1:]]
         else:
-            z = [popt[i][2] - popt_altitude[0][i][2] for popt in \
-                 popt_altitude[1:]]
+            z = [params[i][2] - params_altitude[0][i][2] for params in \
+                 params_altitude[1:]]
         data = pandas.DataFrame({'x': x, 'y': y, 'z': z})
         model = ols("z ~ x + y", data).fit()
         param[i][j] = model._results.params
@@ -226,16 +234,16 @@ for i in range(np.shape(day_times)[1]): # >> loop through each time
             # ax.plot(x_plot, y_plot, z_plot, '.')
 
             
-        # -- calculate A, w, d -------------------------------------------------
-        A[i][0] = np.mean([popt[i][0] for popt in popt_latitude])
-        A[i][1] = np.mean([popt[i][0] for popt in popt_longitude])
-        A[i][2] = np.mean([popt[i][0] for popt in popt_altitude])
-        w[i][0] = np.mean([popt[i][1] for popt in popt_latitude])
-        w[i][1] = np.mean([popt[i][1] for popt in popt_longitude])
-        w[i][2] = np.mean([popt[i][1] for popt in popt_altitude])
-        d[i][0] = np.mean([popt[i][3] for popt in popt_latitude])
-        d[i][1] = np.mean([popt[i][3] for popt in popt_longitude])
-        d[i][2] = np.mean([popt[i][3] for popt in popt_altitude])
+        # -- calculate A, ω, d -------------------------------------------------
+        A[i][0] = np.mean([params[i][0] for params in params_latitude])
+        A[i][1] = np.mean([params[i][0] for params in params_longitude])
+        A[i][2] = np.mean([params[i][0] for params in params_altitude])
+        ω[i][0] = np.mean([params[i][1] for params in params_latitude])
+        ω[i][1] = np.mean([params[i][1] for params in params_longitude])
+        ω[i][2] = np.mean([params[i][1] for params in params_altitude])
+        d[i][0] = np.mean([params[i][3] for params in params_latitude])
+        d[i][1] = np.mean([params[i][3] for params in params_longitude])
+        d[i][2] = np.mean([params[i][3] for params in params_altitude])
         
         if debug:
             # -- plot lat, long, alt -------------------------------------------
@@ -246,23 +254,23 @@ for i in range(np.shape(day_times)[1]): # >> loop through each time
             t = np.linspace(start_time, end_time, 250)
             
             # >> delta day length and delta night length
-            day_length = 3234.14 - day_times[0][i] # day_times[0][0]
-            night_length = 2109.53 - night_times[0][i] # night_times[0][0]
+            day_length = 3234.14 - day_lengths[0][i] # day_lengths[0][0]
+            night_length = 2109.53 - night_lengths[0][i] # night_lengths[0][0]
             
             if j == 0:
                 phi = param[i][0][0] + param[i][0][1]*day_length + \
-                     param[i][0][2]*night_length + popt_latitude[0][i][2]
-                plt.plot(t, sine(t, A[i][0], w[i][0], phi, d[i][0]), '-',
+                     param[i][0][2]*night_length + params_latitude[0][i][2]
+                plt.plot(t, sine(t, A[i][0], ω[i][0], phi, d[i][0]), '-',
                          label = 'Calculated latitude')
             elif j == 1:
                 phi = param[i][1][0] + param[i][1][1]*day_length + \
-                      param[i][1][2]*night_length + popt_longitude[0][i][2]
-                plt.plot(t, sine(t, A[i][1], w[i][1], phi, d[i][1]), '-',
+                      param[i][1][2]*night_length + params_longitude[0][i][2]
+                plt.plot(t, periodic(wiggle(t, A[i][1], ω[i][1], phi, d[i][1])), '-',
                          label = 'Calculated longitude')
             elif j == 2:
                 phi = param[i][2][0] + param[i][2][1]*day_length + \
-                      param[i][2][2]*night_length + popt_altitude[0][i][2]
-                plt.plot(t, sine(t, A[i][2], w[i][2], phi, d[i][2]), '-',
+                      param[i][2][2]*night_length + params_altitude[0][i][2]
+                plt.plot(t, sine(t, A[i][2], ω[i][2], phi, d[i][2]), '-',
                          label = 'Calculated altitude')
             
             # -- plotting actual location -------------------------------------             
@@ -284,23 +292,23 @@ plt.show()
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             
 # # plot day length against altitude
-# day_1 = [time[0] for time in day_times]
-# phi_alt_1 = [popt[0][2] for popt in popt_altitude]
+# day_1 = [time[0] for time in day_lengths]
+# phi_alt_1 = [params[0][2] for params in params_altitude]
 # plt.figure(0)
 # plt.plot(day_1, phi_alt_1, '.')
 
 # # plot day length against latitude
-# phi_lat_1 = [popt[0][2] for popt in popt_latitude]
+# phi_lat_1 = [params[0][2] for params in params_latitude]
 # plt.figure(1)
 # plt.plot(day_1, phi_lat_1, '.')
 
 # # plot day length against longitude
-# phi_long_1 = [popt[0][2] for popt in popt_longitude]
+# phi_long_1 = [params[0][2] for params in params_longitude]
 # plt.figure(2)
 # plt.plot(day_1, phi_long_1, '.')
 
 # # plot night length against altitude
-# night_1 = [time[0] for time in night_times]
+# night_1 = [time[0] for time in night_lengths]
 # plt.figure(3)
 # plt.plot(night_1, phi_alt_1, '.')
 
@@ -322,8 +330,8 @@ plt.show()
 # x = np.zeros([len(reportfiles_1), 6])
 # for i in range(len(reportfiles_1)):
 #     x[i][0] = sunrise_times[i][0]
-#     x[i][1] = day_times[i][0]
-#     x[i][2] = night_times[i][0]
+#     x[i][1] = day_lengths[i][0]
+#     x[i][2] = night_lengths[i][0]
 #     x[i][3] = sunrise_lat[i][0]
 #     x[i][4] = sunrise_long[i][0]
 #     x[i][5] = sunrise_alt[i][0]
@@ -341,8 +349,8 @@ plt.show()
 #     alt[i] = altitude[i][0]
 #     lat[i] = latitude[i][0]
 #     lon[i] = longitude[i][0]
-#     day[i] = day_times[i][0]
-#     nit[i] = night_times[i][0]
+#     day[i] = day_lengths[i][0]
+#     nit[i] = night_lengths[i][0]
 #     sec[i] = elapsed_secs[i][0]
         
     # with open(source_dir + reportfiles_midnight[i], 'r') as f:
@@ -360,7 +368,7 @@ plt.show()
     #     lines = f.readlines()
     #     type_names = [line.split()[-3] for line in lines[3:-7]]
     #     t = [float(line.split()[-1]) for line in lines[3:-7]]
-    #     night_times.append(t)
+    #     night_lengths.append(t)
         
 
 # sunrise_times1, sunset_times1 = findjuliandates.getmidtimes(source_dir + "SunriseSunset_" + str(i) + '.txt', epoch, reporttimes = True)
@@ -376,8 +384,8 @@ plt.show()
 # dur = []
 # time = 10
 
-# for i in range(len(night_times)):
-#     dur.append(night_times[i][time])
+# for i in range(len(night_lengths)):
+#     dur.append(night_lengths[i][time])
 #     alt.append(altitude[i][time])
 #     lat.append(latitude[i][time])
 #     lon.append(longitude[i][time])
