@@ -32,7 +32,7 @@ void orient(float rotation[]){
   */
 }
 
-void set_mode(){
+void set_pin_mode(){
   /*
     FUNCTION: Sets the mode of every pin
     PARAMETERS:

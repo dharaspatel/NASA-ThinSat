@@ -56,10 +56,26 @@ DCF77 rtc = DCF77(pin, interrupt);
 EEPROM eeprom;
 uint8_t pho_data[PHO1_ADDR, PHO2_ADDR, PHO3_ADDR, PHO4_ADDR];
 
+
+/*_________FUNCTIONS USED IN BURT__________*/
+int calc_state(float pos){
+  /*
+    FUNCTION: Calculates the state of the satellite (launch, pyrolysis) by sorting into small ranges of positions
+    PARAMETERS: Current position
+    RETURN: An integer that represents the state (launch = 1 and pyrolysis = 2)
+  */
+  switch (pos) {
+    case launchMIN ... launchMAX:
+      return 1;
+    case pyMIN ... pyMAX:
+      return 2;
+  }
+}
+
 /*_________FUNCTIONS USED IN JOE__________*/
 void begin(){
   /*
-    FUNCTION: Begins communication with I2C interface, starts the DS3231 Clock
+    FUNCTION: Begins communication with I2C interface, starts the DS3231 Clock, writes table to SD
     PARAMETERS: None
     RETURN: None
   */
@@ -80,7 +96,7 @@ DateTime getTime()
     raw_time[raw_time_counter] = Wire.read();
     raw_time_counter ++;
   }
-  return DateTime(raw_time[6],raw_time[5],raw_time[3],raw_time[2],raw_time[1],raw_time[0])
+  return DateTime(raw_time[6],raw_time[5],raw_time[3],raw_time[2],raw_time[1],raw_time[0]);
 }
 
 float sync(DateTime time){
@@ -95,49 +111,111 @@ float sync(DateTime time){
 }
 
 void sendBUS(uint8_t data){
+  /*
+    FUNCTION: sends data of 8 bits to the bus
+    PARAMETERS: the 8 bit data
+    RETURN: None
+  */
   Wire.beginTransmission(TX_ADDR);
   Wire.write(data);
   Wire.endTransmission();
 }
 
 boolean check_busy(){
+  /*
+    FUNCTION: checks if the bus is busy
+    PARAMETERS: None
+    RETURN: false if busy and true if not busy
+  */
   Wire.requestFrom(BUSY_ADDR,1);
-  if(Wire.read() == 'HIGH'){
+  if(Wire.read() == HIGH){
     return false;
   }
   else{
-    return true
+    return true;
   }
 }
 
 void write_SD(uint8_t data, char file_name[]){
+  /*
+    FUNCTION: Writes to a file on the SD card
+    PARAMETERS: the 8 bit of data you want to write and the file name
+    RETURN: None
+  */
   File data_file = SD.open(file_name, FILE_WRITE);
   data_file.println(data);
   data_file.close();
 }
 
 void read_SD(char file_name[]){
+  /*
+    FUNCTION: Returns all of the contents of a file
+    PARAMETERS: the file name of the SD card you want to read
+    RETURN: None
+  */
   File data_file = SD.open(file_name);
   while(data_file.avaliable()){
-    return data_file.read()
+    return data_file.read();
   }
-  data_file.close()
+  data_file.close();
 }
 
 uint8_t read_photocells(){
+  /*
+    FUNCTION: read from all 4 photocells
+    PARAMETERS: None
+    RETURN: an array of data for each cell
+  */
   for(i = 0; i<4; i++){
     Wire.requestFrom(pho_data[i],1);
     while (Wire.avaliable()){
       pho_data[i] = Wire.read();
     }
   }
-  return pho_data
+  return pho_data;
 }
 
 uint8_t read_eeprom(int address){
-  return EEPROM.read(address)
+  /*
+    FUNCTION: read an address on the eeprom
+    PARAMETERS: the address you want to read from
+    RETURN: the 8 bit of info on that address
+  */
+  return EEPROM.read(address);
 }
 
-void write_eeprom(uint8_t data){
-  
+void write_eeprom(uint8_t data, int address){
+  /*
+    FUNCTION: writes to an address on the eeprom
+    PARAMETERS: the data you want to write and the address that you want to write to
+    RETURN: None
+  */
+}
+
+uint8_t get_image(){
+  /*
+    FUNCTION: gets data from the image sensor located on burt after gas is released
+    PARAMETERS: None
+    RETURN: image sensor data
+  */
+  Wire.requestFrom()
+  //TODO: figure out the device address of the img sensor; do you just read CS_IMG?
+}
+
+uint8_t get_temp(){
+  /*
+    FUNCTION: gets data from the temp sensor located on burt after gas is released
+    PARAMETERS: None
+    RETURN: temp sensor data
+  */
+  Wire.requestFrom(TEMP_ADDR,1); //is 1 the correct number of bits?
+  while(Wire.avaliable()){
+    return Wire.read();
+  }
+}
+
+void launch_motors(){
+  digitalWrite(IN1_ADDR,HIGH);
+  digitalWrite(IN2_ADDR,HIGH);
+
 }
