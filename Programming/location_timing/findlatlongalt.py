@@ -216,102 +216,94 @@ for i in range(len(reportfiles_1)):
         sunrise_alt.append(np.array([float(line.split()[7]) for line in lines]))
 
 # :: multiple regression :::::::::::::::::::::::::::::::::::::::::::::::::::::::
-params_lat_avg = np.mean(params_latitude, axis=0) # average params for each orbit over all simulations
-params_lon_avg = np.mean(params_longitude, axis=0)
-params_alt_avg = np.mean(params_altitude, axis=0)
-phi_coefs = np.zeros([np.shape(day_lengths)[1], 3, 3]) # parameters for estimating phi based on night and day length
+param_coefs = [
+    np.empty([np.shape(day_lengths)[1], len(params_latitude[0][0]), 3]),
+    np.empty([np.shape(day_lengths)[1], len(params_longitude[0][0]), 3]),
+    np.empty([np.shape(day_lengths)[1], len(params_altitude[0][0]), 3]),
+] # coeficients for estimating fit parameters based on night and day length
 
-for i in range(np.shape(day_lengths)[1]): # >> loop through each orbit
-    for j in range(3): # >> loop through latitude, longitude, altitude
-        # >> difference in day length:
-        x = [sample[i] - day_lengths[0][i] for sample in day_lengths[1:]]
-        # >> difference in night length: 
-        y = [sample[i] - night_lengths[0][i] for sample in night_lengths[1:]]
-        # >> difference in phase shift
-        if j == 0:
-            z = [params[i][2] for params in params_latitude[1:]]
-        elif j == 1:
-            z = [params[i][3] for params in params_longitude[1:]]
-        else:
-            z = [params[i][2] for params in params_altitude[1:]]
-        data = pandas.DataFrame({'x': x, 'y': y, 'z': z})
-        model = ols("z ~ x + y", data).fit()
-        phi_coefs[i][j] = model._results.params
-        # print(model.summary())
+for j in range(np.shape(day_lengths)[1]): # >> loop through each orbit
+    for coord in range(3): # >> loop through latitude, longitude, altitude
+        param_values = np.array([params_latitude, params_longitude, params_altitude][coord])
+        for k in range(param_values.shape[2]): # loop through each parameter
+            # >> difference in day length:
+            x = [sample[j] - day_lengths[0][j] for sample in day_lengths[1:]]
+            # >> difference in night length:
+            y = [sample[j] - night_lengths[0][j] for sample in night_lengths[1:]]
+            # >> difference in phase shift
+            if coord == 0:
+                z = [params[j,k] for params in param_values[1:,:,:]]
+            elif coord == 1:
+                z = [params[j,k] for params in param_values[1:,:,:]]
+            elif coord == 2:
+                z = [params[j,k] for params in param_values[1:,:,:]]
+            data = pandas.DataFrame({'x': x, 'y': y, 'z': z})
+            model = ols("z ~ x + y", data).fit()
+            param_coefs[coord][j,k] = model._results.params
+            # print(model.summary())
 
-        # -- plot --------------------------------------------------------------
-        if i == 0:
-            debug = True
-        if debug:
-            fig = plt.figure()
-            ax = fig.add_subplot(111, projection='3d')
-            ax.plot(x, y, z, '.')
-            x_plot=np.linspace(min(x), max(x), 50)
-            y_plot=np.linspace(min(y), max(y), 50)
-            #z_plot=model._results.params[0] + model._results.params[1]*x_plot + \
-            #       model._results.params[2]*y_plot
-            X, Y = np.meshgrid(x_plot, y_plot)
-            Z = model._results.params[0] + model._results.params[1]*X +\
-                model._results.params[2]*Y
-            surf = ax.plot_surface(X, Y, Z, cmap = plt.cm.coolwarm,
-                                   rstride=1, cstride=1)
-            ax.set_title('Sunrise ' + str(i))
-            ax.set_xlabel('X: delta day length')
-            ax.set_ylabel('Y: delta night length')
-            if j == 0:
-                ax.set_zlabel('Z: delta phi latitude')
-            elif j == 1:
-                ax.set_zlabel('Z: delta phi longitude')
-            else:
-                ax.set_zlabel('Z: delta phi altitude')
-            # ax.plot(x_plot, y_plot, z_plot, '.')
-        
-        if debug:
-            # -- plot lat, long, alt -------------------------------------------
-            sim = 10
-            plt.figure()
-            sunrise_times = np.array(sunrise_times)
-            start_time = np.mean(sunrise_times[:,i])
-            end_time = np.mean(sunrise_times[:,i+1])
-            inds = np.nonzero((elapsed_secs[i] > start_time) * \
-                          (elapsed_secs[i] < end_time))
-            time = elapsed_secs[i][inds]
+            # -- plot --------------------------------------------------------------
+            if j == 0 and k == 0:
+                debug = True
+            if debug:
+                fig = plt.figure()
+                ax = fig.add_subplot(111, projection='3d')
+                ax.plot(x, y, z, '.')
+                x_plot=np.linspace(min(x), max(x), 50)
+                y_plot=np.linspace(min(y), max(y), 50)
+                #z_plot=model._results.params[0] + model._results.params[1]*x_plot + \
+                #       model._results.params[2]*y_plot
+                X, Y = np.meshgrid(x_plot, y_plot)
+                Z = model._results.params[0] + model._results.params[1]*X +\
+                    model._results.params[2]*Y
+                surf = ax.plot_surface(X, Y, Z, cmap = plt.cm.coolwarm,
+                                       rstride=1, cstride=1)
+                ax.set_title('Sunrise ' + str(j))
+                ax.set_xlabel('delta day length')
+                ax.set_ylabel('delta night length')
+                ax.set_zlabel('delta coef_{} for {}'.format(
+                    k, ['latitude','longitude','altitude'][coord]))
+                # ax.plot(x_plot, y_plot, z_plot, '.')
             
-            # >> delta day length and delta night length
-            day_length = 3234.14 - day_lengths[sim][i] # day_lengths[0][0]
-            night_length = 2109.53 - night_lengths[sim][i] # night_lengths[0][0]
-            
-            if j == 0:
-                params = params_lat_avg[i,:]
-                params[2] = phi_coefs[i][0][0] + phi_coefs[i][0][1]*day_length + \
-                     phi_coefs[i][0][2]*night_length
-                plt.plot(time, sine(time, *params), '-',
-                         label = 'Calculated latitude residual')
-            elif j == 1:
-                params = params_lon_avg[i,:]
-                params[3] = phi_coefs[i][1][0] + phi_coefs[i][1][1]*day_length + \
-                      phi_coefs[i][1][2]*night_length
-                plt.plot(time, sone(time, *params), '-',
-                         label = 'Calculated longitude residual')
-            elif j == 2:
-                params = params_alt_avg[i,:]
-                params[2] = phi_coefs[i][2][0] + phi_coefs[i][2][1]*day_length + \
-                      phi_coefs[i][2][2]*night_length
-                plt.plot(time, cube(time, *params), '-',
-                         label = 'Calculated altitude residual')
-            
-            # -- plotting actual residual -------------------------------------
-            if j == 0:
-                plt.plot(time, latitude_res[sim][inds], '-',
-                         label = 'Actual latitude residual')
-            elif j == 1:
-                plt.plot(time, longitude_res[sim][inds], '-',
-                         label = 'Actual longitude residual')
-            elif j == 2:
-                plt.plot(time, altitude_res[sim][inds], '-',
-                         label = 'Actual altitude residual')
-            plt.legend()
-            debug = False
+            if debug:
+                # -- plot lat, long, alt -------------------------------------------
+                sim = 10
+                plt.figure()
+                sunrise_times = np.array(sunrise_times)
+                start_time = np.mean(sunrise_times[:,j])
+                end_time = np.mean(sunrise_times[:,j+1])
+                inds = np.nonzero((elapsed_secs[j] > start_time) * \
+                              (elapsed_secs[j] < end_time))
+                time = elapsed_secs[j][inds]
+                
+                # >> delta day length and delta night length
+                day_length = 3234.14 - day_lengths[sim][j] # day_lengths[0][0]
+                night_length = 2109.53 - night_lengths[sim][j] # night_lengths[0][0]
+                
+                params = param_coefs[coord][j,:,0] + param_coefs[coord][j,:,1]*day_length + \
+                    param_coefs[coord][j,:,2]*night_length
+                if coord == 0:
+                    plt.plot(time, sine(time, *params), '-',
+                             label = 'Calculated latitude residual')
+                elif coord == 1:
+                    plt.plot(time, sone(time, *params), '-',
+                             label = 'Calculated longitude residual')
+                elif coord == 2:
+                    plt.plot(time, cube(time, *params), '-',
+                             label = 'Calculated altitude residual')
+                
+                # -- plotting actual residual -------------------------------------
+                if coord == 0:
+                    plt.plot(time, latitude_res[sim][inds], '-',
+                             label = 'Actual latitude residual')
+                elif coord == 1:
+                    plt.plot(time, longitude_res[sim][inds], '-',
+                             label = 'Actual longitude residual')
+                elif coord == 2:
+                    plt.plot(time, altitude_res[sim][inds], '-',
+                             label = 'Actual altitude residual')
+                plt.legend()
+                debug = False
 plt.show()
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
