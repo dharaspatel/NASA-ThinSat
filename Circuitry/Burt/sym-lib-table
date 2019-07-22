@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name Burt-rescue)(type Legacy)(uri ${KIPRJMOD}/Burt-rescue.lib)(options "")(descr ""))
+)

@@ -21,7 +21,6 @@
   #define dcf_interrupt 0
   #define addr 0
 
-  RTC_PCF8523 rtc;
   DCF77 dtc = DCF77(dcf_pin, dcf_interrupt);
   EEPROM eeprom;
 

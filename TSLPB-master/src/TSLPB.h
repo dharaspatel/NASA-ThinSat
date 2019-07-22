@@ -19,11 +19,7 @@
 #define TSLPB_h
 
 
-#if (ARDUINO >= 100)
 #include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
 
 #include "avr/sleep.h"
 #include "Wire.h"
@@ -85,8 +81,8 @@ typedef enum
     DT6_ADDRESS = 0x4B,             ///< LM75A
     IMU_ADDRESS = 0x69,             ///< MPU-9250
     MAG_ADDRESS = 0x0C,             ///< MAGNETOMETER I2C Address (slave on the MPU-9250)
-    MEM_ADDRESS = 0x50,             ///< EEPROM I2C Address for the Microchip 24LC256
-    
+    MEM_ADDR ESS = 0x50,             ///< EEPROM I2C Address for the Microchip 24LC256
+
 } TSLPB_I2CAddress_t;
 
 /*!
@@ -146,19 +142,19 @@ class TSLPB
 public:
     TSLPB();
     void begin();
-    
+
     SoftwareSerial NSLbus;                  ///< NSL Software Serial bus object
     bool    pushDataToNSL(ThinsatPacket_t data);
- 
+
     uint16_t readAnalogSensor(TSLPB_AnalogSensor_t sensorName);
     double   readDigitalSensor(TSLPB_DigitalSensor_t sensor);
     uint16_t readDigitalSensorRaw(TSLPB_DigitalSensor_t sensor);
-    
+
     uint8_t TSLPB::getMemByte(uint16_t reg);
     void    TSLPB::putMemByte(uint16_t reg, uint8_t data);
 
     template<class TYPE> void TSLPB::readMemVar(word reg, TYPE& result) {
-        const uint8_t n = sizeof(result); 
+        const uint8_t n = sizeof(result);
         union ReadUnion{
             TYPE  dt;
             byte  b[n];
@@ -186,11 +182,11 @@ public:
 
     void    sleepUntilClearToSend();   // NOT IMPLEMENTED
     bool    isClearToSend();
-    
+
     bool    isMagnetometerOverflow = false; ///< Overflow status of magnetometer registers
-    
+
 private:
-    
+
     bool    read16bitRegister(TSLPB_I2CAddress_t i2cAddress, const uint8_t reg, uint16_t& response);
     bool    write8bitRegister(TSLPB_I2CAddress_t i2cAddress, const uint8_t reg, uint8_t data);
     uint8_t read8bitRegister (TSLPB_I2CAddress_t i2cAddress, const uint8_t reg);
@@ -200,9 +196,9 @@ private:
     void    sleepWithWakeOnSerialReady();
     void    waitForMagReady();
     void    clearNSLbus();
-    
+
     TSLPB_I2CAddress_t getDeviceAddress(TSLPB_DigitalSensor_t sensorName);
-    
+
 };
 
 

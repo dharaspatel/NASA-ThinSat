@@ -6,6 +6,7 @@
 /*___INCLUDES___*/
 #include "TSLPB.h"
 #include "myDataPacketStructure.h"
+#include "Arduino.h"
 
 /*___DECLARATIONS FOR ALL SATELLITES___*/
 TSLBP tslpb;
@@ -31,6 +32,11 @@ uint16_t        spec; //spectrometer for uv, ir, rgb data on pyrolysis
 
 void begin(){
   tslbp.begin();
+
+  TSLPB::TSLPB() : NSLbus (TSL_NSL_BUS_RX_PIN, TSL_NSL_BUS_TX_PIN)
+  {
+      // empty constructor. Used to instantiate the NSLbus SoftwareSerial object
+  }
 }
 
 void loop(){
