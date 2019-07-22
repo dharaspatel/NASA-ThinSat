@@ -16,7 +16,7 @@ import numpy   as np
 import matplotlib.pyplot as plt
 from scipy.optimize          import curve_fit
 from mpl_toolkits.mplot3d    import Axes3D
-from statsmodels.formula.api import ols
+from statsmodels.api         import OLS
 from statsmodels.stats.anova import anova_lm
 # sys.path.insert(0, '/home/echickles/GMAT/R2018a/userfunctions/python')
 import findjuliandates
@@ -38,21 +38,17 @@ sundata.sort()
 latitude = [] # raw position data for each simulation
 longitude = []
 altitude = []
-latitude_res = []
+latitude_res = [] # residual position data for each simulation
 longitude_res = []
-altitude_res = [] # residual position data for each simulation
-night_lengths = []
-day_lengths = []
-elapsed_secs = []
-phase_shift = []
+altitude_res = []
+orbit_lengths = [] # orbit observables for each simulation
+day_bonuses = []
+noon_times = []
+elapsed_secs = [] # time vectors for each simulation
+phase_shift = [] # residual position fit parameters for each simulation
 params_latitude = []
 params_longitude = []
 params_altitude = []
-sunrise_times = []
-sunset_times = []
-sunrise_lat = []
-sunrise_long = []
-sunrise_alt = []
 
 # * A = amplitude
 # * ω = frequency = 2pi/T
@@ -104,36 +100,38 @@ for i in range(len(reportfiles_1)):
     longitude_res.append(longitude[i] - longitude[0])
     longitude_res[i] = longitude_res[i] - np.floor((longitude_res[i]+180)/360)*360 # fix outliers that come from the periodicity of longitude
 
-    # -- get day & night length ------------------------------------------------
+    # -- get observables ------------------------------------------------
     with open(source_dir + 'SunriseSunset_' + str(i) + '.txt', 'r') as f:
         lines = f.readlines()
     type_names = [line.split()[-3] for line in lines[3:-7]]
     start_times = [findjuliandates.utc_to_datetime(' '.join(line.split()[0:4])) for line in lines[3:-7]]
     stop_times = [findjuliandates.utc_to_datetime(' '.join(line.split()[4:8])) for line in lines[3:-7]]
-    durations = [float(line.split()[8]) for line in lines[3:-7]]
 
     for j in range(len(type_names)-1, 0, -1): # correct weird double-umbra events
         if type_names[j] == type_names[j-1] and start_times[j] - stop_times[j-1] < DAY_LENGTH_THRESH:
             type_names.pop(j)
-            durations[j-1] = (stop_times[j] - start_times[j-1]).seconds
-            durations.pop(j)
             stop_times.pop(j-1)
             start_times.pop(j)
 
-    start_times_umbra = []
-    stop_times_umbra = []
-    night = []
-    day = []
+    sunset_times = [] # measure sunwend times for each orbit in this simulation
+    sunrise_times = [] # NOTE: these sunwends are defined by the umbra
     for j in range(len(type_names)):
         if type_names[j] == 'Umbra':
-            night.append(durations[j]) 
-            start_times_umbra.append(start_times[j])
-            stop_times_umbra.append(stop_times[j])
-    for j in range(len(start_times_umbra) - 1):
-        day.append((start_times_umbra[j+1] -\
-                    stop_times_umbra[j]).total_seconds())
-    night_lengths.append(night)
-    day_lengths.append(day)
+            sunset_times.append(start_times[j])
+            sunrise_times.append(stop_times[j])
+    lengths = [] # compute observables of each orbit in this simulation
+    bonuses = []
+    times = []
+    for j in range(len(sunset_times) - 1):
+        lengths.append((sunset_times[j+1] - sunset_times[j]
+            ).total_seconds())
+        bonuses.append(((sunset_times[j+1] - sunrise_times[j]) - (sunrise_times[j] - sunset_times[j])
+            ).total_seconds())
+        times.append(((sunset_times[j+1] - epoch) + (sunrise_times[j] - epoch)/2
+            ).total_seconds())
+    orbit_lengths.append(lengths) # and append them to the complete running list
+    day_bonuses.append(bonuses)
+    noon_times.append(times)
 
     # -- get phase shift -------------------------------------------------------
     # for each start_time to start_time period, fit sine curve to latitude,
@@ -141,10 +139,10 @@ for i in range(len(reportfiles_1)):
     params_lat_list = []
     params_lon_list = []
     params_alt_list = []
-    for j in range(len(start_times_umbra) - 1): # for each sunset-to-sunset period
-        end_time = (start_times_umbra[j+1] - \
+    for j in range(len(sunset_times) - 1): # for each sunset-to-sunset period
+        end_time = (sunset_times[j+1] - \
                     epoch).total_seconds() # pick out the bounding times
-        start_time = (start_times_umbra[j] - \
+        start_time = (sunset_times[j] - \
                     epoch).total_seconds()
         inds = np.nonzero((elapsed_secs[i] >= start_time) * \
                           (elapsed_secs[i] <= end_time))[0] # and the enclosed indices and times
@@ -203,43 +201,35 @@ for i in range(len(reportfiles_1)):
     params_longitude.append(params_lon_list)
     params_altitude.append(params_alt_list)
 
-    # -- get sunrise time, lat, long, alt --------------------------------------
-    with open(source_dir + 'ReportFile2_sunrise_' + str(i) + '.txt', 'r') as f:
-        lines = f.readlines()
-        epoch = findjuliandates.utc_to_datetime(' '.join(lines[1].split()[0:4]))
-        sunrise_times.append(np.array([float(line.split()[0]) for line in \
-                                       lines]))
-        sunrise_lat.append(np.array([float(line.split()[5]) for line in lines]))
-        sunrise_long.append(np.array([float(line.split()[6]) for line in \
-                                      lines]))
-        sunrise_alt.append(np.array([float(line.split()[7]) for line in lines]))
-
 # :: multiple regression :::::::::::::::::::::::::::::::::::::::::::::::::::::::
 param_coefs = [
-    np.empty([np.shape(day_lengths)[1], len(params_latitude[0][0]), 3]),
-    np.empty([np.shape(day_lengths)[1], len(params_longitude[0][0]), 3]),
-    np.empty([np.shape(day_lengths)[1], len(params_altitude[0][0]), 3]),
+    np.empty([np.shape(orbit_lengths)[1], len(params_latitude[0][0]), 4]),
+    np.empty([np.shape(orbit_lengths)[1], len(params_longitude[0][0]), 4]),
+    np.empty([np.shape(orbit_lengths)[1], len(params_altitude[0][0]), 4]),
 ] # coeficients for estimating fit parameters based on night and day length
 
-for j in range(np.shape(day_lengths)[1]): # >> loop through each orbit
+for j in range(np.shape(orbit_lengths)[1]): # >> loop through each orbit
     for coord in range(3): # >> loop through latitude, longitude, altitude
-        param_values = np.array([params_latitude, params_longitude, params_altitude][coord])
-        for k in range(param_values.shape[2]): # loop through each parameter
-            # >> difference in day length:
-            x = [sample[j] - day_lengths[0][j] for sample in day_lengths[1:]]
-            # >> difference in night length:
-            y = [sample[j] - night_lengths[0][j] for sample in night_lengths[1:]]
-            # >> difference in phase shift
-            if coord == 0:
-                z = [params[j,k] for params in param_values[1:,:,:]]
-            elif coord == 1:
-                z = [params[j,k] for params in param_values[1:,:,:]]
-            elif coord == 2:
-                z = [params[j,k] for params in param_values[1:,:,:]]
-            data = pandas.DataFrame({'x': x, 'y': y, 'z': z})
-            model = ols("z ~ x + y", data).fit()
-            param_coefs[coord][j,k] = model._results.params
+        if coord == 0:
+            param_values = np.array(params_latitude)
+        elif coord == 1:
+            param_values = np.array(params_longitude)
+        elif coord == 2:
+            param_values = np.array(params_altitude)
+        for k in range(param_values.shape[2]): # loop through each fit parameter
+            # >> difference in observable vectors:
+            x = np.stack([
+                [lengths[j] for lengths in orbit_lengths],
+                [bonuses[j] for bonuses in day_bonuses],
+                [times[j] for times in noon_times]], axis=1)
+            x = x[1:,:] - x[0,:]
+            # >> value of position difference fit parameters
+            y = param_values[:,j,k]
+            y = y[1:] - y[0]
+            model = OLS(y, x).fit()
             # print(model.summary())
+            param_coefs[coord][j,k,0] = np.mean(y)
+            param_coefs[coord][j,k,1:] = model._results.params
 
             # -- plot --------------------------------------------------------------
             if j == 0 and k == 0:
@@ -247,61 +237,58 @@ for j in range(np.shape(day_lengths)[1]): # >> loop through each orbit
             if debug:
                 fig = plt.figure()
                 ax = fig.add_subplot(111, projection='3d')
-                ax.plot(x, y, z, '.')
-                x_plot=np.linspace(min(x), max(x), 50)
-                y_plot=np.linspace(min(y), max(y), 50)
-                #z_plot=model._results.params[0] + model._results.params[1]*x_plot + \
-                #       model._results.params[2]*y_plot
-                X, Y = np.meshgrid(x_plot, y_plot)
-                Z = model._results.params[0] + model._results.params[1]*X +\
-                    model._results.params[2]*Y
-                surf = ax.plot_surface(X, Y, Z, cmap = plt.cm.coolwarm,
-                                       rstride=1, cstride=1)
+                ax.scatter(x[:,0], x[:,1], x[:,2], c=y)
+                # x_plot=np.linspace(min(x), max(x), 50)
+                # y_plot=np.linspace(min(y), max(y), 50)
+                # X, Y = np.meshgrid(x_plot, y_plot)
+                # Z = model._results.params[0] + model._results.params[1]*X +\
+                #     model._results.params[2]*Y
+                # surf = ax.plot_surface(X, Y, Z, cmap = plt.cm.coolwarm,
+                #                        rstride=1, cstride=1)
                 ax.set_title('Sunrise ' + str(j))
-                ax.set_xlabel('delta day length')
-                ax.set_ylabel('delta night length')
-                ax.set_zlabel('delta coef_{} for {}'.format(
-                    k, ['latitude','longitude','altitude'][coord]))
+                ax.set_xlabel('delta orbit length')
+                ax.set_ylabel('delta day bonus')
+                ax.set_zlabel('delta orbit time')
                 # ax.plot(x_plot, y_plot, z_plot, '.')
             
             if debug:
                 # -- plot lat, long, alt -------------------------------------------
-                sim = 10
-                plt.figure()
-                sunrise_times = np.array(sunrise_times)
-                start_time = np.mean(sunrise_times[:,j])
-                end_time = np.mean(sunrise_times[:,j+1])
-                inds = np.nonzero((elapsed_secs[j] > start_time) * \
-                              (elapsed_secs[j] < end_time))
-                time = elapsed_secs[j][inds]
+                # sim = 10
+                # plt.figure()
+                # sunrise_times = np.array(sunrise_times)
+                # start_time = np.mean(sunrise_times[:,j])
+                # end_time = np.mean(sunrise_times[:,j+1])
+                # inds = np.nonzero((elapsed_secs[j] > start_time) * \
+                #               (elapsed_secs[j] < end_time))
+                # time = elapsed_secs[j][inds]
                 
-                # >> delta day length and delta night length
-                day_length = 3234.14 - day_lengths[sim][j] # day_lengths[0][0]
-                night_length = 2109.53 - night_lengths[sim][j] # night_lengths[0][0]
+                # # >> delta day length and delta night length
+                # day_length = 3234.14 - day_lengths[sim][j] # day_lengths[0][0]
+                # night_length = 2109.53 - night_lengths[sim][j] # night_lengths[0][0]
                 
-                params = param_coefs[coord][j,:,0] + param_coefs[coord][j,:,1]*day_length + \
-                    param_coefs[coord][j,:,2]*night_length
-                if coord == 0:
-                    plt.plot(time, sine(time, *params), '-',
-                             label = 'Calculated latitude residual')
-                elif coord == 1:
-                    plt.plot(time, sone(time, *params), '-',
-                             label = 'Calculated longitude residual')
-                elif coord == 2:
-                    plt.plot(time, cube(time, *params), '-',
-                             label = 'Calculated altitude residual')
+                # params = param_coefs[coord][j,:,0] + param_coefs[coord][j,:,1]*day_length + \
+                #     param_coefs[coord][j,:,2]*night_length
+                # if coord == 0:
+                #     plt.plot(time, sine(time, *params), '-',
+                #              label = 'Calculated latitude residual')
+                # elif coord == 1:
+                #     plt.plot(time, sone(time, *params), '-',
+                #              label = 'Calculated longitude residual')
+                # elif coord == 2:
+                #     plt.plot(time, cube(time, *params), '-',
+                #              label = 'Calculated altitude residual')
                 
-                # -- plotting actual residual -------------------------------------
-                if coord == 0:
-                    plt.plot(time, latitude_res[sim][inds], '-',
-                             label = 'Actual latitude residual')
-                elif coord == 1:
-                    plt.plot(time, longitude_res[sim][inds], '-',
-                             label = 'Actual longitude residual')
-                elif coord == 2:
-                    plt.plot(time, altitude_res[sim][inds], '-',
-                             label = 'Actual altitude residual')
-                plt.legend()
+                # # -- plotting actual residual -------------------------------------
+                # if coord == 0:
+                #     plt.plot(time, latitude_res[sim,inds], '-',
+                #              label = 'Actual latitude residual')
+                # elif coord == 1:
+                #     plt.plot(time, longitude_res[sim,inds], '-',
+                #              label = 'Actual longitude residual')
+                # elif coord == 2:
+                #     plt.plot(time, altitude_res[sim,inds], '-',
+                #              label = 'Actual altitude residual')
+                # plt.legend()
                 debug = False
 plt.show()
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
