@@ -90,7 +90,7 @@ for i in range(len(reportfiles_1)):
     # -- get lat, long, alt ----------------------------------------------------
     with open(source_dir + 'ReportFile1_' + str(i) + '.txt', 'r') as f:
         lines = f.readlines()
-    epoch = ' '.join(lines[1].split()[0:4])
+    epoch = findjuliandates.utc_to_datetime(' '.join(lines[1].split()[0:4]))
     elapsed_secs.append(np.array([float(line.split()[4]) for line in \
                                   lines[1:]]))
     altitude.append(np.array([float(line.split()[5]) for line in \
@@ -138,7 +138,6 @@ for i in range(len(reportfiles_1)):
     # -- get phase shift -------------------------------------------------------
     # for each start_time to start_time period, fit sine curve to latitude,
     # longitude and altitude and report phase shifts
-    epoch = findjuliandates.utc_to_datetime(epoch)
     params_lat_list = []
     params_lon_list = []
     params_alt_list = []
@@ -152,8 +151,8 @@ for i in range(len(reportfiles_1)):
         time = elapsed_secs[i][inds]
         # fit sine curve
         # parameters A, ω, phi, d
-        
         ω_guess = 2*np.pi/(end_time-start_time)
+
         # >> latitude
         try:
             params_lat, pcov = curve_fit(sine, time, latitude_res[i][inds],
@@ -207,7 +206,7 @@ for i in range(len(reportfiles_1)):
     # -- get sunrise time, lat, long, alt --------------------------------------
     with open(source_dir + 'ReportFile2_sunrise_' + str(i) + '.txt', 'r') as f:
         lines = f.readlines()
-        epoch = ' '.join(lines[1].split()[0:4])
+        epoch = findjuliandates.utc_to_datetime(' '.join(lines[1].split()[0:4]))
         sunrise_times.append(np.array([float(line.split()[0]) for line in \
                                        lines]))
         sunrise_lat.append(np.array([float(line.split()[5]) for line in lines]))

@@ -21,7 +21,6 @@ def gettimes(filename, epoch):
     times_julian = []
     elapsed_days = []
     elapsed_secs = []
-    epoch = utc_to_datetime(epoch)
     for i in range(len(times_utc)):
         dt = utc_to_datetime(times_utc[i])
         elapsed_secs.append( (dt - epoch).total_seconds() )
@@ -66,7 +65,6 @@ def getmidtimes(filename, epoch, reportlen = False, reporttimes = False):
     if t_sunset < t_sunrise:
         sunset_times = sunset_times[1:]
 
-    epoch = utc_to_datetime(epoch)
     for i in range(min([len(sunset_times), len(sunrise_times)])):
         t_sunset = utc_to_datetime(sunset_times[i])
         t_sunrise = utc_to_datetime(sunrise_times[i])
@@ -92,7 +90,7 @@ def getmidnighttimes(filename, epoch, reportlen = False, reporttimes = False):
         if type_names[i] == 'Umbra':
             dt = utc_to_datetime(stop_times[i]) - utc_to_datetime(start_times[i])
             t_utc = utc_to_datetime(start_times[i]) + dt/2
-            t_secs = (t_utc - utc_to_datetime(epoch)).total_seconds()
+            t_secs = (t_utc - epoch).total_seconds()
             elapsed_secs.append(t_secs)
     if reportlen:
         return len(elapsed_secs)
@@ -118,7 +116,7 @@ def getnoontimes(filename, epoch, reportlen = False, reporttimes = False):
         dt = utc_to_datetime(start_times_umbra[i+1]) - \
             utc_to_datetime(stop_times_umbra[i])
         t_utc = utc_to_datetime(stop_times_umbra[i]) + dt/2
-        t_secs = (t_utc - utc_to_datetime(epoch)).total_seconds()
+        t_secs = (t_utc - epoch).total_seconds()
         elapsed_secs.append(t_secs)
     if reportlen:
         return len(elapsed_secs)
@@ -135,7 +133,7 @@ def getsunrisetimes(filename, epoch, reportlen = False, reporttimes = False):
     for i in range(len(type_names)):
         if type_names[i] == 'Penumbra':
             if type_names[i-1] == 'Umbra' and i > 0:
-                dt = utc_to_datetime(times_utc[i]) - utc_to_datetime(epoch)
+                dt = utc_to_datetime(times_utc[i]) - epoch
                 elapsed_secs.append(dt.total_seconds())
     if reportlen:
         return len(elapsed_secs)
