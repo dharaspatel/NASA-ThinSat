@@ -12,6 +12,9 @@ def utc_to_datetime(time_utc):
     fmt = '%d %b %Y %H:%M:%S.%f'
     return datetime.datetime.strptime(time_utc, fmt)
 
+def utc_to_seconds(time_utc, epoch=datetime.datetime(1970, 1, 1)):
+    return (utc_to_datetime(time_utc) - epoch).total_seconds()
+
 def gettimes(filename, epoch):
     # offset = 2430000.0 # stupid offset because stupid gmat
     # http://gmat.sourceforge.net/docs/nightly/html/SpacecraftEpoch.html
