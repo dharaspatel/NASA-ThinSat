@@ -192,7 +192,7 @@ for j in range(NUM_ORBITS): # >> loop through each orbit
             # >> difference in observable vectors:
             x = np.stack([
                 orbit_lengths[:,j], day_ratios[:,j], noon_times[:,j]], axis=1)
-            x = x[1:,:] - x[0,:]
+            x = x[1:-1,:] - x[0,:] # (leave out the last one for testing porpoises)
             # >> value of position difference fit parameters
             if coord == 0:
                 y = params_latitude[:,j,k]
@@ -200,72 +200,73 @@ for j in range(NUM_ORBITS): # >> loop through each orbit
                 y = params_longitude[:,j,k]
             elif coord == 2:
                 y = params_altitude[:,j,k]
-            y = y[1:] - y[0]
+            y = y[1:-1] - y[0]
             model = OLS(y, x).fit()
-            # print(model.summary())
+            print("\nCoord {}, parameter {}".format(coord, k))
+            print(model.summary())
             param_coefs[coord][j,k,0] = np.mean(y)
             param_coefs[coord][j,k,1:] = model._results.params
 
             # -- plot --------------------------------------------------------------
-            if j == 0 and k == 0:
-                debug = True
             if debug:
                 fig = plt.figure()
                 ax = fig.add_subplot(111, projection='3d')
                 ax.scatter(x[:,0], x[:,1], x[:,2], c=y)
-                # x_plot=np.linspace(min(x), max(x), 50)
-                # y_plot=np.linspace(min(y), max(y), 50)
-                # X, Y = np.meshgrid(x_plot, y_plot)
-                # Z = model._results.params[0] + model._results.params[1]*X +\
-                #     model._results.params[2]*Y
-                # surf = ax.plot_surface(X, Y, Z, cmap = plt.cm.coolwarm,
-                #                        rstride=1, cstride=1)
                 ax.set_title('Sunrise ' + str(j))
                 ax.set_xlabel('delta orbit length')
                 ax.set_ylabel('delta day ratio')
                 ax.set_zlabel('delta noon time')
                 # ax.plot(x_plot, y_plot, z_plot, '.')
-            
-            if debug:
-                # -- plot lat, long, alt -------------------------------------------
-                # sim = 10
-                # plt.figure()
-                # sunrise_times = np.array(sunrise_times)
-                # start_time = np.mean(sunrise_times[:,j])
-                # end_time = np.mean(sunrise_times[:,j+1])
-                # inds = np.nonzero((elapsed_secs[j] > start_time) * \
-                #               (elapsed_secs[j] < end_time))
-                # time = elapsed_secs[j][inds]
-                
-                # # >> delta day length and delta night length
-                # day_length = 3234.14 - day_lengths[sim][j] # day_lengths[0][0]
-                # night_length = 2109.53 - night_lengths[sim][j] # night_lengths[0][0]
-                
-                # params = param_coefs[coord][j,:,0] + param_coefs[coord][j,:,1]*day_length + \
-                #     param_coefs[coord][j,:,2]*night_length
-                # if coord == 0:
-                #     plt.plot(time, sine(time, *params), '-',
-                #              label = 'Calculated latitude residual')
-                # elif coord == 1:
-                #     plt.plot(time, sone(time, *params), '-',
-                #              label = 'Calculated longitude residual')
-                # elif coord == 2:
-                #     plt.plot(time, cube(time, *params), '-',
-                #              label = 'Calculated altitude residual')
-                
-                # # -- plotting actual residual -------------------------------------
-                # if coord == 0:
-                #     plt.plot(time, latitude_res[sim,inds], '-',
-                #              label = 'Actual latitude residual')
-                # elif coord == 1:
-                #     plt.plot(time, longitude_res[sim,inds], '-',
-                #              label = 'Actual longitude residual')
-                # elif coord == 2:
-                #     plt.plot(time, altitude_res[sim,inds], '-',
-                #              label = 'Actual altitude residual')
-                # plt.legend()
-                debug = False
-plt.show()
+                plt.show()
+
+# :: validation :::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+for j in range(NUM_ORBITS): # iterate over orbits
+    inds = (elapsed_secs[-1] >= sunset_times[j]) &\
+           (elapsed_secs[-1] < sunset_times[j+1]) # pick out the enclosed indices and times
+    time = elapsed_secs[-1,inds]
+    length_res = orbit_lengths[-1,j] - orbit_lengths[0,j]
+    ratio_res = day_ratios[-1,j] - day_ratios[0,j]
+    time_res = noon_times[-1,j] - noon_times[0,j]
+
+    lat_params = param_coefs[0][j,:,0] +\
+        param_coefs[0][j,:,1]*length_res +\
+        param_coefs[0][j,:,2]*ratio_res +\
+        param_coefs[0][j,:,3]*time_res # estimate the fit parameters from our regression results
+    plt.figure()
+    plt.title("Orbit {}".format(j))
+    plt.plot(time, latitude_res[-1,inds], label="Actual")
+    plt.plot(time, sine(time, *lat_params), label="Estimated") # and plot against reality!
+    plt.xlabel("Time (s)")
+    plt.ylabel("Latitude residual (°)")
+    plt.legend()
+
+    lon_params = param_coefs[1][j,:,0] +\
+        param_coefs[1][j,:,1]*length_res +\
+        param_coefs[1][j,:,2]*ratio_res +\
+        param_coefs[1][j,:,3]*time_res # estimate the fit parameters from our regression results
+    plt.figure()
+    plt.title("Orbit {}".format(j))
+    plt.plot(time, longitude_res[-1,inds], label="Actual")
+    plt.plot(time, sone(time, *lon_params), label="Estimated") # and plot against reality!
+    plt.xlabel("Time (s)")
+    plt.ylabel("Longitude residual (°)")
+    plt.legend()
+
+    alt_params = param_coefs[2][j,:,0] +\
+        param_coefs[2][j,:,1]*length_res +\
+        param_coefs[2][j,:,2]*ratio_res +\
+        param_coefs[2][j,:,3]*time_res # estimate the fit parameters from our regression results
+    plt.figure()
+    plt.title("Orbit {}".format(j))
+    plt.plot(time, altitude_res[-1,inds], label="Actual")
+    plt.plot(time, cube(time, *alt_params), label="Estimated") # and plot against reality!
+    plt.xlabel("Time (s)")
+    plt.ylabel("Altitude residual (°)")
+    plt.legend()
+
+    plt.show()
+
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 # # plot day length against altitude
