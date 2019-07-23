@@ -1,4 +1,4 @@
-/*  ________________________________________________
+ /*  ________________________________________________
     Description: main file that defines all functions called in joe, burt, and bill
     Author: Dhara Patel
     ________________________________________________*/
@@ -54,7 +54,7 @@
 /*___DECLARATIONS___*/
 DCF77 rtc = DCF77(pin, interrupt);
 EEPROM eeprom;
-uint8_t pho_data[PHO1_ADDR, PHO2_ADDR, PHO3_ADDR, PHO4_ADDR];
+size_t pho_data[PHO1_ADDR, PHO2_ADDR, PHO3_ADDR, PHO4_ADDR];
 
 
 /*_________FUNCTIONS USED IN BURT__________*/
@@ -110,10 +110,10 @@ float sync(DateTime time){
   //TODO: Code for syncing with photodiode data
 }
 
-void sendBUS(uint8_t data){
+void sendBUS(size_t data){
   /*
-    FUNCTION: sends data of 8 bits to the bus
-    PARAMETERS: the 8 bit data
+    FUNCTION: sends data of   to the bus
+    PARAMETERS: an object a size of any number of bytes
     RETURN: None
   */
   Wire.beginTransmission(TX_ADDR);
@@ -136,10 +136,10 @@ boolean check_busy(){
   }
 }
 
-void write_SD(uint8_t data, char file_name[]){
+void write_SD(size_t data, char file_name[]){
   /*
     FUNCTION: Writes to a file on the SD card
-    PARAMETERS: the 8 bit of data you want to write and the file name
+    PARAMETERS: the data you want to write and the file name
     RETURN: None
   */
   File data_file = SD.open(file_name, FILE_WRITE);
@@ -160,7 +160,7 @@ void read_SD(char file_name[]){
   data_file.close();
 }
 
-uint8_t read_photocells(){
+size_t read_photocells(){
   /*
     FUNCTION: read from all 4 photocells
     PARAMETERS: None
@@ -175,16 +175,16 @@ uint8_t read_photocells(){
   return pho_data;
 }
 
-uint8_t read_eeprom(int address){
+size_t read_eeprom(int address){
   /*
     FUNCTION: read an address on the eeprom
     PARAMETERS: the address you want to read from
-    RETURN: the 8 bit of info on that address
+    RETURN: the bytes of info on that address
   */
   return EEPROM.read(address);
 }
 
-void write_eeprom(uint8_t data, int address){
+void write_eeprom(size_t data, int address){
   /*
     FUNCTION: writes to an address on the eeprom
     PARAMETERS: the data you want to write and the address that you want to write to
@@ -192,7 +192,7 @@ void write_eeprom(uint8_t data, int address){
   */
 }
 
-uint8_t get_image(){
+size_t get_image(){
   /*
     FUNCTION: gets data from the image sensor located on burt after gas is released
     PARAMETERS: None
@@ -202,7 +202,7 @@ uint8_t get_image(){
   //TODO: figure out the device address of the img sensor; do you just read CS_IMG?
 }
 
-uint8_t get_temp(){
+size_t get_temp(){
   /*
     FUNCTION: gets data from the temp sensor located on burt after gas is released
     PARAMETERS: None
