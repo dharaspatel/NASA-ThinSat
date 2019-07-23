@@ -21,23 +21,18 @@ from statsmodels.stats.anova import anova_lm
 # sys.path.insert(0, '/home/echickles/GMAT/R2018a/userfunctions/python')
 import findjuliandates
 
+
 source_dir = '../../Simulations/'
 debug = False
 
 DAY_LENGTH_THRESH = datetime.timedelta(seconds=60) # no day is this short
-NUM_ORBITS = 80
-NUM_SIM_DATA = 14400
+NIGHT_LENGTH_THRESH = datetime.timedelta(seconds=60) # no night is this short
+
+NUM_SIMS = 101 # number of simulated mission variations
+NUM_ORBITS = 80 # number of orbits to fit per simulation
+NUM_SIM_DATA = 14400 # number of data in each simulation
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-reportfiles_1 = fm.filter(os.listdir(source_dir),'ReportFile1_*.txt')
-reportfiles_sunrise = fm.filter(os.listdir(source_dir),
-                                'ReportFile2_sunrise_*.txt')
-sundata = fm.filter(os.listdir(source_dir),'SunriseSunset_*.txt')
-reportfiles_1.sort()
-sundata.sort()
-
-NUM_SIMS = min(len(reportfiles_1), len(reportfiles_sunrise), len(sundata))
 
 latitude = np.empty((NUM_SIMS, NUM_SIM_DATA)) # raw position data for each simulation
 longitude = np.empty((NUM_SIMS, NUM_SIM_DATA))
@@ -46,8 +41,8 @@ latitude_res = np.empty((NUM_SIMS, NUM_SIM_DATA)) # residual position data for e
 longitude_res = np.empty((NUM_SIMS, NUM_SIM_DATA))
 altitude_res = np.empty((NUM_SIMS, NUM_SIM_DATA))
 elapsed_secs = np.empty((NUM_SIMS, NUM_SIM_DATA)) # time vectors for each simulation
-night_lengths = np.empty((NUM_SIMS, NUM_ORBITS)) # orbit observables for each simulation
-day_bonuses = np.empty((NUM_SIMS, NUM_ORBITS))
+orbit_lengths = np.empty((NUM_SIMS, NUM_ORBITS)) # orbit observables for each simulation
+day_ratios = np.empty((NUM_SIMS, NUM_ORBITS))
 noon_times = np.empty((NUM_SIMS, NUM_ORBITS))
 params_latitude = np.empty((NUM_SIMS, NUM_ORBITS, 4)) # residual position fit parameters for each simulation
 params_longitude = np.empty((NUM_SIMS, NUM_ORBITS, 6))
@@ -106,10 +101,15 @@ for i in range(NUM_SIMS):
     start_times = [findjuliandates.utc_to_seconds(' '.join(line.split()[0:4]), epoch) for line in lines[3:-7]]
     stop_times = [findjuliandates.utc_to_seconds(' '.join(line.split()[4:8]), epoch) for line in lines[3:-7]]
 
-    for j in range(len(type_names)-1, 0, -1): # correct weird double-umbra events
+    for j in reversed(range(1, len(type_names))): # correct weird double-umbra events
         if type_names[j] == type_names[j-1] and start_times[j] - stop_times[j-1] < DAY_LENGTH_THRESH.total_seconds():
             type_names.pop(j)
             stop_times.pop(j-1)
+            start_times.pop(j)
+    for j in reversed(range(0, len(type_names))): # and weird extra umbra events
+        if type_names[j] == 'Umbra' and stop_times[j] - start_times[j] < NIGHT_LENGTH_THRESH.total_seconds():
+            type_names.pop(j)
+            stop_times.pop(j)
             start_times.pop(j)
 
     sunset_times = [st for st, tn in zip(start_times, type_names) if tn=='Umbra'] # measure sunwend times for each orbit in this simulation
@@ -118,8 +118,8 @@ for i in range(NUM_SIMS):
     assert len(sunset_times) > NUM_ORBITS, "Not enough orbits were provided."
 
     for j in range(NUM_ORBITS): # compute observables of each orbit in this simulation
-        night_lengths[i,:] = sunrise_times[j] - sunset_times[j]
-        day_bonuses[i,:] = sunset_times[j+1] - 2*sunrise_times[j] + sunset_times[j]
+        orbit_lengths[i,:] = sunset_times[j+1] - sunset_times[j]
+        day_ratios[i,:] = (sunset_times[j+1] - sunrise_times[j])/(sunrise_times[j] - sunset_times[j])
         noon_times[i,:] = (sunset_times[j+1] + sunrise_times[j])/2
 
     # -- get phase shift -------------------------------------------------------
@@ -139,18 +139,22 @@ for i in range(NUM_SIMS):
                                      p0=[0, ω_guess, 0, 0])[0]
         except RuntimeError:
             print('FALURE')
-            params_lat = [0, ω_guess, 0, 0]
+            params_latitude[i,j,:] = [0, ω_guess, 0, 0]
         # >> longitude
-        params_longitude[i,j,:] = curve_fit(sone, time, longitude_res[i][inds],
+        try:
+            params_longitude[i,j,:] = curve_fit(sone, time, longitude_res[i][inds],
                                      p0=[0, 0, ω_guess, 0, 0, 0])[0]
+        except RuntimeError:
+            print("FAILURE")
+            params_longitude[i,j,:] = [0, 0, ω_guess, 0, 0, 0]
         # >> altitude
         params_altitude[i,j,:] = curve_fit(cube, time, altitude_res[i][inds],
                                      p0=[0, 0, 0, 0])[0]
 
         if debug and i > 0:
-            latr_exp, latr_fit = latitude_res[i,inds], sine(time, *params_lat)
-            lonr_exp, lonr_fit = longitude_res[i,inds], sone(time, *params_lon)
-            altr_exp, altr_fit = altitude_res[i,inds], cube(time, *params_alt)
+            latr_exp, latr_fit = latitude_res[i,inds], sine(time, *params_latitude[i,j,:])
+            lonr_exp, lonr_fit = longitude_res[i,inds], sone(time, *params_longitude[i,j,:])
+            altr_exp, altr_fit = altitude_res[i,inds], cube(time, *params_altitude[i,j,:])
             pos_org = coords_2_vec(latitude[0,inds],          longitude[0,inds],          altitude[0,inds]         )
             pos_exp = coords_2_vec(latitude[0,inds]+latr_exp, longitude[0,inds]+lonr_exp, altitude[0,inds]+altr_exp)
             pos_fit = coords_2_vec(latitude[0,inds]+latr_fit, longitude[0,inds]+lonr_fit, altitude[0,inds]+altr_fit)
@@ -187,7 +191,7 @@ for j in range(NUM_ORBITS): # >> loop through each orbit
         for k in range(np.shape(param_coefs[coord])[1]): # loop through each fit parameter
             # >> difference in observable vectors:
             x = np.stack([
-                night_lengths[:,j], day_bonuses[:,j], noon_times[:,j]], axis=1)
+                orbit_lengths[:,j], day_ratios[:,j], noon_times[:,j]], axis=1)
             x = x[1:,:] - x[0,:]
             # >> value of position difference fit parameters
             if coord == 0:
@@ -218,8 +222,8 @@ for j in range(NUM_ORBITS): # >> loop through each orbit
                 #                        rstride=1, cstride=1)
                 ax.set_title('Sunrise ' + str(j))
                 ax.set_xlabel('delta orbit length')
-                ax.set_ylabel('delta day bonus')
-                ax.set_zlabel('delta orbit time')
+                ax.set_ylabel('delta day ratio')
+                ax.set_zlabel('delta noon time')
                 # ax.plot(x_plot, y_plot, z_plot, '.')
             
             if debug:
