@@ -30,7 +30,7 @@ debug = False
 DAY_LENGTH_THRESH = datetime.timedelta(seconds=60) # no day is this short
 NIGHT_LENGTH_THRESH = datetime.timedelta(seconds=60) # no night is this short
 
-NUM_SIMS = 10 # number of simulated mission variations
+NUM_SIMS = 101 # number of simulated mission variations
 NUM_ORBITS = 80 # number of orbits to fit per simulation
 NUM_SIM_DATA = 14400 # number of data in each simulation
 NUM_PARAMS = 8 # the number of parameters to use to fit each orbit function
@@ -214,9 +214,9 @@ for coord in range(3): # >> loop through latitude, longitude, altitude
 # :: export ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 with open(source_dir+'/forecast.dat', 'wb') as f:
-    f.write(NUM_SIM_DATA.to_bytes(4, 'big')) # header
-    f.write(NUM_ORBITS.to_bytes(4, 'big'))
-    f.write(NUM_PARAMS.to_bytes(4, 'big'))
+    f.write(NUM_SIM_DATA.to_bytes(8, 'big')) # header
+    f.write(NUM_ORBITS.to_bytes(8, 'big'))
+    f.write(NUM_PARAMS.to_bytes(8, 'big'))
     for t in range(NUM_SIM_DATA): # canonical GMAT data
         f.write(struct.pack('d', elapsed_secs[0,t]))
         f.write(struct.pack('d', latitude[0,t]))
