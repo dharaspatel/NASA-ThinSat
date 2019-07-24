@@ -116,7 +116,7 @@ for i in range(NUM_SIMS):
         day_ratios[i,:] = (sunset_times[j+1] - sunrise_times[j])/(sunrise_times[j] - sunset_times[j])
         noon_times[i,:] = (sunset_times[j+1] + sunrise_times[j])/2
 
-    # -- get phase shift -------------------------------------------------------
+    # -- get fit parameters -------------------------------------------------------
     # for each start_time to start_time period, fit curve to latitude,
     # longitude and altitude and report phase shifts
     for j in range(NUM_ORBITS): # for each sunset-to-sunset period
@@ -139,47 +139,50 @@ for i in range(NUM_SIMS):
                                            p0=np.zeros(NUM_PARAMS))[0]
 
         if debug and i > 0:
-            latr_exp, latr_fit = latitude_res[i,inds], spline(time, interp_ts, params_latitude[i,j,:])
-            lonr_exp, lonr_fit = longitude_res[i,inds], spline(time, interp_ts, params_longitude[i,j,:])
-            altr_exp, altr_fit = altitude_res[i,inds], spline(time, interp_ts, params_altitude[i,j,:])
-            pos_org = coords_2_vec(latitude[0,inds],          longitude[0,inds],          altitude[0,inds]         )
-            pos_exp = coords_2_vec(latitude[0,inds]+latr_exp, longitude[0,inds]+lonr_exp, altitude[0,inds]+altr_exp)
-            pos_fit = coords_2_vec(latitude[0,inds]+latr_fit, longitude[0,inds]+lonr_fit, altitude[0,inds]+altr_fit)
+            lat_org, lat_exp = latitude[0,inds], latitude[i,inds]
+            lat_fit = lat_org + spline(time, interp_ts, params_latitude[i,j,:])
+            lon_org, lon_exp = longitude[0,inds], longitude[i,inds]
+            lon_fit = lon_org + spline(time, interp_ts, params_longitude[i,j,:])
+            alt_org, alt_exp = altitude[0,inds], altitude[i,inds]
+            alt_fit = alt_org + spline(time, interp_ts, params_altitude[i,j,:])
+            pos_org = coords_2_vec(lat_org, lon_org, alt_org)
+            pos_exp = coords_2_vec(lat_exp, lon_exp, alt_exp)
+            pos_fit = coords_2_vec(lat_fit, lon_fit, alt_fit)
             error = pos_exp - pos_fit
             i_worst = np.argmax(np.linalg.norm(error, axis=1))
             print("The maximum error occurs at t={}s, where the fit is {:.3f}/{:.3f} km off.".format(
                   time[i_worst], np.linalg.norm(error[i_worst,:]),
                   np.linalg.norm((pos_exp-pos_org)[i_worst,:])))
             plt.figure(0)
-            plt.plot(time, latr_fit, '-')
-            plt.plot(time, latr_exp, '-')
+            plt.plot(time, lat_exp-lat_org, '-')
+            plt.plot(time, lat_fit-lat_org, '-')
             plt.figure(1)
-            plt.plot(time, lonr_fit, '-')
-            plt.plot(time, lonr_exp, '-')
+            plt.plot(time, lon_exp-lon_org, '-')
+            plt.plot(time, lon_fit-lon_org, '-')
             plt.figure(2)
-            plt.plot(time, altr_fit, '-')
-            plt.plot(time, altr_exp, '-')
+            plt.plot(time, alt_exp-alt_org, '-')
+            plt.plot(time, alt_fit-alt_org, '-')
             plt.figure(3)
             plt.axes(projection='3d')
-            plt.plot(pos_fit[:,0], pos_fit[:,1], pos_fit[:,2], marker='.')
             plt.plot(pos_exp[:,0], pos_exp[:,1], pos_exp[:,2], marker='.')
+            plt.plot(pos_fit[:,0], pos_fit[:,1], pos_fit[:,2], marker='.')
+            plt.plot(pos_org[:,0], pos_org[:,1], pos_org[:,2], '--')
             plt.plot(*[[pos_fit[i_worst,k], pos_exp[i_worst,k]] for k in range(3)])
             plt.show()
 
 # :: multiple regression :::::::::::::::::::::::::::::::::::::::::::::::::::::::
 param_coefs = (
-    np.empty([NUM_ORBITS, NUM_PARAMS, 4]),
-    np.empty([NUM_ORBITS, NUM_PARAMS, 4]),
-    np.empty([NUM_ORBITS, NUM_PARAMS, 4]),
+    np.empty([NUM_ORBITS, NUM_PARAMS, 3]),
+    np.empty([NUM_ORBITS, NUM_PARAMS, 3]),
+    np.empty([NUM_ORBITS, NUM_PARAMS, 3]),
 ) # coeficients for estimating fit parameters based on night and day length
-
-for j in range(NUM_ORBITS): # >> loop through each orbit
-    for coord in range(3): # >> loop through latitude, longitude, altitude
+for coord in range(3): # >> loop through latitude, longitude, altitude
+    for j in range(1, NUM_ORBITS): # >> loop through each orbit (we can't fit for orbit 0 because we won't have any data yet)
         for k in range(NUM_PARAMS): # loop through each fit parameter
             # >> difference in observable vectors:
             x = np.stack([
                 orbit_lengths[:,j], day_ratios[:,j], noon_times[:,j]], axis=1)
-            x = x[1:-1,:] - x[0,:] # (leave out the last one for testing porpoises)
+            x = x[:-1,:] - x[0,:] # (leave out the last one for testing porpoises)
             # >> value of position difference fit parameters
             if coord == 0:
                 y = params_latitude[:,j,k]
@@ -187,12 +190,11 @@ for j in range(NUM_ORBITS): # >> loop through each orbit
                 y = params_longitude[:,j,k]
             elif coord == 2:
                 y = params_altitude[:,j,k]
-            y = y[1:-1] - y[0]
+            y = y[:-1]
             model = OLS(y, x).fit()
             # print("\nCoord {}, parameter {}".format(coord, k))
             # print(model.summary())
-            param_coefs[coord][j,k,0] = np.mean(y)
-            param_coefs[coord][j,k,1:] = model._results.params
+            param_coefs[coord][j,k,:] = model._results.params
 
             # -- plot --------------------------------------------------------------
             if debug:
@@ -216,42 +218,57 @@ for j in range(NUM_ORBITS): # iterate over orbits
     ratio_res = day_ratios[-1,j] - day_ratios[0,j]
     noon_res = noon_times[-1,j] - noon_times[0,j]
 
-    interp_ts = np.linspace(sunset_times[j], sunset_times[j]+orbit_lengths[0,j], NUM_PARAMS)
+    lat_params = \
+        param_coefs[0][j,:,0]*length_res +\
+        param_coefs[0][j,:,1]*ratio_res +\
+        param_coefs[0][j,:,2]*noon_res # estimate the fit parameters from our regression results
+    lon_params = \
+        param_coefs[1][j,:,0]*length_res +\
+        param_coefs[1][j,:,1]*ratio_res +\
+        param_coefs[1][j,:,2]*noon_res
+    alt_params = \
+        param_coefs[2][j,:,0]*length_res +\
+        param_coefs[2][j,:,1]*ratio_res +\
+        param_coefs[2][j,:,2]*noon_res
 
-    lat_params = param_coefs[0][j,:,0] +\
-        param_coefs[0][j,:,1]*length_res +\
-        param_coefs[0][j,:,2]*ratio_res +\
-        param_coefs[0][j,:,3]*noon_res # estimate the fit parameters from our regression results
+    interp_ts = np.linspace(sunset_times[j], sunset_times[j]+orbit_lengths[0,j], NUM_PARAMS)
+    lat_org, lat_exp = latitude[0,inds], latitude[-1,inds]
+    lat_fit = lat_org + spline(time, interp_ts, lat_params)
+    lon_org, lon_exp = longitude[0,inds], longitude[-1,inds]
+    lon_fit = lon_org + spline(time, interp_ts, lon_params)
+    alt_org, alt_exp = altitude[0,inds], altitude[-1,inds]
+    alt_fit = alt_org + spline(time, interp_ts, alt_params)
+    pos_org = coords_2_vec(lat_org, lon_org, alt_org)
+    pos_exp = coords_2_vec(lat_exp, lon_exp, alt_exp)
+    pos_fit = coords_2_vec(lat_fit, lon_fit, alt_fit)
+    error = pos_exp - pos_fit
+    i_worst = np.argmax(np.linalg.norm(error, axis=1))
+    print("The maximum error occurs at t={}s, where the fit is {:.3f}/{:.3f} km off.".format(
+          time[i_worst], np.linalg.norm(error[i_worst,:]),
+          np.linalg.norm((pos_exp-pos_org)[i_worst,:])))
+
     plt.figure()
     plt.title("Orbit {}".format(j))
-    plt.plot(time, latitude_res[-1,inds], label="Actual")
-    plt.plot(time, spline(time, interp_ts, lat_params), label="Estimated") # and plot against reality!
+    plt.plot(time, lat_exp-lat_org, label="Actual")
+    plt.plot(time, lat_fit-lat_org, label="Estimated") # and plot against reality!
     plt.xlabel("Time (s)")
     plt.ylabel("Latitude residual (°)")
     plt.legend()
 
-    lon_params = param_coefs[1][j,:,0] +\
-        param_coefs[1][j,:,1]*length_res +\
-        param_coefs[1][j,:,2]*ratio_res +\
-        param_coefs[1][j,:,3]*noon_res # estimate the fit parameters from our regression results
     plt.figure()
     plt.title("Orbit {}".format(j))
-    plt.plot(time, longitude_res[-1,inds], label="Actual")
-    plt.plot(time, spline(time, interp_ts, lon_params), label="Estimated") # and plot against reality!
+    plt.plot(time, lon_exp-lon_org, label="Actual")
+    plt.plot(time, lon_fit-lon_org, label="Estimated") # and plot against reality!
     plt.xlabel("Time (s)")
     plt.ylabel("Longitude residual (°)")
     plt.legend()
 
-    alt_params = param_coefs[2][j,:,0] +\
-        param_coefs[2][j,:,1]*length_res +\
-        param_coefs[2][j,:,2]*ratio_res +\
-        param_coefs[2][j,:,3]*noon_res # estimate the fit parameters from our regression results
     plt.figure()
     plt.title("Orbit {}".format(j))
-    plt.plot(time, altitude_res[-1,inds], label="Actual")
-    plt.plot(time, spline(time, interp_ts, alt_params), label="Estimated") # and plot against reality!
+    plt.plot(time, alt_exp-alt_org, label="Actual")
+    plt.plot(time, alt_fit-alt_org, label="Estimated") # and plot against reality!
     plt.xlabel("Time (s)")
-    plt.ylabel("Altitude residual (°)")
+    plt.ylabel("Altitude residual (km)")
     plt.legend()
 
     plt.show()
