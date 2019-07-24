@@ -19,6 +19,7 @@ import scipy.interpolate
 from mpl_toolkits.mplot3d    import Axes3D
 from statsmodels.api         import OLS
 from statsmodels.stats.anova import anova_lm
+import struct
 # sys.path.insert(0, '/home/echickles/GMAT/R2018a/userfunctions/python')
 import findjuliandates
 
@@ -29,7 +30,7 @@ debug = False
 DAY_LENGTH_THRESH = datetime.timedelta(seconds=60) # no day is this short
 NIGHT_LENGTH_THRESH = datetime.timedelta(seconds=60) # no night is this short
 
-NUM_SIMS = 101 # number of simulated mission variations
+NUM_SIMS = 10 # number of simulated mission variations
 NUM_ORBITS = 80 # number of orbits to fit per simulation
 NUM_SIM_DATA = 14400 # number of data in each simulation
 NUM_PARAMS = 8 # the number of parameters to use to fit each orbit function
@@ -49,6 +50,11 @@ noon_times = np.empty((NUM_SIMS, NUM_ORBITS))
 params_latitude = np.empty((NUM_SIMS, NUM_ORBITS, NUM_PARAMS)) # residual position fit parameters for each simulation
 params_longitude = np.empty((NUM_SIMS, NUM_ORBITS, NUM_PARAMS))
 params_altitude = np.empty((NUM_SIMS, NUM_ORBITS, NUM_PARAMS))
+param_coefs = (
+    np.empty([NUM_ORBITS, NUM_PARAMS, 3]),
+    np.empty([NUM_ORBITS, NUM_PARAMS, 3]),
+    np.empty([NUM_ORBITS, NUM_PARAMS, 3]),
+) # coeficients for estimating fit parameters based on night and day length
 
 
 def spline_func(x_refs):
@@ -171,11 +177,7 @@ for i in range(NUM_SIMS):
             plt.show()
 
 # :: multiple regression :::::::::::::::::::::::::::::::::::::::::::::::::::::::
-param_coefs = (
-    np.empty([NUM_ORBITS, NUM_PARAMS, 3]),
-    np.empty([NUM_ORBITS, NUM_PARAMS, 3]),
-    np.empty([NUM_ORBITS, NUM_PARAMS, 3]),
-) # coeficients for estimating fit parameters based on night and day length
+
 for coord in range(3): # >> loop through latitude, longitude, altitude
     param_coefs[coord][0,:,:] = 0
     for j in range(1, NUM_ORBITS): # >> loop through each orbit (we can't fit for orbit 0 because we won't have any data yet)
@@ -208,6 +210,28 @@ for coord in range(3): # >> loop through latitude, longitude, altitude
                 ax.set_zlabel('delta noon time')
                 # ax.plot(x_plot, y_plot, z_plot, '.')
                 plt.show()
+
+# :: export ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+with open(source_dir+'/forecast.dat', 'wb') as f:
+    f.write(NUM_SIM_DATA.to_bytes(4, 'big')) # header
+    f.write(NUM_ORBITS.to_bytes(4, 'big'))
+    f.write(NUM_PARAMS.to_bytes(4, 'big'))
+    for t in range(NUM_SIM_DATA): # canonical GMAT data
+        f.write(struct.pack('d', elapsed_secs[0,t]))
+        f.write(struct.pack('d', latitude[0,t]))
+        f.write(struct.pack('d', longitude[0,t]))
+        f.write(struct.pack('d', altitude[0,t]))
+    for j in range(NUM_ORBITS): # expected values of observables
+        f.write(struct.pack('d', orbit_lengths[0,j]))
+        f.write(struct.pack('d', day_ratios[0,j]))
+        f.write(struct.pack('d', noon_times[0,j]))
+    for coef_set in param_coefs: # coeficients relating observable residuals to spline parameters
+        for j in range(NUM_ORBITS):
+            for k in range(NUM_PARAMS):
+                f.write(struct.pack('d', coef_set[j,k,0]))
+                f.write(struct.pack('d', coef_set[j,k,1]))
+                f.write(struct.pack('d', coef_set[j,k,2]))
 
 # :: validation :::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -273,140 +297,3 @@ for j in range(1, NUM_ORBITS): # iterate over orbits
     plt.legend()
 
     plt.show()
-
-# ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-# # plot day length against altitude
-# day_1 = [time[0] for time in day_lengths]
-# phi_alt_1 = [params[0][2] for params in params_altitude]
-# plt.figure(0)
-# plt.plot(day_1, phi_alt_1, '.')
-
-# # plot day length against latitude
-# phi_lat_1 = [params[0][2] for params in params_latitude]
-# plt.figure(1)
-# plt.plot(day_1, phi_lat_1, '.')
-
-# # plot day length against longitude
-# phi_long_1 = [params[0][2] for params in params_longitude]
-# plt.figure(2)
-# plt.plot(day_1, phi_long_1, '.')
-
-# # plot night length against altitude
-# night_1 = [time[0] for time in night_lengths]
-# plt.figure(3)
-# plt.plot(night_1, phi_alt_1, '.')
-
-# # plot night length against latitude
-# plt.figure(4)
-# plt.plot(night_1, phi_lat_1, '.')
-
-# # plot night length against longitude
-# plt.figure(5)
-# plt.plot(night_1, phi_long_1, '.')
-
-# save txt file (phase shift for lat, long, alt)
-# col 1: time of first sunrise
-# col 2: night length
-# col 3: day length
-# col 4: latitude at first sunrise
-# col 5: longitude at first sunrise
-# col 6: altitude at first sunrise
-# x = np.zeros([len(reportfiles_1), 6])
-# for i in range(len(reportfiles_1)):
-#     x[i][0] = sunrise_times[i][0]
-#     x[i][1] = day_lengths[i][0]
-#     x[i][2] = night_lengths[i][0]
-#     x[i][3] = sunrise_lat[i][0]
-#     x[i][4] = sunrise_long[i][0]
-#     x[i][5] = sunrise_alt[i][0]
-# np.savetxt('samplesize50sunrise1.txt', x, delimiter = ',')
-    
-# have altitude, latitude, longitude for first sunrise
-# have length of night, length of day
-# alt = np.zeros(50)
-# lat = np.zeros(50)
-# lon = np.zeros(50)
-# day = np.zeros(50)
-# nit = np.zeros(50)
-# sec = np.zeros(50)
-# for i in range(len(altitude)):
-#     alt[i] = altitude[i][0]
-#     lat[i] = latitude[i][0]
-#     lon[i] = longitude[i][0]
-#     day[i] = day_lengths[i][0]
-#     nit[i] = night_lengths[i][0]
-#     sec[i] = elapsed_secs[i][0]
-        
-    # with open(source_dir + reportfiles_midnight[i], 'r') as f:
-    #     lines = f.readlines()
-    #     times_utc.append([line.split()[0] for line in lines])
-    #     latitude.append([float(line.split()[-3]) for line in lines])
-    #     longitude.append([float(line.split()[-2]) for line in lines])
-    #     altitude.append([float(line.split()[-1]) for line in lines])
-
-    # with open(source_dir + 'ReportFile1_' + str(i) + '.txt', 'r') as f:
-    #     lines = f.readlines()
-    # epoch = ' '.join(lines[1].split()[0:4])
-
-    # with open(source_dir + 'SunriseSunset_' + str(i) + '.txt', 'r') as f:
-    #     lines = f.readlines()
-    #     type_names = [line.split()[-3] for line in lines[3:-7]]
-    #     t = [float(line.split()[-1]) for line in lines[3:-7]]
-    #     night_lengths.append(t)
-        
-
-# sunrise_times1, sunset_times1 = findjuliandates.getmidtimes(source_dir + "SunriseSunset_" + str(i) + '.txt', epoch, reporttimes = True)
-# sunrise_times.append(sunrise_times1)
-# sunset_times.append(sunset_times1)
-
-# plot time of night with altitude
-# plt.ion()
-# elapsed_secs = []
-# alt = []
-# lat = []
-# lon = []
-# dur = []
-# time = 10
-
-# for i in range(len(night_lengths)):
-#     dur.append(night_lengths[i][time])
-#     alt.append(altitude[i][time])
-#     lat.append(latitude[i][time])
-#     lon.append(longitude[i][time])
-
-# plt.figure(0)
-# plt.plot(dur, alt, '.')
-# plt.xlabel('Time between sunset and sunrise(s)')
-# plt.ylabel('Altitude (km)')
-
-# plt.figure(1)
-# plt.plot(dur, lat, '.')
-
-# plt.figure(2)
-# plt.plot(dur, lon, '.')
-
-# given orbital period, night time 
-
-
-# for i in range(len(sunrise_times)):
-#     # !! why is there a negative thing???
-#     t = (sunset_times[i][time] - sunrise_times[i][time]).total_seconds()
-#     if t > 0:
-#         if False:
-#             print(i)
-#         else:
-#             elapsed_secs.append(t)
-#             alt.append(float(altitude[i][time]))
-#             lat.append(float(latitude[i][time]))
-#             lon.append(float(longitude[i][time]))
-#     else:
-#         print(i)
-# plt.figure(0)
-# plt.plot(elapsed_secs, alt, '.')
-
-# plt.figure(1)
-# plt.plot(elapsed_secs, lat, '.')
-
-# plt.figure(2)
-# plt.plot(elapsed_secs, lon, '.')
