@@ -177,11 +177,12 @@ param_coefs = (
     np.empty([NUM_ORBITS, NUM_PARAMS, 3]),
 ) # coeficients for estimating fit parameters based on night and day length
 for coord in range(3): # >> loop through latitude, longitude, altitude
+    param_coefs[coord][0,:,:] = 0
     for j in range(1, NUM_ORBITS): # >> loop through each orbit (we can't fit for orbit 0 because we won't have any data yet)
         for k in range(NUM_PARAMS): # loop through each fit parameter
             # >> difference in observable vectors:
             x = np.stack([
-                orbit_lengths[:,j], day_ratios[:,j], noon_times[:,j]], axis=1)
+                orbit_lengths[:,j-1], day_ratios[:,j-1], noon_times[:,j-1]], axis=1)
             x = x[:-1,:] - x[0,:] # (leave out the last one for testing porpoises)
             # >> value of position difference fit parameters
             if coord == 0:
@@ -210,13 +211,13 @@ for coord in range(3): # >> loop through latitude, longitude, altitude
 
 # :: validation :::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-for j in range(NUM_ORBITS): # iterate over orbits
+for j in range(1, NUM_ORBITS): # iterate over orbits
     inds = (elapsed_secs[-1] >= sunset_times[j]) &\
            (elapsed_secs[-1] < sunset_times[j+1]) # pick out the enclosed indices and times
     time = elapsed_secs[-1,inds]
-    length_res = orbit_lengths[-1,j] - orbit_lengths[0,j]
-    ratio_res = day_ratios[-1,j] - day_ratios[0,j]
-    noon_res = noon_times[-1,j] - noon_times[0,j]
+    length_res = orbit_lengths[-1,j-1] - orbit_lengths[0,j-1]
+    ratio_res = day_ratios[-1,j-1] - day_ratios[0,j-1]
+    noon_res = noon_times[-1,j-1] - noon_times[0,j-1]
 
     lat_params = \
         param_coefs[0][j,:,0]*length_res +\
