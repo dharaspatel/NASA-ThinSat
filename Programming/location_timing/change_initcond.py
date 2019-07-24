@@ -3,6 +3,9 @@
 # state and saves the latitude, longitude and altitude at each sunrise/noon/
 # midnight for each script.
 
+# ReportFile2_event_samplenum.txt has elapsed_secs, julian_date, latitude,
+# longitude, altitude for each event occurence.
+
 # This script will run:
 # * ThinSat_Planning_SunriseSunset.script
 # * ThinSat_FindLocationGivenEclipse.script
