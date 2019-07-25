@@ -1,0 +1,258 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2019-07-23
+%This script calculates the moon's location during orbital eclipses. It relies on the output
+%SunriseSunset.txt file from ThinSat_Planning_SunriseSunset.script.
+
+%Columns of ReportFile3:
+%event_number, elapsed_seconds, coordinates of satellite, coordinates of moon, coordinates of Sun
+%*Coordinates are in EarthMJ2000Eq coordinate system
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC;
+GMAT DefaultSC.DateFormat = TAIModJulian;
+GMAT DefaultSC.Epoch = '28226.5';
+GMAT DefaultSC.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC.DisplayStateType = Keplerian;
+
+%Initial orbital state in cartesian
+DefaultSC.X = 5313.19898722968
+DefaultSC.Y = -2912.368416712065
+DefaultSC.Z = 2580.583006475884
+DefaultSC.VX = 4.504094411355064
+DefaultSC.VY = 3.530755928387845
+DefaultSC.VZ = -5.28883890677512
+%initial coniditions in Keplerian elements
+%GMAT DefaultSC.SMA = 6607.499999999994; %semi-major axis
+%GMAT DefaultSC.ECC = 0.003299999999999186; %eccentricity
+%GMAT DefaultSC.INC = 51.60000000000001; %orbital inclination
+%GMAT DefaultSC.RAAN = 171; %right ascension ascending node
+%GMAT DefaultSC.AOP = 150.0000000000009; %angle of periapsis
+%GMAT DefaultSC.TA = 1.707547292503188e-06;
+
+GMAT DefaultSC.DryMass = 0.285;
+GMAT DefaultSC.Cd = 2.07;
+GMAT DefaultSC.Cr = 1.8;
+GMAT DefaultSC.DragArea = 0.00142;
+GMAT DefaultSC.SRPArea = 0.00146;
+GMAT DefaultSC.NAIFId = -10000001;
+GMAT DefaultSC.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC.OrbitColor = Red;
+GMAT DefaultSC.TargetColor = Teal;
+GMAT DefaultSC.EstimationStateType = 'Cartesian';
+GMAT DefaultSC.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC.CdSigma = 1e+70;
+GMAT DefaultSC.CrSigma = 1e+70;
+GMAT DefaultSC.Id = 'SatId';
+GMAT DefaultSC.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC.SPADSRPScaleFactor = 1;
+GMAT DefaultSC.ModelFile = 'aura.3ds';
+GMAT DefaultSC.ModelOffsetX = 0;
+GMAT DefaultSC.ModelOffsetY = 0;
+GMAT DefaultSC.ModelOffsetZ = 0;
+GMAT DefaultSC.ModelRotationX = 0;
+GMAT DefaultSC.ModelRotationY = 0;
+GMAT DefaultSC.ModelRotationZ = 0;
+GMAT DefaultSC.ModelScale = 1;
+GMAT DefaultSC.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.PointMasses = {Sun};
+GMAT DefaultProp_ForceModel.SRP = On;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.EarthTideModel = 'None';
+GMAT DefaultProp_ForceModel.SRP.Flux = 1367;
+GMAT DefaultProp_ForceModel.SRP.SRPModel = Spherical;
+GMAT DefaultProp_ForceModel.SRP.Nominal_Sun = 149597870.691;
+GMAT DefaultProp_ForceModel.Drag.AtmosphereModel = MSISE90;
+GMAT DefaultProp_ForceModel.Drag.HistoricWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT DefaultProp_ForceModel.Drag.PredictedWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT DefaultProp_ForceModel.Drag.CSSISpaceWeatherFile = 'CSSI_2004To2026.txt';
+GMAT DefaultProp_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT DefaultProp_ForceModel.Drag.F107 = 70;
+GMAT DefaultProp_ForceModel.Drag.F107A = 70;
+GMAT DefaultProp_ForceModel.Drag.MagneticIndex = 3;
+GMAT DefaultProp_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT DefaultProp_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.0001;
+GMAT DefaultProp.MaxStep = 2700;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = false;
+
+%----------------------------------------
+%---------- Burns
+%----------------------------------------
+
+Create ImpulsiveBurn DefaultIB;
+GMAT DefaultIB.CoordinateSystem = Local;
+GMAT DefaultIB.Origin = Earth;
+GMAT DefaultIB.Axes = VNB;
+GMAT DefaultIB.Element1 = 0;
+GMAT DefaultIB.Element2 = 0;
+GMAT DefaultIB.Element3 = 0;
+GMAT DefaultIB.DecrementMass = false;
+GMAT DefaultIB.Isp = 300;
+GMAT DefaultIB.GravitationalAccel = 9.81;
+
+Create FiniteBurn DefaultFB;
+GMAT DefaultFB.ThrottleLogicAlgorithm = 'MaxNumberOfThrusters';
+
+Create ImpulsiveBurn ImpulsiveBurn1;
+GMAT ImpulsiveBurn1.CoordinateSystem = Local;
+GMAT ImpulsiveBurn1.Origin = Earth;
+GMAT ImpulsiveBurn1.Axes = VNB;
+GMAT ImpulsiveBurn1.Element1 = -0.0044;
+GMAT ImpulsiveBurn1.Element2 = 0;
+GMAT ImpulsiveBurn1.Element3 = 0;
+GMAT ImpulsiveBurn1.DecrementMass = false;
+GMAT ImpulsiveBurn1.Isp = 300;
+GMAT ImpulsiveBurn1.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn ImpulsiveBurn2;
+GMAT ImpulsiveBurn2.CoordinateSystem = Local;
+GMAT ImpulsiveBurn2.Origin = Earth;
+GMAT ImpulsiveBurn2.Axes = VNB;
+GMAT ImpulsiveBurn2.Element1 = -0.0044;
+GMAT ImpulsiveBurn2.Element2 = 0;
+GMAT ImpulsiveBurn2.Element3 = 0;
+GMAT ImpulsiveBurn2.DecrementMass = false;
+GMAT ImpulsiveBurn2.Isp = 300;
+GMAT ImpulsiveBurn2.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn ImpulsiveBurn3;
+GMAT ImpulsiveBurn3.CoordinateSystem = Local;
+GMAT ImpulsiveBurn3.Origin = Earth;
+GMAT ImpulsiveBurn3.Axes = VNB;
+GMAT ImpulsiveBurn3.Element1 = 0;
+GMAT ImpulsiveBurn3.Element2 = 0;
+GMAT ImpulsiveBurn3.Element3 = 0;
+GMAT ImpulsiveBurn3.DecrementMass = false;
+GMAT ImpulsiveBurn3.Isp = 300;
+GMAT ImpulsiveBurn3.GravitationalAccel = 9.81;
+
+%----------------------------------------
+%---------- EventLocators
+%----------------------------------------
+
+Create EclipseLocator SunriseSunset;
+GMAT SunriseSunset.Spacecraft = DefaultSC;
+GMAT SunriseSunset.Filename = 'DefaultEL.txt';
+GMAT SunriseSunset.OccultingBodies = {Earth};
+GMAT SunriseSunset.InputEpochFormat = 'TAIGregorian';
+GMAT SunriseSunset.InitialEpoch = '01 Jan 2000 11:59:59.966';
+GMAT SunriseSunset.StepSize = 10;
+GMAT SunriseSunset.FinalEpoch = '01 Jan 2000 15:18:43.166';
+GMAT SunriseSunset.UseLightTimeDelay = true;
+GMAT SunriseSunset.UseStellarAberration = true;
+GMAT SunriseSunset.WriteReport = true;
+GMAT SunriseSunset.RunMode = Automatic;
+GMAT SunriseSunset.UseEntireInterval = true;
+GMAT SunriseSunset.EclipseTypes = {'Umbra', 'Penumbra', 'Antumbra'};
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create OrbitView DefaultOrbitView
+DefaultOrbitView.Add = {DefaultSC, Earth, Sun, Luna}
+DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq
+DefaultOrbitView.SunLine = true
+DefaultOrbitView.XYPlane = true
+%DefaultOrbitView.ViewDirection = Luna
+DefaultOrbitView.ShowPlot = true
+
+Create ReportFile ReportFile3;
+GMAT ReportFile3.SolverIterations = Current;
+GMAT ReportFile3.UpperLeft = [ 0.06176470588235294 0.06904761904761905 ];
+GMAT ReportFile3.Size = [ 0.9247058823529412 0.7952380952380952 ];
+GMAT ReportFile3.RelativeZOrder = 23;
+GMAT ReportFile3.Maximized = false;
+GMAT ReportFile3.Filename = 'ReportFile3.txt';
+GMAT ReportFile3.Precision = 16;
+GMAT ReportFile3.WriteHeaders = False;
+GMAT ReportFile3.LeftJustify = On;
+GMAT ReportFile3.ZeroFill = Off;
+GMAT ReportFile3.FixedWidth = true;
+GMAT ReportFile3.Delimiter = ' ';
+GMAT ReportFile3.ColumnWidth = 23;
+GMAT ReportFile3.WriteReport = true;
+
+%----------------------------------------
+%---------- Arrays, Variables, Strings
+%----------------------------------------
+
+
+Create Array times_sunset[81] times_sunrise[81];
+Create Variable I x y dt t_elapsed endtime dt_1;
+I = 1;
+dt = 60;
+Create String p1 p2
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+
+BeginFiniteBurn DefaultFB(DefaultSC);
+EndFiniteBurn DefaultFB(DefaultSC);
+
+%parameters for python function
+p1 = '/home/echickles/GMAT/R2018a/output/SunriseSunset.txt'
+p2 = DefaultSC.UTCGregorian
+times_sunset = Python.findjuliandates.getsunsettimes(p1, p2)
+times_sunrise = Python.findjuliandates.getsunrisetimes(p1, p2)
+
+%propagate until first sunset
+t_elapsed = times_sunset(1);
+Propagate DefaultProp(DefaultSC) {DefaultSC.ElapsedSecs = t_elapsed};
+Report ReportFile3 I DefaultSC.ElapsedSecs DefaultSC.X DefaultSC.Y DefaultSC.Z Luna.EarthMJ2000Eq.X Luna.EarthMJ2000Eq.Y Luna.EarthMJ2000Eq.Z Sun.X Sun.Y Sun.Z;
+
+%collect location data for first orbital eclipse
+endtime = times_sunrise(1) - dt;
+While t_elapsed < endtime;
+   Propagate DefaultProp(DefaultSC) {DefaultSC.ElapsedSecs = dt};
+	t_elapsed = t_elapsed + dt
+	Report ReportFile3 I DefaultSC.ElapsedSecs DefaultSC.X DefaultSC.Y DefaultSC.Z Luna.EarthMJ2000Eq.X Luna.EarthMJ2000Eq.Y Luna.EarthMJ2000Eq.Z Sun.X Sun.Y Sun.Z;
+EndWhile
+
+For I = 2:1:80;
+   %propagate to next sunset
+   dt_1 = times_sunset(I) - t_elapsed
+	Propagate DefaultProp(DefaultSC) {DefaultSC.ElapsedSecs = dt_1};
+	t_elapsed = t_elapsed + dt_1
+	Report ReportFile3 I DefaultSC.ElapsedSecs DefaultSC.X DefaultSC.Y DefaultSC.Z Luna.EarthMJ2000Eq.X Luna.EarthMJ2000Eq.Y Luna.EarthMJ2000Eq.Z Sun.X Sun.Y Sun.Z;
+   
+	%collect location data for orbital eclipse
+	endtime = times_sunrise(I) - dt;
+	While t_elapsed < endtime;
+	   Propagate DefaultProp(DefaultSC) {DefaultSC.ElapsedSecs = dt};
+	   t_elapsed = t_elapsed + dt
+	   Report ReportFile3 I DefaultSC.ElapsedSecs DefaultSC.X DefaultSC.Y DefaultSC.Z Luna.EarthMJ2000Eq.X Luna.EarthMJ2000Eq.Y Luna.EarthMJ2000Eq.Z Sun.X Sun.Y Sun.Z;
+   EndWhile
+EndFor;
