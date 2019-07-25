@@ -46,7 +46,7 @@ altitude_res = np.empty((NUM_SIMS, NUM_SIM_DATA))
 elapsed_secs = np.empty((NUM_SIMS, NUM_SIM_DATA)) # time vectors for each simulation
 orbit_lengths = np.empty((NUM_SIMS, NUM_ORBITS)) # orbit observables for each simulation
 day_ratios = np.empty((NUM_SIMS, NUM_ORBITS))
-noon_times = np.empty((NUM_SIMS, NUM_ORBITS))
+day_changes = np.empty((NUM_SIMS, NUM_ORBITS))
 params_latitude = np.empty((NUM_SIMS, NUM_ORBITS, NUM_PARAMS)) # residual position fit parameters for each simulation
 params_longitude = np.empty((NUM_SIMS, NUM_ORBITS, NUM_PARAMS))
 params_altitude = np.empty((NUM_SIMS, NUM_ORBITS, NUM_PARAMS))
@@ -118,9 +118,12 @@ for i in range(NUM_SIMS):
     assert len(sunset_times) > NUM_ORBITS, "Not enough orbits were provided."
 
     for j in range(NUM_ORBITS): # compute observables of each orbit in this simulation
-        orbit_lengths[i,:] = sunset_times[j+1] - sunset_times[j]
-        day_ratios[i,:] = (sunset_times[j+1] - sunrise_times[j])/(sunrise_times[j] - sunset_times[j])
-        noon_times[i,:] = (sunset_times[j+1] + sunrise_times[j])/2
+        orbit_lengths[i,j] = sunset_times[j+1] - sunset_times[j]
+        day_ratios[i,j] = (sunset_times[j+1] - sunrise_times[j])/(sunrise_times[j] - sunset_times[j])
+        if j == 0:
+            day_changes[i,j] = 0
+        else:
+            day_changes[i,j] = (sunset_times[j+1] - sunrise_times[j]) - (sunset_times[j] - sunrise_times[j-1])
 
     # -- get fit parameters -------------------------------------------------------
     # for each start_time to start_time period, fit curve to latitude,
@@ -184,7 +187,7 @@ for coord in range(3): # >> loop through latitude, longitude, altitude
         for k in range(NUM_PARAMS): # loop through each fit parameter
             # >> difference in observable vectors:
             x = np.stack([
-                orbit_lengths[:,j-1], day_ratios[:,j-1], noon_times[:,j-1]], axis=1)
+                orbit_lengths[:,j-1], day_ratios[:,j-1], day_changes[:,j-1]], axis=1)
             x = x[:-1,:] - x[0,:] # (leave out the last one for testing porpoises)
             # >> value of position difference fit parameters
             if coord == 0:
@@ -207,7 +210,7 @@ for coord in range(3): # >> loop through latitude, longitude, altitude
                 ax.set_title('Sunrise ' + str(j))
                 ax.set_xlabel('delta orbit length')
                 ax.set_ylabel('delta day ratio')
-                ax.set_zlabel('delta noon time')
+                ax.set_zlabel('delta day change')
                 # ax.plot(x_plot, y_plot, z_plot, '.')
                 plt.show()
 
@@ -225,7 +228,7 @@ with open(source_dir+'/forecast.dat', 'wb') as f:
     for j in range(NUM_ORBITS): # expected values of observables
         f.write(struct.pack('d', orbit_lengths[0,j]))
         f.write(struct.pack('d', day_ratios[0,j]))
-        f.write(struct.pack('d', noon_times[0,j]))
+        f.write(struct.pack('d', day_changes[0,j]))
     for coef_set in param_coefs: # coeficients relating observable residuals to spline parameters
         for j in range(NUM_ORBITS):
             for k in range(NUM_PARAMS):
@@ -241,20 +244,20 @@ for j in range(1, NUM_ORBITS): # iterate over orbits
     time = elapsed_secs[-1,inds]
     length_res = orbit_lengths[-1,j-1] - orbit_lengths[0,j-1]
     ratio_res = day_ratios[-1,j-1] - day_ratios[0,j-1]
-    noon_res = noon_times[-1,j-1] - noon_times[0,j-1]
+    change_res = day_changes[-1,j-1] - day_changes[0,j-1]
 
     lat_params = \
         param_coefs[0][j,:,0]*length_res +\
         param_coefs[0][j,:,1]*ratio_res +\
-        param_coefs[0][j,:,2]*noon_res # estimate the fit parameters from our regression results
+        param_coefs[0][j,:,2]*change_res # estimate the fit parameters from our regression results
     lon_params = \
         param_coefs[1][j,:,0]*length_res +\
         param_coefs[1][j,:,1]*ratio_res +\
-        param_coefs[1][j,:,2]*noon_res
+        param_coefs[1][j,:,2]*change_res
     alt_params = \
         param_coefs[2][j,:,0]*length_res +\
         param_coefs[2][j,:,1]*ratio_res +\
-        param_coefs[2][j,:,2]*noon_res
+        param_coefs[2][j,:,2]*change_res
 
     interp_ts = np.linspace(sunset_times[j], sunset_times[j]+orbit_lengths[0,j], NUM_PARAMS)
     lat_org, lat_exp = latitude[0,inds], latitude[-1,inds]
