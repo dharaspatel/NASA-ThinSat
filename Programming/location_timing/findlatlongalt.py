@@ -118,9 +118,9 @@ for i in range(NUM_SIMS):
     assert len(sunset_times) > NUM_ORBITS, "Not enough orbits were provided."
 
     for j in range(NUM_ORBITS): # compute observables of each orbit in this simulation
-        orbit_lengths[i,:] = sunset_times[j+1] - sunset_times[j]
-        day_ratios[i,:] = (sunset_times[j+1] - sunrise_times[j])/(sunrise_times[j] - sunset_times[j])
-        noon_times[i,:] = (sunset_times[j+1] + sunrise_times[j])/2
+        orbit_lengths[i,j] = sunset_times[j+1] - sunset_times[j]
+        day_ratios[i,j] = (sunset_times[j+1] - sunrise_times[j])/(sunrise_times[j] - sunset_times[j])
+        noon_times[i,j] = (sunset_times[j+1] + sunrise_times[j])/2
 
     # -- get fit parameters -------------------------------------------------------
     # for each start_time to start_time period, fit curve to latitude,
