@@ -23,6 +23,8 @@ import struct
 # sys.path.insert(0, '/home/echickles/GMAT/R2018a/userfunctions/python')
 import findjuliandates
 
+np.random.seed(0)
+
 
 source_dir = '../../Simulations/'
 debug = False
@@ -34,9 +36,9 @@ NUM_SIMS = 25 # number of simulated mission variations
 NUM_ORBITS = 80 # number of orbits to fit per simulation
 NUM_SIM_DATA = 14400 # number of data in each simulation
 NUM_PARAMS = 8 # the number of parameters to use to fit each orbit function
-NUM_MEMORIES = 2 # the number of orbits of sunwend times to remember and incorporate
+NUM_MEMORIES = 3 # the number of orbits of sunwend times to remember and incorporate
 
-MEAN_CLOCK_DRIFT = 30 # the average amount we can expect the clock to be off, in seconds
+MEAN_CLOCK_DRIFT = 30
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -54,10 +56,13 @@ sunrise_times = np.empty((NUM_SIMS, NUM_ORBITS))
 params_latitude = np.empty((NUM_SIMS, NUM_ORBITS, NUM_PARAMS)) # residual position fit parameters for each simulation
 params_longitude = np.empty((NUM_SIMS, NUM_ORBITS, NUM_PARAMS))
 params_altitude = np.empty((NUM_SIMS, NUM_ORBITS, NUM_PARAMS))
+time_drifts = np.random.normal(loc=0, scale=20, size=NUM_SIMS) # the amount the clock is off, in seconds
+
 param_coefs = (
-    np.empty([NUM_ORBITS, NUM_PARAMS, 2*NUM_MEMORIES]),
-    np.empty([NUM_ORBITS, NUM_PARAMS, 2*NUM_MEMORIES]),
-    np.empty([NUM_ORBITS, NUM_PARAMS, 2*NUM_MEMORIES]),
+    np.empty((NUM_ORBITS, NUM_PARAMS, 2*NUM_MEMORIES)),
+    np.empty((NUM_ORBITS, NUM_PARAMS, 2*NUM_MEMORIES)),
+    np.empty((NUM_ORBITS, NUM_PARAMS, 2*NUM_MEMORIES)),
+    np.empty((NUM_ORBITS, 1, 2*NUM_MEMORIES)),
 ) # coeficients for estimating fit parameters based on night and day length
 
 
@@ -174,16 +179,21 @@ for i in range(NUM_SIMS):
 
 # :: multiple regression :::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-for coord in range(3): # >> loop through latitude, longitude, altitude
+for coord in range(4): # >> loop through latitude, longitude, altitude, and time
     for j in range(NUM_MEMORIES, NUM_ORBITS): # >> loop through each orbit (we can't fit for orbit 0 because we won't have enough data yet)
-        for k in range(NUM_PARAMS): # loop through each fit parameter
-            # >> difference in observations
-            x = np.empty((NUM_SIMS, 2*NUM_MEMORIES))
-            for l in range(0, NUM_MEMORIES):
-                j_prime = j - NUM_MEMORIES + l
-                x[:,2*l+0] = sunset_times[:,j_prime] - sunset_times[0,j_prime] # stack up all recalled sunwend times
-                x[:,2*l+1] = sunrise_times[:,j_prime] - sunrise_times[0,j_prime]
-            x = x[:-1,:] # (leave out the last one for testing porpoises)
+        # >> difference in observations
+        x = np.empty((NUM_SIMS, 2*NUM_MEMORIES))
+        for l in range(0, NUM_MEMORIES):
+            j_prime = j - NUM_MEMORIES + l
+            x[:,2*l+0] = sunset_times[:,j_prime] - sunset_times[0,j_prime] # stack up all recalled sunwend times
+            x[:,2*l+1] = sunrise_times[:,j_prime] - sunrise_times[0,j_prime]
+        x += np.expand_dims(time_drifts, 1) # apply the time drifts
+        x = x[:-1,:] # (leave out the last one for testing porpoises)
+        if coord == 0:
+            for thing in np.linalg.eig(np.cov(x.transpose())):
+                print(thing)
+
+        for k in range(NUM_PARAMS if coord < 3 else 1): # loop through each fit parameter (recall that time only needs one fit parameter: the time)
             # >> value of position difference fit parameters
             if coord == 0:
                 y = params_latitude[:,j,k]
@@ -191,7 +201,10 @@ for coord in range(3): # >> loop through latitude, longitude, altitude
                 y = params_longitude[:,j,k]
             elif coord == 2:
                 y = params_altitude[:,j,k]
+            elif coord == 3:
+                y = time_drifts
             y = y[:-1] # (leave out the last one for testing porpoises)
+
             model = OLS(y, x).fit()
             # print("\nCoord {}, parameter {}".format(coord, k))
             # print(model.summary())
@@ -225,14 +238,14 @@ with open(source_dir+'/forecast.dat', 'wb') as f:
         f.write(struct.pack('d', sunrise_times[0,j]))
     for coef_set in param_coefs: # coeficients relating observable residuals to spline parameters
         for j in range(NUM_ORBITS):
-            for k in range(NUM_PARAMS):
+            for k in range(coef_set.shape[1]):
                 for l in range(2*NUM_MEMORIES):
                     f.write(struct.pack('d', coef_set[j,k,l]))
 
 # :: validation :::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-sunset_res = sunset_times[-1,:] - sunset_times[0,:]
-sunrise_res = sunrise_times[-1,:] - sunrise_times[0,:]
+sunset_res = sunset_times[-1,:] + time_drifts[-1] - sunset_times[0,:]
+sunrise_res = sunrise_times[-1,:] + time_drifts[-1] - sunrise_times[0,:]
 
 for j in range(NUM_MEMORIES, NUM_ORBITS): # iterate over orbits
     inds = (elapsed_secs[-1] >= sunrise_times[-1,j-1]) &\
@@ -243,6 +256,7 @@ for j in range(NUM_MEMORIES, NUM_ORBITS): # iterate over orbits
     lat_params = np.zeros(NUM_PARAMS)
     lon_params = np.zeros(NUM_PARAMS)
     alt_params = np.zeros(NUM_PARAMS)
+    drift_estimate = 0
 
     for l in range(0, NUM_MEMORIES):
         j_prime = j - NUM_MEMORIES + l
@@ -252,6 +266,10 @@ for j in range(NUM_MEMORIES, NUM_ORBITS): # iterate over orbits
         lon_params += param_coefs[1][j,:,2*l+1] * sunrise_res[j_prime]
         alt_params += param_coefs[2][j,:,2*l]   * sunset_res[j_prime]
         alt_params += param_coefs[2][j,:,2*l+1] * sunrise_res[j_prime]
+        drift_estimate += param_coefs[3][j,0,2*l]   * sunset_res[j_prime]
+        drift_estimate += param_coefs[3][j,0,2*l+1] * sunrise_res[j_prime]
+
+    print("I gave it a drift of {:.1f}s, and it deduced a drift of {:.1f}s".format(time_drifts[-1], drift_estimate))
 
     interp_ts = np.linspace(sunrise_times[-1,j-1], sunrise_times[-1,j-1]+projected_span, NUM_PARAMS)
     lat_org, lat_exp = latitude[0,inds], latitude[-1,inds]
