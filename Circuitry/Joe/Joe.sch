@@ -698,7 +698,7 @@ Wire Notes Line
 Wire Notes Line
 	2650 3875 2650 5375
 $Comp
-L Joe-rescue:DF12-20DS-Custom U7
+L Custom:DF12-20DS-Custom U7
 U 1 1 5D782D20
 P 5050 1525
 F 0 "U7" H 5050 2200 50  0000 C CNN
@@ -1255,7 +1255,7 @@ F 3 "" H 4600 4525 50  0001 C CNN
 $EndComp
 NoConn ~ 4450 1375
 $Comp
-L Joe-rescue:UFDFPN8-MC-Custom U6
+L Custom:UFDFPN8-MC-Custom U6
 U 1 1 5D2D63AB
 P 3375 6125
 F 0 "U6" H 3400 6490 50  0000 C CNN
