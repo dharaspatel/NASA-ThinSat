@@ -357,7 +357,7 @@ Temp Sensor Data Output
 Text Notes 4325 4475 0    39   ~ 0
 CS Input for Img Sensor
 Text Notes 4325 4575 0    39   ~ 0
-MOSI Input for Img Sensor
+TX for Img Sensor
 Text Notes 4325 5275 0    39   ~ 0
 Serial Input for Shift Reg
 Text Notes 4325 5375 0    39   ~ 0
@@ -370,50 +370,10 @@ Text Notes 4325 5675 0    39   ~ 0
 Motor Driver for Launchers Input 2
 Text Notes 3625 4200 0    39   ~ 0
 Input = Data from Burt to Joe\nOutput = Data from Joe to Burt
-$Comp
-L Connector:Conn_01x08_Female J2
-U 1 1 5D2B2C99
-P 5400 2975
-F 0 "J2" H 5500 3500 50  0000 L CNN
-F 1 "Conn_01x08_Female" H 4650 3500 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Horizontal" H 5400 2975 50  0001 C CNN
-F 3 "~" H 5400 2975 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/sullins-connector-solutions/PPTC081LGBN-RC/S5444-ND/775902" H 5400 2975 50  0001 C CNN "Part URL"
-	1    5400 2975
-	1    0    0    -1  
-$EndComp
 Text Label 3825 4475 2    50   ~ 0
 CS_IMG
-Text Label 3825 4575 2    50   ~ 0
-MOSI
-Text Label 3825 4675 2    50   ~ 0
-MISO
-Text Label 3825 4775 2    50   ~ 0
-SCK
-Text Label 3825 4875 2    50   ~ 0
-SDA
-Text Label 3825 4975 2    50   ~ 0
-SCL
 Text Notes 4325 4675 0    39   ~ 0
-MISO Input for Img Sensor
-Text Notes 4325 4775 0    39   ~ 0
-SCLK Input for Img Sensor
-Text Notes 4325 4875 0    39   ~ 0
-SDA Input for Img Sensor
-Text Notes 4325 4975 0    39   ~ 0
-SCL Input for Img Sensor
-Text Label 5200 2675 2    50   ~ 0
-CS_IMG
-Text Label 5200 2775 2    50   ~ 0
-MOSI
-Text Label 5200 2875 2    50   ~ 0
-MISO
-Text Label 5200 2975 2    50   ~ 0
-SCK
-Text Label 5200 3275 2    50   ~ 0
-SDA
-Text Label 5200 3375 2    50   ~ 0
-SCL
+RX for Img Sensor
 $Comp
 L power:+5V #PWR0104
 U 1 1 5D33377C
@@ -1553,4 +1513,27 @@ F 3 "" H 9450 5475 50  0001 C CNN
 $EndComp
 NoConn ~ 2650 5025
 NoConn ~ 2650 4925
+$Comp
+L Connector:Conn_01x04_Female J2
+U 1 1 5D2B2C99
+P 5400 3175
+F 0 "J2" H 5500 3700 50  0000 L CNN
+F 1 "Conn_01x04_Female" H 4650 3700 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Horizontal" H 5400 3175 50  0001 C CNN
+F 3 "~" H 5400 3175 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/sullins-connector-solutions/PPTC081LGBN-RC/S5444-ND/775902" H 5400 3175 50  0001 C CNN "Part URL"
+	1    5400 3175
+	1    0    0    -1  
+$EndComp
+Text Label 3825 4575 2    50   ~ 0
+TX1
+Text Label 3825 4675 2    50   ~ 0
+RX1
+Text Label 5200 3275 2    50   ~ 0
+TX1
+Text Label 5200 3375 2    50   ~ 0
+RX1
+NoConn ~ 3825 4975
+NoConn ~ 3825 4875
+NoConn ~ 3825 4775
 $EndSCHEMATC
