@@ -5,16 +5,16 @@
     Table of functions:
       beginJoe()                                   [x]
       getTime()                                    [x]
-      syncTime()                                   []
+      calibrateTime()                              []
       readPhotocells()                             []
       getPosition()                                []
       calc_state()                                 []
       getRadarRange()                              []
-      sendToBUS()                                  [x]
+      sendData()                                   [x]
       readSD()                                     []
       writeEEPROM()                                []
       readEEPROM()                                 []
-
+      readMag()                                    [x]
     ________________________________________________*/
 
 
@@ -22,19 +22,21 @@
 #include <DS3231.h> //Clock
 #include <Wire.h> //i2c
 #include <Main.h> //Registers
-#include <SD.h>
-#include "TSLPB.h"
-#include "myDataPacketStructure.h"
-#include <Arduino.h>
+#include <SD.h> //SD Card
+#include "TSLPB.h" //NSL BUS
+#include "myDataPacketStructure.h" //datapacket stuff
+#include <Arduino.h> //Arduino library
 
 DateTime rtcTime; //the current time output by the rtc
+TSLPB tslpb; //bus
+UserDataStruct_t missionData; //packet of mission data
 float secLaunch; //seconds since launch
 size_t pho_data[]; //an array of the 4 photocell data
 int pho_addresses = [PHO1_ADDR, PHO2_ADDR, PHO3_ADDR, PHO4_ADDR]; //array of addresses
 int state; //nothing = 0, launch = 1, pyrolysis = 2
 float threshold[]; //the threshold for the sunset/sunrise calculations
 int launchCount = 0;
-
+size_t mag_data[]; //an array of x, y, z magnetometer data
 struct position{
   float seconds;
   float latitude;
@@ -42,12 +44,16 @@ struct position{
   float altitude;
   bool moonless;
   float  inHalfOrbit[3]; //lat, long, alt in half orbit
+}
 
+struct sensors{
+  size_t temperature;
+  int histogram[10];
 }
 
 void setup(){
-  beginJoe();
-}/* value */
+  begin();
+}
 
 void loop(){
   rtcTime = getTime();
@@ -58,7 +64,7 @@ void loop(){
 
   switch (state) {
     case 0:
-      //do noting; wait
+      delay(1);
       break;
     case 1:
       //begin launch process
@@ -67,7 +73,6 @@ void loop(){
       //begin pyrolysis process
       pyrolysis();
   }
-  }
 }
 
 
@@ -75,15 +80,17 @@ void loop(){
 
 /*___FUNCTIONS___*/
 
-void beginJoe(){
+void begin(){
   /*
     FUNCTION: Begins communication with I2C interface, starts the DS3231 Clock, writes table to SD
     PARAMETERS: None
     RETURN: None
   */
+  tslpb.begin();
   Wire.begin();
   pinMode(ClockPowerPin, OUTPUT);
   digitalWrite(ClockPowerPin, HIGH);
+  tslpb.InitTSLDigitalSensors();
 }
 
 DateTime getTime()
@@ -96,7 +103,7 @@ DateTime getTime()
 }
 
 
-float syncTime(){
+float calibrateTime(){
   /*
     FUNCTION: Uses forcast.csv to calculate seconds from launch and sync a more accurate DateTime
     PARAMETERS: None
@@ -136,20 +143,17 @@ float getPosition(float secLaunch, size_t pho_data){
   */
 }
 
-int isLaunch(struct position){
+int calc_state(struct position){
   /*
     FUNCTION: Calculates the state of the satellite depending on the position
     PARAMETERS: the pos
     RETURN: 0 if not ready and 1 if ready
   */
-  radar = [42.62328, 288.511846, 115.69]; //lat and long of radar
-  radarMin[], radarMax[] = getRadarRange(position.altitude);//some equation based on the altitude of the satellite can calculate the range of the radar
-
-  if(position.latitude > radarMin.latitude && position.latitude < radarMax.latitude){
-    if(position.longitude > radarMin.longitude && position.longitude < position.longitude){
+  float sightAngle = 3;
+  float satAngle = getTheta();
+  if(satAngle <= sightAngle){
       return 1;
       launchCount ++;
-    }
   }else if(launchCount == 4 && position.moonless){
     //insert pyrolysis code
   }else{
@@ -158,23 +162,16 @@ int isLaunch(struct position){
 
 }
 
-float getRadarRange(float altitude){
-  /*
-    FUNCTION: Helper func that takes in the altitude to approximate the coordinating range of latitudes and longitudes
-    PARAMETERS: the altitude
-    RETURN: two arrays comtaining minimumn and maximum latitude and longitude values
-  */
-}
-
-void sendToBUS(size_t data){
+void sendData(){
   /*
     FUNCTION: sends data to the bus
-    PARAMETERS: an object a size of any number of bytes
+    PARAMETERS: the number corresponding to the struct variable you are sending
     RETURN: None
   */
-  Wire.beginTransmission(TX_ADDR);
-  Wire.write(data);
-  Wire.endTransmission();
+  while (!tslpb.isClearToSend()){
+    delay(20);
+  }
+  tslpb.pushDataToNSL(missionData);
 }
 
 void readSD(char file_name[]){
@@ -205,4 +202,57 @@ size_t readEEPROM(int address){
     RETURN: the bytes of info on that address
   */
   return EEPROM.read(address);
+}
+
+size_t readMag(){
+  /*
+    FUNCTION: read the magnetometer on the bus side
+    PARAMETERS: None
+    RETURN: data one after the other
+  */
+  magx = tslpb.readTSLDigitalSensorRaw(Magnetometer_x);
+  magy = tslpb.readTSLDigitalSensorRaw(Magnetometer_y);
+  magz = tslpb.readTSLDigitalSensorRaw(Magnetometer_z);
+
+  return magx, magy, magz;
+}
+
+void launch(){
+  /*
+    FUNCTION: execute all launch protocall
+    PARAMETERS: None
+    RETURN: None
+  */
+
+  digitalWrite(IN1_ADDR, HIGH); //motor driver is going forward 
+  digitalWrite(IN2_ADDR, LOW);
+
+
+}
+
+void pyrolysis(){
+  /*
+    FUNCTION: execute all pyrolysis protocall
+    PARAMETERS: None
+    RETURN: None
+  */
+
+
+}
+
+void melt(int wires[]){
+  /*
+    FUNCTION: melt a number of burn wires
+    PARAMETERS: which burn wires to melt.... ex. [HIGH, LOW, LOW, etc.] would burn only first one
+    RETURN: None
+  */
+
+  for(int i = 0, i < 10, i++){
+    digitalWrite(SER_ADDR, wires[i])
+    digitalWrite(SRCLK_ADDR, HIGH);
+    digitalWrite(SRCLK_ADDR, LOW);
+  }
+  digitalWrite(RCLK_ADDR, HIGH);
+  digitalWrite(RCLK_ADDR, LOW);
+
 }

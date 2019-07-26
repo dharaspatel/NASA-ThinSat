@@ -39,7 +39,7 @@ TSLPB::TSLPB() : NSLbus (TSL_NSL_BUS_RX_PIN, TSL_NSL_BUS_TX_PIN)
  * TSL_MUX_C                | Digital Output
  * TSL_NSL_BUS_STATUS_PIN   | Digital Input
  */
-void TSLPB::begin() 
+void TSLPB::begin()
 {
     Wire.begin();
     InitTSLAnalogSensors();
@@ -56,10 +56,10 @@ void TSLPB::InitTSLDigitalSensors(){
 
     write8bitRegister(IMU_ADDRESS, 29,  0x06);  // (MPU9250_ADDRESS,29,0x06);  // Set accelerometers low pass filter at 5Hz
     write8bitRegister(IMU_ADDRESS, 26,  0x06);  // Set gyroscope low pass filter at 5Hz
-    
+
     write8bitRegister(IMU_ADDRESS, 27,  GYRO_FULL_SCALE_1000_DPS);  // Configure gyroscope range
     write8bitRegister(IMU_ADDRESS, 28,  ACC_FULL_SCALE_16_G); // Configure accelerometers range
-    
+
     write8bitRegister(IMU_ADDRESS, 0x37,0x02);  // Set by pass mode for the magnetometers
     //    write8bitRegister(MAG_ADDRESS, 0x0A,0x16);  // Request continuous magnetometer measurements in 16 bits
     write8bitRegister(MAG_ADDRESS, MPU9250_MAG_REG_CONTROL,(MAG_MODE_16_BIT | MAG_MODE_CONTINUOUS_8HZ));  // Request continuous magnetometer measurements in 16 bits
@@ -93,7 +93,7 @@ uint16_t TSLPB::readAnalogSensor(TSLPB_AnalogSensor_t sensorName)
     digitalWrite(TSL_MUX_B, (sensorName >> 1) & 0x1);
     digitalWrite(TSL_MUX_C, sensorName & 0x1);
     delay(TSL_MUX_RESPONSE_TIME);
-    
+
     return(analogRead(TSL_ADC));
 }
 
@@ -111,10 +111,10 @@ uint16_t TSLPB::readDigitalSensorRaw(TSLPB_DigitalSensor_t sensorName)
     uint16_t rawRegValue = 0;   ///< return value, after endian correction
     TSLPB_I2CAddress_t address = getDeviceAddress(sensorName);
     uint8_t status = 0;
-    
-    
+
+
     switch (sensorName) {
-        
+
         case Gyroscope_x:
             read16bitRegister(address, MPU9250_GYRO_XOUT_MSB, i2c_received);
             return i2c_received;
@@ -128,7 +128,7 @@ uint16_t TSLPB::readDigitalSensorRaw(TSLPB_DigitalSensor_t sensorName)
             return i2c_received;
             break;
 
-        
+
         case Accelerometer_x:
             read16bitRegister(address, MPU9250_ACCEL_XOUT_MSB, i2c_received);
             return i2c_received;
@@ -147,41 +147,41 @@ uint16_t TSLPB::readDigitalSensorRaw(TSLPB_DigitalSensor_t sensorName)
             // Read measurement data (sets DRDY and DOR to 0)
             rawRegValue  =  read8bitRegister(MAG_ADDRESS, MPU9250_MAG_REG_X_DATA_LSB);
             rawRegValue |= (read8bitRegister(MAG_ADDRESS, MPU9250_MAG_REG_X_DATA_MSB) << 8);
-            
+
             // Read ST2 register (required)
             // HOFL shows if overflow. 0 is good, 1 is overflow
             status = read8bitRegister(MAG_ADDRESS, MPU9250_MAG_REG_STATUS_2);
-            
+
             // Set the magnetometer overflow flag
             isMagnetometerOverflow = (bool)((status & MAG_MASK_DATA_OVERFLOW) >> 3);
-            
+
             return rawRegValue;
         case Magnetometer_y:
             waitForMagReady();
             rawRegValue  =  read8bitRegister(MAG_ADDRESS, MPU9250_MAG_REG_Y_DATA_LSB);
             rawRegValue |= (read8bitRegister(MAG_ADDRESS, MPU9250_MAG_REG_Y_DATA_MSB) << 8);
             status       =  read8bitRegister(MAG_ADDRESS, MPU9250_MAG_REG_STATUS_2);
-            
+
             // Set the magnetometer overflow flag
             isMagnetometerOverflow = (bool)((status & MAG_MASK_DATA_OVERFLOW) >> 3);
-            
+
             return rawRegValue;
-            
+
         case Magnetometer_z:
             waitForMagReady();
             rawRegValue  =  read8bitRegister(MAG_ADDRESS, MPU9250_MAG_REG_Z_DATA_LSB);
             rawRegValue |= (read8bitRegister(MAG_ADDRESS, MPU9250_MAG_REG_Z_DATA_MSB) << 8);
             status       =  read8bitRegister(MAG_ADDRESS, MPU9250_MAG_REG_STATUS_2);
-            
+
             // Set the magnetometer overflow flag
             isMagnetometerOverflow = (bool)((status & MAG_MASK_DATA_OVERFLOW) >> 3);
-            
+
             return rawRegValue;
-            
-            
+
+
         case IMU_Internal_Temp:
             break;
-            
+
         // Let any DT# sensor fall through to the common LM75A routine
         case DT1 :
         case DT2 :
@@ -191,18 +191,18 @@ uint16_t TSLPB::readDigitalSensorRaw(TSLPB_DigitalSensor_t sensorName)
         case DT6 :
         {
             read16bitRegister(address, LM75A_TEMPERATURE, i2c_received);
-            
+
             rawRegValue = i2c_received >> LMA_TEMP_REG_UNUSED_LSBS;
-            
+
             return rawRegValue;
         }
-            
+
         default:
             // Bad address passed. Return a dummy value
             return 0;
             break;
     }
-    
+
     return 0;
 
 }
@@ -221,14 +221,14 @@ double  TSLPB::readDigitalSensor(TSLPB_DigitalSensor_t sensorName)
 {
     double processValue;
     uint16_t regContents = readDigitalSensorRaw(sensorName);
-    
+
     switch (sensorName) {
         case Magnetometer_x:
         case Magnetometer_y:
         case Magnetometer_z:
             return (double)((int16_t)regContents)*MAG_MAX_VALUE_FLOAT/MAG_MAX_BYTE_VALUE;
             break;
-            
+
         case DT1:
         case DT2:
         case DT3:
@@ -243,14 +243,14 @@ double  TSLPB::readDigitalSensor(TSLPB_DigitalSensor_t sensorName)
             processValue *= LMA_TEMP_REG_DEGREES_PER_LSB;
             return processValue;
             break;
-            
+
         default:
             return regContents;
             break;
     }
-    
-    
-    
+
+
+
 }
 
 /*!
@@ -268,7 +268,7 @@ TSLPB_I2CAddress_t TSLPB::getDeviceAddress(TSLPB_DigitalSensor_t sensorName) {
         case Magnetometer_y:
         case Magnetometer_z:
             return MAG_ADDRESS;
-        
+
         // All remaining IMU params fall through
         case Gyroscope_x:
         case Gyroscope_y:
@@ -278,7 +278,7 @@ TSLPB_I2CAddress_t TSLPB::getDeviceAddress(TSLPB_DigitalSensor_t sensorName) {
         case Accelerometer_z:
         case IMU_Internal_Temp:
             return IMU_ADDRESS;
-            
+
         case DT1 :
             return DT1_ADDRESS;
         case DT2 :
@@ -302,7 +302,7 @@ TSLPB_I2CAddress_t TSLPB::getDeviceAddress(TSLPB_DigitalSensor_t sensorName) {
 bool TSLPB::write8bitRegister(TSLPB_I2CAddress_t i2cAddress, const uint8_t reg, uint8_t data)
 {
     bool result;
-    
+
     Wire.beginTransmission(i2cAddress);
     result =  Wire.write(reg);
     result &= Wire.write(data);
@@ -347,23 +347,23 @@ uint8_t TSLPB::read8bitRegister(TSLPB_I2CAddress_t i2cAddress, const uint8_t reg
 bool TSLPB::read16bitRegister(TSLPB_I2CAddress_t i2cAddress, const uint8_t reg, uint16_t& response)
 {
     uint8_t result;
-    
+
     Wire.beginTransmission(i2cAddress); // Start with address
     Wire.write(reg);                    // Set temperature register
     Wire.endTransmission();             // Discard succeed/fail status
-    
+
     uint8_t bytesRead = Wire.requestFrom(i2cAddress, 2);
-    
+
     uint8_t part1 = Wire.read();
     uint8_t part2 = Wire.read();
- 
+
     response = (part1 << 8) | part2;
     return true;
 }
 
 
-void TSLPB::sleepUntilClearToSend() { 
-    
+void TSLPB::sleepUntilClearToSend() {
+
 }
 
 
@@ -407,10 +407,10 @@ void TSLPB::wakeOnSerialReady() { };
  * @return      nominal transmission: true or false
  */
 bool TSLPB::pushDataToNSL(ThinsatPacket_t data) {
-    
+
     char header[] = NSL_PACKET_HEADER;
     strcpy(data.payloadData.header, header);
-    
+
     int bytesWritten;
     bytesWritten = Serial.write( (char*)data.NSLPacket, sizeof(data.payloadData) );
     bytesWritten = NSLbus.write( (char*)data.NSLPacket, sizeof(data.payloadData) );
@@ -530,4 +530,3 @@ void TSLPB::putMemByte(uint16_t reg, uint8_t data){
  *  - ::TSLPB_AnalogSensor_t
  *  - ::TSLPB_DigitalSensor_t
  */
-

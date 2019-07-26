@@ -1,6 +1,15 @@
  /*  ________________________________________________
     Description: contains all register addesses
     Author: Dhara Patel
+
+    6-25:
+    sendToBUS()
+    readMag()
+    send email to jack with all code + info about radar location
+
+    email sibb
+    ask alex for bmw contact
+
     ________________________________________________*/
 
 
@@ -21,7 +30,7 @@
 #define PLED1_ADDR PORTD7 //output diagnostic led signal --27
 #define PLED3_ADDR PORTB4 //output diagnostic led signal --28
 #define BUSY_ADDR PINB5 //input busy signal from NSL BUS --29
-//pin 30?? serial?? what?
+#define SER_ADDR PORTB6 //output serial for burn wires --30
 #define STBY_ADDR PORTC6 //output for standby for NSL BUS --31
 #define CS_IMG_ADDR PORTC7 //output to burt for image sensor --32
 #define TEMP_ADDR PINE2 //input from burt's temperature sensor --33
@@ -44,6 +53,8 @@
 #define MON_ADDR 0x5h
 #define YEAR_ADDR 0x6h
 
+/*___SENSOR ADDRESSES___*/
+#define MAG_ADDRESS 0x0C //this is on the IMU on the bus side...
 
 /*___OBJECT DECLARATIONS___*/
 DS3231 Clock;
