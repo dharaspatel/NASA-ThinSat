@@ -10,7 +10,7 @@
 
     //verify that the camera is the 0v2640 mini 2mp
     #if !(defined OV2640_MINI_2MP)
-      #error Please select the hardware platform and camera module in the ../libraries/ArduCAM/memorysaver.h file
+      #error Make sure 0V2640 is selected as the device in ArduCAM/memorysaver.h
     #endif
 
     //image offset ???

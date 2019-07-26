@@ -9,6 +9,9 @@
 // * Lookup tables: Time, forecasted latitude, longitude and altitude of sunrise and sunset
 // * Parameters (for updating location given day and night length)
 
+#include <SPI.h>
+#include <SD.h>
+
 float RTCdata[3] = {9718.62, 12938.19, 15055.634}; //time of last last sunrise, time of last sunset, time of last sunrise
 
 float sunrisedata[6] [4] = {
@@ -42,10 +45,17 @@ int index = 0;
 float latitude;
 float longitude;
 float altitude;
+const int CS_SD = 4;
 
-void setup() {
-  // Read lookup table from SD card (TO DO)
+void setup() { 
   Serial.begin(9600);
+
+  //Read table.txt from SD 
+  File dataTable = SD.open("table.txt");
+  while(dataTable.avaliable()){
+    Serial.write(dataTable.read());
+  }
+  
   float day_length = RTCdata[1] - RTCdata[0]; // sunset - sunrise
   float night_length = RTCdata[2] - RTCdata[1]; // sunrise - sunset
 
@@ -66,4 +76,5 @@ void setup() {
 }
 
 void loop() {
+  
 }
