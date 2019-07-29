@@ -6,10 +6,6 @@
     sendToBUS()
     readMag()
     send email to jack with all code + info about radar location
-
-    email sibb
-    ask alex for bmw contact
-
     ________________________________________________*/
 
 
@@ -55,8 +51,3 @@
 
 /*___SENSOR ADDRESSES___*/
 #define MAG_ADDRESS 0x0C //this is on the IMU on the bus side...
-
-/*___OBJECT DECLARATIONS___*/
-DS3231 Clock;
-EEPROM eeprom;
-size_t pho_data;

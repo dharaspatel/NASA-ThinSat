@@ -19,23 +19,29 @@
 
 
 /*___INCLUDES___*/
-#include <DS3231.h> //Clock
-#include <Wire.h> //i2c
-#include <Main.h> //Registers
-#include <SD.h> //SD Card
+#include "DS3231.h" //Clock
+#include "Wire.h" //i2c
+#include "REGS.h" //Registers
+#include "SD.h" //SD Card
 #include "TSLPB.h" //NSL BUS
 #include "myDataPacketStructure.h" //datapacket stuff
-#include <Arduino.h> //Arduino library
+#include "Arduino.h" //Arduino library
+#include "ReadPhotocells.c" //reading photocells
 
+DS3231 Clock;
+EEPROM eeprom;
 DateTime rtcTime; //the current time output by the rtc
 TSLPB tslpb; //bus
 UserDataStruct_t missionData; //packet of mission data
 float secLaunch; //seconds since launch
-size_t pho_data[]; //an array of the 4 photocell data
-int pho_addresses = [PHO1_ADDR, PHO2_ADDR, PHO3_ADDR, PHO4_ADDR]; //array of addresses
+struct pho_data{
+  long sunrises[];
+  long sunsets[];
+}; //sunset sunrise data
+bool firstRun = true; //first photocell run
 int state; //nothing = 0, launch = 1, pyrolysis = 2
 float threshold[]; //the threshold for the sunset/sunrise calculations
-int launchCount = 0;
+int launchCount = 0; //the number of launchers released
 size_t mag_data[]; //an array of x, y, z magnetometer data
 struct position{
   float seconds;
@@ -44,12 +50,11 @@ struct position{
   float altitude;
   bool moonless;
   float  inHalfOrbit[3]; //lat, long, alt in half orbit
-}
-
-struct sensors{
+}; //sec, lat, long, alt
+struct py_data{
   size_t temperature;
   int histogram[10];
-}
+} //sensor data from pyrolysis experiment
 
 void setup(){
   begin();
@@ -57,13 +62,14 @@ void setup(){
 
 void loop(){
   rtcTime = getTime();
-  secLaunch = syncTime();
-  readPhotocells(pho_data, threshold);
-  position = getPosition(secLaunch, pho_data);
+  calibrateTime();
+  readPhotocells(firstRun);
+  position = getPosition(rtcTime, pho_data);
   state = calc_state(position);
 
   switch (state) {
     case 0:
+      //j.chilling
       delay(1);
       break;
     case 1:
@@ -119,19 +125,14 @@ float calibrateTime(){
 
 }
 
-size_t readPhotocells(){
+struct readPhotocells(bool firstRun){
   /*
     FUNCTION: read from all 4 photocells
     PARAMETERS: None
-    RETURN: an array of data for each cell
+    RETURN: a struct with sunset/sunrise data
   */
-  for(i = 0; i<4; i++){
-    Wire.requestFrom(pho_addresses[i],1);
-    while (Wire.avaliable()){
-      pho_data[i] = Wire.read();
-    }
-  }
-  return pho_data;
+  return ReadPhotocells.main(firstRun)
+  firstRun = false;
 }
 
 
@@ -224,7 +225,7 @@ void launch(){
     RETURN: None
   */
 
-  digitalWrite(IN1_ADDR, HIGH); //motor driver is going forward 
+  digitalWrite(IN1_ADDR, HIGH); //motor driver is going forward
   digitalWrite(IN2_ADDR, LOW);
 
 

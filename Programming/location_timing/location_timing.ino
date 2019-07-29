@@ -1,11 +1,11 @@
 // This script needs to:
 // 1) use RTC to match up sunrise to lookup table
 // 2) use day length and night length to update location forecast (loop every orbit)
-// 3) determine timing for launchers / deorbit / pyrolysis
+// 3) determine timing for launchers / deorbit / pyrolysis (not anymore...this is in Joe.c)
 
 // Given:
 // * Photocell data: time of last sunset, time of last sunrise, orbital period
-// * RTC value
+// * RTC value (given in DateTime)
 // * Lookup tables: Time, forecasted latitude, longitude and altitude of sunrise and sunset
 // * Parameters (for updating location given day and night length)
 
@@ -18,7 +18,7 @@ float sunrisedata[6] [4] = {
   {4386.006999900565, 51.50681885531415, 29.32911849721807, 231.1965262353242},
   {9727.614999935031, 51.52552725975358, 7.010603810552084, 231.0698421742627},
   {15069.10999986576, 51.54413994381702, -15.30235531923493, 230.8692341692504},
-  {20410.39800031576, 51.56404134952468, -37.61344627634696, 230.6269498370393},   
+  {20410.39800031576, 51.56404134952468, -37.61344627634696, 230.6269498370393},
   {25751.35200036457, 51.58434569662798, -59.92675377245475, 230.4275178456792},
   {31091.95399977034, 51.60314282567107, -82.24111839407341, 230.2964362403609},
 };
@@ -47,15 +47,15 @@ float longitude;
 float altitude;
 const int CS_SD = 4;
 
-void setup() { 
+void setup() {
   Serial.begin(9600);
 
-  //Read table.txt from SD 
+  //Read table.txt from SD
   File dataTable = SD.open("table.txt");
   while(dataTable.avaliable()){
     Serial.write(dataTable.read());
   }
-  
+
   float day_length = RTCdata[1] - RTCdata[0]; // sunset - sunrise
   float night_length = RTCdata[2] - RTCdata[1]; // sunrise - sunset
 
@@ -76,5 +76,5 @@ void setup() {
 }
 
 void loop() {
-  
+
 }
