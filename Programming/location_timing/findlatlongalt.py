@@ -36,7 +36,7 @@ NUM_SIMS = 101 # number of simulated mission variations
 NUM_ORBITS = 80 # number of orbits to fit per simulation
 NUM_SIM_DATA = 14400 # number of data in each simulation
 NUM_PARAMS = 9 # the number of parameters to use to fit each orbit function
-NUM_MEMORIES = 6 # the number of pairs of sunwend times to remember and incorporate
+NUM_MEMORIES = 9 # the number of pairs of sunwend times to remember and incorporate
 
 MEAN_CLOCK_DRIFT = 30
 SUNWEND_ERROR = 1 # the number of seconds after sunrise or before sunset it detects a sunwend
@@ -188,14 +188,18 @@ for i in range(NUM_SIMS):
 # :: multiple regression :::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 for coord in range(4): # >> loop through latitude, longitude, altitude, and time
-    for j in range(NUM_MEMORIES, NUM_ORBITS): # >> loop through each orbit (we can't fit for orbit 0 because we won't have enough data yet)
+    for j in range(1, NUM_ORBITS): # >> loop through each orbit (we can't fit for orbit 0 because we won't have enough data yet)
         # >> difference in observations
         x = np.empty((NUM_SIMS, 2*NUM_MEMORIES))
         for l in range(0, NUM_MEMORIES):
             j_prime = j - NUM_MEMORIES + l
-            x[:,2*l+0] = sunset_times[:,j_prime] - sunset_times[0,j_prime] + np.random.uniform(0,SUNWEND_ERROR,NUM_SIMS) # stack up all recalled sunwend times
-            x[:,2*l+1] = sunrise_times[:,j_prime] - sunrise_times[0,j_prime] - np.random.uniform(0,SUNWEND_ERROR,NUM_SIMS)
-        x += np.expand_dims(time_drifts, 1) # apply the time drifts
+            if j_prime >= 0:
+                x[:,2*l+0] = sunset_times[:,j_prime] - sunset_times[0,j_prime] + \
+                    np.random.uniform(0,SUNWEND_ERROR, NUM_SIMS) + time_drifts # stack up all recalled sunwend times
+                x[:,2*l+1] = sunrise_times[:,j_prime] - sunrise_times[0,j_prime] - \
+                    np.random.uniform(0,SUNWEND_ERROR, NUM_SIMS) + time_drifts # apply the time drifts
+            else:
+                x[:,2*l:2*l+2] = 0
         x = x[:-1,:] # (leave out the last one for testing porpoises)
 
         for k in range(NUM_PARAMS if coord < 3 else 1): # loop through each fit parameter (recall that time only needs one fit parameter: the time)
@@ -268,14 +272,15 @@ def guess_position(sunsets, sunrises, coefficients, sunset_0, sunrise_0, latitud
     drift_estimate = 0
     for l in range(0, NUM_MEMORIES):
         j = orb - NUM_MEMORIES + l
-        lat_params += coefficients[0][orb,:,2*l]   * (sunsets[j]-sunset_0[j])
-        lat_params += coefficients[0][orb,:,2*l+1] * (sunrises[j]-sunrise_0[j])
-        lon_params += coefficients[1][orb,:,2*l]   * (sunsets[j]-sunset_0[j])
-        lon_params += coefficients[1][orb,:,2*l+1] * (sunrises[j]-sunrise_0[j])
-        alt_params += coefficients[2][orb,:,2*l]   * (sunsets[j]-sunset_0[j])
-        alt_params += coefficients[2][orb,:,2*l+1] * (sunrises[j]-sunrise_0[j])
-        drift_estimate += coefficients[3][orb,0,2*l]   * (sunsets[j]-sunset_0[j])
-        drift_estimate += coefficients[3][orb,0,2*l+1] * (sunrises[j]-sunrise_0[j])
+        if j >= 0:
+            lat_params += coefficients[0][orb,:,2*l]   * (sunsets[j]-sunset_0[j])
+            lat_params += coefficients[0][orb,:,2*l+1] * (sunrises[j]-sunrise_0[j])
+            lon_params += coefficients[1][orb,:,2*l]   * (sunsets[j]-sunset_0[j])
+            lon_params += coefficients[1][orb,:,2*l+1] * (sunrises[j]-sunrise_0[j])
+            alt_params += coefficients[2][orb,:,2*l]   * (sunsets[j]-sunset_0[j])
+            alt_params += coefficients[2][orb,:,2*l+1] * (sunrises[j]-sunrise_0[j])
+            drift_estimate += coefficients[3][orb,0,2*l]   * (sunsets[j]-sunset_0[j])
+            drift_estimate += coefficients[3][orb,0,2*l+1] * (sunrises[j]-sunrise_0[j])
     t_interp = np.linspace(sunrise_0[orb-1], sunrise_0[orb], NUM_PARAMS)
     def func(t):
         lat = spinterp.interp1d(time_0, latitude_0)(t-drift_estimate) + spline(t-drift_estimate, t_interp, lat_params)
@@ -288,7 +293,7 @@ drift = 30
 measured_sunsets = sunset_times[-1,:] + (1-np.random.rand(NUM_ORBITS)**2)*SUNWEND_ERROR + drift # an overestimate of the error
 measured_sunrises = sunrise_times[-1,:] + (1-np.random.rand(NUM_ORBITS)**2)*SUNWEND_ERROR + drift
 
-for j in range(NUM_MEMORIES, NUM_ORBITS): # iterate over orbits
+for j in range(1, NUM_ORBITS): # iterate over orbits
     inds = (elapsed_secs[-1] >= sunrise_times[-1,j-1]) &\
            (elapsed_secs[-1] < sunrise_times[-1,j]) # pick out the enclosed indices and times
     time = elapsed_secs[-1,inds]
@@ -307,7 +312,7 @@ for j in range(NUM_MEMORIES, NUM_ORBITS): # iterate over orbits
     pos_fit = coords_2_vec(lat_fit, lon_fit, alt_fit)
     error = pos_exp - pos_fit
     i_worst = np.argmax(np.linalg.norm(error, axis=1))
-    print("The maximum error occurs at t={}s, where the fit is {:.3f}/{:.3f} km off.".format(
+    print("The maximum error occurs at t={:.0f}s, where the fit is {:.3f}/{:.3f} km off.".format(
           time[i_worst], np.linalg.norm(error[i_worst,:]),
           np.linalg.norm((pos_exp-pos_org)[i_worst,:])))
 
