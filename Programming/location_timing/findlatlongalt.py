@@ -15,7 +15,7 @@ import fnmatch as fm
 import numpy   as np
 import matplotlib.pyplot as plt
 from scipy.optimize          import curve_fit
-import scipy.interpolate
+import scipy.interpolate as spinterp
 from mpl_toolkits.mplot3d    import Axes3D
 from statsmodels.api         import OLS
 from statsmodels.stats.anova import anova_lm
@@ -32,13 +32,14 @@ debug = False
 DAY_LENGTH_THRESH = datetime.timedelta(seconds=60) # no day is this short
 NIGHT_LENGTH_THRESH = datetime.timedelta(seconds=60) # no night is this short
 
-NUM_SIMS = 25 # number of simulated mission variations
+NUM_SIMS = 101 # number of simulated mission variations
 NUM_ORBITS = 80 # number of orbits to fit per simulation
 NUM_SIM_DATA = 14400 # number of data in each simulation
-NUM_PARAMS = 8 # the number of parameters to use to fit each orbit function
-NUM_MEMORIES = 3 # the number of orbits of sunwend times to remember and incorporate
+NUM_PARAMS = 9 # the number of parameters to use to fit each orbit function
+NUM_MEMORIES = 6 # the number of pairs of sunwend times to remember and incorporate
 
 MEAN_CLOCK_DRIFT = 30
+SUNWEND_ERROR = 1 # the number of seconds after sunrise or before sunset it detects a sunwend
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -67,7 +68,7 @@ param_coefs = (
 
 
 def spline_func(x_refs):
-    return lambda x, *y_refs: scipy.interpolate.interp1d(x_refs, y_refs,
+    return lambda x, *y_refs: spinterp.interp1d(x_refs, y_refs,
         kind='cubic', fill_value='extrapolate', assume_sorted=True)(x)
 
 def spline(x, x_refs, y_refs):
@@ -82,6 +83,14 @@ def coords_2_vec(lat_d, lon_d, alt):
     return np.stack((r*np.cos(lat)*np.cos(lon),
                      r*np.cos(lat)*np.sin(lon),
                      r*np.sin(lat)), axis=1)
+
+def smoothen(x):
+    for i in range(1, len(x)):
+        while x[i] - x[i-1] > 180:
+            x[i:] -= 360
+        while x[i] - x[i-1] < -180:
+            x[i:] += 360
+    return x
 
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -100,8 +109,8 @@ for i in range(NUM_SIMS):
     latitude[i,:] = [float(line.split()[6]) for line in lines[1:]]
     latitude_res[i,:] = latitude[i,:] - latitude[0,:]
     longitude[i,:] = [float(line.split()[7]) for line in lines[1:]]
+    longitude[i,:] = smoothen(longitude[i,:])
     longitude_res[i,:] = longitude[i,:] - longitude[0,:]
-    longitude_res[i,:] = longitude_res[i,:] - np.floor((longitude_res[i,:]+180)/360)*360 # fix outliers that come from the periodicity of longitude
 
     # -- get observables ------------------------------------------------
     with open(source_dir + 'SunriseSunset_' + str(i) + '.txt', 'r') as f:
@@ -128,13 +137,12 @@ for i in range(NUM_SIMS):
     # for each start_time to start_time period, fit curve to latitude,
     # longitude and altitude and report phase shifts
     for j in range(1, NUM_ORBITS): # for each sunset-to-sunset period (the zeroth one isn't complete, so ignore it)
-        inds = (elapsed_secs[i,:] >= sunrise_times[i,j-1]) &\
-               (elapsed_secs[i,:] < sunrise_times[i,j]) # pick out the enclosed indices and times
+        inds = (elapsed_secs[i,:] >= sunrise_times[0,j-1]) &\
+               (elapsed_secs[i,:] < sunrise_times[0,j]) # pick out the enclosed indices and times
         time = elapsed_secs[i,inds]
-        projected_orbit_length = sunrise_times[0,j] - sunrise_times[0,j-1]
 
         # fit spline curve
-        interp_ts = np.linspace(sunrise_times[i,j-1], sunrise_times[i,j-1]+projected_orbit_length, NUM_PARAMS)
+        interp_ts = np.linspace(sunrise_times[0,j-1], sunrise_times[0,j], NUM_PARAMS)
         # >> latitude
         params_latitude[i,j,:] = curve_fit(spline_func(interp_ts), time, latitude_res[i][inds],
                                            p0=np.zeros(NUM_PARAMS))[0]
@@ -157,7 +165,7 @@ for i in range(NUM_SIMS):
             pos_fit = coords_2_vec(lat_fit, lon_fit, alt_fit)
             error = pos_exp - pos_fit
             i_worst = np.argmax(np.linalg.norm(error, axis=1))
-            print("The maximum error occurs at t={}s, where the fit is {:.3f}/{:.3f} km off.".format(
+            print("The maximum fit error occurs at t={}s, where the fit is {:.3f}/{:.3f} km off.".format(
                   time[i_worst], np.linalg.norm(error[i_worst,:]),
                   np.linalg.norm((pos_exp-pos_org)[i_worst,:])))
             plt.figure(0)
@@ -185,13 +193,10 @@ for coord in range(4): # >> loop through latitude, longitude, altitude, and time
         x = np.empty((NUM_SIMS, 2*NUM_MEMORIES))
         for l in range(0, NUM_MEMORIES):
             j_prime = j - NUM_MEMORIES + l
-            x[:,2*l+0] = sunset_times[:,j_prime] - sunset_times[0,j_prime] # stack up all recalled sunwend times
-            x[:,2*l+1] = sunrise_times[:,j_prime] - sunrise_times[0,j_prime]
+            x[:,2*l+0] = sunset_times[:,j_prime] - sunset_times[0,j_prime] + np.random.uniform(0,SUNWEND_ERROR,NUM_SIMS) # stack up all recalled sunwend times
+            x[:,2*l+1] = sunrise_times[:,j_prime] - sunrise_times[0,j_prime] - np.random.uniform(0,SUNWEND_ERROR,NUM_SIMS)
         x += np.expand_dims(time_drifts, 1) # apply the time drifts
         x = x[:-1,:] # (leave out the last one for testing porpoises)
-        if coord == 0:
-            for thing in np.linalg.eig(np.cov(x.transpose())):
-                print(thing)
 
         for k in range(NUM_PARAMS if coord < 3 else 1): # loop through each fit parameter (recall that time only needs one fit parameter: the time)
             # >> value of position difference fit parameters
@@ -244,40 +249,59 @@ with open(source_dir+'/forecast.dat', 'wb') as f:
 
 # :: validation :::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-sunset_res = sunset_times[-1,:] + time_drifts[-1] - sunset_times[0,:]
-sunrise_res = sunrise_times[-1,:] + time_drifts[-1] - sunrise_times[0,:]
+def guess_position(sunsets, sunrises, coefficients, sunset_0, sunrise_0, latitude_0, longitude_0, altitude_0, time_0):
+    """ sunsets:      the measured sunset times up until now
+        sunrises:     the measured sunrise times up until now (the current time is shortly after the last one)
+        coefficients: the precomputed parameter coefficients
+        sunset_0:     the precomputed expected sunset times
+        sunrise_0:    the precomputed expected sunrise times
+        latitude_0:   the precomputed expected latitudes
+        longitude_0:  the precomputed expected longitudes
+        altitude_0:   the precomputed expected altitudes
+        time_0:       the times that go with the precomputed coordinates
+        return:       a function of time for lat, lon, alt, and the drift
+    """
+    orb = len(sunsets) # the orbit number
+    lat_params = np.zeros(NUM_PARAMS)
+    lon_params = np.zeros(NUM_PARAMS)
+    alt_params = np.zeros(NUM_PARAMS)
+    drift_estimate = 0
+    for l in range(0, NUM_MEMORIES):
+        j = orb - NUM_MEMORIES + l
+        lat_params += coefficients[0][orb,:,2*l]   * (sunsets[j]-sunset_0[j])
+        lat_params += coefficients[0][orb,:,2*l+1] * (sunrises[j]-sunrise_0[j])
+        lon_params += coefficients[1][orb,:,2*l]   * (sunsets[j]-sunset_0[j])
+        lon_params += coefficients[1][orb,:,2*l+1] * (sunrises[j]-sunrise_0[j])
+        alt_params += coefficients[2][orb,:,2*l]   * (sunsets[j]-sunset_0[j])
+        alt_params += coefficients[2][orb,:,2*l+1] * (sunrises[j]-sunrise_0[j])
+        drift_estimate += coefficients[3][orb,0,2*l]   * (sunsets[j]-sunset_0[j])
+        drift_estimate += coefficients[3][orb,0,2*l+1] * (sunrises[j]-sunrise_0[j])
+    t_interp = np.linspace(sunrise_0[orb-1], sunrise_0[orb], NUM_PARAMS)
+    def func(t):
+        lat = spinterp.interp1d(time_0, latitude_0)(t-drift_estimate) + spline(t-drift_estimate, t_interp, lat_params)
+        lon = spinterp.interp1d(time_0, longitude_0)(t-drift_estimate) + spline(t-drift_estimate, t_interp, lon_params)
+        alt = spinterp.interp1d(time_0, altitude_0)(t-drift_estimate) + spline(t-drift_estimate, t_interp, alt_params)
+        return lat, lon, alt
+    return drift_estimate, func
+
+drift = 30
+measured_sunsets = sunset_times[-1,:] + (1-np.random.rand(NUM_ORBITS)**2)*SUNWEND_ERROR + drift # an overestimate of the error
+measured_sunrises = sunrise_times[-1,:] + (1-np.random.rand(NUM_ORBITS)**2)*SUNWEND_ERROR + drift
 
 for j in range(NUM_MEMORIES, NUM_ORBITS): # iterate over orbits
     inds = (elapsed_secs[-1] >= sunrise_times[-1,j-1]) &\
            (elapsed_secs[-1] < sunrise_times[-1,j]) # pick out the enclosed indices and times
     time = elapsed_secs[-1,inds]
-    projected_span = sunrise_times[0,j] - sunrise_times[0,j-1]
 
-    lat_params = np.zeros(NUM_PARAMS)
-    lon_params = np.zeros(NUM_PARAMS)
-    alt_params = np.zeros(NUM_PARAMS)
-    drift_estimate = 0
-
-    for l in range(0, NUM_MEMORIES):
-        j_prime = j - NUM_MEMORIES + l
-        lat_params += param_coefs[0][j,:,2*l]   * sunset_res[j_prime]
-        lat_params += param_coefs[0][j,:,2*l+1] * sunrise_res[j_prime]
-        lon_params += param_coefs[1][j,:,2*l]   * sunset_res[j_prime]
-        lon_params += param_coefs[1][j,:,2*l+1] * sunrise_res[j_prime]
-        alt_params += param_coefs[2][j,:,2*l]   * sunset_res[j_prime]
-        alt_params += param_coefs[2][j,:,2*l+1] * sunrise_res[j_prime]
-        drift_estimate += param_coefs[3][j,0,2*l]   * sunset_res[j_prime]
-        drift_estimate += param_coefs[3][j,0,2*l+1] * sunrise_res[j_prime]
-
-    print("I gave it a drift of {:.1f}s, and it deduced a drift of {:.1f}s".format(time_drifts[-1], drift_estimate))
-
-    interp_ts = np.linspace(sunrise_times[-1,j-1], sunrise_times[-1,j-1]+projected_span, NUM_PARAMS)
     lat_org, lat_exp = latitude[0,inds], latitude[-1,inds]
-    lat_fit = lat_org + spline(time, interp_ts, lat_params)
     lon_org, lon_exp = longitude[0,inds], longitude[-1,inds]
-    lon_fit = lon_org + spline(time, interp_ts, lon_params)
     alt_org, alt_exp = altitude[0,inds], altitude[-1,inds]
-    alt_fit = alt_org + spline(time, interp_ts, alt_params)
+    drift_estimate, position = guess_position(
+        measured_sunsets[:j], measured_sunrises[:j], param_coefs,
+        sunset_times[0,:], sunrise_times[0,:],
+        latitude[0,:], longitude[0,:], altitude[0,:], elapsed_secs[0,:])
+    lat_fit, lon_fit, alt_fit = position(time+drift)
+    print("I gave it a drift of {:.1f}s, and it deduced a drift of {:.1f}s".format(drift, drift_estimate))
     pos_org = coords_2_vec(lat_org, lon_org, alt_org)
     pos_exp = coords_2_vec(lat_exp, lon_exp, alt_exp)
     pos_fit = coords_2_vec(lat_fit, lon_fit, alt_fit)
@@ -289,8 +313,8 @@ for j in range(NUM_MEMORIES, NUM_ORBITS): # iterate over orbits
 
     plt.figure()
     plt.title("Orbit {}".format(j))
-    plt.plot(time, lat_exp-lat_org, label="Actual")
-    plt.plot(time, lat_fit-lat_org, label="Estimated") # and plot against reality!
+    plt.plot(time, smoothen(lat_exp-lat_org), label="Actual")
+    plt.plot(time, smoothen(lat_fit-lat_org), label="Estimated") # and plot against reality!
     plt.xlabel("Time (s)")
     plt.ylabel("Latitude residual (°)")
     plt.legend()
