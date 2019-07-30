@@ -39,7 +39,7 @@ NUM_PARAMS = 9 # the number of parameters to use to fit each orbit function
 NUM_MEMORIES = 9 # the number of pairs of sunwend times to remember and incorporate
 
 MEAN_CLOCK_DRIFT = 30
-SUNWEND_ERROR = 1 # the number of seconds after sunrise or before sunset it detects a sunwend
+SUNWEND_ERROR = 0.25 # the average number of seconds after sunrise or before sunset it detects a sunwend
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -194,10 +194,10 @@ for coord in range(4): # >> loop through latitude, longitude, altitude, and time
         for l in range(0, NUM_MEMORIES):
             j_prime = j - NUM_MEMORIES + l
             if j_prime >= 0:
-                x[:,2*l+0] = sunset_times[:,j_prime] - sunset_times[0,j_prime] + \
-                    np.random.uniform(0,SUNWEND_ERROR, NUM_SIMS) + time_drifts # stack up all recalled sunwend times
-                x[:,2*l+1] = sunrise_times[:,j_prime] - sunrise_times[0,j_prime] - \
-                    np.random.uniform(0,SUNWEND_ERROR, NUM_SIMS) + time_drifts # apply the time drifts
+                x[:,2*l+0] = sunset_times[:,j_prime] - sunset_times[0,j_prime] \
+                    - np.random.exponential(SUNWEND_ERROR, NUM_SIMS) + time_drifts # stack up all recalled sunwend times
+                x[:,2*l+1] = sunrise_times[:,j_prime] - sunrise_times[0,j_prime] \
+                    + np.random.exponential(SUNWEND_ERROR, NUM_SIMS) + time_drifts # apply the time drifts
             else:
                 x[:,2*l:2*l+2] = 0
         x = x[:-1,:] # (leave out the last one for testing porpoises)
@@ -290,8 +290,8 @@ def guess_position(sunsets, sunrises, coefficients, sunset_0, sunrise_0, latitud
     return drift_estimate, func
 
 drift = 30
-measured_sunsets = sunset_times[-1,:] + (1-np.random.rand(NUM_ORBITS)**2)*SUNWEND_ERROR + drift # an overestimate of the error
-measured_sunrises = sunrise_times[-1,:] + (1-np.random.rand(NUM_ORBITS)**2)*SUNWEND_ERROR + drift
+measured_sunsets = sunset_times[-1,:] - np.random.exponential(2*SUNWEND_ERROR, NUM_ORBITS) + drift # an overestimate of the error
+measured_sunrises = sunrise_times[-1,:] + np.random.exponential(2*SUNWEND_ERROR, NUM_ORBITS) + drift
 
 for j in range(1, NUM_ORBITS): # iterate over orbits
     inds = (elapsed_secs[-1] >= sunrise_times[-1,j-1]) &\
