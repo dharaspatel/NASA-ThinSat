@@ -6,7 +6,7 @@
       beginJoe()                                   [x]
       getTime()                                    [x]
       calibrateTime()                              []
-      readPhotocells()                             []
+      readPhotocells()                             [x]
       getPosition()                                []
       calc_state()                                 []
       getRadarRange()                              []
@@ -15,6 +15,11 @@
       writeEEPROM()                                []
       readEEPROM()                                 []
       readMag()                                    [x]
+      launch()                                     [x]
+      pyrolysis()                                  [x]
+      melt()                                       [x]
+      readImg()                                    []
+      readTemp()                                   []
     ________________________________________________*/
 
 
@@ -27,6 +32,7 @@
 #include "myDataPacketStructure.h" //datapacket stuff
 #include "Arduino.h" //Arduino library
 #include "ReadPhotocells.c" //reading photocells
+#include "ImgProcessing.c"
 
 DS3231 Clock;
 EEPROM eeprom;
@@ -42,6 +48,7 @@ bool firstRun = true; //first photocell run
 int state; //nothing = 0, launch = 1, pyrolysis = 2
 float threshold[]; //the threshold for the sunset/sunrise calculations
 int launchCount = 0; //the number of launchers released
+bool motor = true; //using motor design?
 size_t mag_data[]; //an array of x, y, z magnetometer data
 struct position{
   float seconds;
@@ -61,8 +68,8 @@ void setup(){
 }
 
 void loop(){
-  rtcTime = getTime();
-  calibrateTime();
+  rtcTime = Clock.now();
+  calibrateTime(rtcTime);
   readPhotocells(firstRun);
   position = getPosition(rtcTime, pho_data);
   state = calc_state(position);
@@ -74,7 +81,7 @@ void loop(){
       break;
     case 1:
       //begin launch process
-      launch();
+      launch(motor);
     case 2:
       //begin pyrolysis process
       pyrolysis();
@@ -97,19 +104,10 @@ void begin(){
   pinMode(ClockPowerPin, OUTPUT);
   digitalWrite(ClockPowerPin, HIGH);
   tslpb.InitTSLDigitalSensors();
+  rtcTime = Clock.now();
 }
 
-DateTime getTime()
-  /*
-    FUNCTION: Begins communication with I2C interface, starts the DS3231 Clock, writes table to SD
-    PARAMETERS: None
-    RETURN: None
-  */
-  DatTime(clock.getYear(), clock.getYear(), clock.getDay(), clock.getHour(), clock.getMinute(), clock.getSecond());
-}
-
-
-float calibrateTime(){
+float calibrateTime(DateTime rtcTime){
   /*
     FUNCTION: Uses forcast.csv to calculate seconds from launch and sync a more accurate DateTime
     PARAMETERS: None
@@ -136,7 +134,7 @@ struct readPhotocells(bool firstRun){
 }
 
 
-float getPosition(float secLaunch, size_t pho_data){
+float getPosition(DateTime rtcTime, struct pho_data){
   /*
     FUNCTION: Uses forcast.csv to
     PARAMETERS: None
@@ -218,17 +216,18 @@ size_t readMag(){
   return magx, magy, magz;
 }
 
-void launch(){
+void launch(bool motor){
   /*
     FUNCTION: execute all launch protocall
-    PARAMETERS: None
+    PARAMETERS: boolean for which launcher design is being used (motor or rifled design)
     RETURN: None
   */
+  if(motor){
+    digitalWrite(IN1_ADDR, HIGH); //motor driver is going forward
+    digitalWrite(IN2_ADDR, LOW);
+  }
 
-  digitalWrite(IN1_ADDR, HIGH); //motor driver is going forward
-  digitalWrite(IN2_ADDR, LOW);
-
-
+  melt([HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, LOW, LOW, LOW, LOW]);
 }
 
 void pyrolysis(){
@@ -238,12 +237,14 @@ void pyrolysis(){
     RETURN: None
   */
 
-
+  melt([LOW, LOW, LOW, LOW, LOW, LOW, HIGH, HIGH, HIGH, HIGH]);
+  readTemp();
+  ImgProcessing.main(readImg());
 }
 
 void melt(int wires[]){
   /*
-    FUNCTION: melt a number of burn wires
+    FUNCTION: helper func that melts a number of burn wires
     PARAMETERS: which burn wires to melt.... ex. [HIGH, LOW, LOW, etc.] would burn only first one
     RETURN: None
   */
@@ -256,4 +257,37 @@ void melt(int wires[]){
   digitalWrite(RCLK_ADDR, HIGH);
   digitalWrite(RCLK_ADDR, LOW);
 
+  delay(10000);
+  for(int i = 0, i < 10, i++){
+    digitalWrite(SER_ADDR, LOW);
+    digitalWrite(SRCLK_ADDR, HIGH);
+    digitalWrite(SRCLK_ADDR, LOW);
+  }
+  digitalWrite(RCLK_ADDR, HIGH);
+  digitalWrite(RCLK_ADDR, LOW);
+
+}
+
+size_t readImg(){
+  /*
+    FUNCTION: helper func for reading CMOS image sensor for pyrolysis experiment
+    PARAMETERS: None
+    RETURN: data (not processed)
+  */
+}
+
+size_t readTemp(){
+  /*
+    FUNCTION: helper func for reading temp sensor for pyrolysis experiment
+    PARAMETERS: None
+    RETURN: data (not processed)
+  */
+  size_t v_out;
+
+  Wire.requestFrom(TEMP_ADDR,1); //is 1 the correct number of bits?
+  while(Wire.avaliable()){
+    v_out = Wire.read();
+  }
+
+  return (v_out - 400)/19.5; //see pg. 2 of datasheet --> http://ww1.microchip.com/downloads/en/DeviceDoc/20001942G.pdf
 }

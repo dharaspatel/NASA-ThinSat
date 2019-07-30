@@ -1,0 +1,36 @@
+Component,Description,Part,References,Value,Footprint,Quantity Per PCB,Datasheet,Part URL
+1,Single-cell battery,Battery_Cell,BT1,Battery_Cell,BatteryHolder_Keystone_3034_1x20mm,1,~,https://www.digikey.com/product-detail/en/keystone-electronics/3034TR/36-3034CT-ND/4833649
+2,"Polarized capacitor, small symbol",CP_Small,C1,0.1uF,C_0603_1608Metric,1,~,https://www.digikey.com/product-detail/en/knowles-syfer/0603Y0250104KET/1608-1305-6-ND/7383324
+3,"Unpolarized capacitor, small symbol",C_Small,C2,0.1uF,C_0603_1608Metric,1,~,https://www.digikey.com/product-detail/en/knowles-syfer/0603Y0250104KET/1608-1305-6-ND/7383324
+4,Unpolarized capacitor,C,C3 C4,1uF,C_0603_1608Metric,2,~,https://www.digikey.com/product-detail/en/murata-electronics-north-america/GCM188R71C105KA64D/490-5241-1-ND/1979252
+5,Light emitting diode,LED,D1,LED,LED_0603_1608Metric,1,~,https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191KFKT/160-1445-1-ND/386832
+6,"Generic connector, single row, 01x20, script generated (kicad-library-utils/schlib/autogen/connector/)",Conn_01x20,J2,Conn_01x20,62674-201121ALF,1,~,
+7,"Generic connector, double row, 02x03, counter clockwise pin numbering scheme (similar to DIP packge numbering), script generated (kicad-library-utils/schlib/autogen/connector/)",Conn_02x03_Counter_Clockwise,J1,Conn_02x03_Counter_Clockwise,PinHeader_2x03_P2.54mm_Vertical,1,~,https://www.digikey.com/product-detail/en/sullins-connector-solutions/GRPB032VWVN-RC/S9015E-03-ND/1786453
+8,Micro SD Card Socket,Micro_SD_Card,J4,Micro_SD_Card,microSD_HC_Wuerth_693072010801,1,http://katalog.we-online.de/em/datasheet/693072010801.pdf,https://www.digikey.com/product-detail/en/wurth-electronics-inc/693072010801/732-3820-1-ND/3124605
+9,USB Micro Type B connector,USB_B_Micro,J3,USB_B_Micro,USB_Micro-B_Molex-105017-0001,1,~,https://www.digikey.com/product-detail/en/molex/1050170001/WM1399CT-ND/2350885
+10,Resistor,R,R2 R6 R7 R8,10k,R_0603_1608Metric,4,~,https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589
+11,Resistor,R,R1 R3 R4 R5,1k,R_0603_1608Metric,4,~,https://www.digikey.com/product-detail/en/yageo/RT0603DRD071KL/311-1.0KDCT-ND/1035738
+12,Resistor,R,R9,440R,R_0603_1608Metric,1,~,https://www.digikey.com/product-detail/en/yageo/RC0603FR-07442RL/311-442HRCT-ND/730189
+13,Photoresistor,R_PHOTO,R12 R13 R14 R15,R_PHOTO,PinHeader_1x02_P2.00mm_Vertical,4,~,https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028
+14,"300mA low dropout linear regulator, shutdown pin, 2.5V-6V input voltage, 3.3V fixed positive output, SOT-23 package",AP2127N-3.3,U8,AP2127N-3.3,SOT-23,1,https://www.diodes.com/assets/Datasheets/AP2127.pdf,https://www.digikey.com/product-detail/en/diodes-incorporated/AP2127N-3.3TRG1/AP2127N-3.3TRG1DICT-ND/8545775
+15,"16MHz, 32kB Flash, 2.5kB SRAM, 1kB EEPROM, USB 2.0, QFN-44",ATmega32U4-MU,U9,ATmega32U4-MU,QFN-44-1EP_7x7mm_P0.5mm_EP5.2x5.2mm,1,http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf,https://www.digikey.com/product-detail/en/microchip-technology/ATMEGA32U4-MU/ATMEGA32U4-MU-ND/1914603
+16,,DF12-20DS-Custom,U7,DF12-20DS,DF12-20DS-0.5V(86),1,,https://www.digikey.com/product-detail/en/hirose-electric-co-ltd/DF12-20DS-0.5V-86/H5214CT-ND/948727
+17,"±5ppm, I2C Real-Time Clock SOIC-8",DS3231MZ,U5,DS3231MZ,SOIC-8_3.9x4.9mm_P1.27mm,1,http://datasheets.maximintegrated.com/en/ds/DS3231M.pdf,https://www.digikey.com/product-detail/en/maxim-integrated/DS3231MZ/DS3231MZ-ND/2754396
+18,,UFDFPN8-MC-Custom,U6,M24C32-XDW5TP,TSSOP-8_4.4x3mm_P0.65mm,1,https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/8c/54/f2/63/4c/4a/CD00001012.pdf/files/CD00001012.pdf/jcr:content/translations/en.CD00001012.pdf,https://www.digikey.com/product-detail/en/stmicroelectronics/M24C32-XDW5TP/497-16068-1-ND/5476770
+19,,SN74LVC1G3157DCKR,U1 U2,SN74LVC1G3157DCKR,DCK6,2,,
+
+
+
+
+
+Component Groups:,19
+Component Count:,30
+Fitted Components:,30
+Number of PCBs:,1
+Total components:,30
+Schematic Version:,
+Schematic Date:,
+PCB Variant:,['default']
+BoM Date:,Tue 30 Jul 2019 11:13:57 AM EDT
+Schematic Source:,/home/dpatel1/NASA-ThinSat/Circuitry/Joe/Joe.sch
+KiCad Version:,Eeschema 5.1.2-f72e74a~84~ubuntu18.04.1
