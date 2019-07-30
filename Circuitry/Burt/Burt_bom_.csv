@@ -1,0 +1,35 @@
+Component,Description,Part,References,Value,Footprint,Quantity Per PCB,Datasheet,Part URL
+1,Single-cell battery,Battery_Cell,BT1,Battery_Cell,JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,1,~,https://www.digikey.com/product-detail/en/jst-sales-america-inc/B2B-PH-K-S-LF-SN/455-1704-ND/926611
+2,"Unpolarized capacitor, small symbol",C_Small,C1 C2,4.7uF,C_0603_1608Metric,2,~,https://www.digikey.com/product-detail/en/samsung-electro-mechanics/CL10A475MQ8NNNC/1276-1907-1-ND/3889993
+3,Light emitting diode,LED,D1,LED,LED_0603_1608Metric,1,~,https://www.digikey.com/product-detail/en/lumex-opto-components-inc/SML-LXFM0603SUGCTR/67-2320-1-ND/9521881
+4,"Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)",Conn_01x04_Female,J2,Conn_01x04_Female,PinHeader_1x04_P2.54mm_Horizontal,1,~,https://www.digikey.com/product-detail/en/sullins-connector-solutions/PPTC081LGBN-RC/S5444-ND/775902
+5,"Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)",Conn_01x08_Female,J4,Conn_01x08_Female,PinHeader_1x08_P1.00mm_Vertical,1,~,
+6,"Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)",Conn_01x08_Male,J3,Conn_01x08_Male,PinHeader_1x08_P1.00mm_Vertical,1,~,
+7,"Generic connector, single row, 01x20, script generated (kicad-library-utils/schlib/autogen/connector/)",Conn_01x20,J1,Conn_01x20,62674-201121ALF,1,~,https://www.digikey.com/product-detail/en/amphenol-icc-fci/62674-201121ALF/609-1207-1-ND/1003043
+8,DC Motor,Motor_DC,M1,Motor_DC,JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,1,~,https://www.pololu.com/product/4790/
+9,2 N-MOSFET transistor,SSM6N58NU,Q1 Q2 Q3 Q4 Q5 Q6,SSM6N58NU,DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm,6,,https://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/SSM6N58NULF/SSM6N58NULFCT-ND/4304408
+10,Resistor,R,R1 R2 R3 R5 R8 R9 R10 R17 R18 R19 R20 R25 R27,10k,R_0603_1608Metric,13,~,https://www.digikey.com/product-detail/en/yageo/RT0603BRD0710KL/YAG1236CT-ND/4340589
+11,"Resistor, small symbol",R_Small,R4,18k,R_0603_1608Metric,1,~,https://www.digikey.com/product-detail/en/yageo/RT0603BRD0718KL/YAG1552CT-ND/5139000
+12,"Resistor, small symbol",R_Small,R7,20k,R_0603_1608Metric,1,~,https://www.digikey.com/product-detail/en/yageo/RC0603FR-0720KL/311-20.0KHRCT-ND/729987
+13,"Resistor, small symbol",R_Small,R6,470R,R_0603_1608Metric,1,~,https://www.digikey.com/product-detail/en/yageo/RC0603FR-07470RL/311-470HRCT-ND/730203
+14,Resistor,R,R11 R12 R13 R14 R15 R16 R21 R22 R23 R24 R26 R28,BURNWIRE,PinHeader_1x02_P1.00mm_Vertical,12,~,
+15,8-bit serial in/out Shift Register 3-State Outputs,74HC595,U4 U5,74HC595,SOIC-16_3.9x9.9mm_P1.27mm,2,http://www.ti.com/lit/ds/symlink/sn74hc595.pdf,https://www.digikey.com/product-detail/en/nexperia-usa-inc/74HC595D118/1727-2821-1-ND/763394
+16,,A3908-Custom,U2,A3908,A3908,1,,https://www.digikey.com/product-detail/en/allegro-microsystems-llc/A3908EEETR-T/620-1282-1-ND/1991943
+17,,MCP73831-DFN-Custom,U3,MCP73831-DFN,SOT-23-5,1,,https://www.digikey.com/product-detail/en/microchip-technology/MCP73831T-2ACI-OT/MCP73831T-2ACI-OTCT-ND/1979802
+18,,MCP9701A-Custom,U1,MCP9701A,SOT-23,1,http://ww1.microchip.com/downloads/en/DeviceDoc/20001942G.pdf,https://www.digikey.com/product-detail/en/microchip-technology/MCP9701AT-E-TT/MCP9701AT-E-TTCT-ND/1987449
+
+
+
+
+
+Component Groups:,18
+Component Count:,48
+Fitted Components:,48
+Number of PCBs:,1
+Total components:,48
+Schematic Version:,
+Schematic Date:,
+PCB Variant:,['default']
+BoM Date:,Tue 30 Jul 2019 11:10:57 AM EDT
+Schematic Source:,/home/dpatel1/NASA-ThinSat/Circuitry/Burt/Burt.sch
+KiCad Version:,Eeschema 5.1.2-f72e74a~84~ubuntu18.04.1

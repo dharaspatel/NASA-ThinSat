@@ -51,3 +51,13 @@
 
 /*___SENSOR ADDRESSES___*/
 #define MAG_ADDRESS 0x0C //this is on the IMU on the bus side...
+
+/*BURN WIRE PIN INFO:
+  motor design:
+    A - F ==> launchers
+    G - H, A2 - B2 ==> pyrolysis
+
+  rifle design
+    A - H ==> launchers
+    A2 - D2 ==> pyrolysis
+*/
