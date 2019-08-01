@@ -9,13 +9,22 @@
 #include <linterp.h>
 #include <spline.h>
 
+
+#define NUM_PHOTODIODES 4;
+#define SUN_THRESHOLD 100;
+#define MIN_NIGHT_LENGTH 10000; // minimum number of milliseconds of a night
 #define SUN_MEMORY_SIZE 9
 #define NUM_INTERP_POINTS 9
 
+
 DS3231 Clock;
 
+int launchDate; // the index of the day we launched (-1 if we're not sure yet)
 long sunrises[SUN_MEMORY_SIZE]; // the last few sunrises
 long sunsets[SUN_MEMORY_SIZE]; // the last few sunsets
+long sunsetCandidate; // the last thing that might have been a sunset (we're not sure yet), or -1 if we're not considering right now
+bool isBright; // is the sun visible right now?
+bool isDay; // is it daytime right now?#define SUN_MEMORY_SIZE 9
 int orbit; // the index of the current rise-to-rise orbit (the zeroth is the incomplete one that includes launch)
 
 
@@ -38,6 +47,7 @@ void setup(){
 
 void loop(){
   pos = sync();
+  checkForSunwend();
   state = calc_state();
 
   if (state == deorbit){
@@ -47,14 +57,6 @@ void loop(){
 
 
 /*_________FUNCTIONS USED IN BOTH BILL AND BURT__________*/
-
-void orient(float rotation[]){
-  /*
-    FUNCTION: Uses the thrusters and gyroscope located on Joe to orient the satellites in a particular direction
-    PARAMETERS: A rotation matrix for the desired orientation
-    RETURN: None
-  */
-}
 
 void set_pin_mode(){
   /*
@@ -108,6 +110,38 @@ void deorbit(){
   */
 }
 
+void checkForSunwend() {
+  isBright = false;
+  for (int i = 0; i < NUM_PHOTODIODES; i ++)
+    if (analogRead(PHOTODIODES[i]) > SUN_THRESHOLD)
+      isBright = true; // are any of the photocells receiving?
+
+  if (isBright && !isDay) { // if you see light when you had previously thought it to be night
+    for (int i = 0; i < SUN_MEMORY_SIZE-1; i ++)
+      sunrises[i] = sunrises[i+1];
+    sunrises[SUN_MEMORY_SIZE-1] = millis(); // this is a sunrise // TODO: read the RTC
+    isDay = true; // it is now definitely day
+  }
+  else if (!isBright && isDay) { // if you see no light when you had previously thought it to be day
+    if (sunsetCandidate == -1) // if there is no sunset candidate
+      sunsetCandidate = millis(); // start considering that this might be a sunset // TODO: read the RTC
+    else { // if there is a candidate, how long have we been considering it?
+      if (millis() - sunsetCandidate >= MIN_NIGHT_LENGTH) { // A while? // TODO: read the RTC
+        for (int i = 0; i < SUN_MEMORY_SIZE-1; i ++)
+          sunsets[i] = sunsets[i+1];
+        sunsets[SUN_MEMORY_SIZE-1] = sunsetCandidate; // I think it's a true sunset.
+        sunsetCandidate = -1; // It is a candidate no longer.
+        isDay = false;
+      }
+      else { // Not that long yet?
+      } // Ignore. Keep waiting to see what happens next.
+    }
+  }
+  else if (isBright && isDay) { // if you see light and already thought it was day
+    sunsetCandidate = -1; // then I guess any sunset candidate you were considering is now definitely a fake.
+  }
+}
+
 void getCoordinates(long t){
   /*
     FUNCTION: Estimates the location at the given time
@@ -115,13 +149,13 @@ void getCoordinates(long t){
     RETURN: {latitude, longitude, altitude}
     PRECONDITION: t should be in the current orbit for a semblance of accuracy
   */
+  long sunsetsExp[NUM_ORBITS]; // TODO load expected observations from SD card
+  long sunrisesExp[NUM_ORBITS];
+
   float time_0[]; // TODO load expected coordinates from SD card
   float latitude_0[];
   float longitude_0[];
   float altitude_0[];
-
-  long sunsetsExp[NUM_ORBITS]; // TODO load expected observations from SD card
-  long sunrisesExp[NUM_ORBITS];
 
   float latCoefs[NUM_ORBITS][NUM_INTERP_POINTS][2*SUN_MEMORY_SIZE]; // TODO load parameter coefficients
   float lonCoefs[NUM_ORBITS][NUM_INTERP_POINTS][2*SUN_MEMORY_SIZE];
@@ -160,12 +194,14 @@ void getCoordinates(long t){
     tInterp[k] = (sunrisesExp[orbit-1]-sunrisesExp[orbit])/(NUM_INTERP_POINTS-1)*k + sunrisesExp[orbit-1];
 
   Location loc;
-  loc.latitude  =
+  loc.latitude =
     linterp(time_0, latitude_0,  t - driftGuess) +
     spline1_c(&tInterp, &latInterp, &NUM_INTERP_POINTS, &(t - driftGuess), &loc.latitude, &1);
-  loc.longitude = linterp(time_0, longitude_0, t - driftGuess) +
+  loc.longitude =
+    linterp(time_0, longitude_0, t - driftGuess) +
     spline1_c(&tInterp, &latInterp, &NUM_INTERP_POINTS, &(t - driftGuess), &loc.latitude, &1);
-  loc.altitude  = linterp(time_0, altitude_0,  t - driftGuess) +
+  loc.altitude =
+    linterp(time_0, altitude_0,  t - driftGuess) +
     spline1_c(&tInterp, &latInterp, &NUM_INTERP_POINTS, &(t - driftGuess), &loc.latitude, &1);
   return loc;
 }
@@ -187,5 +223,5 @@ float linterp(float xi[], float yi[], int ni, float xo) {
     else
       min = guess;
   }
-  return (xo - xi[min]) / (xi[max] - xi[min]) * (yi[max] - yi[min]) + yi[min];
+  return (xo - xi[min]) / (xi[max] - xi[min]) * (yi[max] - yi[min]) + yi[min]; // then do some multiplication
 }
