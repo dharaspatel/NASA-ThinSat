@@ -6,6 +6,8 @@
 #include <DS3231.h>
 #include <Wire.h>
 #include <Main.h>
+#include <linterp.h>
+#include <spline.h>
 
 #define SUN_MEMORY_SIZE 9
 #define NUM_INTERP_POINTS 9
@@ -113,20 +115,20 @@ void getCoordinates(long t){
     RETURN: {latitude, longitude, altitude}
     PRECONDITION: t should be in the current orbit for a semblance of accuracy
   */
-  float time_0[]; // load expected coordinates from SD card
+  float time_0[]; // TODO load expected coordinates from SD card
   float latitude_0[];
   float longitude_0[];
   float altitude_0[];
 
-  long sunsetsExp[NUM_ORBITS]; // load expected observations from SD card
+  long sunsetsExp[NUM_ORBITS]; // TODO load expected observations from SD card
   long sunrisesExp[NUM_ORBITS];
 
-  float latCoefs[NUM_ORBITS][NUM_INTERP_POINTS][2*SUN_MEMORY_SIZE]; // load parameter coefficients
+  float latCoefs[NUM_ORBITS][NUM_INTERP_POINTS][2*SUN_MEMORY_SIZE]; // TODO load parameter coefficients
   float lonCoefs[NUM_ORBITS][NUM_INTERP_POINTS][2*SUN_MEMORY_SIZE];
   float altCoefs[NUM_ORBITS][NUM_INTERP_POINTS][2*SUN_MEMORY_SIZE];
   float rtcCoefs[NUM_ORBITS][NUM_INTERP_POINTS][2*SUN_MEMORY_SIZE];
 
-  float latInterp[NUM_INTERP_POINTS];
+  float latInterp[NUM_INTERP_POINTS]; // initialize parameters
   for (int k = 0; k < NUM_INTERP_POINTS; k ++)
     latInterp[k] = 0;
   float lonInterp[NUM_INTERP_POINTS];
@@ -137,7 +139,7 @@ void getCoordinates(long t){
     altInterp[k] = 0;
   float driftGuess = 0;
 
-  for (int l = 0; l < SUN_MEMORY_SIZE; l ++) {
+  for (int l = 0; l < SUN_MEMORY_SIZE; l ++) { // do the linear regression thing to get the actual parameters
     int j = orbit - SUN_MEMORY_SIZE + l;
     if (orbit - SUN_MEMORY_SIZE + l >= 0) {
       for (int k = 0; k < NUM_INTERP_POINTS; j ++) {
@@ -158,8 +160,32 @@ void getCoordinates(long t){
     tInterp[k] = (sunrisesExp[orbit-1]-sunrisesExp[orbit])/(NUM_INTERP_POINTS-1)*k + sunrisesExp[orbit-1];
 
   Location loc;
-  loc.latitude  = linterp(time_0, latitude_0,  t - driftGuess) + splinterp(tInterp, latInterp, t - driftGuess);
-  loc.longitude = linterp(time_0, longitude_0, t - driftGuess) + splinterp(tInterp, lonInterp, t - driftGuess);
-  loc.altitude  = linterp(time_0, altitude_0,  t - driftGuess) + splinterp(tInterp, altInterp, t - driftGuess);
+  loc.latitude  =
+    linterp(time_0, latitude_0,  t - driftGuess) +
+    spline1_c(&tInterp, &latInterp, &NUM_INTERP_POINTS, &(t - driftGuess), &loc.latitude, &1);
+  loc.longitude = linterp(time_0, longitude_0, t - driftGuess) +
+    spline1_c(&tInterp, &latInterp, &NUM_INTERP_POINTS, &(t - driftGuess), &loc.latitude, &1);
+  loc.altitude  = linterp(time_0, altitude_0,  t - driftGuess) +
+    spline1_c(&tInterp, &latInterp, &NUM_INTERP_POINTS, &(t - driftGuess), &loc.latitude, &1);
   return loc;
+}
+
+
+float linterp(float xi[], float yi[], int ni, float xo) {
+  /*
+    FUNCTION: Linearly interpolates onto a sorted vector of values
+    PARAMETERS: xi and yi, the given data, ni, their length, and xo, the x at which the y is desired
+    RETURN: yi
+    PRECONDITION: xi is sorted
+  */
+  int min = 0; // first, do a binary search
+  int max = ni;
+  while (max - min > 1) {
+    guess = (max + min)/2;
+    if (xo < xi[guess])
+      max = guess;
+    else
+      min = guess;
+  }
+  return (xo - xi[min]) / (xi[max] - xi[min]) * (yi[max] - yi[min]) + yi[min];
 }
