@@ -1,4 +1,5 @@
 # script to get moon ephemeris over three months (position every minute)
+# requires text file loadkernel.txt
 
 # This program requires the python interface for SPICE  kernels
 # >> https://github.com/AndrewAnnex/SpiceyPy
@@ -34,7 +35,11 @@ print("Positions: ")
 print(positions[0])
 
 # >> save as csv file
-np.save('./moonephemeris.npy', positions)
+with open('/home/echickles/Documents/moonephemeris.txt', 'w') as f:
+    for i in range(len(times)):
+        f.write(str(times[i]) + ',' + str(positions[i][0]) + ',' + \
+                str(positions[i][1]) + ',' + str(positions[i][2]) + '\n')
+# np.save('./moonephemeris.npy', positions)
 
 # >> plot moons position
 positions = np.asarray(positions).T
