@@ -4,6 +4,8 @@
 # terminator, then this portion of the eclipse shall be the region for release.'
 
 # This script uses moonephemeris.npy from moonephemeris.py and loadkernel.txt
+# This program requires the python interface for SPICE  kernels
+# >> https://github.com/AndrewAnnex/SpiceyPy
 
 # The space that is occluded by the Earth from the satellite is represented by a
 # rotated cone. The inverse of this rotation matrix is used to rotate the moon's
@@ -59,10 +61,14 @@ def R_2vect(vector_orig, vector_fin):
     
     return(R)
 
-def getmoonless(sat_pos_array, time_array, debug = False):
+def getmoonless(sat_pos_array, time_array, threshold = 0.9, debug = False):
     '''
     ex. getmoonless([[-3069.960783793071, 3964.754754760618, -4319.986717816221]], 
         ['Nov 2, 2020'], debug = False) 
+
+    Threshold determines how moonless eclipse needs to be to let  moonless = True.
+    Threshold of 0.9 means satellite can move (1-threshold)*rad = ~465 km (~1min)
+    and moon must still be out of sight for moonless = True.
     '''
     # >> get moon ephemeris
     with open('moonephemeris.txt', 'r') as f:
@@ -73,7 +79,6 @@ def getmoonless(sat_pos_array, time_array, debug = False):
         moonZ = [float(line.split()[0].split(',')[3]) for line in lines]
 
     moonless_times = []
-    orbit_num = []
     moon_pos_rotated = []
     inds = []
     moonless_bool = []
@@ -104,15 +109,15 @@ def getmoonless(sat_pos_array, time_array, debug = False):
         z = moon_pos_rot[2] - sat_pos[2]
         u = z - sat_pos[2] # >> find u
         rad = np.abs(u/a) # >> find radius of circle given u
-
+        pdb.set_trace()
         # >> test if moon is in cone (center of circle at x=0, y=0)
         dist = (moon_pos_rot[0]**2 + moon_pos_rot[1]**2)**0.5
-        if dist <= rad and ((moon_pos_rot[2] >= 0. and sat_pos[2] <= 0.) or \
-        (moon_pos_rot[2] <= 0. and sat_pos[2] >= 0.)):
+        if dist <= threshold * rad and \
+           ((moon_pos_rot[2] >= 0. and sat_pos[2] <= 0.) or \
+            (moon_pos_rot[2] <= 0. and sat_pos[2] >= 0.)):
             moonless_bool.append(True)
             moonless_times.append(elapsed_secs[i])
             inds.append(i)
-            if event_num[i] not in orbit_num: orbit_num.append(event_num[i])
 
             # # >> debug on first moonless eclipse
             # if len(inds) == 1: debug = True
@@ -138,7 +143,7 @@ def getmoonless(sat_pos_array, time_array, debug = False):
                 Z = U + sat_pos[2]
             fig = plt.figure()
             ax = fig.gca(projection = '3d')
-            ax.set_title('Rotated moon position, non-rotated cone: Orbit ' + str(event_num[i]))
+            # ax.set_title('Rotated moon position, non-rotated cone: Orbit ' + str(event_num[i]))
             ax.plot_surface(X, Y, Z, rstride =1, cstride = 1)
             ax.plot([sat_pos[0]], [sat_pos[1]], [sat_pos[2]], '.', label='satellite')
             ax.plot([sat_pos[0]], [sat_pos[1]], [0.], '.', label='earth') # >> rotated earth 
@@ -170,7 +175,7 @@ def getmoonless(sat_pos_array, time_array, debug = False):
                     np.resize(vect_rotated, (3)) + sat_pos
             fig1 = plt.figure()
             ax1 = fig1.gca(projection = '3d')
-            ax1.set_title('Rotated cone, non-rotated moon: Orbit ' + str(event_num[i]))
+            # ax1.set_title('Rotated cone, non-rotated moon: Orbit ' + str(event_num[i]))
             ax1.plot_surface(X_rotated, Y_rotated, Z_rotated)
             ax1.plot([sat_pos[0]], [sat_pos[1]], [sat_pos[2]], '.', label='satellite')
             ax1.plot([0.], [0.], [0.], '.', label='earth')
@@ -180,8 +185,6 @@ def getmoonless(sat_pos_array, time_array, debug = False):
             ax1.set_zlabel('Z')
             ax1.legend()
             plt.show()
-
-            debug = False
 
     if len(moonless_bool) == 1:
         return moonless_bool[0]
