@@ -76,7 +76,7 @@ void loop(){
 
   switch (state) {
     case 0:
-      //j.chilling
+      //j.chillin'
       delay(1);
       break;
     case 1:
