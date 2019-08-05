@@ -48,7 +48,7 @@ line_nums_out = [160, 243, 259]
 # >> run simulations for each date
 for d in range(uncertainty):
     
-    day = '%02d' % (int(initial_epoch.split()[0]) + d)
+    day = '{:02d}'.format(int(initial_epoch.split()[0]) + d)
     epoch = initial_epoch.split()
     epoch[0] = day
     epoch = ' '.join(epoch)
@@ -68,7 +68,7 @@ for d in range(uncertainty):
                     lines[line_nums_pos[j]] = ' '.join(new)
 
             # >> change start time
-            lines[line_num_epoch] = "GMAT DefaultSC.Epoch = '" + epoch + "';\n"
+            lines[line_num_epoch] = "GMAT DefaultSC.Epoch = '{}';\n".format(epoch)
 
             # >> change report file location
             new = lines[line_nums_out[0]].split()
