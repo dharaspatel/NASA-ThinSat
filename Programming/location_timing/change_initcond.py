@@ -12,8 +12,9 @@
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-samples    = 100     # >> number of gmat simulations to run for each date
-scale      = 1.0e-3 # >> determines offset from initial velocity vector
+samples    = 20     # >> number of gmat simulations to run for each date
+v_scale    = 5.0e-4 # >> determines offset from initial velocity vector in km/s
+r_scale    = 2.0e-3 # >> determines offset from initial position vector in km
 initial_epoch = '01 Nov 2020 13:00:00.000'
 uncertainty   = 60 # days
 output_dir = '/home/echickles/Documents/reportfiles12/' # >> where txt files will be saved
@@ -34,13 +35,13 @@ init_v = np.array([4.504094411355064, 3.530755928387845, -5.28883890677512])
 init_pos = np.array([5313.19898722968, -2912.368416712065, 2580.583006475884])
 
 # >> generate new velocity with small random offset
-velocity = init_v + np.random.normal(0, scale, (samples, 3))
-position = init_pos + np.random.normal(0, scale, (samples, 3))
-line_nums = [19, 20, 21]
+velocity = init_v + np.random.normal(0, v_scale, (samples, 3))
+position = init_pos + np.random.normal(0, r_scale, (samples, 3))
+line_nums_v = [19, 20, 21]
 line_nums_pos = [16, 17, 18]
 
 # >> run simulations for each date
-for d in range(uncertainty + 1):
+for d in range(uncertainty):
     
     day = '%02d' % (int(initial_epoch.split()[0]) + d)
     epoch = initial_epoch.split()
@@ -48,17 +49,17 @@ for d in range(uncertainty + 1):
     epoch = ' '.join(epoch)
 
     # >> get sunrise sunset data (0th simulation has original init conds)
-    for i in range(samples+1):
+    for i in range(samples):
         with open(script_dir + 'ThinSat_Planning_SunriseSunset.script', 'r') as f:
             lines = f.readlines()
             # >> change initial velocity vector
             for j in range(3):
                 if i != 0: # >> 0th simultation has init conds
-                    new = lines[line_nums[j]].split(' ')
-                    new[2] = str(velocity[i-1][j]) + '\n'
-                    lines[line_nums[j]] = ' '.join(new)
+                    new = lines[line_nums_v[j]].split(' ')
+                    new[2] = str(velocity[i,j]) + '\n'
+                    lines[line_nums_v[j]] = ' '.join(new)
                     new = lines[line_nums_pos[j]].split(' ')
-                    new[2] = str(position[i-1][j]) + '\n'
+                    new[2] = str(position[i,j]) + '\n'
                     lines[line_nums_pos[j]] = ' '.join(new)
 
                 # >> change start time
@@ -123,12 +124,12 @@ for d in range(uncertainty + 1):
                 # -- modifying script ----------------------------------------------
                 for j in range(3):
                     if i != 0: # >> 0th simultation has init conds
-                        new = lines[line_nums[j]].split(' ')
-                        new[2] = str(velocity[i-1][j]) + '\n'
-                        lines[line_nums[j]] = ' '.join(new)
+                        new = lines[line_nums_v[j]].split(' ')
+                        new[2] = str(velocity[i,j]) + '\n'
+                        lines[line_nums_v[j]] = ' '.join(new)
 
                         new = lines[line_nums_pos[j]].split(' ')
-                        new[2] = str(position[i-1][j]) + '\n'
+                        new[2] = str(position[i,j]) + '\n'
                         lines[line_nums_pos[j]] = ' '.join(new)
 
                     # >> change start time
