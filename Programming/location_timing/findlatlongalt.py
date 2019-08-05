@@ -237,8 +237,8 @@ for launch_date in range(1):
     # :: export ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
     with open(SOURCE_DIR+'/forecast{:02d}.dat'.format(launch_date), 'wb') as f:
-        f.write(NUM_ORBITS.to_bytes(8, 'big'))
-        f.write(NUM_SIM_DATA.to_bytes(8, 'big')) # header
+        f.write(NUM_ORBITS.to_bytes(8, 'big')) # header
+        f.write(NUM_SIM_DATA.to_bytes(8, 'big'))
         f.write(NUM_PARAMS.to_bytes(8, 'big'))
         for j in range(NUM_ORBITS): # expected values of observables
             f.write(struct.pack('d', sunset_times[0,j]))
