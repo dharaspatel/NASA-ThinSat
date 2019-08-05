@@ -17,16 +17,19 @@ v_scale    = 5.0e-4 # >> determines offset from initial velocity vector in km/s
 r_scale    = 2.0e-3 # >> determines offset from initial position vector in km
 initial_epoch = '01 Nov 2020 13:00:00.000'
 uncertainty   = 60 # days
-output_dir = '/home/echickles/Documents/reportfiles12/' # >> where txt files will be saved
-script_dir = '/home/echickles/Documents/' # >> where to find original scripts
+output_dir = '../../simulations/' # >> where txt files will be saved
+script_dir = './' # >> where to find original scripts
 noon, midnight,  sunrise = False, False, True # >> events to find location
 
 import pdb
 import numpy as np
 import os
+import shutil
 import sys
-sys.path.insert(0, '/home/echickles/GMAT/R2018a/userfunctions/python')
+import subprocess
 import findjuliandates
+
+assert shutil.which("GMAT") is not None, "You need GMAT on your path, friend."
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -37,8 +40,10 @@ init_pos = np.array([5313.19898722968, -2912.368416712065, 2580.583006475884])
 # >> generate new velocity with small random offset
 velocity = init_v + np.random.normal(0, v_scale, (samples, 3))
 position = init_pos + np.random.normal(0, r_scale, (samples, 3))
+line_num_epoch = 11
 line_nums_v = [19, 20, 21]
 line_nums_pos = [16, 17, 18]
+line_nums_out = [160, 243, 259]
 
 # >> run simulations for each date
 for d in range(uncertainty):
@@ -50,36 +55,37 @@ for d in range(uncertainty):
 
     # >> get sunrise sunset data (0th simulation has original init conds)
     for i in range(samples):
-        with open(script_dir + 'ThinSat_Planning_SunriseSunset.script', 'r') as f:
+        with open(script_dir + 'ThinSat_simulation.script', 'r') as f:
             lines = f.readlines()
             # >> change initial velocity vector
             for j in range(3):
                 if i != 0: # >> 0th simultation has init conds
-                    new = lines[line_nums_v[j]].split(' ')
+                    new = lines[line_nums_v[j]].split()
                     new[2] = str(velocity[i,j]) + '\n'
                     lines[line_nums_v[j]] = ' '.join(new)
-                    new = lines[line_nums_pos[j]].split(' ')
+                    new = lines[line_nums_pos[j]].split()
                     new[2] = str(position[i,j]) + '\n'
                     lines[line_nums_pos[j]] = ' '.join(new)
 
-                # >> change start time
-                lines[11] = "GMAT DefaultSC.Epoch = '" + epoch + "';\n"
+            # >> change start time
+            lines[line_num_epoch] = "GMAT DefaultSC.Epoch = '" + epoch + "';\n"
 
-        filename = output_dir + 'ThinSat_simulation.script'
-        with open(filename, 'w') as f:
-            f.write(''.join(lines))
+            # >> change report file location
+            new = lines[line_nums_out[0]].split()
+            new[3] = "'{}SunriseSunset_d{:02d}_{:03d}.txt';\n".format(output_dir, d, i)
+            lines[line_nums_out[0]] = ' '.join(new)
+            new = lines[line_nums_out[1]].split()
+            new[3] = "'{}ReportFile1_d{:02d}_{:03d}.txt';\n".format(output_dir, d, i)
+            lines[line_nums_out[1]] = ' '.join(new)
+            new = lines[line_nums_out[2]].split()
+            new[3] = "'{}ReportFile2.txt';\n".format(output_dir, d, i)
+            lines[line_nums_out[2]] = ' '.join(new)
 
         # >> run gmat simulation
-        os.chdir("/home/echickles/GMAT/R2018a/bin")
-        os.system("./GmatConsole " + filename)
-
-        # >> move report files
-        os.rename("/home/echickles/GMAT/R2018a/output/ReportFile1.txt",
-                  output_dir + "ReportFile1_" + epoch.split()[1] + epoch.split()[0] + '_' +\
-                  str(i) + '.txt')
-        os.rename("/home/echickles/GMAT/R2018a/output/SunriseSunset.txt",
-                  output_dir + "SunriseSunset_" + epoch.split()[1] + epoch.split()[0] + '_' +\
-                  str(i) + '.txt')
+        script = output_dir + 'temp.script'
+        with open(script, 'w') as f:
+            f.write(''.join(lines))
+        subprocess.run([shutil.which('GMAT'), script, '--minimize'])
 
         # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         # >> get latitude and longitude and altitude for noon, midnights, sunrises
@@ -160,25 +166,23 @@ for d in range(uncertainty):
                     
                 # ------------------------------------------------------------------
 
+            # >> run gmat simulation
             filename = output_dir + 'ThinSat_FindLocation_sunrise.script'
             with open(filename, 'w') as f:
                 f.write(''.join(lines))
-
-            # >> run gmat simulation
-            os.chdir("/home/echickles/GMAT/R2018a/bin")
-            os.system("./GmatConsole " + filename)
+            subprocess.run([shutil.which('GMAT'), filename, '--minimize'])
 
             #  >> move report files
             if noon:
-                os.rename("/home/echickles/GMAT/R2018a/output/ReportFile2.txt",
+                os.rename(output_dir + "ReportFile2.txt",
                           output_dir + "ReportFile2_noon_" +  epoch.split()[1] + \
                           epoch.split()[0] + '_' + str(i) + '.txt')
             if midnight:
-                os.rename("/home/echickles/GMAT/R2018a/output/ReportFile2.txt",
+                os.rename(output_dir + "ReportFile2.txt",
                           output_dir + "ReportFile2_midnight_" + epoch.split()[1] +\
                           epoch.split()[0] + '_' + str(i) + '.txt')
             if sunrise:
-                os.rename("/home/echickles/GMAT/R2018a/output/ReportFile2.txt",
+                os.rename(output_dir + "ReportFile2.txt",
                           output_dir + "ReportFile2_sunrise_" + epoch.split()[1] +\
                           epoch.split()[0] + '_' + str(i) + '.txt')
 
