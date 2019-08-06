@@ -1,0 +1,224 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2019-07-11
+%This script outputs latitude, longitude and altitude for each sunrise in ReportFile2.txt
+%It relies on the output file SunriseSunset.txt from ThinSat_Planning_SunriseSunset.script.
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft DefaultSC;
+GMAT DefaultSC.DateFormat = UTCGregorian; %TAIModJulian;
+GMAT DefaultSC.Epoch = '30 Nov 2020 13:00:00.000';
+GMAT DefaultSC.CoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC.DisplayStateType = Keplerian;
+
+%Initial orbital state in cartesian
+DefaultSC.X = 5313.199497001335
+DefaultSC.Y = -2912.3671357730113
+DefaultSC.Z = 2580.5822865182395
+DefaultSC.VX = 4.503032178496936
+DefaultSC.VY = 3.529261670822947
+DefaultSC.VZ = -5.288379583103465
+%5313.19898722968          -2912.368416712065        2580.583006475884         4.504094411355064         3.530755928387845         -5.28883890677512
+%GMAT DefaultSC.SMA = 6607.499999999994; %semi-major axis
+%GMAT DefaultSC.ECC = 0.003299999999999186; %eccentricity
+%GMAT DefaultSC.INC = 51.60000000000001; %orbital inclination
+%GMAT DefaultSC.RAAN = 171; %right ascension ascending node
+%GMAT DefaultSC.AOP = 150.0000000000009; %angle of periapsis
+%GMAT DefaultSC.TA = 1.707547292503188e-06;
+
+GMAT DefaultSC.DryMass = 0.285;
+GMAT DefaultSC.Cd = 2.07;
+GMAT DefaultSC.Cr = 1.8;
+GMAT DefaultSC.DragArea = 0.00426; %0.00142
+GMAT DefaultSC.SRPArea = 0.00146;
+GMAT DefaultSC.NAIFId = -10000001;
+GMAT DefaultSC.NAIFIdReferenceFrame = -9000001;
+GMAT DefaultSC.OrbitColor = Red;
+GMAT DefaultSC.TargetColor = Teal;
+GMAT DefaultSC.EstimationStateType = 'Cartesian';
+GMAT DefaultSC.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT DefaultSC.CdSigma = 1e+70;
+GMAT DefaultSC.CrSigma = 1e+70;
+GMAT DefaultSC.Id = 'SatId';
+GMAT DefaultSC.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC.SPADSRPScaleFactor = 1;
+GMAT DefaultSC.ModelFile = 'aura.3ds';
+GMAT DefaultSC.ModelOffsetX = 0;
+GMAT DefaultSC.ModelOffsetY = 0;
+GMAT DefaultSC.ModelOffsetZ = 0;
+GMAT DefaultSC.ModelRotationX = 0;
+GMAT DefaultSC.ModelRotationY = 0;
+GMAT DefaultSC.ModelRotationZ = 0;
+GMAT DefaultSC.ModelScale = 1;
+GMAT DefaultSC.AttitudeDisplayStateType = 'Quaternion';
+GMAT DefaultSC.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT DefaultSC.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DefaultProp_ForceModel;
+GMAT DefaultProp_ForceModel.CentralBody = Earth;
+GMAT DefaultProp_ForceModel.PrimaryBodies = {Earth};
+GMAT DefaultProp_ForceModel.PointMasses = {Sun};
+GMAT DefaultProp_ForceModel.SRP = On;
+GMAT DefaultProp_ForceModel.RelativisticCorrection = Off;
+GMAT DefaultProp_ForceModel.ErrorControl = RSSStep;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.Order = 4;
+GMAT DefaultProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT DefaultProp_ForceModel.GravityField.Earth.EarthTideModel = 'None';
+GMAT DefaultProp_ForceModel.SRP.Flux = 1367;
+GMAT DefaultProp_ForceModel.SRP.SRPModel = Spherical;
+GMAT DefaultProp_ForceModel.SRP.Nominal_Sun = 149597870.691;
+GMAT DefaultProp_ForceModel.Drag.AtmosphereModel = MSISE90;
+GMAT DefaultProp_ForceModel.Drag.HistoricWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT DefaultProp_ForceModel.Drag.PredictedWeatherSource = 'ConstantFluxAndGeoMag';
+GMAT DefaultProp_ForceModel.Drag.CSSISpaceWeatherFile = 'CSSI_2004To2026.txt';
+GMAT DefaultProp_ForceModel.Drag.SchattenFile = 'SchattenPredict.txt';
+GMAT DefaultProp_ForceModel.Drag.F107 = 70;
+GMAT DefaultProp_ForceModel.Drag.F107A = 70;
+GMAT DefaultProp_ForceModel.Drag.MagneticIndex = 3;
+GMAT DefaultProp_ForceModel.Drag.SchattenErrorModel = 'Nominal';
+GMAT DefaultProp_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DefaultProp;
+GMAT DefaultProp.FM = DefaultProp_ForceModel;
+GMAT DefaultProp.Type = RungeKutta89;
+GMAT DefaultProp.InitialStepSize = 60;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.MinStep = 0.0001;
+GMAT DefaultProp.MaxStep = 2700;
+GMAT DefaultProp.MaxStepAttempts = 50;
+GMAT DefaultProp.StopIfAccuracyIsViolated = false;
+
+%----------------------------------------
+%---------- Burns
+%----------------------------------------
+
+Create ImpulsiveBurn DefaultIB;
+GMAT DefaultIB.CoordinateSystem = Local;
+GMAT DefaultIB.Origin = Earth;
+GMAT DefaultIB.Axes = VNB;
+GMAT DefaultIB.Element1 = 0;
+GMAT DefaultIB.Element2 = 0;
+GMAT DefaultIB.Element3 = 0;
+GMAT DefaultIB.DecrementMass = false;
+GMAT DefaultIB.Isp = 300;
+GMAT DefaultIB.GravitationalAccel = 9.81;
+
+Create FiniteBurn DefaultFB;
+GMAT DefaultFB.ThrottleLogicAlgorithm = 'MaxNumberOfThrusters';
+
+Create ImpulsiveBurn ImpulsiveBurn1;
+GMAT ImpulsiveBurn1.CoordinateSystem = Local;
+GMAT ImpulsiveBurn1.Origin = Earth;
+GMAT ImpulsiveBurn1.Axes = VNB;
+GMAT ImpulsiveBurn1.Element1 = -0.0044;
+GMAT ImpulsiveBurn1.Element2 = 0;
+GMAT ImpulsiveBurn1.Element3 = 0;
+GMAT ImpulsiveBurn1.DecrementMass = false;
+GMAT ImpulsiveBurn1.Isp = 300;
+GMAT ImpulsiveBurn1.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn ImpulsiveBurn2;
+GMAT ImpulsiveBurn2.CoordinateSystem = Local;
+GMAT ImpulsiveBurn2.Origin = Earth;
+GMAT ImpulsiveBurn2.Axes = VNB;
+GMAT ImpulsiveBurn2.Element1 = -0.0044;
+GMAT ImpulsiveBurn2.Element2 = 0;
+GMAT ImpulsiveBurn2.Element3 = 0;
+GMAT ImpulsiveBurn2.DecrementMass = false;
+GMAT ImpulsiveBurn2.Isp = 300;
+GMAT ImpulsiveBurn2.GravitationalAccel = 9.81;
+
+Create ImpulsiveBurn ImpulsiveBurn3;
+GMAT ImpulsiveBurn3.CoordinateSystem = Local;
+GMAT ImpulsiveBurn3.Origin = Earth;
+GMAT ImpulsiveBurn3.Axes = VNB;
+GMAT ImpulsiveBurn3.Element1 = 0;
+GMAT ImpulsiveBurn3.Element2 = 0;
+GMAT ImpulsiveBurn3.Element3 = 0;
+GMAT ImpulsiveBurn3.DecrementMass = false;
+GMAT ImpulsiveBurn3.Isp = 300;
+GMAT ImpulsiveBurn3.GravitationalAccel = 9.81;
+
+%----------------------------------------
+%---------- EventLocators
+%----------------------------------------
+
+Create EclipseLocator SunriseSunset;
+GMAT SunriseSunset.Spacecraft = DefaultSC;
+GMAT SunriseSunset.Filename = 'SunriseSunset.txt';
+GMAT SunriseSunset.OccultingBodies = {Earth};
+GMAT SunriseSunset.InputEpochFormat = 'TAIGregorian';
+GMAT SunriseSunset.InitialEpoch = '01 Jan 2000 11:59:59.966';
+GMAT SunriseSunset.StepSize = 10;
+GMAT SunriseSunset.FinalEpoch = '01 Jan 2000 15:18:43.166';
+GMAT SunriseSunset.UseLightTimeDelay = true;
+GMAT SunriseSunset.UseStellarAberration = true;
+GMAT SunriseSunset.WriteReport = true;
+GMAT SunriseSunset.RunMode = Automatic;
+GMAT SunriseSunset.UseEntireInterval = true;
+GMAT SunriseSunset.EclipseTypes = {'Umbra', 'Penumbra', 'Antumbra'};
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+Create ReportFile ReportFile2;
+GMAT ReportFile2.SolverIterations = Current;
+GMAT ReportFile2.UpperLeft = [ 0.06176470588235294 0.06904761904761905 ];
+GMAT ReportFile2.Size = [ 0.9247058823529412 0.7952380952380952 ];
+GMAT ReportFile2.RelativeZOrder = 23;
+GMAT ReportFile2.Maximized = false;
+GMAT ReportFile2.Filename = 'ReportFile2.txt';
+GMAT ReportFile2.Precision = 16;
+GMAT ReportFile2.WriteHeaders = False;
+GMAT ReportFile2.LeftJustify = On;
+GMAT ReportFile2.ZeroFill = Off;
+GMAT ReportFile2.FixedWidth = true;
+GMAT ReportFile2.Delimiter = ' ';
+GMAT ReportFile2.ColumnWidth = 23;
+GMAT ReportFile2.WriteReport = true;
+
+%----------------------------------------
+%---------- Arrays, Variables, Strings
+%----------------------------------------
+
+Create Array times[43];
+Create Variable I x y dt;
+Create String p1 p2
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+p1 = '/home/echickles/Documents/reportfiles12/SunriseSunset_Nov30_100.txt'
+p2 = DefaultSC.UTCGregorian
+
+BeginFiniteBurn DefaultFB(DefaultSC);
+EndFiniteBurn DefaultFB(DefaultSC);
+
+times = Python.findjuliandates.getsunrisetimes(p1, p2)
+
+GMAT dt = times(1);
+Propagate DefaultProp(DefaultSC) {DefaultSC.ElapsedSecs = dt};
+Report ReportFile2 DefaultSC.ElapsedSecs DefaultSC.UTCGregorian DefaultSC.Earth.Latitude DefaultSC.Earth.Longitude DefaultSC.Earth.Altitude;
+
+For I = 1:1:42;
+   GMAT x = I+1;
+   GMAT y = I;
+   GMAT dt = times(x) - times(y);
+   Propagate DefaultProp(DefaultSC) {DefaultSC.ElapsedSecs = dt};
+   Report ReportFile2 DefaultSC.ElapsedSecs DefaultSC.UTCGregorian DefaultSC.Earth.Latitude DefaultSC.Earth.Longitude DefaultSC.Earth.Altitude;
+EndFor;
