@@ -33,6 +33,7 @@
 #include "Arduino.h" //Arduino library
 #include "ReadPhotocells.c" //reading photocells
 #include "ImgProcessing.c"
+#include "findlatlongalt.py"
 
 DS3231 Clock;
 EEPROM eeprom;
@@ -90,7 +91,6 @@ void loop(){
 
 
 
-
 /*___FUNCTIONS___*/
 
 void begin(){
@@ -125,7 +125,7 @@ float calibrateTime(DateTime rtcTime){
 
 struct readPhotocells(bool firstRun){
   /*
-    FUNCTION: read from all 4 photocells
+    FUNCTION: read from all 4 photocells aka the voltage
     PARAMETERS: None
     RETURN: a struct with sunset/sunrise data
   */
