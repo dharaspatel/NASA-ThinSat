@@ -66,7 +66,7 @@ for d in range(uncertainty):
                     lines[line_nums_v[j]] = "DefaultSC.V{} = {:f};\n".format("XYZ"[j], velocity[i,j])
                     lines[line_nums_pos[j]] = "DefaultSC.{} = {:f};\n".format("XYZ"[j], position[i,j])
                 # >> change drag area
-                lines[line_num_drag] = "GMAT DefaultSC.DragArea = {:.3f};\n".format(drag[i])
+                lines[line_num_drag] = "GMAT DefaultSC.DragArea = {:.3f};\n".format(area[i])
 
             # >> change start time
             lines[line_num_epoch] = "GMAT DefaultSC.Epoch = '{}';\n".format(epoch)
@@ -82,5 +82,5 @@ for d in range(uncertainty):
             f.write(''.join(lines))
 
         print("Running simulation {}".format(i))
-        subprocess.run([shutil.which('GMAT'), script, '--minimize'])
+        subprocess.run([shutil.which('GMAT'), script, '--run', '--minimize', '--exit'])
         print("Done!")
