@@ -240,6 +240,7 @@ for launch_date in range(1):
         f.write(NUM_ORBITS.to_bytes(8, 'big')) # header
         f.write(NUM_SIM_DATA.to_bytes(8, 'big'))
         f.write(NUM_PARAMS.to_bytes(8, 'big'))
+        f.write((2*NUM_MEMORIES).to_bytes(8, 'big'))
         for j in range(NUM_ORBITS): # expected values of observables
             f.write(struct.pack('d', sunset_times[0,j]))
             f.write(struct.pack('d', sunrise_times[0,j]))
