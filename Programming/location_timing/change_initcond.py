@@ -72,7 +72,7 @@ for d in range(NUM_LAUNCHDATES):
             lines[line_num_epoch] = "GMAT DefaultSC.Epoch = '{}';\n".format(epoch)
 
             # >> change report file location
-            lines[line_nums_out[0]] = "GMAT SunriseSunset.Filename = 'SunriseSunset_d{:02d}_{:03d}.txt';\n".format(d, i) # hard as I tried to change the directory into which these go, I'm afraid you have to get them from GMAT/R2018a/bin/
+            lines[line_nums_out[0]] = "GMAT SunriseSunset.Filename = 'SunriseSunset_d{:02d}_{:03d}.txt';\n".format(d, i) # hard as I tried to change the directory into which these go, I'm afraid you have to get them from GMAT/R2018a/output/
             lines[line_nums_out[1]] = "GMAT ReportFile1.Filename = 'ReportFile1_d{:02d}_{:03d}.txt';\n".format(d, i)
             lines[line_nums_out[2]] = "GMAT ReportFile2.Filename = 'ReportFile2_d{:02d}_{:03d}.txt';\n".format(d, i)
 
