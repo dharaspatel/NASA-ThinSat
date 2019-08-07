@@ -19,9 +19,9 @@ typedef struct UserDataStruct_t{
 
     uint16_t        spectrometer; //data from spectrometer located on burt
 
-    int16_t         tslMagXraw; //raw magnetometer x axis
-    int16_t         tslMagYraw; //raw magnetometer y axis
-    int16_t         tslMagZraw; //raw magnetometer z axis
+    int16_t         magnetometer_x; //raw magnetometer x axis
+    int16_t         magnetometer_y; //raw magnetometer y axis
+    int16_t         magnetometer_z; //raw magnetometer z axis
 };
 
 #endif

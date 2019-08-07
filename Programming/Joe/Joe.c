@@ -3,8 +3,6 @@
     Author: Dhara Patel
 
     Table of functions:
-      beginJoe()                                   [x]
-      getTime()                                    [x]
       calibrateTime()                              []
       readPhotocells()                             [x]
       getPosition()                                []
@@ -31,25 +29,27 @@
 #include "TSLPB.h" //NSL BUS
 #include "myDataPacketStructure.h" //datapacket stuff
 #include "Arduino.h" //Arduino library
+#include "Joe.h"
+
 #include "ReadPhotocells.c" //reading photocells
 #include "ImgProcessing.c"
 #include "findlatlongalt.py"
 
 DS3231 Clock;
 EEPROM eeprom;
-DateTime rtcTime; //the current time output by the rtc
+DateTime rtcTime; //the current time output by the rtc of the type DateTime
 TSLPB tslpb; //bus
 UserDataStruct_t missionData; //packet of mission data
 float secLaunch; //seconds since launch
-struct pho_data{
+struct pho_data{ //sunset sunrise data
   long sunrises[];
   long sunsets[];
-}; //sunset sunrise data
-bool firstRun = true; //first photocell run
-int state; //nothing = 0, launch = 1, pyrolysis = 2
+};
+bool isfirstRun = true; //first photocell run
+int launchCount = 0; //the number of launchers launched
+int wireCount = [[3, 4], [5, 6], [7, 8], [9, 10]]; //used to melt the correct wires for the associated target launch
+int state_of_burt; //nothing = 0, launch = 1, 2, 3, 4, pyrolysis = 5
 float threshold[]; //the threshold for the sunset/sunrise calculations
-int launchCount = 0; //the number of launchers released
-bool motor = true; //using motor design?
 size_t mag_data[]; //an array of x, y, z magnetometer data
 struct position{
   float seconds;
@@ -57,32 +57,37 @@ struct position{
   float longitude;
   float altitude;
   bool moonless;
-  float  inHalfOrbit[3]; //lat, long, alt in half orbit
+  float  inHalfOrbit[3]; //lat, long, alt of the satellite in half orbit
 }; //sec, lat, long, alt
 struct py_data{
-  size_t temperature;
+  int temperature;
   int histogram[10];
 } //sensor data from pyrolysis experiment
 
 void setup(){
-  begin();
+  tslpb.begin();
+  Wire.begin();
+  pinMode(ClockPowerPin, OUTPUT);
+  digitalWrite(ClockPowerPin, HIGH);
+  tslpb.InitTSLDigitalSensors();
+  rtcTime = Clock.now();
 }
 
 void loop(){
   rtcTime = Clock.now();
   calibrateTime(rtcTime);
-  readPhotocells(firstRun);
+  readPhotocells(isfirstRun);
   position = getPosition(rtcTime, pho_data);
-  state = calc_state(position);
+  state_of_burt = calc_state(position);
 
-  switch (state) {
+  switch (state_of_burt) {
     case 0:
       //j.chillin'
       delay(1);
       break;
     case 1:
       //begin launch process
-      launch(motor);
+      launch(launchCount);
     case 2:
       //begin pyrolysis process
       pyrolysis();
@@ -92,20 +97,6 @@ void loop(){
 
 
 /*___FUNCTIONS___*/
-
-void begin(){
-  /*
-    FUNCTION: Begins communication with I2C interface, starts the DS3231 Clock, writes table to SD
-    PARAMETERS: None
-    RETURN: None
-  */
-  tslpb.begin();
-  Wire.begin();
-  pinMode(ClockPowerPin, OUTPUT);
-  digitalWrite(ClockPowerPin, HIGH);
-  tslpb.InitTSLDigitalSensors();
-  rtcTime = Clock.now();
-}
 
 float calibrateTime(DateTime rtcTime){
   /*
@@ -123,26 +114,28 @@ float calibrateTime(DateTime rtcTime){
 
 }
 
-struct readPhotocells(bool firstRun){
+struct readPhotocells(bool isfirstRun){
   /*
     FUNCTION: read from all 4 photocells aka the voltage
     PARAMETERS: None
     RETURN: a struct with sunset/sunrise data
   */
-  return ReadPhotocells.main(firstRun)
   firstRun = false;
+  return ReadPhotocells.main(firstRun)
+
 }
 
 
-float getPosition(DateTime rtcTime, struct pho_data){
+float getPosition(DateTime rtcTime, pho_data data){
   /*
     FUNCTION: Uses forcast.csv to
     PARAMETERS: None
     RETURN: list of time, lat, long, alt, moonless
   */
+
 }
 
-int calc_state(struct position){
+int calc_state(position pos){
   /*
     FUNCTION: Calculates the state of the satellite depending on the position
     PARAMETERS: the pos
@@ -151,8 +144,8 @@ int calc_state(struct position){
   float sightAngle = 3;
   float satAngle = getTheta();
   if(satAngle <= sightAngle){
-      return 1;
       launchCount ++;
+      return 1;
   }else if(launchCount == 4 && position.moonless){
     //insert pyrolysis code
   }else{
@@ -161,73 +154,63 @@ int calc_state(struct position){
 
 }
 
-void sendData(){
+bool sendData(UserDataStruct_t missionData, size_t data_struct){
   /*
     FUNCTION: sends data to the bus
-    PARAMETERS: the number corresponding to the struct variable you are sending
-    RETURN: None
+    PARAMETERS: the data struct within missionData and missionData itself
+    RETURN: boolean for success of data sent to ground
   */
   while (!tslpb.isClearToSend()){
     delay(20);
   }
   tslpb.pushDataToNSL(missionData);
+  return successToNSL; //true if successfully sent to ground
 }
 
-void readSD(char file_name[]){
+void readSD(char file_name[], char variable_name[]){
   /*
-    FUNCTION: Returns all of the contents of a file
+    FUNCTION: Returns current position struct
     PARAMETERS: the file name of the SD card you want to read
     RETURN: None
   */
-  File data_file = SD.open(file_name);
-  while(data_file.avaliable()){
-    return data_file.read();
-  }
-  data_file.close();
+  File f = SD.open(file_name);
+  variable =  f.read(variable);
+  SD.close();
+  return variable;
+
 }
 
-void writeEEPROM(size_t data, int address){
-  /*
-    FUNCTION: writes to an address on the eeprom
-    PARAMETERS: the data you want to write and the address that you want to write to
-    RETURN: None
-  */
-}
-
-size_t readEEPROM(int address){
-  /*
-    FUNCTION: read an address on the eeprom
-    PARAMETERS: the address you want to read from
-    RETURN: the bytes of info on that address
-  */
-  return EEPROM.read(address);
-}
-
-size_t readMag(){
+int16_t readMag(){
   /*
     FUNCTION: read the magnetometer on the bus side
     PARAMETERS: None
     RETURN: data one after the other
   */
-  magx = tslpb.readTSLDigitalSensorRaw(Magnetometer_x);
-  magy = tslpb.readTSLDigitalSensorRaw(Magnetometer_y);
-  magz = tslpb.readTSLDigitalSensorRaw(Magnetometer_z);
+  magx = tslpb.readTSLDigitalSensorRaw(missionData.magnetometer_x);
+  magy = tslpb.readTSLDigitalSensorRaw(missionData.magnetometer_y);
+  magz = tslpb.readTSLDigitalSensorRaw(missionData.magnetometer_z);
 
-  return magx, magy, magz;
+  return [magx, magy, magz];
 }
 
-void launch(bool motor){
+bool launch(int wireCount){
   /*
-    FUNCTION: execute all launch protocall
+    FUNCTION: execute all launch protocall for notor design (to use rifled design remove lines with "MD" notation at the end)
     PARAMETERS: boolean for which launcher design is being used (motor or rifled design)
-    RETURN: None
+    RETURN: success bool
   */
-  if(motor){
-    digitalWrite(IN1_ADDR, HIGH); //motor driver is going forward
-    digitalWrite(IN2_ADDR, LOW);
+  if(launchCount == 0){
+      melt(1); //will melt the first tilt set of wires
+      melt(2);
+      ifdef(motor){
+        digitalWrite(IN1_ADDR, HIGH); //motor driver is going forward
+        digitalWrite(IN2_ADDR, LOW);
+        delay(1000); //delay to let the motor spin
+        digitalWrite(IN1_ADDR, LOW); //turn motor off
+      }
   }
-
-  melt([HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, LOW, LOW, LOW, LOW]);
+  melt(meltWires[launchCount][0]);
+  melt(meltWires[launchCount][1]);
 }
 
 void pyrolysis(){
@@ -237,12 +220,13 @@ void pyrolysis(){
     RETURN: None
   */
 
-  melt([LOW, LOW, LOW, LOW, LOW, LOW, HIGH, HIGH, HIGH, HIGH]);
+  melt(11);
+  melt(12);
   readTemp();
-  ImgProcessing.main(readImg());
+  readImg();
 }
 
-void melt(int wires[]){
+void melt(int wire){
   /*
     FUNCTION: helper func that melts a number of burn wires
     PARAMETERS: which burn wires to melt.... ex. [HIGH, LOW, LOW, etc.] would burn only first one
@@ -250,14 +234,19 @@ void melt(int wires[]){
   */
 
   for(int i = 0, i < 10, i++){
-    digitalWrite(SER_ADDR, wires[i])
-    digitalWrite(SRCLK_ADDR, HIGH);
-    digitalWrite(SRCLK_ADDR, LOW);
+    if(i==wire){
+      digitalWrite(SER_ADDR, HIGH)
+    }else{
+      digitalWrite(SER_ADDR, LOW)
+    }
+      digitalWrite(SRCLK_ADDR, HIGH);
+      digitalWrite(SRCLK_ADDR, LOW);
   }
   digitalWrite(RCLK_ADDR, HIGH);
   digitalWrite(RCLK_ADDR, LOW);
 
-  delay(10000);
+  delay(7000); //melt for 7 seconds
+
   for(int i = 0, i < 10, i++){
     digitalWrite(SER_ADDR, LOW);
     digitalWrite(SRCLK_ADDR, HIGH);

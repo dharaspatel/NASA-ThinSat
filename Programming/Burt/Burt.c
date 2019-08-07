@@ -13,7 +13,7 @@
 
 #include <DS3231.h>
 #include <Wire.h>
-#include <Main.h>
+#include <REGS.h>
 #include <Arduino.h>
 
 
