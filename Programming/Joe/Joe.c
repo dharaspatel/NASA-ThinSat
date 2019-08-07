@@ -22,7 +22,7 @@
 
 
 /*___INCLUDES___*/
-#include "DS3231.h" //Clock
+#include "dependencies/DS3231/DS3231.h" //Clock
 #include "Wire.h" //i2c
 #include "REGS.h" //Registers
 #include "SD.h" //SD Card
@@ -34,6 +34,8 @@
 #include "ReadPhotocells.c" //reading photocells
 #include "ImgProcessing.c"
 #include "findlatlongalt.py"
+
+#define SD_PIN 4
 
 DS3231 Clock;
 EEPROM eeprom;
@@ -71,6 +73,7 @@ void setup(){
   digitalWrite(ClockPowerPin, HIGH);
   tslpb.InitTSLDigitalSensors();
   rtcTime = Clock.now();
+  SD.begin(SD_PIN)
 }
 
 void loop(){
@@ -167,17 +170,15 @@ bool sendData(UserDataStruct_t missionData){
   return successToNSL; //true if successfully sent to ground
 }
 
-void readSD(char file_name[], char variable_name[]){
+void readSD(char file_name[], char output[], int len){
   /*
     FUNCTION: Returns current position struct
     PARAMETERS: the file name of the SD card you want to read
     RETURN: None
   */
   File f = SD.open(file_name);
-  variable =  f.read(variable);
-  SD.close();
-  return variable;
-
+  f.read(output, len);
+  f.close();
 }
 
 int16_t readMag(){
