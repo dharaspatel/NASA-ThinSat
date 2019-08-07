@@ -12,7 +12,7 @@
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-NUM_SAMPLES     = 30     # >> number of gmat simulations to run for each date
+NUM_SAMPLES     = 100    # >> number of gmat simulations to run for each date
 NUM_LAUNCHDATES = 7      # >> nuber of potential launch dates
 v_scale         = 0.5e-3 # >> determines offset from initial velocity vector in km/s
 r_scale         = 2.0e-3 # >> determines offset from initial position vector in km
@@ -57,7 +57,7 @@ for d in range(NUM_LAUNCHDATES):
     epoch = ' '.join(epoch)
 
     # >> get sunrise sunset data (0th simulation has original init conds)
-    for i in range(NUM_SAMPLES):
+    for i in range(30, NUM_SAMPLES):
         with open(script_dir + 'ThinSat_simulation.script', 'r') as f:
             lines = f.readlines()
             if i != 0: # >> 0th simultation has init conds
@@ -72,7 +72,7 @@ for d in range(NUM_LAUNCHDATES):
             lines[line_num_epoch] = "GMAT DefaultSC.Epoch = '{}';\n".format(epoch)
 
             # >> change report file location
-            lines[line_nums_out[0]] = "GMAT SunriseSunset.Filename = 'SunriseSunset_d{:02d}_{:03d}.txt';\n".format(d, i) # hard as I tried to change the directory into which these go, I'm afraid you have to get them from GMAT/R2018a/bin/
+            lines[line_nums_out[0]] = "GMAT SunriseSunset.Filename = 'SunriseSunset_d{:02d}_{:03d}.txt';\n".format(d, i) # hard as I tried to change the directory into which these go, I'm afraid you have to get them from GMAT/R2018a/output/
             lines[line_nums_out[1]] = "GMAT ReportFile1.Filename = 'ReportFile1_d{:02d}_{:03d}.txt';\n".format(d, i)
             lines[line_nums_out[2]] = "GMAT ReportFile2.Filename = 'ReportFile2_d{:02d}_{:03d}.txt';\n".format(d, i)
 
