@@ -14,7 +14,7 @@ import findjuliandates
 
 
 NUM_ORBITS = 6
-NUM_SIMS = 30
+NUM_SIMS = 100
 
 SOURCE_DIR = '../../Simulations/'
 
@@ -47,10 +47,10 @@ if __name__ == '__main__':
 				start_times.pop(j)
 
 		set_times = [st for st, tn in zip(start_times, type_names) if tn=='Umbra'] # measure sunwend times for each orbit in this simulation
-		rise_times = [st for st, tn in zip(stop_times, type_names) if tn == 'Umbra']
+		rise_times = [st for st, tn in zip(stop_times, type_names) if tn=='Umbra']
 		for j in range(-1, -1-NUM_ORBITS, -1):
 			orbit_lengths[i,j] = set_times[j] - set_times[j-1]
-			night_lengths[i,j] = rise_times[j-1] - set_times[j-1] if rise_times[j-1] > set_times[j-1] else rise_times[j] - set_times[j-1]
+			night_lengths[i,j] = rise_times[j-1] - set_times[j-1]
 		num_orbits[i,0] = len(set_times)
 
 	day_lengths = orbit_lengths - night_lengths
@@ -59,9 +59,10 @@ if __name__ == '__main__':
 
 	# sns.set_palette(sns.cubehelix_palette(NUM_ORBITS-1, start=.15, rot=-1, light=.7, dark=.2, reverse=True))
 	for j in range(-1, -NUM_ORBITS, -1): # go from the back and skip any extras at the end
-		label = (-j-2)*"ante"+"penultimate" if j < -1 else "final"
-		plt.scatter(orbit_lengths[:,j]/60, day_lengths[:,j]/60, s=10, label=label.capitalize())
+		label = (-j-1)*"ante"+"penultimate"
+		plt.scatter(orbit_lengths[:,j]/60, orbit_deltas[:,j], s=10, label=label.capitalize())
 	plt.xlabel("Orbit length (min)")
-	plt.ylabel("Orbit decay rate (%)")
+	plt.ylabel("Orbit change (sec)")
+	plt.title("Orbit observables for last few orbits\n(remember, the blue dots represent data we\nwon't see until we are in the penultimate orbit)")
 	plt.legend()
 	plt.show()
