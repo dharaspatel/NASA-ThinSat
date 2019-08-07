@@ -22,7 +22,7 @@
 
 
 /*___INCLUDES___*/
-#include "DS3231.h" //Clock
+#include "dependencies/DS3231/DS3231.h" //Clock
 #include "Wire.h" //i2c
 #include "REGS.h" //Registers
 #include "SD.h" //SD Card
