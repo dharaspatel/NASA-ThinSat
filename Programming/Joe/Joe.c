@@ -114,7 +114,7 @@ float calibrateTime(DateTime rtcTime){
 
 }
 
-struct readPhotocells(bool isfirstRun){
+struct pho_data readPhotocells(bool isfirstRun){
   /*
     FUNCTION: read from all 4 photocells aka the voltage
     PARAMETERS: None
@@ -126,7 +126,7 @@ struct readPhotocells(bool isfirstRun){
 }
 
 
-float getPosition(DateTime rtcTime, pho_data data){
+struct position getPosition(DateTime rtcTime, struct pho_data data){
   /*
     FUNCTION: Uses forcast.csv to
     PARAMETERS: None
@@ -154,7 +154,7 @@ int calc_state(position pos){
 
 }
 
-bool sendData(UserDataStruct_t missionData, size_t data_struct){
+bool sendData(UserDataStruct_t missionData){
   /*
     FUNCTION: sends data to the bus
     PARAMETERS: the data struct within missionData and missionData itself

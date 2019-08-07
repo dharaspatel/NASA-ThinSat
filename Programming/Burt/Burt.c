@@ -40,17 +40,17 @@ int getState(float pos){
   }
 }
 
-void launchMotors(){
+bool launchMotors(){
   digitalWrite(IN1_ADDR,HIGH);
   digitalWrite(IN2_ADDR,HIGH);
 
 }
 
-void launchBurn(){
+bool launchBurn(){
 
 }
 
-void gasRelease(){
+bool gasRelease(){
 
 }
 
