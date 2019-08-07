@@ -78,9 +78,9 @@ $EndComp
 Wire Wire Line
 	10125 2350 10025 2350
 Text Label 5650 1475 0    50   ~ 0
-TX
+TX2
 Text Label 4450 1475 2    50   ~ 0
-RX
+RX2
 $Comp
 L Connector_Generic:Conn_02x03_Counter_Clockwise J1
 U 1 1 5D200FC5
@@ -206,30 +206,6 @@ F 4 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-07442RL/311-442HRC
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:LED D3
-U 1 1 5D195D15
-P 3475 4750
-F 0 "D3" H 3468 4966 50  0000 C CNN
-F 1 "LED" H 3468 4875 50  0000 C CNN
-F 2 "LED_SMD:LED_0603_1608Metric" H 3475 4750 50  0001 C CNN
-F 3 "~" H 3475 4750 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/lite-on-inc/LTST-C191TBKT/160-1647-1-ND/573587" H 3475 4750 50  0001 C CNN "Part URL"
-	1    3475 4750
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R11
-U 1 1 5D195D1B
-P 3175 4750
-F 0 "R11" V 2968 4750 50  0000 C CNN
-F 1 "440R" V 3059 4750 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 3105 4750 50  0001 C CNN
-F 3 "~" H 3175 4750 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/yageo/RC0603FR-07442RL/311-442HRCT-ND/730189" H 3175 4750 50  0001 C CNN "Part URL"
-	1    3175 4750
-	0    1    1    0   
-$EndComp
-$Comp
 L power:GND #PWR014
 U 1 1 5D19812D
 P 2825 4325
@@ -242,19 +218,6 @@ F 3 "" H 2825 4325 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	2825 4325 3025 4325
-$Comp
-L power:GND #PWR016
-U 1 1 5D19E020
-P 2825 4750
-F 0 "#PWR016" H 2825 4500 50  0001 C CNN
-F 1 "GND" H 2830 4577 50  0000 C CNN
-F 2 "" H 2825 4750 50  0001 C CNN
-F 3 "" H 2825 4750 50  0001 C CNN
-	1    2825 4750
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2825 4750 3025 4750
 Text Label 5650 1375 0    50   ~ 0
 BUSY
 Text Notes 2775 4025 0    50   ~ 0
@@ -698,7 +661,7 @@ Wire Notes Line
 Wire Notes Line
 	2650 3875 2650 5375
 $Comp
-L Joe-rescue:DF12-20DS-Custom U7
+L Custom:DF12-20DS-Custom U7
 U 1 1 5D782D20
 P 5050 1525
 F 0 "U7" H 5050 2200 50  0000 C CNN
@@ -1045,8 +1008,6 @@ Text Notes 2775 5575 0    50   ~ 0
 EEPROM\n
 Text Label 4775 3025 2    50   ~ 0
 CS_IMG
-Text Label 4775 3125 2    50   ~ 0
-MOSI
 Text Label 4775 3825 2    50   ~ 0
 SER
 Text Label 4775 3925 2    50   ~ 0
@@ -1070,7 +1031,7 @@ Temp Sensor Data Input
 Text Notes 5200 3025 0    39   ~ 0
 CS Output for Img Sensor
 Text Notes 5200 3125 0    39   ~ 0
-MOSI Output for Img Sensor
+TX Output for Img Sensor
 Text Notes 5200 3625 0    39   ~ 0
 Burn Wire Output 1 for Pyrolysis
 Text Notes 5200 3725 0    39   ~ 0
@@ -1084,9 +1045,9 @@ Input = Data from Burt to Joe\nOutput = Data from Joe to Burt
 Wire Notes Line
 	4200 2475 6200 2475
 Wire Notes Line
-	6200 2475 6200 4775
+	6200 2475 6200 5000
 Wire Notes Line
-	4200 4775 4200 2475
+	4200 5000 4200 2475
 Wire Notes Line
 	2650 5425 4150 5425
 Wire Notes Line
@@ -1113,12 +1074,8 @@ Text Label 10850 4750 0    50   ~ 0
 TEMP
 Wire Wire Line
 	10625 4750 10850 4750
-Text Label 10825 3050 0    50   ~ 0
-PLED3
 Wire Wire Line
 	10625 5550 10850 5550
-Text Label 3625 4750 0    50   ~ 0
-PLED3
 Text Label 3625 4325 0    50   ~ 0
 PLED1
 Connection ~ 10025 2350
@@ -1136,7 +1093,7 @@ U 1 1 5D3F3BA1
 P 1650 3525
 F 0 "R12" V 1325 3525 50  0000 C CNN
 F 1 "R_PHOTO" V 1416 3525 50  0000 C CNN
-F 2 "Custom:PinHeader_1x02_P1.00mm_Vertical" V 1700 3275 50  0001 L CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x02_P2.00mm_Vertical" V 1700 3275 50  0001 L CNN
 F 3 "~" H 1650 3475 50  0001 C CNN
 F 4 "https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028" H 1650 3525 50  0001 C CNN "Part URL"
 	1    1650 3525
@@ -1148,7 +1105,7 @@ U 1 1 5D40B08B
 P 1700 4650
 F 0 "R13" V 1375 4650 50  0000 C CNN
 F 1 "R_PHOTO" V 1466 4650 50  0000 C CNN
-F 2 "Custom:PinHeader_1x02_P1.00mm_Vertical" V 1750 4400 50  0001 L CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x02_P2.00mm_Vertical" V 1750 4400 50  0001 L CNN
 F 3 "~" H 1700 4600 50  0001 C CNN
 F 4 "https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028" H 1700 4650 50  0001 C CNN "Part URL"
 	1    1700 4650
@@ -1160,7 +1117,7 @@ U 1 1 5D40BCB5
 P 1725 5800
 F 0 "R14" V 1400 5800 50  0000 C CNN
 F 1 "R_PHOTO" V 1491 5800 50  0000 C CNN
-F 2 "Custom:PinHeader_1x02_P1.00mm_Vertical" V 1775 5550 50  0001 L CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x02_P2.00mm_Vertical" V 1775 5550 50  0001 L CNN
 F 3 "~" H 1725 5750 50  0001 C CNN
 F 4 "https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028" H 1725 5800 50  0001 C CNN "Part URL"
 	1    1725 5800
@@ -1172,7 +1129,7 @@ U 1 1 5D40F4BF
 P 1750 6950
 F 0 "R15" V 1425 6950 50  0000 C CNN
 F 1 "R_PHOTO" V 1516 6950 50  0000 C CNN
-F 2 "Custom:PinHeader_1x02_P1.00mm_Vertical" V 1800 6700 50  0001 L CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x02_P2.00mm_Vertical" V 1800 6700 50  0001 L CNN
 F 3 "~" H 1750 6900 50  0001 C CNN
 F 4 "https://www.digikey.com/product-detail/en/advanced-photonix/NSL-5910/NSL-5910-ND/5436028" H 1750 6950 50  0001 C CNN "Part URL"
 	1    1750 6950
@@ -1204,22 +1161,8 @@ Text Notes 5200 4225 0    39   ~ 0
 Motor Driver for Launchers Output 2\n
 Text Notes 5200 3925 0    39   ~ 0
 Serial Clk Output for Shift Reg
-Text Label 4775 3225 2    50   ~ 0
-MISO
-Text Label 4775 3325 2    50   ~ 0
-SCK
-Text Label 4775 3425 2    50   ~ 0
-SDA
-Text Label 4775 3525 2    50   ~ 0
-SCL
 Text Notes 5200 3225 0    39   ~ 0
-MISO Output for Img Sensor
-Text Notes 5200 3325 0    39   ~ 0
-SCLK Output for Img Sensor
-Text Notes 5200 3425 0    39   ~ 0
-SDA Output for Img Sensor
-Text Notes 5200 3525 0    39   ~ 0
-SCL Output for Img Sensor
+RX Output for Img Sensor
 $Comp
 L power:+3V3 #PWR037
 U 1 1 5D47F25B
@@ -1254,18 +1197,6 @@ F 3 "" H 4600 4525 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 NoConn ~ 4450 1375
-$Comp
-L Joe-rescue:UFDFPN8-MC-Custom U6
-U 1 1 5D2D63AB
-P 3375 6125
-F 0 "U6" H 3400 6490 50  0000 C CNN
-F 1 "M24C32-XDW5TP" H 3400 6399 50  0000 C CNN
-F 2 "Package_SO:TSSOP-8_4.4x3mm_P0.65mm" H 3375 6125 50  0001 C CNN
-F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/8c/54/f2/63/4c/4a/CD00001012.pdf/files/CD00001012.pdf/jcr:content/translations/en.CD00001012.pdf" H 3375 6125 50  0001 C CNN
-F 4 "https://www.digikey.com/product-detail/en/stmicroelectronics/M24C32-XDW5TP/497-16068-1-ND/5476770" H 3375 6125 50  0001 C CNN "Part URL"
-	1    3375 6125
-	1    0    0    -1  
-$EndComp
 $Comp
 L Connector_Generic:Conn_01x20 J2
 U 1 1 5D2D5DCB
@@ -1308,4 +1239,109 @@ Wire Wire Line
 	3650 3350 3850 3350
 NoConn ~ 4775 3625
 NoConn ~ 4775 3725
+Wire Notes Line
+	6200 5000 4200 5000
+$Comp
+L Custom:UFDFPN8-MC-Custom U6
+U 1 1 5D2D63AB
+P 3375 6125
+F 0 "U6" H 3400 6490 50  0000 C CNN
+F 1 "M24C32-XDW5TP" H 3400 6399 50  0000 C CNN
+F 2 "Package_SO:TSSOP-8_4.4x3mm_P0.65mm" H 3375 6125 50  0001 C CNN
+F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/80/4e/8c/54/f2/63/4c/4a/CD00001012.pdf/files/CD00001012.pdf/jcr:content/translations/en.CD00001012.pdf" H 3375 6125 50  0001 C CNN
+F 4 "https://www.digikey.com/product-detail/en/stmicroelectronics/M24C32-XDW5TP/497-16068-1-ND/5476770" H 3375 6125 50  0001 C CNN "Part URL"
+	1    3375 6125
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom:SN74LVC1G3157DCKR U?
+U 1 1 5D3D14D1
+P 4500 5525
+F 0 "U?" H 5600 5912 60  0000 C CNN
+F 1 "SN74LVC1G3157DCKR" H 5600 5806 60  0000 C CNN
+F 2 "DCK6" H 5600 5765 60  0001 C CNN
+F 3 "" H 4500 5525 60  0000 C CNN
+	1    4500 5525
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom:SN74LVC1G3157DCKR U?
+U 1 1 5D3D305C
+P 4500 6450
+F 0 "U?" H 5600 6837 60  0000 C CNN
+F 1 "SN74LVC1G3157DCKR" H 5600 6731 60  0000 C CNN
+F 2 "DCK6" H 5600 6690 60  0001 C CNN
+F 3 "" H 4500 6450 60  0000 C CNN
+	1    4500 6450
+	1    0    0    -1  
+$EndComp
+Text Label 6700 5725 0    50   ~ 0
+TX
+Text Label 6700 6650 0    50   ~ 0
+RX
+Text Label 4500 5525 2    50   ~ 0
+TX1
+Text Label 4500 5725 2    50   ~ 0
+TX2
+Text Label 4500 6450 2    50   ~ 0
+RX1
+Text Label 4500 6650 2    50   ~ 0
+RX2
+$Comp
+L power:GND #PWR?
+U 1 1 5D3D51B3
+P 4500 6550
+F 0 "#PWR?" H 4500 6300 50  0001 C CNN
+F 1 "GND" H 4505 6377 50  0000 C CNN
+F 2 "" H 4500 6550 50  0001 C CNN
+F 3 "" H 4500 6550 50  0001 C CNN
+	1    4500 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D3D5A60
+P 4500 5625
+F 0 "#PWR?" H 4500 5375 50  0001 C CNN
+F 1 "GND" H 4505 5452 50  0000 C CNN
+F 2 "" H 4500 5625 50  0001 C CNN
+F 3 "" H 4500 5625 50  0001 C CNN
+	1    4500 5625
+	0    1    1    0   
+$EndComp
+Text Label 10825 3050 0    50   ~ 0
+USART_SEL
+Text Label 6700 5525 0    50   ~ 0
+USART_SEL
+Text Label 6700 6450 0    50   ~ 0
+USART_SEL
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D3E2909
+P 6700 5625
+F 0 "#PWR?" H 6700 5475 50  0001 C CNN
+F 1 "+3V3" H 6715 5798 50  0000 C CNN
+F 2 "" H 6700 5625 50  0001 C CNN
+F 3 "" H 6700 5625 50  0001 C CNN
+	1    6700 5625
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D3E303B
+P 6700 6550
+F 0 "#PWR?" H 6700 6400 50  0001 C CNN
+F 1 "+3V3" H 6715 6723 50  0000 C CNN
+F 2 "" H 6700 6550 50  0001 C CNN
+F 3 "" H 6700 6550 50  0001 C CNN
+	1    6700 6550
+	0    1    1    0   
+$EndComp
+Text Label 4775 3125 2    50   ~ 0
+TX1
+Text Label 4775 3225 2    50   ~ 0
+RX1
+NoConn ~ 4775 3525
+NoConn ~ 4775 3425
+NoConn ~ 4775 3325
 $EndSCHEMATC
