@@ -121,8 +121,8 @@ extern "C"
 #define configure_pin_available() DDRC &= ~(1 << DDC6)
 #define configure_pin_locked() DDRC &= ~(1 << DDC7)
 
-#define get_pin_available() (PINC & (1 << PINC4))
-#define get_pin_locked() (PINC & (1 << PINC5))
+#define get_pin_available() (PINC & (1 << PINC6))
+#define get_pin_locked() (PINC & (1 << PINC7))
 
 #if SD_RAW_SDHC
     typedef uint64_t offset_t;
