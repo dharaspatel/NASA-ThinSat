@@ -57,7 +57,7 @@ for d in range(NUM_LAUNCHDATES):
     epoch = ' '.join(epoch)
 
     # >> get sunrise sunset data (0th simulation has original init conds)
-    for i in range(30, NUM_SAMPLES):
+    for i in range(NUM_SAMPLES):
         with open(script_dir + 'ThinSat_simulation.script', 'r') as f:
             lines = f.readlines()
             if i != 0: # >> 0th simultation has init conds

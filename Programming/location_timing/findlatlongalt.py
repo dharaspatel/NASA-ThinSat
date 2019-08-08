@@ -34,8 +34,8 @@ DEBUG = False
 DAY_LENGTH_THRESH = datetime.timedelta(seconds=60) # no day is this short
 NIGHT_LENGTH_THRESH = datetime.timedelta(seconds=60) # no night is this short
 
-NUM_DAYS = 2 # number of potential launch dates
-NUM_SIMS = 20 # number of simulated mission variations
+NUM_DAYS = 3 # number of potential launch dates
+NUM_SIMS = 100 # number of simulated mission variations
 NUM_ORBITS = 150 # number of orbits to fit per simulation
 NUM_SIM_DATA = 40000 # number of data in each simulation (should be greater than the maximum expected)
 NUM_PARAMS = 9 # the number of parameters to use to fit each orbit function

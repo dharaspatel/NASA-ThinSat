@@ -23,7 +23,7 @@ NIGHT_LENGTH_THRESH = datetime.timedelta(seconds=60) # no night is this short
 
 
 if __name__ == '__main__':
-	num_orbits = np.empty((NUM_SIMS, 1))
+	num_orbits = np.empty((NUM_SIMS))
 	night_lengths = np.empty((NUM_SIMS, NUM_ORBITS))
 	orbit_lengths = np.empty((NUM_SIMS, NUM_ORBITS))
 
@@ -51,16 +51,30 @@ if __name__ == '__main__':
 		for j in range(-1, -1-NUM_ORBITS, -1):
 			orbit_lengths[i,j] = set_times[j] - set_times[j-1]
 			night_lengths[i,j] = rise_times[j-1] - set_times[j-1]
-		num_orbits[i,0] = len(set_times)
+		num_orbits[i] = len(set_times)
 
 	day_lengths = orbit_lengths - night_lengths
 	orbit_deltas = orbit_lengths[:,1:] - orbit_lengths[:,:-1]
 	orbit_decays = orbit_deltas/orbit_lengths[:,:-1]
 
+	p0 = np.argmax(orbit_deltas[:,-3])
+	p1 = np.argmax(orbit_lengths[:,-3])
+	# m = (orbit_deltas[p1,-3] - orbit_deltas[p0,-3]) / (orbit_lengths[p1,-3] - orbit_lengths[p0,-3])
+	# b = orbit_deltas[p0,-3] - orbit_lengths[p0,-3]*m
+	m = -0.0704
+	b = 363.46+.25
+
+	print("Start thinking about pyrolysis when you see an orbit with Δ <= {:.4f} T + {:.2f}".format(m, b))
+
 	# sns.set_palette(sns.cubehelix_palette(NUM_ORBITS-1, start=.15, rot=-1, light=.7, dark=.2, reverse=True))
 	for j in range(-1, -NUM_ORBITS, -1): # go from the back and skip any extras at the end
 		label = (-j-1)*"ante"+"penultimate"
-		plt.scatter(orbit_lengths[:,j]/60, orbit_deltas[:,j], s=10, label=label.capitalize())
+		plt.scatter(orbit_lengths[:,j]/60, orbit_deltas[:,j], s=10, label=label.capitalize(),)# c=num_orbits)
+	# plt.colorbar()
+
+	x = np.linspace(1.5*orbit_lengths[p0,-3]-0.5*orbit_lengths[p1,-3], 1.5*orbit_lengths[p1,-3]-0.5*orbit_lengths[p0,-3])
+	plt.plot(x/60, m*x + b, 'k-')
+
 	plt.xlabel("Orbit length (min)")
 	plt.ylabel("Orbit change (sec)")
 	plt.title("Orbit observables for last few orbits\n(remember, the blue dots represent data we\nwon't see until we are in the penultimate orbit)")
