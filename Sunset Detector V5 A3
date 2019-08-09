@@ -1,0 +1,247 @@
+/* THINGS THIS CODE NEEDS BEFORE FLIGHT
+ *  1. An accurate clock messurement from an RTC (currently not coded into the program). Assign the total time value from the RTC (when integrated) to t[1].
+ *  2. Testing with four solar cells sensors in a mock sunset.
+ *  3. External varibale storage
+ *  PROBLEMS
+ *  1. Code does not track time to excatly the frequency of messurment (500ms right now). The code takes longer than 500ms to run through a set. 
+ *      Need to find a way to get the time messurments more stable and matching excactly with their corresponding voltage value.
+ *  2. Need to cut down on Global variable usage 
+ * 
+ */
+
+//The four arrays below represent the initialization of the rolling buffers.
+//One for each of the satellite's sensors
+const int numberOfEntries = 50;
+//this integer represents the ammount of time between each messurment in milliseconds. (must be a factor of 20,000)
+int frequencyMS = 500;
+float topRollBuff[numberOfEntries]; 
+float portRollBuff[numberOfEntries];
+float bottomRollBuff[numberOfEntries];
+float starboardRollBuff[numberOfEntries];
+float maxReading[numberOfEntries];
+//the dataScalar variable will scale the sunriseCurveVals to the data.
+float dataScalar = 0;
+float sunsetCurveVals[] = {0,0,1.9,05.2,09.4,14.2,19.6,25.2,31.2,37.4,43.6,50,56.4,62.6,68.8,74.8,80.4,85.8,90.6,94.8,98.1,100};
+int timeOfEclipse = NULL;
+//vaiable t represenst local time
+unsigned long t[numberOfEntries];
+//The variable below represents the number of half seconds needed to trigger the "eclipse seen" section of the code, and start fitting.
+int NumberOfHalfSecondsSufficientStandard = 20;
+boolean eclipseSeen = false;
+boolean offSetFound = false;
+//The floats below are varibales representing the voltage or 
+//current readings from the four solar sensors on the spacecraft
+float topSideMessurment = NULL;
+float bottomSideMessurement = NULL;
+float portSideMessurement = NULL;
+float starBoardSideMessurment = NULL;
+//the variables below are part of the fitting algorythm
+float difference = 0;
+float differenceLast = 0;
+float differenceLastSet = 0;
+int nz = 0;
+//The integers below are varibales represeneting the pin numbers 
+//from which the arduino will recieve data from the spacecraft's sensors
+//These pin numbers are place holders, before testing set to desired pins
+int portPin = A1;
+int topPin = A2;
+int bottomPin = A3;
+int starboardPin = A4;                 
+
+void setup() {
+  // put your setup code here, to run once:
+pinMode(portPin, INPUT);
+pinMode(topPin, INPUT);
+pinMode(bottomPin,  INPUT);
+pinMode(starboardPin, INPUT);
+ Serial.begin(9600);
+ for (int i = numberOfEntries; i>0; i--){
+  maxReading[i]= .1;
+ }
+    
+    
+    
+ while(offSetFound == false){
+/*
+ * Sensor and Rolling buffer module:
+ * Each of these four for loops moves all array entries one index up
+ * and takes a mesurmenet from its respecitve sensor and assigns it to the first entry
+*/
+for (int i = numberOfEntries; i>1; i--){
+    topRollBuff[i]=topRollBuff[i-1];
+   }  
+   
+   topSideMessurment = analogRead(topPin);
+   topSideMessurment = map(topSideMessurment, 0, 1023, 0, 100);
+   topRollBuff[1] = topSideMessurment;
+   
+   
+for (int p = numberOfEntries; p>1; p--){
+    portRollBuff[p]= portRollBuff[p-1];    
+}
+portSideMessurement = analogRead(portPin);
+portSideMessurement = map(portSideMessurement, 0, 1023, 0, 100);
+portRollBuff[1] = portSideMessurement;
+
+for (int s = numberOfEntries; s>1; s--){
+    starboardRollBuff[s]=starboardRollBuff[s-1]; 
+}
+starBoardSideMessurment = analogRead(starboardPin);
+starBoardSideMessurment = map(starBoardSideMessurment, 0, 1023, 0, 100);
+starboardRollBuff[1] = starBoardSideMessurment;
+
+
+for (int b = numberOfEntries; b>1; b--){
+    bottomRollBuff[b]=bottomRollBuff[b-1];   
+}
+bottomSideMessurement = analogRead(bottomPin);
+bottomSideMessurement = map(bottomSideMessurement, 0, 1023, 0, 100);
+bottomRollBuff[1] = bottomSideMessurement;
+
+/*This for loop cycles the maxReading data set, the Max data set is what will be used to model the curve via tailor expansion
+ */
+for (int m = numberOfEntries; m>1; m--){
+    maxReading[m] = maxReading[m-1];
+}
+
+/*The for loop below compares all four recent values from the sensors and finds the largest one.
+This has the effect of reducing noise from the sensors's sum (see simulations on drive for example)
+*/
+if (topRollBuff[1] >= portRollBuff[1] && topRollBuff[1] >= starboardRollBuff[1] && topRollBuff[1] >= bottomRollBuff[1]){
+  maxReading[1]=topRollBuff[1];
+  //Serial.println("Pick Top");
+}
+
+else if (portRollBuff[1] >= topRollBuff[1] && portRollBuff[1] >= starboardRollBuff[1] && portRollBuff[1] >= bottomRollBuff[1]){
+  maxReading[1]=portRollBuff[1];
+ // Serial.println("Pick Port");
+}
+
+else if (starboardRollBuff[1] >= topRollBuff[1] && starboardRollBuff[1] >= portRollBuff[1] && starboardRollBuff[1] >= bottomRollBuff[1]){
+  maxReading[1]=starboardRollBuff[1];
+ // Serial.println("Pick Starboard");
+}
+
+else if (bottomRollBuff[1] >= topRollBuff[1] && bottomRollBuff[1] >= portRollBuff[1] && bottomRollBuff[1] >= starboardRollBuff[1]){
+  maxReading[1]= bottomRollBuff[1];
+  //Serial.println("Pick Bottom");
+}else{
+  //Serial.println("Error4");
+}
+/* this for loop keeps an up to date record of the corresponding x values (time is graphed on the x axis and voltage on the y axis)
+ */
+for (int c = numberOfEntries; c>1 ; c--){
+  t[c] = t[c-1];  
+} 
+t[1]=millis();
+dataScalar = (dataScalar + maxReading [50])/2;
+////t = rtc value
+////The prints below can be used to keep track of the variables: like a report on the code
+////Time prints
+////Serial.print("millis()");
+////Serial.print(":");
+////Serial.println(millis());
+////Serial.print("t[1]");
+////Serial.print(":");
+////Serial.println(t[1]);
+////Serial.print("t[2]");
+////Serial.print(":");
+////Serial.println(t[2]);
+////Value prints
+////Serial.println("maxReading[1]");
+////Serial.print(":");
+//Serial.print(maxReading[1]);
+////Serial.print("maxReading[2]");
+//Serial.print(",");
+////Serial.println(maxReading[2]);
+Serial.print("portRollBuff[1]");
+////Serial.print(":");
+//Serial.print(portRollBuff[1]);
+////Serial.print("starboardRollBuff[1]");
+//Serial.print(",");
+//Serial.print(starboardRollBuff[1]);
+////Serial.print("bottomRollBuff[1]");
+//Serial.print(",");
+//Serial.print(bottomRollBuff[1]);
+////Serial.print("topRollBuff[1]");
+//Serial.print(",");
+//Serial.println(topRollBuff[1]);
+
+
+
+
+//
+//Serial.print("dataScalar");
+//Serial.print(":");
+//Serial.println(dataScalar);
+
+   
+
+// At this point the data is taken from the sensors and stored in its respective arrays 
+//arccos (t) - t * sqrt(1-sq(t)) / pi
+/* the plan now is to map the standard curve of the sunset to the values by making calculated values for the sunset curve and incrmeneting 
+ *  it back and messuring how closely the values match the data. This should work now because there will be a steady, but noisey, stream of data
+ *  meaning that the curve will sill be closest matched to the data points at the time of the sunset. There will be no need to curve fit the data itself.
+ */
+//this for loop will test if the sat has been in darkness for more than a SUFFICIENT ammount of time to determine that it is in the eclipse
+//nz is the number of zeros messured
+ 
+for (int q = 1; q<=numberOfEntries; q++){
+  if (maxReading[q]==0 || maxReading[q]==1){
+    nz = nz + 1;
+    //Serial.println("Zero Read");
+  }else{
+    nz = 0;
+    //Serial.println("Zero Not Read");
+  }
+  if (nz > NumberOfHalfSecondsSufficientStandard){
+    eclipseSeen = true;
+  }
+}
+// This is where it is determined whether to find the closest fit or not.  //fitting algorythm
+  if (eclipseSeen == true){
+    //this for loop will cycle though possible offSet values untill one that is closer than the previous offSet value to mapping the data is found.
+    for(int offSet = 0; offSet <=numberOfEntries && offSetFound == false; offSet++){
+      Serial.println("offSet Tester");
+      Serial.print("Offset Value:");
+      Serial.println(offSet);
+      //This for loop calculates how close the offset value is to approximating the data, by finding the differences between them.
+      for(int i = 20000/frequencyMS; i>0; i --){
+        Serial.println ("fit tester");
+        difference = abs(maxReading[offSet + i]-(.01 *(dataScalar) * sunsetCurveVals[i])); 
+      }
+      //This tests if the recent fit was better than the previous. The 4500 ms added to the offset is because this code will find the toe of the curve, this assigns
+      if(differenceLast < difference){
+        offSetFound = true;
+        timeOfEclipse = t[1]-(offSet * frequencyMS);
+        Serial.print("Eclipse Time");
+        Serial.print(": ");
+        Serial.println(timeOfEclipse);
+        Serial.print("Differnece");
+        Serial.print(": ");
+        Serial.println(difference);
+      }else{
+        differenceLast = difference;
+      }
+     
+    }
+   
+  }delay(frequencyMS);
+}
+
+  }
+ 
+
+/*
+ * The goal of this code is to find the offest between 
+ * the last messured time entry (and confirmation that the sattellite 
+ * is in eclipse)and the real time when the eclipse took place.
+
+ * The code finds the real eclipse time by subtracting the offset of the 
+ * closest set match of the sunset curve to the data.
+
+ * Therefore, if the offset is not found, the code willl continue running untill
+ * it has found that value. When it has, the code's purpose is complete
+*/
+void loop(){ 
+}
